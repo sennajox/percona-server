@@ -278,3 +278,4 @@ diff -ruN mysql-5.0.67_highperf/patch_info/microsec_process.info mysql-5.0.67_hi
 +Author=Percona <info@percona.com>
 +License=GPL
 +Comment=
++ChangeLog=
