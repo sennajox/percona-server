@@ -1,0 +1,212 @@
+diff -ru mysql-5.0.67_highperf/innobase/include/srv0srv.h mysql-5.0.67_highperf_fix/innobase/include/srv0srv.h
+--- mysql-5.0.67_highperf/innobase/include/srv0srv.h	2008-11-10 15:34:56.000000000 +0900
++++ mysql-5.0.67_highperf_fix/innobase/include/srv0srv.h	2008-11-11 02:20:35.000000000 +0900
+@@ -27,6 +27,8 @@
+ #define SRV_AUTO_EXTEND_INCREMENT	\
+ 	(srv_auto_extend_increment * ((1024 * 1024) / UNIV_PAGE_SIZE))
+ 
++extern ibool	srv_slow_log;
++
+ /* This is set to TRUE if the MySQL user has set it in MySQL */
+ extern ibool	srv_lower_case_table_names;
+ 
+diff -ru mysql-5.0.67_highperf/innobase/srv/srv0srv.c mysql-5.0.67_highperf_fix/innobase/srv/srv0srv.c
+--- mysql-5.0.67_highperf/innobase/srv/srv0srv.c	2008-11-10 15:35:03.000000000 +0900
++++ mysql-5.0.67_highperf_fix/innobase/srv/srv0srv.c	2008-11-11 00:57:28.000000000 +0900
+@@ -48,6 +48,8 @@
+ #include "srv0start.h"
+ #include "row0mysql.h"
+ 
++ibool	srv_slow_log = 0;
++
+ /* This is set to TRUE if the MySQL user has set it in MySQL; currently
+ affects only FOREIGN KEY definition parsing */
+ ibool	srv_lower_case_table_names	= FALSE;
+diff -ru mysql-5.0.67_highperf/innobase/trx/trx0trx.c mysql-5.0.67_highperf_fix/innobase/trx/trx0trx.c
+--- mysql-5.0.67_highperf/innobase/trx/trx0trx.c	2008-11-10 15:35:03.000000000 +0900
++++ mysql-5.0.67_highperf_fix/innobase/trx/trx0trx.c	2008-11-11 01:04:27.000000000 +0900
+@@ -240,8 +240,10 @@
+ 
+ 	trx->mysql_process_no = os_proc_get_number();
+ 	
++	if (srv_slow_log) {
+ 	trx->distinct_page_access_hash = mem_alloc(DPAH_SIZE);
+ 	memset(trx->distinct_page_access_hash, 0, DPAH_SIZE);
++	}
+ 	thr_local_set_trx(trx->mysql_thread_id, trx);
+ 
+ 	return(trx);
+diff -ru mysql-5.0.67_highperf/innobase/ut/ut0ut.c mysql-5.0.67_highperf_fix/innobase/ut/ut0ut.c
+--- mysql-5.0.67_highperf/innobase/ut/ut0ut.c	2008-08-04 21:19:18.000000000 +0900
++++ mysql-5.0.67_highperf_fix/innobase/ut/ut0ut.c	2008-11-11 01:57:05.000000000 +0900
+@@ -20,6 +20,8 @@
+ 
+ ibool	ut_always_false	= FALSE;
+ 
++extern ibool srv_slow_log;
++
+ #ifdef __WIN__
+ /*********************************************************************
+ NOTE: The Windows epoch starts from 1601/01/01 whereas the Unix
+@@ -133,9 +135,15 @@
+ {
+ 	struct timeval	tv;
+ 
++	/* This code is for test use only */
++	if (srv_slow_log) {
+ 	ut_gettimeofday(&tv, NULL);
+ 	*sec = (ulint) tv.tv_sec;
+ 	*ms  = (ulint) tv.tv_usec;
++	} else {
++	*sec = 0;
++	*ms = 0;
++	}
+ }
+ 
+ /**************************************************************
+diff -ru mysql-5.0.67_highperf/sql/ha_innodb.cc mysql-5.0.67_highperf_fix/sql/ha_innodb.cc
+--- mysql-5.0.67_highperf/sql/ha_innodb.cc	2008-11-10 15:34:56.000000000 +0900
++++ mysql-5.0.67_highperf_fix/sql/ha_innodb.cc	2008-11-11 01:00:37.000000000 +0900
+@@ -1408,6 +1408,8 @@
+ 
+ 	/* -------------- Log files ---------------------------*/
+ 
++	srv_slow_log = (ibool) opt_slow_log;
++
+ 	/* The default dir for log files is the datadir of MySQL */
+ 
+ 	if (!innobase_log_group_home_dir) {
+diff -ru mysql-5.0.67_highperf/sql/mysql_priv.h mysql-5.0.67_highperf_fix/sql/mysql_priv.h
+--- mysql-5.0.67_highperf/sql/mysql_priv.h	2008-11-10 15:34:00.000000000 +0900
++++ mysql-5.0.67_highperf_fix/sql/mysql_priv.h	2008-11-11 02:07:46.000000000 +0900
+@@ -1435,6 +1435,7 @@
+ extern my_bool opt_safe_show_db, opt_local_infile;
+ extern my_bool opt_slave_compressed_protocol, use_temp_pool;
+ extern my_bool opt_readonly, lower_case_file_system;
++extern my_bool opt_userstat_running;
+ extern my_bool opt_enable_named_pipe, opt_sync_frm, opt_allow_suspicious_udfs;
+ extern my_bool opt_secure_auth;
+ extern char* opt_secure_file_priv;
+diff -ru mysql-5.0.67_highperf/sql/mysqld.cc mysql-5.0.67_highperf_fix/sql/mysqld.cc
+--- mysql-5.0.67_highperf/sql/mysqld.cc	2008-11-10 15:34:56.000000000 +0900
++++ mysql-5.0.67_highperf_fix/sql/mysqld.cc	2008-11-11 01:36:52.000000000 +0900
+@@ -413,6 +413,7 @@
+ my_bool opt_large_pages= 0;
+ uint    opt_large_page_size= 0;
+ my_bool opt_old_style_user_limits= 0, trust_function_creators= 0;
++my_bool opt_userstat_running= 0;
+ /*
+   True if there is at least one per-hour limit for some user, so we should
+   check them before each query (and possibly reset counters when hour is
+@@ -5039,7 +5040,8 @@
+   OPT_INNODB_ADAPTIVE_HASH_INDEX,
+   OPT_RPL_MIRROR_BINLOG,
+   OPT_SYNC_MIRROR_BINLOG,
+-  OPT_FEDERATED
++  OPT_FEDERATED,
++  OPT_USERSTAT_RUNNING
+ };
+ 
+ 
+@@ -6521,6 +6523,11 @@
+    (gptr*) &max_system_variables.net_wait_timeout, 0, GET_ULONG,
+    REQUIRED_ARG, NET_WAIT_TIMEOUT, 1, IF_WIN(INT_MAX32/1000, LONG_TIMEOUT),
+    0, 1, 0},
++  {"opt_userstat_running", OPT_USERSTAT_RUNNING,
++   "Control USER_STATISTICS, CLIENT_STATISTICS, INDEX_STATISTICS and TABLE_STATISTICS running",
++   (gptr*) &opt_userstat_running,
++   (gptr*) &opt_userstat_running,
++   0, GET_BOOL, NO_ARG, 0, 0, 1, 0, 1, 0},
+   {0, 0, 0, 0, 0, 0, GET_NO_ARG, NO_ARG, 0, 0, 0, 0, 0, 0}
+ };
+ 
+diff -ru mysql-5.0.67_highperf/sql/set_var.cc mysql-5.0.67_highperf_fix/sql/set_var.cc
+--- mysql-5.0.67_highperf/sql/set_var.cc	2008-11-10 15:34:56.000000000 +0900
++++ mysql-5.0.67_highperf_fix/sql/set_var.cc	2008-11-11 00:39:18.000000000 +0900
+@@ -318,6 +318,7 @@
+ sys_var_thd_ulong	sys_read_buff_size("read_buffer_size",
+ 					   &SV::read_buff_size);
+ sys_var_bool_ptr	sys_readonly("read_only", &opt_readonly);
++sys_var_bool_ptr	sys_userstat_running("userstat_running", &opt_userstat_running);
+ sys_var_thd_ulong	sys_read_rnd_buff_size("read_rnd_buffer_size",
+ 					       &SV::read_rnd_buff_size);
+ sys_var_thd_ulong	sys_div_precincrement("div_precision_increment",
+@@ -875,6 +876,7 @@
+   &sys_unique_checks,
+   &sys_updatable_views_with_limit,
+   &sys_warning_count
++  , &sys_userstat_running
+ };
+ 
+ 
+@@ -1205,6 +1207,7 @@
+    SHOW_SYS},
+   {sys_version_compile_os.name,	(char*) &sys_version_compile_os,    SHOW_SYS},
+   {sys_net_wait_timeout.name, (char*) &sys_net_wait_timeout,	    SHOW_SYS},
++  {sys_userstat_running.name, (char*) &sys_userstat_running,        SHOW_SYS},
+   {NullS, NullS, SHOW_LONG}
+ };
+ 
+diff -ru mysql-5.0.67_highperf/sql/sql_base.cc mysql-5.0.67_highperf_fix/sql/sql_base.cc
+--- mysql-5.0.67_highperf/sql/sql_base.cc	2008-11-10 15:33:40.000000000 +0900
++++ mysql-5.0.67_highperf_fix/sql/sql_base.cc	2008-11-11 00:51:55.000000000 +0900
+@@ -625,11 +625,13 @@
+   DBUG_ASSERT(table->key_read == 0);
+   DBUG_ASSERT(!table->file || table->file->inited == handler::NONE);
+   
++  if (opt_userstat_running) {
+   if(table->file)
+   { 
+     table->file->update_global_table_stats();
+     table->file->update_global_index_stats();
+   }
++  }
+ 
+   *table_ptr=table->next;
+   if (table->needs_reopen_or_name_lock() ||
+@@ -677,8 +679,10 @@
+   DBUG_ENTER("close_temporary");
+   char path[FN_REFLEN];
+ 
++  if (opt_userstat_running) {
+   table->file->update_global_table_stats();
+   table->file->update_global_index_stats();
++  }
+   db_type table_type=table->s->db_type;
+   strmov(path,table->s->path);
+   free_io_cache(table);
+diff -ru mysql-5.0.67_highperf/sql/sql_parse.cc mysql-5.0.67_highperf_fix/sql/sql_parse.cc
+--- mysql-5.0.67_highperf/sql/sql_parse.cc	2008-11-10 15:34:56.000000000 +0900
++++ mysql-5.0.67_highperf_fix/sql/sql_parse.cc	2008-11-11 00:50:32.000000000 +0900
+@@ -6744,6 +6744,7 @@
+   double start_cpu_nsecs = 0;
+   double end_cpu_nsecs = 0;
+ 
++  if (opt_userstat_running) {
+ #ifdef HAVE_CLOCK_GETTIME
+   /* get start cputime */ 
+   if (!(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
+@@ -6754,6 +6755,7 @@
+   if (!(start_time_error = gettimeofday(&start_time, NULL))) {
+     start_usecs = start_time.tv_sec * 1000000.0 + start_time.tv_usec;
+   }
++  }
+ 
+ 
+   if (query_cache_send_result_to_client(thd, (char*) inBuf, length) <= 0)
+@@ -6850,6 +6852,7 @@
+     thd->busy_time = 0;
+   }
+ 
++  if (opt_userstat_running) {
+ #ifdef HAVE_CLOCK_GETTIME
+   /* get end cputime */
+   if (!cputime_error &&
+@@ -6864,6 +6867,7 @@
+   // Updates THD stats and the global user stats.
+   thd->update_stats(true);
+   update_global_user_stats(thd, true, time(NULL));
++  }
+ 
+   DBUG_VOID_RETURN;
+ }

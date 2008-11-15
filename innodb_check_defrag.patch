@@ -1,0 +1,277 @@
+diff -ruN mysql-5.0.67_before_check_defrag/innobase/btr/btr0cur.c mysql-5.0.67_check_defrag/innobase/btr/btr0cur.c
+--- mysql-5.0.67_before_check_defrag/innobase/btr/btr0cur.c	2008-08-04 21:19:12.000000000 +0900
++++ mysql-5.0.67_check_defrag/innobase/btr/btr0cur.c	2008-11-11 16:17:15.000000000 +0900
+@@ -516,6 +516,14 @@
+ 						== index->table->comp);
+ 			}
+ 
++			if (level == 0) {
++				/* Initializes status counters */
++				innobase_mysql_thd_init_innodb_scan_cont();
++				innobase_mysql_thd_init_innodb_scan_jump();
++				innobase_mysql_thd_init_innodb_scan_data();
++				innobase_mysql_thd_init_innodb_scan_garbage();
++			}
++
+ 			break;
+ 		}
+ 
+@@ -664,6 +672,12 @@
+ 						      root_height);
+ 		        }
+ 
++			/* Initializes status counters */
++			innobase_mysql_thd_init_innodb_scan_cont();
++			innobase_mysql_thd_init_innodb_scan_jump();
++			innobase_mysql_thd_init_innodb_scan_data();
++			innobase_mysql_thd_init_innodb_scan_garbage();
++
+ 			break;
+ 		}
+ 
+diff -ruN mysql-5.0.67_before_check_defrag/innobase/btr/btr0pcur.c mysql-5.0.67_check_defrag/innobase/btr/btr0pcur.c
+--- mysql-5.0.67_before_check_defrag/innobase/btr/btr0pcur.c	2008-08-04 21:19:12.000000000 +0900
++++ mysql-5.0.67_check_defrag/innobase/btr/btr0pcur.c	2008-11-11 16:17:15.000000000 +0900
+@@ -381,6 +381,7 @@
+ 				last record of the current page */
+ 	mtr_t*		mtr)	/* in: mtr */
+ {
++	ulint	page_no;
+ 	ulint	next_page_no;
+ 	ulint	space;
+ 	page_t*	page;
+@@ -393,12 +394,23 @@
+ 	cursor->old_stored = BTR_PCUR_OLD_NOT_STORED;
+ 	
+ 	page = btr_pcur_get_page(cursor);
++	page_no = buf_frame_get_page_no(page);
+ 
+ 	next_page_no = btr_page_get_next(page, mtr);
+ 	space = buf_frame_get_space_id(page);
+ 
+ 	ut_ad(next_page_no != FIL_NULL);	
+ 
++	if (next_page_no - page_no == 1) {
++		innobase_mysql_thd_increment_innodb_scan_cont(1);
++	} else {
++		innobase_mysql_thd_increment_innodb_scan_jump(1);
++	}
++	innobase_mysql_thd_increment_innodb_scan_data(
++				page_get_data_size(page));
++	innobase_mysql_thd_increment_innodb_scan_garbage(
++				page_header_get_field(page, PAGE_GARBAGE));
++
+ 	next_page = btr_page_get(space, next_page_no, cursor->latch_mode, mtr);
+ 	ut_a(page_is_comp(next_page) == page_is_comp(page));
+ 	buf_block_align(next_page)->check_index_page_at_flush = TRUE;
+@@ -427,6 +439,7 @@
+ 				record of the current page */
+ 	mtr_t*		mtr)	/* in: mtr */
+ {
++	ulint	page_no;
+ 	ulint	prev_page_no;
+ 	ulint	space;
+ 	page_t*	page;
+@@ -462,10 +475,21 @@
+ 	btr_pcur_restore_position(latch_mode2, cursor, mtr);	
+ 
+ 	page = btr_pcur_get_page(cursor);
++	page_no = buf_frame_get_page_no(page);
+ 
+ 	prev_page_no = btr_page_get_prev(page, mtr);
+ 	space = buf_frame_get_space_id(page);
+ 
++	if (page_no - prev_page_no == 1) {
++		innobase_mysql_thd_increment_innodb_scan_cont(1);
++	} else {
++		innobase_mysql_thd_increment_innodb_scan_jump(1);
++	}
++	innobase_mysql_thd_increment_innodb_scan_data(
++				page_get_data_size(page));
++	innobase_mysql_thd_increment_innodb_scan_garbage(
++				page_header_get_field(page, PAGE_GARBAGE));
++
+ 	if (btr_pcur_is_before_first_on_page(cursor, mtr)
+ 					&& (prev_page_no != FIL_NULL)) {	
+ 
+diff -ruN mysql-5.0.67_before_check_defrag/innobase/btr/btr0sea.c mysql-5.0.67_check_defrag/innobase/btr/btr0sea.c
+--- mysql-5.0.67_before_check_defrag/innobase/btr/btr0sea.c	2008-08-04 21:19:12.000000000 +0900
++++ mysql-5.0.67_check_defrag/innobase/btr/btr0sea.c	2008-11-11 16:17:15.000000000 +0900
+@@ -861,6 +861,12 @@
+ 
+ 	buf_pool->n_page_gets++;
+ 
++	/* Initializes status counters */
++	innobase_mysql_thd_init_innodb_scan_cont();
++	innobase_mysql_thd_init_innodb_scan_jump();
++	innobase_mysql_thd_init_innodb_scan_data();
++	innobase_mysql_thd_init_innodb_scan_garbage();
++
+ 	return(TRUE);	
+ 
+ 	/*-------------------------------------------*/
+diff -ruN mysql-5.0.67_before_check_defrag/innobase/include/btr0cur.h mysql-5.0.67_check_defrag/innobase/include/btr0cur.h
+--- mysql-5.0.67_before_check_defrag/innobase/include/btr0cur.h	2008-08-04 21:19:13.000000000 +0900
++++ mysql-5.0.67_check_defrag/innobase/include/btr0cur.h	2008-11-11 16:17:15.000000000 +0900
+@@ -697,6 +697,17 @@
+ extern ulint	btr_cur_n_non_sea_old;
+ extern ulint	btr_cur_n_sea_old;
+ 
++/*--------------------------------------*/
++/* prototypes for new functions added to ha_innodb.cc */
++void innobase_mysql_thd_init_innodb_scan_cont();
++void innobase_mysql_thd_increment_innodb_scan_cont(ulong length);
++void innobase_mysql_thd_init_innodb_scan_jump();
++void innobase_mysql_thd_increment_innodb_scan_jump(ulong length);
++void innobase_mysql_thd_init_innodb_scan_data();
++void innobase_mysql_thd_increment_innodb_scan_data(ulong length);
++void innobase_mysql_thd_init_innodb_scan_garbage();
++void innobase_mysql_thd_increment_innodb_scan_garbage(ulong length);
++
+ #ifndef UNIV_NONINL
+ #include "btr0cur.ic"
+ #endif
+diff -ruN mysql-5.0.67_before_check_defrag/patch_info/innodb_check_defrag.info mysql-5.0.67_check_defrag/patch_info/innodb_check_defrag.info
+--- /dev/null	1970-01-01 09:00:00.000000000 +0900
++++ mysql-5.0.67_check_defrag/patch_info/innodb_check_defrag.info	2008-11-11 16:24:22.000000000 +0900
+@@ -0,0 +1,6 @@
++File=innodb_check_defrag.patch
++Name=Session status to check fragmentation of the last InnoDB scan
++Version=1.0
++Author=Percona <info@percona.com>
++License=GPL
++Comment=The names are Innodb_scan_*
+diff -ruN mysql-5.0.67_before_check_defrag/sql/ha_innodb.cc mysql-5.0.67_check_defrag/sql/ha_innodb.cc
+--- mysql-5.0.67_before_check_defrag/sql/ha_innodb.cc	2008-11-11 16:12:59.000000000 +0900
++++ mysql-5.0.67_check_defrag/sql/ha_innodb.cc	2008-11-11 16:17:15.000000000 +0900
+@@ -758,6 +758,102 @@
+ }
+ 
+ /*************************************************************************
++Initializes Innodb_scan_blocks_contiguous. */
++extern "C"
++void
++innobase_mysql_thd_init_innodb_scan_cont()
++{
++	THD *thd=current_thd;
++	if (likely(thd != 0)) {
++		thd->status_var.innodb_scan_cont = 0;
++	}
++}
++
++/*************************************************************************
++Increments Innodb_scan_blocks_contiguous. */
++extern "C"
++void
++innobase_mysql_thd_increment_innodb_scan_cont(ulong length)
++{
++	THD *thd=current_thd;
++	if (likely(thd != 0)) {
++		thd->status_var.innodb_scan_cont+= length;
++	}
++}
++
++/*************************************************************************
++Initializes Innodb_scan_blocks_jumpy. */
++extern "C"
++void
++innobase_mysql_thd_init_innodb_scan_jump()
++{
++	THD *thd=current_thd;
++	if (likely(thd != 0)) {
++		thd->status_var.innodb_scan_jump = 0;
++	}
++}
++
++/*************************************************************************
++Increments Innodb_scan_blocks_jumpy. */
++extern "C"
++void
++innobase_mysql_thd_increment_innodb_scan_jump(ulong length)
++{
++	THD *thd=current_thd;
++	if (likely(thd != 0)) {
++		thd->status_var.innodb_scan_jump+= length;
++	}
++}
++
++/*************************************************************************
++Initializes Innodb_scan_data_in_pages. */
++extern "C"
++void
++innobase_mysql_thd_init_innodb_scan_data()
++{
++	THD *thd=current_thd;
++	if (likely(thd != 0)) {
++		thd->status_var.innodb_scan_data = 0;
++	}
++}
++
++/*************************************************************************
++Increments Innodb_scan_data_in_pages. */
++extern "C"
++void
++innobase_mysql_thd_increment_innodb_scan_data(ulong length)
++{
++	THD *thd=current_thd;
++	if (likely(thd != 0)) {
++		thd->status_var.innodb_scan_data+= length;
++	}
++}
++
++/*************************************************************************
++Initializes Innodb_scan_garbages_in_pages. */
++extern "C"
++void
++innobase_mysql_thd_init_innodb_scan_garbage()
++{
++	THD *thd=current_thd;
++	if (likely(thd != 0)) {
++		thd->status_var.innodb_scan_garbage = 0;
++	}
++}
++
++/*************************************************************************
++Increments Innodb_scan_garbages_in_pages. */
++extern "C"
++void
++innobase_mysql_thd_increment_innodb_scan_garbage(ulong length)
++{
++	THD *thd=current_thd;
++	if (likely(thd != 0)) {
++		thd->status_var.innodb_scan_garbage+= length;
++	}
++}
++
++/*************************************************************************
+ Gets the InnoDB transaction handle for a MySQL handler object, creates
+ an InnoDB transaction struct if the corresponding MySQL thread struct still
+ lacks one. */
+diff -ruN mysql-5.0.67_before_check_defrag/sql/mysqld.cc mysql-5.0.67_check_defrag/sql/mysqld.cc
+--- mysql-5.0.67_before_check_defrag/sql/mysqld.cc	2008-11-11 16:12:50.000000000 +0900
++++ mysql-5.0.67_check_defrag/sql/mysqld.cc	2008-11-11 16:19:06.000000000 +0900
+@@ -6651,6 +6651,10 @@
+   {"Handler_write",            (char*) offsetof(STATUS_VAR, ha_write_count), SHOW_LONG_STATUS},
+ #ifdef HAVE_INNOBASE_DB
+   {"Innodb_",                  (char*) &innodb_status_variables, SHOW_VARS},
++  {"Innodb_scan_pages_contiguous",(char*) offsetof(STATUS_VAR, innodb_scan_cont), SHOW_LONGLONG_STATUS},
++  {"Innodb_scan_pages_jumpy",  (char*) offsetof(STATUS_VAR, innodb_scan_jump), SHOW_LONGLONG_STATUS},
++  {"Innodb_scan_data_in_pages",(char*) offsetof(STATUS_VAR, innodb_scan_data), SHOW_LONGLONG_STATUS},
++  {"Innodb_scan_garbages_in_pages",(char*) offsetof(STATUS_VAR, innodb_scan_garbage), SHOW_LONGLONG_STATUS},
+ #endif /*HAVE_INNOBASE_DB*/
+   {"Key_blocks_not_flushed",   (char*) &dflt_key_cache_var.global_blocks_changed, SHOW_KEY_CACHE_LONG},
+   {"Key_blocks_unused",        (char*) &dflt_key_cache_var.blocks_unused, SHOW_KEY_CACHE_CONST_LONG},
+diff -ruN mysql-5.0.67_before_check_defrag/sql/sql_class.h mysql-5.0.67_check_defrag/sql/sql_class.h
+--- mysql-5.0.67_before_check_defrag/sql/sql_class.h	2008-11-11 16:12:38.000000000 +0900
++++ mysql-5.0.67_check_defrag/sql/sql_class.h	2008-11-11 16:17:15.000000000 +0900
+@@ -722,6 +722,10 @@
+     global status variable counter
+   */
+   double last_query_cost;
++  ulonglong innodb_scan_cont;
++  ulonglong innodb_scan_jump;
++  ulonglong innodb_scan_data;
++  ulonglong innodb_scan_garbage;
+ } STATUS_VAR;
+ 
+ /*

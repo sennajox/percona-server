@@ -1,0 +1,597 @@
+diff -ru mysql-5.0.67_patched/patch_info/innodb_io_pattern.info mysql-5.0.67_io_count/patch_info/innodb_io_pattern.info
+--- /dev/null	1970-01-01 09:00:00.000000000 +0900
++++ mysql-5.0.67_io_count/patch_info/innodb_io_pattern.info	2008-11-11 16:24:22.000000000 +0900
+@@ -0,0 +1,6 @@
++File=innodb_io_pattern.patch
++Name=Information schema table of InnoDB IO counts for each datafile pages
++Version=1.0
++Author=Percona <info@percona.com>
++License=GPL
++Comment=INFORMATION_SCHEMA.INNODB_IO_PATTERN
+diff -ru mysql-5.0.67_patched/include/mysql_com.h mysql-5.0.67_io_count/include/mysql_com.h
+--- mysql-5.0.67_patched/include/mysql_com.h	2008-11-10 10:28:41.000000000 +0900
++++ mysql-5.0.67_io_count/include/mysql_com.h	2008-11-10 10:31:35.000000000 +0900
+@@ -122,6 +122,9 @@
+ #define REFRESH_DES_KEY_FILE	0x40000L
+ #define REFRESH_USER_RESOURCES	0x80000L
+ 
++/* TRUNCATE INFORMATION_SCHEMA.INNODB_IO_PATTERN */
++#define REFRESH_INNODB_IO_PATTERN	0x1000000L
++
+ #define CLIENT_LONG_PASSWORD	1	/* new more secure passwords */
+ #define CLIENT_FOUND_ROWS	2	/* Found instead of affected rows */
+ #define CLIENT_LONG_FLAG	4	/* Get all column flags */
+diff -ru mysql-5.0.67_patched/innobase/buf/buf0buf.c mysql-5.0.67_io_count/innobase/buf/buf0buf.c
+--- mysql-5.0.67_patched/innobase/buf/buf0buf.c	2008-11-10 10:29:33.000000000 +0900
++++ mysql-5.0.67_io_count/innobase/buf/buf0buf.c	2008-11-10 10:39:10.000000000 +0900
+@@ -651,6 +651,9 @@
+ 	}
+ 
+ 	buf_pool->page_hash = hash_create(2 * max_size);
++	buf_pool->io_counter_hash = NULL;
++	buf_pool->io_counter_heap = NULL;
++	buf_pool->io_counters = 0;
+ 
+ 	buf_pool->n_pend_reads = 0;
+ 
+@@ -1951,6 +1954,9 @@
+ 	ulint		io_type;
+ 	ulint		read_page_no;
+ 	
++	buf_io_counter_t*	io_counter;
++	ulint		fold;
++	
+ 	ut_ad(block);
+ 
+ 	ut_a(block->state == BUF_BLOCK_FILE_PAGE);
+@@ -2052,6 +2058,26 @@
+ 		buf_pool->n_pages_read++;
+ 
+ 		rw_lock_x_unlock_gen(&(block->lock), BUF_IO_READ);
++		/* io_counter here */
++		if (srv_io_pattern && srv_io_pattern_trace_running) {
++		fold = buf_page_address_fold(block->space, block->offset);
++		HASH_SEARCH(hash, buf_pool->io_counter_hash, fold, io_counter,
++			(io_counter->space == block->space) && (io_counter->offset == block->offset));
++		if (io_counter == NULL && buf_pool->io_counters < srv_io_pattern_size_limit) {
++			io_counter = mem_heap_alloc(buf_pool->io_counter_heap,(sizeof(buf_io_counter_t)));
++			io_counter->space = block->space;
++			io_counter->offset = block->offset;
++			io_counter->n_read = 0;
++			io_counter->n_write = 0;
++			HASH_INSERT(buf_io_counter_t, hash, buf_pool->io_counter_hash,
++				buf_page_address_fold(block->space, block->offset), io_counter);
++			buf_pool->io_counters++;
++		}
++		if (io_counter != NULL) {
++			io_counter->index_id = ut_dulint_get_low(btr_page_get_index_id(buf_block_get_frame(block)));
++			io_counter->n_read++;
++		}
++		}
+ 
+ #ifdef UNIV_DEBUG
+ 		if (buf_debug_prints) {
+@@ -2067,6 +2093,26 @@
+ 		buf_flush_write_complete(block);
+ 
+ 		rw_lock_s_unlock_gen(&(block->lock), BUF_IO_WRITE);
++		/* io_counter here */
++		if (srv_io_pattern && srv_io_pattern_trace_running) {
++		fold = buf_page_address_fold(block->space, block->offset);
++		HASH_SEARCH(hash, buf_pool->io_counter_hash, fold, io_counter,
++			(io_counter->space == block->space) && (io_counter->offset == block->offset));
++		if (io_counter == NULL && buf_pool->io_counters < srv_io_pattern_size_limit) {
++			io_counter = mem_heap_alloc(buf_pool->io_counter_heap,(sizeof(buf_io_counter_t)));
++			io_counter->space = block->space;
++			io_counter->offset = block->offset;
++			io_counter->n_read = 0;
++			io_counter->n_write = 0;
++			HASH_INSERT(buf_io_counter_t, hash, buf_pool->io_counter_hash,
++				buf_page_address_fold(block->space, block->offset), io_counter);
++			buf_pool->io_counters++;
++		}
++		if (io_counter != NULL) {
++			io_counter->index_id = ut_dulint_get_low(btr_page_get_index_id(buf_block_get_frame(block)));
++			io_counter->n_write++;
++		}
++		}
+ 
+ 		buf_pool->n_pages_written++;
+ 
+@@ -2641,3 +2687,58 @@
+ return buf_pool_get_nth_block(buf_pool, i);
+ 
+ }
++
++/*************************************************************************
++Controls the internal hash table for IO pattern tracing
++along innodb_io_pattern_trace value.*/
++
++void
++buf_io_counter_control(void)
++/*========================*/
++{
++       ulint   n;
++
++       mutex_enter(&(buf_pool->mutex));
++       if (srv_io_pattern_trace) {
++               if (buf_pool->io_counter_hash == NULL) {
++                       /* estimating (buf_pool * 100) */
++                       buf_pool->io_counter_hash = hash_create(200 * buf_pool->max_size);
++                       buf_pool->io_counter_heap = mem_heap_create(4096 * 1024);
++                       buf_pool->io_counters = 0;
++
++                       srv_io_pattern = TRUE;
++               }
++       } else {
++               if (buf_pool->io_counter_hash != NULL) {
++                       srv_io_pattern = FALSE;
++
++                       for (n = 0; n < buf_pool->io_counter_hash->n_cells; n++) {
++                               (buf_pool->io_counter_hash->array + n)->node = NULL;
++                       }
++                       mem_heap_free(buf_pool->io_counter_heap);
++                       buf_pool->io_counter_heap = NULL;
++                       buf_pool->io_counters = 0;
++
++                       hash_table_free(buf_pool->io_counter_hash);
++                       buf_pool->io_counter_hash = NULL;
++               }
++       }
++       mutex_exit(&(buf_pool->mutex));
++}
++
++void
++buf_io_counter_clear(void)
++/*======================*/
++{
++       ulint   n;
++
++       mutex_enter(&(buf_pool->mutex));
++       if (buf_pool->io_counter_hash != NULL) {
++               for (n = 0; n < buf_pool->io_counter_hash->n_cells; n++) {
++                       (buf_pool->io_counter_hash->array + n)->node = NULL;
++               }
++               mem_heap_empty(buf_pool->io_counter_heap);
++               buf_pool->io_counters = 0;
++       }
++       mutex_exit(&(buf_pool->mutex));
++}
+diff -ru mysql-5.0.67_patched/innobase/include/buf0buf.h mysql-5.0.67_io_count/innobase/include/buf0buf.h
+--- mysql-5.0.67_patched/innobase/include/buf0buf.h	2008-11-10 10:29:23.000000000 +0900
++++ mysql-5.0.67_io_count/innobase/include/buf0buf.h	2008-11-10 10:38:48.000000000 +0900
+@@ -706,6 +706,18 @@
+ void buf_pool_dump(void);
+ buf_block_t* buf_pool_get_nth_block_no_inline(buf_pool_t* pool, ulint i);  
+ 
++
++/*************************************************************************
++Controls the internal hash table for IO pattern tracing
++along innodb_io_pattern_trace value.*/
++
++void
++buf_io_counter_control(void);
++/*=========================*/
++
++void
++buf_io_counter_clear(void);
++/*=======================*/
+ 			
+ /* The buffer control block structure */
+ 
+@@ -927,6 +939,9 @@
+ 	ulint		curr_size;	/* current pool size in pages;
+ 					currently always the same as
+ 					max_size */
++	hash_table_t*	io_counter_hash;
++	mem_heap_t*	io_counter_heap;
++	ulint		io_counters;
+ 	hash_table_t*	page_hash;	/* hash table of the file pages */
+ 
+ 	ulint		n_pend_reads;	/* number of pending read operations */
+@@ -1012,6 +1027,15 @@
+ 					locki table, are not in this list */
+ };
+ 
++struct buf_io_counter_struct{
++	ulint	space;
++	ulint	offset;
++	buf_io_counter_t*	hash;
++	ulint	index_id;
++	ulint	n_read;
++	ulint	n_write;
++};
++
+ /* States of a control block */
+ #define	BUF_BLOCK_NOT_USED	211	/* is in the free list */
+ #define BUF_BLOCK_READY_FOR_USE	212	/* when buf_get_free_block returns
+diff -ru mysql-5.0.67_patched/innobase/include/buf0types.h mysql-5.0.67_io_count/innobase/include/buf0types.h
+--- mysql-5.0.67_patched/innobase/include/buf0types.h	2008-08-04 21:19:13.000000000 +0900
++++ mysql-5.0.67_io_count/innobase/include/buf0types.h	2008-11-10 10:31:35.000000000 +0900
+@@ -12,6 +12,8 @@
+ typedef	struct buf_block_struct		buf_block_t;
+ typedef	struct buf_pool_struct		buf_pool_t;
+ 
++typedef	struct buf_io_counter_struct	buf_io_counter_t;
++
+ /* The 'type' used of a buffer frame */
+ typedef	byte	buf_frame_t;
+ 
+diff -ru mysql-5.0.67_patched/innobase/include/srv0srv.h mysql-5.0.67_io_count/innobase/include/srv0srv.h
+--- mysql-5.0.67_patched/innobase/include/srv0srv.h	2008-11-10 10:29:11.000000000 +0900
++++ mysql-5.0.67_io_count/innobase/include/srv0srv.h	2008-11-10 10:41:24.000000000 +0900
+@@ -139,6 +139,11 @@
+ extern ulint	srv_io_capacity;
+ extern ulint	srv_read_ahead;
+ extern ulint	srv_adaptive_checkpoint;
++
++extern volatile ibool srv_io_pattern;
++extern ulong	srv_io_pattern_trace;
++extern ulong	srv_io_pattern_trace_running;
++extern ulong	srv_io_pattern_size_limit;
+ /*-------------------------------------------*/
+ 
+ extern ulint	srv_n_rows_inserted;
+diff -ru mysql-5.0.67_patched/innobase/srv/srv0srv.c mysql-5.0.67_io_count/innobase/srv/srv0srv.c
+--- mysql-5.0.67_patched/innobase/srv/srv0srv.c	2008-11-10 10:29:33.000000000 +0900
++++ mysql-5.0.67_io_count/innobase/srv/srv0srv.c	2008-11-10 10:42:38.000000000 +0900
+@@ -335,6 +335,11 @@
+ 
+ ulint	srv_read_ahead = 3; /* 1: random  2: linear  3: Both */
+ ulint	srv_adaptive_checkpoint = 0; /* 0:disable 1:enable */
++
++volatile ibool srv_io_pattern = FALSE;
++ulint   srv_io_pattern_trace = 0;
++ulint   srv_io_pattern_trace_running = 0;
++ulint   srv_io_pattern_size_limit = ULINT_MAX - (1024 * 1024);
+ /*-------------------------------------------*/
+ ulong	srv_n_spin_wait_rounds	= 20;
+ ulong	srv_n_free_tickets_to_enter = 500;
+diff -ru mysql-5.0.67_patched/sql/ha_innodb.cc mysql-5.0.67_io_count/sql/ha_innodb.cc
+--- mysql-5.0.67_patched/sql/ha_innodb.cc	2008-11-10 10:29:41.000000000 +0900
++++ mysql-5.0.67_io_count/sql/ha_innodb.cc	2008-11-10 10:31:35.000000000 +0900
+@@ -1540,6 +1540,8 @@
+         pthread_cond_init(&commit_cond, NULL);
+ 	innodb_inited= 1;
+ 
++	buf_io_counter_control();
++
+ 	/* If this is a replication slave and we needed to do a crash recovery,
+ 	set the master binlog position to what InnoDB internally knew about
+ 	how far we got transactions durable inside InnoDB. There is a
+@@ -6474,6 +6476,28 @@
+ }
+ 
+ /****************************************************************************
++Controls the internal hash table for IO pattern tracing
++along innodb_io_pattern_trace value.*/
++
++void
++innodb_io_pattern_control(void)
++/*===========================*/
++{
++	if (innodb_inited) {
++		buf_io_counter_control();
++	}
++}
++
++void
++innodb_io_pattern_clear(void)
++/*=========================*/
++{
++	if (innodb_inited) {
++		buf_io_counter_clear();
++	}
++}
++
++/****************************************************************************
+ Implements the SHOW INNODB STATUS command. Sends the output of the InnoDB
+ Monitor to the client. */
+ 
+diff -ru mysql-5.0.67_patched/sql/ha_innodb.h mysql-5.0.67_io_count/sql/ha_innodb.h
+--- mysql-5.0.67_patched/sql/ha_innodb.h	2008-11-10 10:29:23.000000000 +0900
++++ mysql-5.0.67_io_count/sql/ha_innodb.h	2008-11-10 10:43:23.000000000 +0900
+@@ -240,6 +240,9 @@
+ extern ulong srv_adaptive_checkpoint;
+ extern ulong srv_show_locks_held;
+ extern ulong srv_show_verbose_locks;
++extern ulong srv_io_pattern_trace;
++extern ulong srv_io_pattern_trace_running;
++extern ulong srv_io_pattern_size_limit;
+ }
+ 
+ bool innobase_init(void);
+@@ -267,6 +270,9 @@
+ bool innodb_mutex_show_status(THD* thd);
+ void innodb_export_status(void);
+ 
++void innodb_io_pattern_control(void);
++void innodb_io_pattern_clear(void);
++
+ void innobase_release_temporary_latches(THD *thd);
+ 
+ void innobase_store_binlog_offset_and_flush_log(char *binlog_name,longlong offset);
+diff -ru mysql-5.0.67_patched/sql/lex.h mysql-5.0.67_io_count/sql/lex.h
+--- mysql-5.0.67_patched/sql/lex.h	2008-11-10 10:28:58.000000000 +0900
++++ mysql-5.0.67_io_count/sql/lex.h	2008-11-10 10:31:35.000000000 +0900
+@@ -244,6 +244,7 @@
+   { "INNER",		SYM(INNER_SYM)},
+   { "INNOBASE",		SYM(INNOBASE_SYM)},
+   { "INNODB",		SYM(INNOBASE_SYM)},
++  { "INNODB_IO_PATTERN", SYM(INNODB_IO_PATTERN)},
+   { "INOUT",            SYM(INOUT_SYM)},
+   { "INSENSITIVE",      SYM(INSENSITIVE_SYM)},
+   { "INSERT",		SYM(INSERT)},
+diff -ru mysql-5.0.67_patched/sql/mysqld.cc mysql-5.0.67_io_count/sql/mysqld.cc
+--- mysql-5.0.67_patched/sql/mysqld.cc	2008-11-10 10:29:41.000000000 +0900
++++ mysql-5.0.67_io_count/sql/mysqld.cc	2008-11-10 10:44:45.000000000 +0900
+@@ -4975,6 +4975,9 @@
+   OPT_INNODB_SYNC_SPIN_LOOPS,
+   OPT_INNODB_CONCURRENCY_TICKETS,
+   OPT_INNODB_THREAD_SLEEP_DELAY,
++  OPT_INNODB_IO_PATTERN_TRACE,
++  OPT_INNODB_IO_PATTERN_TRACE_RUNNING,
++  OPT_INNODB_IO_PATTERN_SIZE_LIMIT,
+   OPT_BDB_CACHE_SIZE,
+   OPT_BDB_LOG_BUFFER_SIZE,
+   OPT_BDB_MAX_LOCK,
+@@ -5371,6 +5374,18 @@
+    "Number of background write I/O threads in InnoDB.",
+    (gptr*) &innobase_write_io_threads, (gptr*) &innobase_write_io_threads,
+    0, GET_LONG, REQUIRED_ARG, 1, 1, 64, 0, 0, 0},
++  {"innodb_io_pattern_trace", OPT_INNODB_IO_PATTERN_TRACE,
++   "Create/Drop the internal hash table for IO pattern tracing.",
++   (gptr*) &srv_io_pattern_trace, (gptr*) &srv_io_pattern_trace,
++   0, GET_ULONG, REQUIRED_ARG, 0, 0, 1, 0, 0, 0},
++  {"innodb_io_pattern_trace_running", OPT_INNODB_IO_PATTERN_TRACE_RUNNING,
++   "Control IO pattern trace running or not.",
++   (gptr*) &srv_io_pattern_trace_running, (gptr*) &srv_io_pattern_trace_running,
++   0, GET_ULONG, REQUIRED_ARG, 0, 0, 1, 0, 0, 0},
++  {"innodb_io_pattern_size_limit", OPT_INNODB_IO_PATTERN_SIZE_LIMIT,
++   "Set max number of counters per data pages. (0 = disable counting).",
++   (gptr*) &srv_io_pattern_size_limit, (gptr*) &srv_io_pattern_size_limit,
++   0, GET_ULONG, REQUIRED_ARG, 0, 0, ULONG_MAX - (1024 * 1024), 0, 0, 0},
+ #endif /* End HAVE_INNOBASE_DB */
+   {"isam", OPT_ISAM, "Obsolete. ISAM storage engine is no longer supported.",
+    (gptr*) &opt_isam, (gptr*) &opt_isam, 0, GET_BOOL, NO_ARG, 0, 0, 0,
+diff -ru mysql-5.0.67_patched/sql/set_var.cc mysql-5.0.67_io_count/sql/set_var.cc
+--- mysql-5.0.67_patched/sql/set_var.cc	2008-11-10 10:29:11.000000000 +0900
++++ mysql-5.0.67_io_count/sql/set_var.cc	2008-11-10 10:47:59.000000000 +0900
+@@ -493,6 +493,12 @@
+ sys_var_long_ptr  sys_innodb_show_verbose_locks(
+                                         "innodb_show_verbose_locks",
+                                         &srv_show_verbose_locks);
++sys_var_innodb_io_pattern_trace sys_innodb_io_pattern_trace("innodb_io_pattern_trace",
++                                                            &srv_io_pattern_trace);
++sys_var_long_ptr        sys_innodb_io_pattern_trace_running("innodb_io_pattern_trace_running",
++                                                            &srv_io_pattern_trace_running);
++sys_var_long_ptr        sys_innodb_io_pattern_size_limit("innodb_io_pattern_size_limit",
++                                                         &srv_io_pattern_size_limit);
+ #endif
+ 
+ /* Condition pushdown to storage engine */
+@@ -851,6 +857,9 @@
+   &sys_innodb_adaptive_checkpoint,
+   &sys_innodb_show_locks_held,
+   &sys_innodb_show_verbose_locks,
++  &sys_innodb_io_pattern_trace,
++  &sys_innodb_io_pattern_trace_running,
++  &sys_innodb_io_pattern_size_limit,
+ #endif
+   &sys_trust_routine_creators,
+   &sys_trust_function_creators,
+@@ -993,6 +1002,9 @@
+   {sys_innodb_adaptive_checkpoint.name, (char*) &sys_innodb_adaptive_checkpoint, SHOW_SYS},
+   {"innodb_read_io_threads", (char*) &innobase_read_io_threads, SHOW_LONG},
+   {"innodb_write_io_threads", (char*) &innobase_write_io_threads, SHOW_LONG},
++  {sys_innodb_io_pattern_trace.name, (char*) &sys_innodb_io_pattern_trace, SHOW_SYS},
++  {sys_innodb_io_pattern_trace_running.name, (char*) &sys_innodb_io_pattern_trace_running, SHOW_SYS},
++  {sys_innodb_io_pattern_size_limit.name, (char*) &sys_innodb_io_pattern_size_limit, SHOW_SYS},
+ #endif
+   {sys_interactive_timeout.name,(char*) &sys_interactive_timeout,   SHOW_SYS},
+   {sys_join_buffer_size.name,   (char*) &sys_join_buffer_size,	    SHOW_SYS},
+@@ -3063,6 +3075,19 @@
+     thd->variables.lc_time_names= global_system_variables.lc_time_names;
+ }
+ 
++#ifdef HAVE_INNOBASE_DB
++bool sys_var_innodb_io_pattern_trace::update(THD *thd, set_var *var)
++{
++  bool ret;
++
++  ret = sys_var_long_ptr_global::update(thd, var);
++
++  innodb_io_pattern_control();
++
++  return ret;
++}
++#endif /* HAVE_INNOBASE_DB */
++
+ /*
+   Functions to update thd->options bits
+ */
+diff -ru mysql-5.0.67_patched/sql/set_var.h mysql-5.0.67_io_count/sql/set_var.h
+--- mysql-5.0.67_patched/sql/set_var.h	2008-11-10 10:28:35.000000000 +0900
++++ mysql-5.0.67_io_count/sql/set_var.h	2008-11-10 10:31:35.000000000 +0900
+@@ -933,6 +933,17 @@
+   virtual void set_default(THD *thd, enum_var_type type);
+ };
+ 
++#ifdef HAVE_INNOBASE_DB
++/* sys_var_innodb_io_pattern_trace */
++class sys_var_innodb_io_pattern_trace :public sys_var_long_ptr
++{
++public:
++  sys_var_innodb_io_pattern_trace(const char *name_arg, ulong *value_ptr_arg)
++    :sys_var_long_ptr(name_arg,value_ptr_arg) {}
++  bool update(THD *thd, set_var *var);
++};
++#endif /* HAVE_INNOBASE_DB */
++
+ /****************************************************************************
+   Classes for parsing of the SET command
+ ****************************************************************************/
+diff -ru mysql-5.0.67_patched/sql/sql_parse.cc mysql-5.0.67_io_count/sql/sql_parse.cc
+--- mysql-5.0.67_patched/sql/sql_parse.cc	2008-11-10 10:29:23.000000000 +0900
++++ mysql-5.0.67_io_count/sql/sql_parse.cc	2008-11-10 10:50:58.000000000 +0900
+@@ -7886,6 +7886,13 @@
+     }
+     pthread_mutex_unlock(&LOCK_global_user_client_stats);
+   }
++#ifdef HAVE_INNOBASE_DB
++ if (options & REFRESH_INNODB_IO_PATTERN)
++ {
++   tmp_write_to_binlog= 0;
++   innodb_io_pattern_clear();
++ }
++#endif /* HAVE_INNOBASE_DB */
+  *write_to_binlog= tmp_write_to_binlog;
+  return result;
+ }
+diff -ru mysql-5.0.67_patched/sql/sql_show.cc mysql-5.0.67_io_count/sql/sql_show.cc
+--- mysql-5.0.67_patched/sql/sql_show.cc	2008-11-10 10:29:23.000000000 +0900
++++ mysql-5.0.67_io_count/sql/sql_show.cc	2008-11-10 10:31:35.000000000 +0900
+@@ -33,6 +33,17 @@
+ #include "ha_innodb.h"
+ #endif
+ 
++#ifdef HAVE_INNOBASE_DB
++#define INSIDE_HA_INNOBASE_CC
++extern "C" {
++#include "srv0srv.h"
++#include "buf0buf.h"
++#include "dict0dict.h"
++}
++/* We need to undef it in InnoDB */
++#undef byte
++#endif /* HAVE_INNOBASE_DB */
++
+ #ifndef NO_EMBEDDED_ACCESS_CHECKS
+ static const char *grant_names[]={
+   "select","insert","update","delete","create","drop","reload","shutdown",
+@@ -4054,6 +4065,67 @@
+   DBUG_RETURN(res);
+ }
+ 
++int innodb_io_pattern_fill_table(THD *thd, TABLE_LIST *tables, COND *cond)
++{
++  TABLE *table= (TABLE *) tables->table;
++
++  buf_io_counter_t* io_counter;
++  dict_index_t* index;
++
++  DBUG_ENTER("innodb_io_pattern_fill_table");
++  int returnable= 0;
++
++  /* We cannot use inline functions of InnoDB here */
++
++  /* !!!!!ATTENTION!!!!!: This function is not protected by mutex for performance.     */
++  /* Don't use "DROP TABLE innodb_io_pattern" and INFORMATION_SCHEMA.INNODB_IO_PATTERN */
++  /* at the same time as possible.                                                     */
++
++  if (srv_io_pattern) {
++  for (ulint n=0; n < buf_pool->io_counter_hash->n_cells; n++) {
++    if (!srv_io_pattern)
++      goto end_func;
++
++    io_counter = (buf_io_counter_t*)(buf_pool->io_counter_hash->array + n)->node;
++    while (io_counter) {
++      if (!srv_io_pattern)
++        goto end_func;
++
++      if (dict_sys != NULL) {
++        dulint id;
++        id.high = 0;
++        id.low = io_counter->index_id;
++        index = dict_index_find_on_id_low(id);
++      } else {
++        index = NULL;
++      }
++
++      table->field[0]->store(io_counter->space);
++      table->field[1]->store(io_counter->offset);
++      table->field[2]->store(io_counter->index_id);
++      if (index != NULL) {
++        table->field[3]->store(index->table_name,strlen(index->table_name),system_charset_info);
++        table->field[4]->store(index->name,strlen(index->name),system_charset_info);
++      } else {
++        table->field[3]->store("",0,system_charset_info);
++        table->field[4]->store("",0,system_charset_info);
++      }
++      table->field[5]->store(io_counter->n_read);
++      table->field[6]->store(io_counter->n_write);
++      if (schema_table_store_record(thd, table))
++      {
++        returnable= 1;
++        goto end_func;
++      }
++      io_counter = io_counter->hash;
++    }
++  }
++  }
++
++ end_func:
++  DBUG_RETURN(returnable);
++}
++
+ /*
+   Find schema_tables elment by name
+ 
+@@ -4866,6 +4938,19 @@
+   {0, 0, MYSQL_TYPE_STRING, 0, 0, 0}
+ };
+ 
++#ifdef HAVE_INNOBASE_DB
++ST_FIELD_INFO innodb_io_pattern_field_info[]=
++{
++  {"SPACE", 11, MYSQL_TYPE_LONG, 0, 0, "space_id"},
++  {"OFFSET", 11, MYSQL_TYPE_LONG, 0, 0, "offset"},
++  {"INDEX_ID", 11, MYSQL_TYPE_LONG, 0, 0, "index id"},
++  {"TABLE_NAME", 32, MYSQL_TYPE_STRING, 0, 0, "table name"},
++  {"INDEX_NAME", 32, MYSQL_TYPE_STRING, 0, 0, "index name"},
++  {"N_READ", 11, MYSQL_TYPE_LONG, 0, 0, "read ios"},
++  {"N_WRITE", 11, MYSQL_TYPE_LONG, 0, 0, "write ios"},
++  {0, 0, MYSQL_TYPE_STRING, 0, 0, 0}
++};
++#endif
+ 
+ ST_FIELD_INFO variables_fields_info[]=
+ {
+@@ -5041,6 +5126,10 @@
+    make_old_format, 0, -1, -1, 1},
+   {"VIEWS", view_fields_info, create_schema_table, 
+     get_all_tables, 0, get_schema_views_record, 1, 2, 0},
++#ifdef HAVE_INNOBASE_DB
++  {"INNODB_IO_PATTERN", innodb_io_pattern_field_info, create_schema_table,
++    innodb_io_pattern_fill_table, 0, 0, -1, -1, 0},
++#endif
+   {0, 0, 0, 0, 0, 0, 0, 0, 0}
+ };
+ 
+diff -ru mysql-5.0.67_patched/sql/sql_yacc.yy mysql-5.0.67_io_count/sql/sql_yacc.yy
+--- mysql-5.0.67_patched/sql/sql_yacc.yy	2008-11-10 10:28:58.000000000 +0900
++++ mysql-5.0.67_io_count/sql/sql_yacc.yy	2008-11-10 10:52:39.000000000 +0900
+@@ -684,6 +684,7 @@
+ %token  INFILE
+ %token  INNER_SYM
+ %token  INNOBASE_SYM
++%token  INNODB_IO_PATTERN
+ %token  INOUT_SYM
+ %token  INSENSITIVE_SYM
+ %token  INSERT
+@@ -7618,6 +7619,7 @@
+         | MASTER_SYM    { Lex->type|= REFRESH_MASTER; }
+ 	| DES_KEY_FILE	{ Lex->type|= REFRESH_DES_KEY_FILE; }
+  	| RESOURCES     { Lex->type|= REFRESH_USER_RESOURCES; }
++ 	| INNODB_IO_PATTERN { Lex->type|= REFRESH_INNODB_IO_PATTERN; }
+  	| CLIENT_STATS_SYM { Lex->type|= REFRESH_CLIENT_STATS; }
+  	| USER_STATS_SYM { Lex->type|= REFRESH_USER_STATS; }
+  	| TABLE_STATS_SYM { Lex->type|= REFRESH_TABLE_STATS; }
+@@ -8556,6 +8558,7 @@
+ 	| ISOLATION		{}
+ 	| ISSUER_SYM		{}
+ 	| INNOBASE_SYM		{}
++	| INNODB_IO_PATTERN	{}
+ 	| INSERT_METHOD		{}
+ 	| IO_SYM                {}
+ 	| IPC_SYM               {}
