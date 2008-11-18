@@ -135,7 +135,7 @@ diff -ruN mysql-5.0.67_before_check_defrag/patch_info/innodb_check_defrag.info m
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ mysql-5.0.67_check_defrag/patch_info/innodb_check_defrag.info	2008-11-11 16:24:22.000000000 +0900
 @@ -0,0 +1,6 @@
-+File=innodb_check_defrag.patch
++File=innodb_check_fragmentation.patch
 +Name=Session status to check fragmentation of the last InnoDB scan
 +Version=1.0
 +Author=Percona <info@percona.com>

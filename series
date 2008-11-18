@@ -7,7 +7,7 @@ mirror_binlog.patch
 mysqld_safe_syslog.patch
 innodb_locks_held.patch
 innodb_show_bp.patch
-innodb_check_defrag.patch
+innodb_check_fragmentation.patch
 innodb_io_pattern.patch
 innodb_fsync_source.patch
 innodb_show_hashed_memory.patch
