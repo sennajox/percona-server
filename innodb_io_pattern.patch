@@ -116,8 +116,8 @@ diff -ru mysql-5.0.67_patched/innobase/buf/buf0buf.c mysql-5.0.67_io_count/innob
 +       mutex_enter(&(buf_pool->mutex));
 +       if (srv_io_pattern_trace) {
 +               if (buf_pool->io_counter_hash == NULL) {
-+                       /* estimating (buf_pool * 100) */
-+                       buf_pool->io_counter_hash = hash_create(200 * buf_pool->max_size);
++                       /* estimating (buf_pool * 10) */
++                       buf_pool->io_counter_hash = hash_create(20 * buf_pool->max_size);
 +                       buf_pool->io_counter_heap = mem_heap_create(4096 * 1024);
 +                       buf_pool->io_counters = 0;
 +
