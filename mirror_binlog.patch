@@ -1034,7 +1034,7 @@ diff -r bcc459854078 sql/mysqld.cc
  static ulong opt_specialflag, opt_myisam_block_size;
 -static char *opt_logname, *opt_update_logname, *opt_binlog_index_name;
 +static char *opt_logname, *opt_update_logname;
- static char *opt_slow_logname, *opt_tc_heuristic_recover;
+ static char *opt_tc_heuristic_recover;
  static char *mysql_home_ptr, *pidfile_name_ptr;
  static char **defaults_argv;
 @@ -596,6 +599,32 @@
