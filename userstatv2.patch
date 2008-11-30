@@ -1648,20 +1648,6 @@ diff -ruN mysql-5.0.67_patched/sql/ha_myisam.cc mysql-5.0.67/sql/ha_myisam.cc
 diff -ruN mysql-5.0.67_patched/sql/handler.cc mysql-5.0.67/sql/handler.cc
 --- mysql-5.0.67_patched/sql/handler.cc	2008-08-04 21:20:04.000000000 +0900
 +++ mysql-5.0.67/sql/handler.cc	2008-11-26 21:05:23.000000000 +0900
-@@ -20,6 +20,13 @@
- #pragma implementation				// gcc: Class implementation
- #endif
- 
-+/* 
-+ * Ugh. Something is fishy with the SAFE_MUTEX stuff in include/my_pthread.h.
-+ * This makes things compile with gcc 4.1
-+ */
-+#include <string>
-+
-+
- #include "mysql_priv.h"
- #include "ha_heap.h"
- #include "ha_myisam.h"
 @@ -725,6 +732,8 @@
      if (cookie)
        tc_log->unlog(cookie, xid);
@@ -2144,7 +2130,7 @@ diff -ruN mysql-5.0.67_patched/sql/mysqld.cc mysql-5.0.67/sql/mysqld.cc
     (gptr*) &max_system_variables.net_wait_timeout, 0, GET_ULONG,
     REQUIRED_ARG, NET_WAIT_TIMEOUT, 1, IF_WIN(INT_MAX32/1000, LONG_TIMEOUT),
     0, 1, 0},
-+  {"opt_userstat_running", OPT_USERSTAT_RUNNING,
++  {"userstat_running", OPT_USERSTAT_RUNNING,
 +   "Control USER_STATISTICS, CLIENT_STATISTICS, INDEX_STATISTICS and TABLE_STATISTICS running",
 +   (gptr*) &opt_userstat_running, (gptr*) &opt_userstat_running,
 +   0, GET_BOOL, NO_ARG, 0, 0, 1, 0, 1, 0},
@@ -4027,28 +4013,6 @@ diff -ruN mysql-5.0.67_patched/sql/table.h mysql-5.0.67/sql/table.h
    SCH_VARIABLES,
    SCH_VIEWS
  };
-diff -ruN mysql-5.0.67_patched/sql-bench/Makefile.in mysql-5.0.67/sql-bench/Makefile.in
---- mysql-5.0.67_patched/sql-bench/Makefile.in	2008-08-04 21:22:28.000000000 +0900
-+++ mysql-5.0.67/sql-bench/Makefile.in	2008-11-26 20:57:50.000000000 +0900
-@@ -172,6 +172,7 @@
- LIBDL = @LIBDL@
- LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
- LIBOBJS = @LIBOBJS@
-+LIBRT = @LIBRT@
- LIBS = @LIBS@
- LIBTOOL = @LIBTOOL@
- LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -ruN mysql-5.0.67_patched/sql-common/Makefile.in mysql-5.0.67/sql-common/Makefile.in
---- mysql-5.0.67_patched/sql-common/Makefile.in	2008-08-04 21:22:29.000000000 +0900
-+++ mysql-5.0.67/sql-common/Makefile.in	2008-11-26 20:57:50.000000000 +0900
-@@ -165,6 +165,7 @@
- LIBDL = @LIBDL@
- LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
- LIBOBJS = @LIBOBJS@
-+LIBRT = @LIBRT@
- LIBS = @LIBS@
- LIBTOOL = @LIBTOOL@
- LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/strings/Makefile.in mysql-5.0.67/strings/Makefile.in
 --- mysql-5.0.67_patched/strings/Makefile.in	2008-08-04 21:22:30.000000000 +0900
 +++ mysql-5.0.67/strings/Makefile.in	2008-11-26 20:57:50.000000000 +0900
