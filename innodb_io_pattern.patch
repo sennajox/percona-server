@@ -1,16 +1,6 @@
-diff -ru mysql-5.0.67_patched/patch_info/innodb_io_pattern.info mysql-5.0.67_io_count/patch_info/innodb_io_pattern.info
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ mysql-5.0.67_io_count/patch_info/innodb_io_pattern.info	2008-11-11 16:24:22.000000000 +0900
-@@ -0,0 +1,6 @@
-+File=innodb_io_pattern.patch
-+Name=Information schema table of InnoDB IO counts for each datafile pages
-+Version=1.0
-+Author=Percona <info@percona.com>
-+License=GPL
-+Comment=INFORMATION_SCHEMA.INNODB_IO_PATTERN
-diff -ru mysql-5.0.67_patched/include/mysql_com.h mysql-5.0.67_io_count/include/mysql_com.h
---- mysql-5.0.67_patched/include/mysql_com.h	2008-11-10 10:28:41.000000000 +0900
-+++ mysql-5.0.67_io_count/include/mysql_com.h	2008-11-10 10:31:35.000000000 +0900
+diff -ruN mysql-5.0.67_tmp/include/mysql_com.h mysql-5.0.67/include/mysql_com.h
+--- mysql-5.0.67_tmp/include/mysql_com.h	2008-12-01 09:36:11.000000000 +0900
++++ mysql-5.0.67/include/mysql_com.h	2008-12-01 10:10:56.000000000 +0900
 @@ -122,6 +122,9 @@
  #define REFRESH_DES_KEY_FILE	0x40000L
  #define REFRESH_USER_RESOURCES	0x80000L
@@ -21,10 +11,10 @@ diff -ru mysql-5.0.67_patched/include/mysql_com.h mysql-5.0.67_io_count/include/
  #define CLIENT_LONG_PASSWORD	1	/* new more secure passwords */
  #define CLIENT_FOUND_ROWS	2	/* Found instead of affected rows */
  #define CLIENT_LONG_FLAG	4	/* Get all column flags */
-diff -ru mysql-5.0.67_patched/innobase/buf/buf0buf.c mysql-5.0.67_io_count/innobase/buf/buf0buf.c
---- mysql-5.0.67_patched/innobase/buf/buf0buf.c	2008-11-10 10:29:33.000000000 +0900
-+++ mysql-5.0.67_io_count/innobase/buf/buf0buf.c	2008-11-10 10:39:10.000000000 +0900
-@@ -651,6 +651,9 @@
+diff -ruN mysql-5.0.67_tmp/innobase/buf/buf0buf.c mysql-5.0.67/innobase/buf/buf0buf.c
+--- mysql-5.0.67_tmp/innobase/buf/buf0buf.c	2008-12-01 09:36:47.000000000 +0900
++++ mysql-5.0.67/innobase/buf/buf0buf.c	2008-12-01 10:10:56.000000000 +0900
+@@ -653,6 +653,9 @@
  	}
  
  	buf_pool->page_hash = hash_create(2 * max_size);
@@ -34,7 +24,7 @@ diff -ru mysql-5.0.67_patched/innobase/buf/buf0buf.c mysql-5.0.67_io_count/innob
  
  	buf_pool->n_pend_reads = 0;
  
-@@ -1951,6 +1954,9 @@
+@@ -1966,6 +1969,9 @@
  	ulint		io_type;
  	ulint		read_page_no;
  	
@@ -44,7 +34,7 @@ diff -ru mysql-5.0.67_patched/innobase/buf/buf0buf.c mysql-5.0.67_io_count/innob
  	ut_ad(block);
  
  	ut_a(block->state == BUF_BLOCK_FILE_PAGE);
-@@ -2052,6 +2058,26 @@
+@@ -2067,6 +2073,26 @@
  		buf_pool->n_pages_read++;
  
  		rw_lock_x_unlock_gen(&(block->lock), BUF_IO_READ);
@@ -71,7 +61,7 @@ diff -ru mysql-5.0.67_patched/innobase/buf/buf0buf.c mysql-5.0.67_io_count/innob
  
  #ifdef UNIV_DEBUG
  		if (buf_debug_prints) {
-@@ -2067,6 +2093,26 @@
+@@ -2082,6 +2108,26 @@
  		buf_flush_write_complete(block);
  
  		rw_lock_s_unlock_gen(&(block->lock), BUF_IO_WRITE);
@@ -98,7 +88,7 @@ diff -ru mysql-5.0.67_patched/innobase/buf/buf0buf.c mysql-5.0.67_io_count/innob
  
  		buf_pool->n_pages_written++;
  
-@@ -2641,3 +2687,58 @@
+@@ -2654,3 +2700,58 @@
  return buf_pool_get_nth_block(buf_pool, i);
  
  }
@@ -157,9 +147,9 @@ diff -ru mysql-5.0.67_patched/innobase/buf/buf0buf.c mysql-5.0.67_io_count/innob
 +       }
 +       mutex_exit(&(buf_pool->mutex));
 +}
-diff -ru mysql-5.0.67_patched/innobase/include/buf0buf.h mysql-5.0.67_io_count/innobase/include/buf0buf.h
---- mysql-5.0.67_patched/innobase/include/buf0buf.h	2008-11-10 10:29:23.000000000 +0900
-+++ mysql-5.0.67_io_count/innobase/include/buf0buf.h	2008-11-10 10:38:48.000000000 +0900
+diff -ruN mysql-5.0.67_tmp/innobase/include/buf0buf.h mysql-5.0.67/innobase/include/buf0buf.h
+--- mysql-5.0.67_tmp/innobase/include/buf0buf.h	2008-12-01 09:36:47.000000000 +0900
++++ mysql-5.0.67/innobase/include/buf0buf.h	2008-12-01 10:10:56.000000000 +0900
 @@ -706,6 +706,18 @@
  void buf_pool_dump(void);
  buf_block_t* buf_pool_get_nth_block_no_inline(buf_pool_t* pool, ulint i);  
@@ -205,9 +195,9 @@ diff -ru mysql-5.0.67_patched/innobase/include/buf0buf.h mysql-5.0.67_io_count/i
  /* States of a control block */
  #define	BUF_BLOCK_NOT_USED	211	/* is in the free list */
  #define BUF_BLOCK_READY_FOR_USE	212	/* when buf_get_free_block returns
-diff -ru mysql-5.0.67_patched/innobase/include/buf0types.h mysql-5.0.67_io_count/innobase/include/buf0types.h
---- mysql-5.0.67_patched/innobase/include/buf0types.h	2008-08-04 21:19:13.000000000 +0900
-+++ mysql-5.0.67_io_count/innobase/include/buf0types.h	2008-11-10 10:31:35.000000000 +0900
+diff -ruN mysql-5.0.67_tmp/innobase/include/buf0types.h mysql-5.0.67/innobase/include/buf0types.h
+--- mysql-5.0.67_tmp/innobase/include/buf0types.h	2008-08-04 21:19:13.000000000 +0900
++++ mysql-5.0.67/innobase/include/buf0types.h	2008-12-01 10:10:56.000000000 +0900
 @@ -12,6 +12,8 @@
  typedef	struct buf_block_struct		buf_block_t;
  typedef	struct buf_pool_struct		buf_pool_t;
@@ -217,10 +207,10 @@ diff -ru mysql-5.0.67_patched/innobase/include/buf0types.h mysql-5.0.67_io_count
  /* The 'type' used of a buffer frame */
  typedef	byte	buf_frame_t;
  
-diff -ru mysql-5.0.67_patched/innobase/include/srv0srv.h mysql-5.0.67_io_count/innobase/include/srv0srv.h
---- mysql-5.0.67_patched/innobase/include/srv0srv.h	2008-11-10 10:29:11.000000000 +0900
-+++ mysql-5.0.67_io_count/innobase/include/srv0srv.h	2008-11-10 10:41:24.000000000 +0900
-@@ -139,6 +139,11 @@
+diff -ruN mysql-5.0.67_tmp/innobase/include/srv0srv.h mysql-5.0.67/innobase/include/srv0srv.h
+--- mysql-5.0.67_tmp/innobase/include/srv0srv.h	2008-12-01 09:36:41.000000000 +0900
++++ mysql-5.0.67/innobase/include/srv0srv.h	2008-12-01 10:10:56.000000000 +0900
+@@ -141,6 +141,11 @@
  extern ulint	srv_io_capacity;
  extern ulint	srv_read_ahead;
  extern ulint	srv_adaptive_checkpoint;
@@ -232,10 +222,10 @@ diff -ru mysql-5.0.67_patched/innobase/include/srv0srv.h mysql-5.0.67_io_count/i
  /*-------------------------------------------*/
  
  extern ulint	srv_n_rows_inserted;
-diff -ru mysql-5.0.67_patched/innobase/srv/srv0srv.c mysql-5.0.67_io_count/innobase/srv/srv0srv.c
---- mysql-5.0.67_patched/innobase/srv/srv0srv.c	2008-11-10 10:29:33.000000000 +0900
-+++ mysql-5.0.67_io_count/innobase/srv/srv0srv.c	2008-11-10 10:42:38.000000000 +0900
-@@ -335,6 +335,11 @@
+diff -ruN mysql-5.0.67_tmp/innobase/srv/srv0srv.c mysql-5.0.67/innobase/srv/srv0srv.c
+--- mysql-5.0.67_tmp/innobase/srv/srv0srv.c	2008-12-01 09:36:41.000000000 +0900
++++ mysql-5.0.67/innobase/srv/srv0srv.c	2008-12-01 10:10:56.000000000 +0900
+@@ -337,6 +337,11 @@
  
  ulint	srv_read_ahead = 3; /* 1: random  2: linear  3: Both */
  ulint	srv_adaptive_checkpoint = 0; /* 0:disable 1:enable */
@@ -247,10 +237,111 @@ diff -ru mysql-5.0.67_patched/innobase/srv/srv0srv.c mysql-5.0.67_io_count/innob
  /*-------------------------------------------*/
  ulong	srv_n_spin_wait_rounds	= 20;
  ulong	srv_n_free_tickets_to_enter = 500;
-diff -ru mysql-5.0.67_patched/sql/ha_innodb.cc mysql-5.0.67_io_count/sql/ha_innodb.cc
---- mysql-5.0.67_patched/sql/ha_innodb.cc	2008-11-10 10:29:41.000000000 +0900
-+++ mysql-5.0.67_io_count/sql/ha_innodb.cc	2008-11-10 10:31:35.000000000 +0900
-@@ -1540,6 +1540,8 @@
+diff -ruN mysql-5.0.67_tmp/mysql-test/r/information_schema.result mysql-5.0.67/mysql-test/r/information_schema.result
+--- mysql-5.0.67_tmp/mysql-test/r/information_schema.result	2008-12-01 09:36:47.000000000 +0900
++++ mysql-5.0.67/mysql-test/r/information_schema.result	2008-12-01 10:25:35.000000000 +0900
+@@ -59,6 +59,7 @@
+ USER_PRIVILEGES
+ USER_STATISTICS
+ VIEWS
++INNODB_IO_PATTERN
+ columns_priv
+ db
+ func
+@@ -742,7 +743,7 @@
+ CREATE VIEW a1 (t_CRASHME) AS SELECT f1 FROM t_crashme GROUP BY f1;
+ CREATE VIEW a2 AS SELECT t_CRASHME FROM a1;
+ count(*)
+-108
++109
+ drop view a2, a1;
+ drop table t_crashme;
+ select table_schema,table_name, column_name from
+@@ -812,12 +813,13 @@
+ TABLE_PRIVILEGES	TABLE_NAME	select
+ TABLE_STATISTICS	TABLE_NAME	select
+ VIEWS	TABLE_NAME	select
++INNODB_IO_PATTERN	TABLE_NAME	select
+ delete from mysql.user where user='mysqltest_4';
+ delete from mysql.db where user='mysqltest_4';
+ flush privileges;
+ SELECT table_schema, count(*) FROM information_schema.TABLES GROUP BY TABLE_SCHEMA;
+ table_schema	count(*)
+-information_schema	23
++information_schema	24
+ mysql	17
+ create table t1 (i int, j int);
+ create trigger trg1 before insert on t1 for each row
+@@ -1225,6 +1227,7 @@
+ USER_PRIVILEGES	GRANTEE
+ USER_STATISTICS	USER
+ VIEWS	TABLE_SCHEMA
++INNODB_IO_PATTERN	SPACE
+ SELECT t.table_name, c1.column_name
+ FROM information_schema.tables t
+ INNER JOIN
+@@ -1263,6 +1266,7 @@
+ USER_PRIVILEGES	GRANTEE
+ USER_STATISTICS	USER
+ VIEWS	TABLE_SCHEMA
++INNODB_IO_PATTERN	SPACE
+ SELECT MAX(table_name) FROM information_schema.tables;
+ MAX(table_name)
+ VIEWS
+@@ -1337,6 +1341,7 @@
+ COLUMN_PRIVILEGES	information_schema.COLUMN_PRIVILEGES	1
+ INDEX_STATISTICS	information_schema.INDEX_STATISTICS	1
+ INNODB_BUFFER_POOL_CONTENT	information_schema.INNODB_BUFFER_POOL_CONTENT	1
++INNODB_IO_PATTERN	information_schema.INNODB_IO_PATTERN	1
+ KEY_COLUMN_USAGE	information_schema.KEY_COLUMN_USAGE	1
+ PROCESSLIST	information_schema.PROCESSLIST	1
+ PROFILING	information_schema.PROFILING	1
+diff -ruN mysql-5.0.67_tmp/mysql-test/r/information_schema_db.result mysql-5.0.67/mysql-test/r/information_schema_db.result
+--- mysql-5.0.67_tmp/mysql-test/r/information_schema_db.result	2008-12-01 09:36:47.000000000 +0900
++++ mysql-5.0.67/mysql-test/r/information_schema_db.result	2008-12-01 10:25:35.000000000 +0900
+@@ -28,6 +28,7 @@
+ USER_PRIVILEGES
+ USER_STATISTICS
+ VIEWS
++INNODB_IO_PATTERN
+ show tables from INFORMATION_SCHEMA like 'T%';
+ Tables_in_information_schema (T%)
+ TABLES
+diff -ruN mysql-5.0.67_tmp/mysql-test/r/mysqlshow.result mysql-5.0.67/mysql-test/r/mysqlshow.result
+--- mysql-5.0.67_tmp/mysql-test/r/mysqlshow.result	2008-12-01 09:36:47.000000000 +0900
++++ mysql-5.0.67/mysql-test/r/mysqlshow.result	2008-12-01 10:25:35.000000000 +0900
+@@ -102,6 +102,7 @@
+ | USER_PRIVILEGES                       |
+ | USER_STATISTICS                       |
+ | VIEWS                                 |
++| INNODB_IO_PATTERN                     |
+ +---------------------------------------+
+ Database: INFORMATION_SCHEMA
+ +---------------------------------------+
+@@ -130,6 +131,7 @@
+ | USER_PRIVILEGES                       |
+ | USER_STATISTICS                       |
+ | VIEWS                                 |
++| INNODB_IO_PATTERN                     |
+ +---------------------------------------+
+ Wildcard: inf_rmation_schema
+ +--------------------+
+diff -ruN mysql-5.0.67_tmp/patch_info/innodb_io_pattern.info mysql-5.0.67/patch_info/innodb_io_pattern.info
+--- /dev/null	1970-01-01 09:00:00.000000000 +0900
++++ mysql-5.0.67/patch_info/innodb_io_pattern.info	2008-12-01 10:10:56.000000000 +0900
+@@ -0,0 +1,8 @@
++File=innodb_io_pattern.patch
++Name=Information schema table of InnoDB IO counts for each datafile pages
++Version=1.0
++Author=Percona <info@percona.com>
++License=GPL
++Comment=INFORMATION_SCHEMA.INNODB_IO_PATTERN
++2008-12-01
++YK: fix for mysql-test
+diff -ruN mysql-5.0.67_tmp/sql/ha_innodb.cc mysql-5.0.67/sql/ha_innodb.cc
+--- mysql-5.0.67_tmp/sql/ha_innodb.cc	2008-12-01 09:36:54.000000000 +0900
++++ mysql-5.0.67/sql/ha_innodb.cc	2008-12-01 10:10:56.000000000 +0900
+@@ -1567,6 +1567,8 @@
          pthread_cond_init(&commit_cond, NULL);
  	innodb_inited= 1;
  
@@ -259,7 +350,7 @@ diff -ru mysql-5.0.67_patched/sql/ha_innodb.cc mysql-5.0.67_io_count/sql/ha_inno
  	/* If this is a replication slave and we needed to do a crash recovery,
  	set the master binlog position to what InnoDB internally knew about
  	how far we got transactions durable inside InnoDB. There is a
-@@ -6474,6 +6476,28 @@
+@@ -6525,6 +6527,28 @@
  }
  
  /****************************************************************************
@@ -288,9 +379,9 @@ diff -ru mysql-5.0.67_patched/sql/ha_innodb.cc mysql-5.0.67_io_count/sql/ha_inno
  Implements the SHOW INNODB STATUS command. Sends the output of the InnoDB
  Monitor to the client. */
  
-diff -ru mysql-5.0.67_patched/sql/ha_innodb.h mysql-5.0.67_io_count/sql/ha_innodb.h
---- mysql-5.0.67_patched/sql/ha_innodb.h	2008-11-10 10:29:23.000000000 +0900
-+++ mysql-5.0.67_io_count/sql/ha_innodb.h	2008-11-10 10:43:23.000000000 +0900
+diff -ruN mysql-5.0.67_tmp/sql/ha_innodb.h mysql-5.0.67/sql/ha_innodb.h
+--- mysql-5.0.67_tmp/sql/ha_innodb.h	2008-12-01 09:36:47.000000000 +0900
++++ mysql-5.0.67/sql/ha_innodb.h	2008-12-01 10:10:56.000000000 +0900
 @@ -240,6 +240,9 @@
  extern ulong srv_adaptive_checkpoint;
  extern ulong srv_show_locks_held;
@@ -311,9 +402,9 @@ diff -ru mysql-5.0.67_patched/sql/ha_innodb.h mysql-5.0.67_io_count/sql/ha_innod
  void innobase_release_temporary_latches(THD *thd);
  
  void innobase_store_binlog_offset_and_flush_log(char *binlog_name,longlong offset);
-diff -ru mysql-5.0.67_patched/sql/lex.h mysql-5.0.67_io_count/sql/lex.h
---- mysql-5.0.67_patched/sql/lex.h	2008-11-10 10:28:58.000000000 +0900
-+++ mysql-5.0.67_io_count/sql/lex.h	2008-11-10 10:31:35.000000000 +0900
+diff -ruN mysql-5.0.67_tmp/sql/lex.h mysql-5.0.67/sql/lex.h
+--- mysql-5.0.67_tmp/sql/lex.h	2008-12-01 09:36:30.000000000 +0900
++++ mysql-5.0.67/sql/lex.h	2008-12-01 10:10:56.000000000 +0900
 @@ -244,6 +244,7 @@
    { "INNER",		SYM(INNER_SYM)},
    { "INNOBASE",		SYM(INNOBASE_SYM)},
@@ -322,10 +413,10 @@ diff -ru mysql-5.0.67_patched/sql/lex.h mysql-5.0.67_io_count/sql/lex.h
    { "INOUT",            SYM(INOUT_SYM)},
    { "INSENSITIVE",      SYM(INSENSITIVE_SYM)},
    { "INSERT",		SYM(INSERT)},
-diff -ru mysql-5.0.67_patched/sql/mysqld.cc mysql-5.0.67_io_count/sql/mysqld.cc
---- mysql-5.0.67_patched/sql/mysqld.cc	2008-11-10 10:29:41.000000000 +0900
-+++ mysql-5.0.67_io_count/sql/mysqld.cc	2008-11-10 10:44:45.000000000 +0900
-@@ -4975,6 +4975,9 @@
+diff -ruN mysql-5.0.67_tmp/sql/mysqld.cc mysql-5.0.67/sql/mysqld.cc
+--- mysql-5.0.67_tmp/sql/mysqld.cc	2008-12-01 09:36:54.000000000 +0900
++++ mysql-5.0.67/sql/mysqld.cc	2008-12-01 10:10:56.000000000 +0900
+@@ -4977,6 +4977,9 @@
    OPT_INNODB_SYNC_SPIN_LOOPS,
    OPT_INNODB_CONCURRENCY_TICKETS,
    OPT_INNODB_THREAD_SLEEP_DELAY,
@@ -335,7 +426,7 @@ diff -ru mysql-5.0.67_patched/sql/mysqld.cc mysql-5.0.67_io_count/sql/mysqld.cc
    OPT_BDB_CACHE_SIZE,
    OPT_BDB_LOG_BUFFER_SIZE,
    OPT_BDB_MAX_LOCK,
-@@ -5371,6 +5374,18 @@
+@@ -5376,6 +5379,18 @@
     "Number of background write I/O threads in InnoDB.",
     (gptr*) &innobase_write_io_threads, (gptr*) &innobase_write_io_threads,
     0, GET_LONG, REQUIRED_ARG, 1, 1, 64, 0, 0, 0},
@@ -354,10 +445,10 @@ diff -ru mysql-5.0.67_patched/sql/mysqld.cc mysql-5.0.67_io_count/sql/mysqld.cc
  #endif /* End HAVE_INNOBASE_DB */
    {"isam", OPT_ISAM, "Obsolete. ISAM storage engine is no longer supported.",
     (gptr*) &opt_isam, (gptr*) &opt_isam, 0, GET_BOOL, NO_ARG, 0, 0, 0,
-diff -ru mysql-5.0.67_patched/sql/set_var.cc mysql-5.0.67_io_count/sql/set_var.cc
---- mysql-5.0.67_patched/sql/set_var.cc	2008-11-10 10:29:11.000000000 +0900
-+++ mysql-5.0.67_io_count/sql/set_var.cc	2008-11-10 10:47:59.000000000 +0900
-@@ -493,6 +493,12 @@
+diff -ruN mysql-5.0.67_tmp/sql/set_var.cc mysql-5.0.67/sql/set_var.cc
+--- mysql-5.0.67_tmp/sql/set_var.cc	2008-12-01 09:36:41.000000000 +0900
++++ mysql-5.0.67/sql/set_var.cc	2008-12-01 10:10:56.000000000 +0900
+@@ -496,6 +496,12 @@
  sys_var_long_ptr  sys_innodb_show_verbose_locks(
                                          "innodb_show_verbose_locks",
                                          &srv_show_verbose_locks);
@@ -370,7 +461,7 @@ diff -ru mysql-5.0.67_patched/sql/set_var.cc mysql-5.0.67_io_count/sql/set_var.c
  #endif
  
  /* Condition pushdown to storage engine */
-@@ -851,6 +857,9 @@
+@@ -857,6 +863,9 @@
    &sys_innodb_adaptive_checkpoint,
    &sys_innodb_show_locks_held,
    &sys_innodb_show_verbose_locks,
@@ -380,7 +471,7 @@ diff -ru mysql-5.0.67_patched/sql/set_var.cc mysql-5.0.67_io_count/sql/set_var.c
  #endif
    &sys_trust_routine_creators,
    &sys_trust_function_creators,
-@@ -993,6 +1002,9 @@
+@@ -999,6 +1008,9 @@
    {sys_innodb_adaptive_checkpoint.name, (char*) &sys_innodb_adaptive_checkpoint, SHOW_SYS},
    {"innodb_read_io_threads", (char*) &innobase_read_io_threads, SHOW_LONG},
    {"innodb_write_io_threads", (char*) &innobase_write_io_threads, SHOW_LONG},
@@ -390,7 +481,7 @@ diff -ru mysql-5.0.67_patched/sql/set_var.cc mysql-5.0.67_io_count/sql/set_var.c
  #endif
    {sys_interactive_timeout.name,(char*) &sys_interactive_timeout,   SHOW_SYS},
    {sys_join_buffer_size.name,   (char*) &sys_join_buffer_size,	    SHOW_SYS},
-@@ -3063,6 +3075,19 @@
+@@ -3096,6 +3108,19 @@
      thd->variables.lc_time_names= global_system_variables.lc_time_names;
  }
  
@@ -410,10 +501,10 @@ diff -ru mysql-5.0.67_patched/sql/set_var.cc mysql-5.0.67_io_count/sql/set_var.c
  /*
    Functions to update thd->options bits
  */
-diff -ru mysql-5.0.67_patched/sql/set_var.h mysql-5.0.67_io_count/sql/set_var.h
---- mysql-5.0.67_patched/sql/set_var.h	2008-11-10 10:28:35.000000000 +0900
-+++ mysql-5.0.67_io_count/sql/set_var.h	2008-11-10 10:31:35.000000000 +0900
-@@ -933,6 +933,17 @@
+diff -ruN mysql-5.0.67_tmp/sql/set_var.h mysql-5.0.67/sql/set_var.h
+--- mysql-5.0.67_tmp/sql/set_var.h	2008-12-01 09:36:06.000000000 +0900
++++ mysql-5.0.67/sql/set_var.h	2008-12-01 10:10:56.000000000 +0900
+@@ -940,6 +940,17 @@
    virtual void set_default(THD *thd, enum_var_type type);
  };
  
@@ -431,10 +522,10 @@ diff -ru mysql-5.0.67_patched/sql/set_var.h mysql-5.0.67_io_count/sql/set_var.h
  /****************************************************************************
    Classes for parsing of the SET command
  ****************************************************************************/
-diff -ru mysql-5.0.67_patched/sql/sql_parse.cc mysql-5.0.67_io_count/sql/sql_parse.cc
---- mysql-5.0.67_patched/sql/sql_parse.cc	2008-11-10 10:29:23.000000000 +0900
-+++ mysql-5.0.67_io_count/sql/sql_parse.cc	2008-11-10 10:50:58.000000000 +0900
-@@ -7886,6 +7886,13 @@
+diff -ruN mysql-5.0.67_tmp/sql/sql_parse.cc mysql-5.0.67/sql/sql_parse.cc
+--- mysql-5.0.67_tmp/sql/sql_parse.cc	2008-12-01 09:36:47.000000000 +0900
++++ mysql-5.0.67/sql/sql_parse.cc	2008-12-01 10:10:56.000000000 +0900
+@@ -7891,6 +7891,13 @@
      }
      pthread_mutex_unlock(&LOCK_global_user_client_stats);
    }
@@ -448,9 +539,9 @@ diff -ru mysql-5.0.67_patched/sql/sql_parse.cc mysql-5.0.67_io_count/sql/sql_par
   *write_to_binlog= tmp_write_to_binlog;
   return result;
  }
-diff -ru mysql-5.0.67_patched/sql/sql_show.cc mysql-5.0.67_io_count/sql/sql_show.cc
---- mysql-5.0.67_patched/sql/sql_show.cc	2008-11-10 10:29:23.000000000 +0900
-+++ mysql-5.0.67_io_count/sql/sql_show.cc	2008-11-10 10:31:35.000000000 +0900
+diff -ruN mysql-5.0.67_tmp/sql/sql_show.cc mysql-5.0.67/sql/sql_show.cc
+--- mysql-5.0.67_tmp/sql/sql_show.cc	2008-12-01 09:36:47.000000000 +0900
++++ mysql-5.0.67/sql/sql_show.cc	2008-12-01 10:10:56.000000000 +0900
 @@ -33,6 +33,17 @@
  #include "ha_innodb.h"
  #endif
@@ -568,9 +659,9 @@ diff -ru mysql-5.0.67_patched/sql/sql_show.cc mysql-5.0.67_io_count/sql/sql_show
    {0, 0, 0, 0, 0, 0, 0, 0, 0}
  };
  
-diff -ru mysql-5.0.67_patched/sql/sql_yacc.yy mysql-5.0.67_io_count/sql/sql_yacc.yy
---- mysql-5.0.67_patched/sql/sql_yacc.yy	2008-11-10 10:28:58.000000000 +0900
-+++ mysql-5.0.67_io_count/sql/sql_yacc.yy	2008-11-10 10:52:39.000000000 +0900
+diff -ruN mysql-5.0.67_tmp/sql/sql_yacc.yy mysql-5.0.67/sql/sql_yacc.yy
+--- mysql-5.0.67_tmp/sql/sql_yacc.yy	2008-12-01 09:36:30.000000000 +0900
++++ mysql-5.0.67/sql/sql_yacc.yy	2008-12-01 10:10:56.000000000 +0900
 @@ -684,6 +684,7 @@
  %token  INFILE
  %token  INNER_SYM

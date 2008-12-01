@@ -1,6 +1,6 @@
 diff -ruN mysql-5.0.67_patched/BUILD/Makefile.in mysql-5.0.67/BUILD/Makefile.in
 --- mysql-5.0.67_patched/BUILD/Makefile.in	2008-08-04 21:21:59.000000000 +0900
-+++ mysql-5.0.67/BUILD/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/BUILD/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -167,6 +167,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -11,7 +11,7 @@ diff -ruN mysql-5.0.67_patched/BUILD/Makefile.in mysql-5.0.67/BUILD/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/Docs/Makefile.in mysql-5.0.67/Docs/Makefile.in
 --- mysql-5.0.67_patched/Docs/Makefile.in	2008-08-04 21:22:00.000000000 +0900
-+++ mysql-5.0.67/Docs/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/Docs/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -165,6 +165,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -22,7 +22,7 @@ diff -ruN mysql-5.0.67_patched/Docs/Makefile.in mysql-5.0.67/Docs/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/Makefile.in mysql-5.0.67/Makefile.in
 --- mysql-5.0.67_patched/Makefile.in	2008-08-04 21:22:33.000000000 +0900
-+++ mysql-5.0.67/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -189,6 +189,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -33,7 +33,7 @@ diff -ruN mysql-5.0.67_patched/Makefile.in mysql-5.0.67/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/SSL/Makefile.in mysql-5.0.67/SSL/Makefile.in
 --- mysql-5.0.67_patched/SSL/Makefile.in	2008-08-04 21:22:00.000000000 +0900
-+++ mysql-5.0.67/SSL/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/SSL/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -165,6 +165,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -44,7 +44,7 @@ diff -ruN mysql-5.0.67_patched/SSL/Makefile.in mysql-5.0.67/SSL/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/aclocal.m4 mysql-5.0.67/aclocal.m4
 --- mysql-5.0.67_patched/aclocal.m4	2008-08-04 21:21:46.000000000 +0900
-+++ mysql-5.0.67/aclocal.m4	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/aclocal.m4	2008-12-01 09:18:20.000000000 +0900
 @@ -1597,7 +1597,7 @@
  
    # Append ld.so.conf contents to the search path
@@ -114,7 +114,7 @@ diff -ruN mysql-5.0.67_patched/aclocal.m4 mysql-5.0.67/aclocal.m4
  
 diff -ruN mysql-5.0.67_patched/client/Makefile.in mysql-5.0.67/client/Makefile.in
 --- mysql-5.0.67_patched/client/Makefile.in	2008-08-04 21:22:00.000000000 +0900
-+++ mysql-5.0.67/client/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/client/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -266,6 +266,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -125,7 +125,7 @@ diff -ruN mysql-5.0.67_patched/client/Makefile.in mysql-5.0.67/client/Makefile.i
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/cmd-line-utils/Makefile.in mysql-5.0.67/cmd-line-utils/Makefile.in
 --- mysql-5.0.67_patched/cmd-line-utils/Makefile.in	2008-08-04 21:22:01.000000000 +0900
-+++ mysql-5.0.67/cmd-line-utils/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/cmd-line-utils/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -175,6 +175,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -136,7 +136,7 @@ diff -ruN mysql-5.0.67_patched/cmd-line-utils/Makefile.in mysql-5.0.67/cmd-line-
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/cmd-line-utils/libedit/Makefile.in mysql-5.0.67/cmd-line-utils/libedit/Makefile.in
 --- mysql-5.0.67_patched/cmd-line-utils/libedit/Makefile.in	2008-08-04 21:22:01.000000000 +0900
-+++ mysql-5.0.67/cmd-line-utils/libedit/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/cmd-line-utils/libedit/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -195,6 +195,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -147,7 +147,7 @@ diff -ruN mysql-5.0.67_patched/cmd-line-utils/libedit/Makefile.in mysql-5.0.67/c
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/cmd-line-utils/readline/Makefile.in mysql-5.0.67/cmd-line-utils/readline/Makefile.in
 --- mysql-5.0.67_patched/cmd-line-utils/readline/Makefile.in	2008-08-04 21:22:01.000000000 +0900
-+++ mysql-5.0.67/cmd-line-utils/readline/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/cmd-line-utils/readline/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -193,6 +193,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -158,7 +158,7 @@ diff -ruN mysql-5.0.67_patched/cmd-line-utils/readline/Makefile.in mysql-5.0.67/
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/configure mysql-5.0.67/configure
 --- mysql-5.0.67_patched/configure	2008-08-04 21:22:35.000000000 +0900
-+++ mysql-5.0.67/configure	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/configure	2008-12-01 09:18:20.000000000 +0900
 @@ -477,7 +477,7 @@
  #endif"
  
@@ -280,7 +280,7 @@ diff -ruN mysql-5.0.67_patched/configure mysql-5.0.67/configure
  s,@openssl_includes@,$openssl_includes,;t t
 diff -ruN mysql-5.0.67_patched/configure.in mysql-5.0.67/configure.in
 --- mysql-5.0.67_patched/configure.in	2008-08-04 21:19:07.000000000 +0900
-+++ mysql-5.0.67/configure.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/configure.in	2008-12-01 09:18:20.000000000 +0900
 @@ -2090,7 +2090,18 @@
  	# We also disable for SCO for the time being, the headers for the
  	# thread library we use conflicts with other headers.
@@ -312,7 +312,7 @@ diff -ruN mysql-5.0.67_patched/configure.in mysql-5.0.67/configure.in
  AC_SUBST(NON_THREADED_LIBS)
 diff -ruN mysql-5.0.67_patched/dbug/Makefile.in mysql-5.0.67/dbug/Makefile.in
 --- mysql-5.0.67_patched/dbug/Makefile.in	2008-08-04 21:22:02.000000000 +0900
-+++ mysql-5.0.67/dbug/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/dbug/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -212,6 +212,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -323,7 +323,7 @@ diff -ruN mysql-5.0.67_patched/dbug/Makefile.in mysql-5.0.67/dbug/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/extra/Makefile.in mysql-5.0.67/extra/Makefile.in
 --- mysql-5.0.67_patched/extra/Makefile.in	2008-08-04 21:22:02.000000000 +0900
-+++ mysql-5.0.67/extra/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/extra/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -254,6 +254,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -334,7 +334,7 @@ diff -ruN mysql-5.0.67_patched/extra/Makefile.in mysql-5.0.67/extra/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/extra/yassl/Makefile.in mysql-5.0.67/extra/yassl/Makefile.in
 --- mysql-5.0.67_patched/extra/yassl/Makefile.in	2008-08-04 21:22:02.000000000 +0900
-+++ mysql-5.0.67/extra/yassl/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/extra/yassl/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -160,6 +160,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -345,7 +345,7 @@ diff -ruN mysql-5.0.67_patched/extra/yassl/Makefile.in mysql-5.0.67/extra/yassl/
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/extra/yassl/src/Makefile.in mysql-5.0.67/extra/yassl/src/Makefile.in
 --- mysql-5.0.67_patched/extra/yassl/src/Makefile.in	2008-08-04 21:22:03.000000000 +0900
-+++ mysql-5.0.67/extra/yassl/src/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/extra/yassl/src/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -171,6 +171,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -356,7 +356,7 @@ diff -ruN mysql-5.0.67_patched/extra/yassl/src/Makefile.in mysql-5.0.67/extra/ya
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/extra/yassl/taocrypt/Makefile.in mysql-5.0.67/extra/yassl/taocrypt/Makefile.in
 --- mysql-5.0.67_patched/extra/yassl/taocrypt/Makefile.in	2008-08-04 21:22:03.000000000 +0900
-+++ mysql-5.0.67/extra/yassl/taocrypt/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/extra/yassl/taocrypt/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -160,6 +160,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -367,7 +367,7 @@ diff -ruN mysql-5.0.67_patched/extra/yassl/taocrypt/Makefile.in mysql-5.0.67/ext
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/extra/yassl/taocrypt/benchmark/Makefile.in mysql-5.0.67/extra/yassl/taocrypt/benchmark/Makefile.in
 --- mysql-5.0.67_patched/extra/yassl/taocrypt/benchmark/Makefile.in	2008-08-04 21:22:03.000000000 +0900
-+++ mysql-5.0.67/extra/yassl/taocrypt/benchmark/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/extra/yassl/taocrypt/benchmark/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -170,6 +170,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -378,7 +378,7 @@ diff -ruN mysql-5.0.67_patched/extra/yassl/taocrypt/benchmark/Makefile.in mysql-
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/extra/yassl/taocrypt/src/Makefile.in mysql-5.0.67/extra/yassl/taocrypt/src/Makefile.in
 --- mysql-5.0.67_patched/extra/yassl/taocrypt/src/Makefile.in	2008-08-04 21:22:04.000000000 +0900
-+++ mysql-5.0.67/extra/yassl/taocrypt/src/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/extra/yassl/taocrypt/src/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -180,6 +180,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -389,7 +389,7 @@ diff -ruN mysql-5.0.67_patched/extra/yassl/taocrypt/src/Makefile.in mysql-5.0.67
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/extra/yassl/taocrypt/test/Makefile.in mysql-5.0.67/extra/yassl/taocrypt/test/Makefile.in
 --- mysql-5.0.67_patched/extra/yassl/taocrypt/test/Makefile.in	2008-08-04 21:22:04.000000000 +0900
-+++ mysql-5.0.67/extra/yassl/taocrypt/test/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/extra/yassl/taocrypt/test/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -170,6 +170,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -400,7 +400,7 @@ diff -ruN mysql-5.0.67_patched/extra/yassl/taocrypt/test/Makefile.in mysql-5.0.6
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/extra/yassl/testsuite/Makefile.in mysql-5.0.67/extra/yassl/testsuite/Makefile.in
 --- mysql-5.0.67_patched/extra/yassl/testsuite/Makefile.in	2008-08-04 21:22:05.000000000 +0900
-+++ mysql-5.0.67/extra/yassl/testsuite/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/extra/yassl/testsuite/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -173,6 +173,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -411,7 +411,7 @@ diff -ruN mysql-5.0.67_patched/extra/yassl/testsuite/Makefile.in mysql-5.0.67/ex
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/heap/Makefile.in mysql-5.0.67/heap/Makefile.in
 --- mysql-5.0.67_patched/heap/Makefile.in	2008-08-04 21:22:05.000000000 +0900
-+++ mysql-5.0.67/heap/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/heap/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -216,6 +216,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -422,7 +422,7 @@ diff -ruN mysql-5.0.67_patched/heap/Makefile.in mysql-5.0.67/heap/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/include/Makefile.in mysql-5.0.67/include/Makefile.in
 --- mysql-5.0.67_patched/include/Makefile.in	2008-08-04 21:22:05.000000000 +0900
-+++ mysql-5.0.67/include/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/include/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -181,6 +181,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -433,7 +433,7 @@ diff -ruN mysql-5.0.67_patched/include/Makefile.in mysql-5.0.67/include/Makefile
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/include/mysql_com.h mysql-5.0.67/include/mysql_com.h
 --- mysql-5.0.67_patched/include/mysql_com.h	2008-08-04 21:19:12.000000000 +0900
-+++ mysql-5.0.67/include/mysql_com.h	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/include/mysql_com.h	2008-12-01 09:18:20.000000000 +0900
 @@ -106,6 +106,11 @@
  					   thread */
  #define REFRESH_MASTER          128     /* Remove all bin logs in the index
@@ -448,7 +448,7 @@ diff -ruN mysql-5.0.67_patched/include/mysql_com.h mysql-5.0.67/include/mysql_co
  #define REFRESH_READ_LOCK	16384	/* Lock tables for read */
 diff -ruN mysql-5.0.67_patched/libmysql/Makefile.in mysql-5.0.67/libmysql/Makefile.in
 --- mysql-5.0.67_patched/libmysql/Makefile.in	2008-08-04 21:22:06.000000000 +0900
-+++ mysql-5.0.67/libmysql/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/libmysql/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -276,6 +276,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -459,7 +459,7 @@ diff -ruN mysql-5.0.67_patched/libmysql/Makefile.in mysql-5.0.67/libmysql/Makefi
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/libmysql_r/Makefile.in mysql-5.0.67/libmysql_r/Makefile.in
 --- mysql-5.0.67_patched/libmysql_r/Makefile.in	2008-08-04 21:22:06.000000000 +0900
-+++ mysql-5.0.67/libmysql_r/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/libmysql_r/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -273,6 +273,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -470,7 +470,7 @@ diff -ruN mysql-5.0.67_patched/libmysql_r/Makefile.in mysql-5.0.67/libmysql_r/Ma
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/libmysqld/Makefile.in mysql-5.0.67/libmysqld/Makefile.in
 --- mysql-5.0.67_patched/libmysqld/Makefile.in	2008-08-04 21:22:07.000000000 +0900
-+++ mysql-5.0.67/libmysqld/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/libmysqld/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -262,6 +262,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -481,7 +481,7 @@ diff -ruN mysql-5.0.67_patched/libmysqld/Makefile.in mysql-5.0.67/libmysqld/Make
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/libmysqld/examples/Makefile.in mysql-5.0.67/libmysqld/examples/Makefile.in
 --- mysql-5.0.67_patched/libmysqld/examples/Makefile.in	2008-08-04 21:22:07.000000000 +0900
-+++ mysql-5.0.67/libmysqld/examples/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/libmysqld/examples/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -211,6 +211,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -492,7 +492,7 @@ diff -ruN mysql-5.0.67_patched/libmysqld/examples/Makefile.in mysql-5.0.67/libmy
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/man/Makefile.in mysql-5.0.67/man/Makefile.in
 --- mysql-5.0.67_patched/man/Makefile.in	2008-08-04 21:22:07.000000000 +0900
-+++ mysql-5.0.67/man/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/man/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -172,6 +172,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -503,7 +503,7 @@ diff -ruN mysql-5.0.67_patched/man/Makefile.in mysql-5.0.67/man/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/myisam/Makefile.in mysql-5.0.67/myisam/Makefile.in
 --- mysql-5.0.67_patched/myisam/Makefile.in	2008-08-04 21:22:08.000000000 +0900
-+++ mysql-5.0.67/myisam/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/myisam/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -255,6 +255,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -514,7 +514,7 @@ diff -ruN mysql-5.0.67_patched/myisam/Makefile.in mysql-5.0.67/myisam/Makefile.i
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/myisammrg/Makefile.in mysql-5.0.67/myisammrg/Makefile.in
 --- mysql-5.0.67_patched/myisammrg/Makefile.in	2008-08-04 21:22:08.000000000 +0900
-+++ mysql-5.0.67/myisammrg/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/myisammrg/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -203,6 +203,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -525,7 +525,7 @@ diff -ruN mysql-5.0.67_patched/myisammrg/Makefile.in mysql-5.0.67/myisammrg/Make
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/mysql-test/Makefile.in mysql-5.0.67/mysql-test/Makefile.in
 --- mysql-5.0.67_patched/mysql-test/Makefile.in	2008-08-04 21:22:09.000000000 +0900
-+++ mysql-5.0.67/mysql-test/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/mysql-test/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -179,6 +179,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -536,7 +536,7 @@ diff -ruN mysql-5.0.67_patched/mysql-test/Makefile.in mysql-5.0.67/mysql-test/Ma
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/mysql-test/ndb/Makefile.in mysql-5.0.67/mysql-test/ndb/Makefile.in
 --- mysql-5.0.67_patched/mysql-test/ndb/Makefile.in	2008-08-04 21:22:09.000000000 +0900
-+++ mysql-5.0.67/mysql-test/ndb/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/mysql-test/ndb/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -168,6 +168,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -547,7 +547,7 @@ diff -ruN mysql-5.0.67_patched/mysql-test/ndb/Makefile.in mysql-5.0.67/mysql-tes
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/mysql-test/r/information_schema.result mysql-5.0.67/mysql-test/r/information_schema.result
 --- mysql-5.0.67_patched/mysql-test/r/information_schema.result	2008-08-04 21:32:17.000000000 +0900
-+++ mysql-5.0.67/mysql-test/r/information_schema.result	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/mysql-test/r/information_schema.result	2008-12-01 09:18:20.000000000 +0900
 @@ -37,10 +37,12 @@
  select * from v1;
  c
@@ -732,7 +732,7 @@ diff -ruN mysql-5.0.67_patched/mysql-test/r/information_schema.result mysql-5.0.
  Variable_name	Value
 diff -ruN mysql-5.0.67_patched/mysql-test/r/information_schema_db.result mysql-5.0.67/mysql-test/r/information_schema_db.result
 --- mysql-5.0.67_patched/mysql-test/r/information_schema_db.result	2008-08-04 21:32:17.000000000 +0900
-+++ mysql-5.0.67/mysql-test/r/information_schema_db.result	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/mysql-test/r/information_schema_db.result	2008-12-01 09:18:20.000000000 +0900
 @@ -6,10 +6,12 @@
  show tables;
  Tables_in_information_schema
@@ -766,7 +766,7 @@ diff -ruN mysql-5.0.67_patched/mysql-test/r/information_schema_db.result mysql-5
  create database mbase;
 diff -ruN mysql-5.0.67_patched/mysql-test/r/mysqlshow.result mysql-5.0.67/mysql-test/r/mysqlshow.result
 --- mysql-5.0.67_patched/mysql-test/r/mysqlshow.result	2008-08-04 21:32:17.000000000 +0900
-+++ mysql-5.0.67/mysql-test/r/mysqlshow.result	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/mysql-test/r/mysqlshow.result	2008-12-01 09:18:20.000000000 +0900
 @@ -80,10 +80,12 @@
  |                Tables                 |
  +---------------------------------------+
@@ -817,7 +817,7 @@ diff -ruN mysql-5.0.67_patched/mysql-test/r/mysqlshow.result mysql-5.0.67/mysql-
  Wildcard: inf_rmation_schema
 diff -ruN mysql-5.0.67_patched/mysys/Makefile.in mysql-5.0.67/mysys/Makefile.in
 --- mysql-5.0.67_patched/mysys/Makefile.in	2008-08-04 21:22:09.000000000 +0900
-+++ mysql-5.0.67/mysys/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/mysys/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -247,6 +247,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -828,7 +828,7 @@ diff -ruN mysql-5.0.67_patched/mysys/Makefile.in mysql-5.0.67/mysys/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/Makefile.in mysql-5.0.67/ndb/Makefile.in
 --- mysql-5.0.67_patched/ndb/Makefile.in	2008-08-04 21:22:09.000000000 +0900
-+++ mysql-5.0.67/ndb/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -189,6 +189,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -839,7 +839,7 @@ diff -ruN mysql-5.0.67_patched/ndb/Makefile.in mysql-5.0.67/ndb/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/docs/Makefile.in mysql-5.0.67/ndb/docs/Makefile.in
 --- mysql-5.0.67_patched/ndb/docs/Makefile.in	2008-08-04 21:22:10.000000000 +0900
-+++ mysql-5.0.67/ndb/docs/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/docs/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -170,6 +170,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -850,7 +850,7 @@ diff -ruN mysql-5.0.67_patched/ndb/docs/Makefile.in mysql-5.0.67/ndb/docs/Makefi
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/include/Makefile.in mysql-5.0.67/ndb/include/Makefile.in
 --- mysql-5.0.67_patched/ndb/include/Makefile.in	2008-08-04 21:22:10.000000000 +0900
-+++ mysql-5.0.67/ndb/include/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/include/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -200,6 +200,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -861,7 +861,7 @@ diff -ruN mysql-5.0.67_patched/ndb/include/Makefile.in mysql-5.0.67/ndb/include/
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/Makefile.in mysql-5.0.67/ndb/src/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/Makefile.in	2008-08-04 21:22:10.000000000 +0900
-+++ mysql-5.0.67/ndb/src/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -218,6 +218,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -872,7 +872,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/Makefile.in mysql-5.0.67/ndb/src/Makefile
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/common/Makefile.in mysql-5.0.67/ndb/src/common/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/common/Makefile.in	2008-08-04 21:22:11.000000000 +0900
-+++ mysql-5.0.67/ndb/src/common/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/common/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -191,6 +191,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -883,7 +883,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/common/Makefile.in mysql-5.0.67/ndb/src/c
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/common/debugger/Makefile.in mysql-5.0.67/ndb/src/common/debugger/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/common/debugger/Makefile.in	2008-08-04 21:22:11.000000000 +0900
-+++ mysql-5.0.67/ndb/src/common/debugger/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/common/debugger/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -223,6 +223,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -894,7 +894,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/common/debugger/Makefile.in mysql-5.0.67/
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/common/debugger/signaldata/Makefile.in mysql-5.0.67/ndb/src/common/debugger/signaldata/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/common/debugger/signaldata/Makefile.in	2008-08-04 21:22:11.000000000 +0900
-+++ mysql-5.0.67/ndb/src/common/debugger/signaldata/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/common/debugger/signaldata/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -231,6 +231,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -905,7 +905,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/common/debugger/signaldata/Makefile.in my
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/common/logger/Makefile.in mysql-5.0.67/ndb/src/common/logger/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/common/logger/Makefile.in	2008-08-04 21:22:12.000000000 +0900
-+++ mysql-5.0.67/ndb/src/common/logger/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/common/logger/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -217,6 +217,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -916,7 +916,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/common/logger/Makefile.in mysql-5.0.67/nd
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/common/mgmcommon/Makefile.in mysql-5.0.67/ndb/src/common/mgmcommon/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/common/mgmcommon/Makefile.in	2008-08-04 21:22:12.000000000 +0900
-+++ mysql-5.0.67/ndb/src/common/mgmcommon/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/common/mgmcommon/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -231,6 +231,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -927,7 +927,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/common/mgmcommon/Makefile.in mysql-5.0.67
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/common/portlib/Makefile.in mysql-5.0.67/ndb/src/common/portlib/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/common/portlib/Makefile.in	2008-08-04 21:22:12.000000000 +0900
-+++ mysql-5.0.67/ndb/src/common/portlib/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/common/portlib/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -241,6 +241,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -938,7 +938,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/common/portlib/Makefile.in mysql-5.0.67/n
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/common/transporter/Makefile.in mysql-5.0.67/ndb/src/common/transporter/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/common/transporter/Makefile.in	2008-08-04 21:22:13.000000000 +0900
-+++ mysql-5.0.67/ndb/src/common/transporter/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/common/transporter/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -217,6 +217,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -949,7 +949,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/common/transporter/Makefile.in mysql-5.0.
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/common/util/Makefile.in mysql-5.0.67/ndb/src/common/util/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/common/util/Makefile.in	2008-08-04 21:22:13.000000000 +0900
-+++ mysql-5.0.67/ndb/src/common/util/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/common/util/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -233,6 +233,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -960,7 +960,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/common/util/Makefile.in mysql-5.0.67/ndb/
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/cw/Makefile.in mysql-5.0.67/ndb/src/cw/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/cw/Makefile.in	2008-08-04 21:22:13.000000000 +0900
-+++ mysql-5.0.67/ndb/src/cw/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/cw/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -174,6 +174,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -971,7 +971,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/cw/Makefile.in mysql-5.0.67/ndb/src/cw/Ma
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/cw/cpcd/Makefile.in mysql-5.0.67/ndb/src/cw/cpcd/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/cw/cpcd/Makefile.in	2008-08-04 21:22:14.000000000 +0900
-+++ mysql-5.0.67/ndb/src/cw/cpcd/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/cw/cpcd/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -224,6 +224,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -982,7 +982,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/cw/cpcd/Makefile.in mysql-5.0.67/ndb/src/
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/Makefile.in mysql-5.0.67/ndb/src/kernel/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/Makefile.in	2008-08-04 21:22:14.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -244,6 +244,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -993,7 +993,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/Makefile.in mysql-5.0.67/ndb/src/k
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/Makefile.in	2008-08-04 21:22:14.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -174,6 +174,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1004,7 +1004,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/Makefile.in mysql-5.0.67/nd
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/backup/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/backup/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/backup/Makefile.in	2008-08-04 21:22:14.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/backup/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/backup/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -216,6 +216,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1015,7 +1015,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/backup/Makefile.in mysql-5.
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/cmvmi/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/cmvmi/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/cmvmi/Makefile.in	2008-08-04 21:22:15.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/cmvmi/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/cmvmi/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -216,6 +216,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1026,7 +1026,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/cmvmi/Makefile.in mysql-5.0
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbacc/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/dbacc/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/dbacc/Makefile.in	2008-08-04 21:22:15.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/dbacc/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/dbacc/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -216,6 +216,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1037,7 +1037,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbacc/Makefile.in mysql-5.0
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbdict/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/dbdict/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/dbdict/Makefile.in	2008-08-04 21:22:15.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/dbdict/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/dbdict/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -226,6 +226,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1048,7 +1048,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbdict/Makefile.in mysql-5.
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbdih/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/dbdih/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/dbdih/Makefile.in	2008-08-04 21:22:16.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/dbdih/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/dbdih/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -223,6 +223,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1059,7 +1059,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbdih/Makefile.in mysql-5.0
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dblqh/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/dblqh/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/dblqh/Makefile.in	2008-08-04 21:22:16.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/dblqh/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/dblqh/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -224,6 +224,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1070,7 +1070,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dblqh/Makefile.in mysql-5.0
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbtc/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/dbtc/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/dbtc/Makefile.in	2008-08-04 21:22:17.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/dbtc/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/dbtc/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -216,6 +216,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1081,7 +1081,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbtc/Makefile.in mysql-5.0.
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbtup/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/dbtup/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/dbtup/Makefile.in	2008-08-04 21:22:17.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/dbtup/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/dbtup/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -224,6 +224,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1092,7 +1092,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbtup/Makefile.in mysql-5.0
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbtux/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/dbtux/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/dbtux/Makefile.in	2008-08-04 21:22:17.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/dbtux/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/dbtux/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -219,6 +219,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1103,7 +1103,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbtux/Makefile.in mysql-5.0
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbutil/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/dbutil/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/dbutil/Makefile.in	2008-08-04 21:22:18.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/dbutil/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/dbutil/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -216,6 +216,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1114,7 +1114,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/dbutil/Makefile.in mysql-5.
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/ndbcntr/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/ndbcntr/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/ndbcntr/Makefile.in	2008-08-04 21:22:18.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/ndbcntr/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/ndbcntr/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -217,6 +217,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1125,7 +1125,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/ndbcntr/Makefile.in mysql-5
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/ndbfs/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/ndbfs/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/ndbfs/Makefile.in	2008-08-04 21:22:18.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/ndbfs/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/ndbfs/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -217,6 +217,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1136,7 +1136,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/ndbfs/Makefile.in mysql-5.0
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/qmgr/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/qmgr/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/qmgr/Makefile.in	2008-08-04 21:22:19.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/qmgr/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/qmgr/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -216,6 +216,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1147,7 +1147,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/qmgr/Makefile.in mysql-5.0.
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/suma/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/suma/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/suma/Makefile.in	2008-08-04 21:22:19.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/suma/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/suma/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -216,6 +216,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1158,7 +1158,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/suma/Makefile.in mysql-5.0.
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/trix/Makefile.in mysql-5.0.67/ndb/src/kernel/blocks/trix/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/blocks/trix/Makefile.in	2008-08-04 21:22:19.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/blocks/trix/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/blocks/trix/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -216,6 +216,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1169,7 +1169,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/blocks/trix/Makefile.in mysql-5.0.
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/error/Makefile.in mysql-5.0.67/ndb/src/kernel/error/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/error/Makefile.in	2008-08-04 21:22:20.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/error/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/error/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -225,6 +225,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1180,7 +1180,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/error/Makefile.in mysql-5.0.67/ndb
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/kernel/vm/Makefile.in mysql-5.0.67/ndb/src/kernel/vm/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/kernel/vm/Makefile.in	2008-08-04 21:22:20.000000000 +0900
-+++ mysql-5.0.67/ndb/src/kernel/vm/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/kernel/vm/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -227,6 +227,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1191,7 +1191,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/kernel/vm/Makefile.in mysql-5.0.67/ndb/sr
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/mgmapi/Makefile.in mysql-5.0.67/ndb/src/mgmapi/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/mgmapi/Makefile.in	2008-08-04 21:22:20.000000000 +0900
-+++ mysql-5.0.67/ndb/src/mgmapi/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/mgmapi/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -224,6 +224,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1202,7 +1202,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/mgmapi/Makefile.in mysql-5.0.67/ndb/src/m
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/mgmclient/Makefile.in mysql-5.0.67/ndb/src/mgmclient/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/mgmclient/Makefile.in	2008-08-04 21:22:21.000000000 +0900
-+++ mysql-5.0.67/ndb/src/mgmclient/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/mgmclient/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -234,6 +234,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1213,7 +1213,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/mgmclient/Makefile.in mysql-5.0.67/ndb/sr
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/mgmsrv/Makefile.in mysql-5.0.67/ndb/src/mgmsrv/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/mgmsrv/Makefile.in	2008-08-04 21:22:21.000000000 +0900
-+++ mysql-5.0.67/ndb/src/mgmsrv/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/mgmsrv/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -230,6 +230,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1224,7 +1224,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/mgmsrv/Makefile.in mysql-5.0.67/ndb/src/m
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/src/ndbapi/Makefile.in mysql-5.0.67/ndb/src/ndbapi/Makefile.in
 --- mysql-5.0.67_patched/ndb/src/ndbapi/Makefile.in	2008-08-04 21:22:21.000000000 +0900
-+++ mysql-5.0.67/ndb/src/ndbapi/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/src/ndbapi/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -234,6 +234,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1235,7 +1235,7 @@ diff -ruN mysql-5.0.67_patched/ndb/src/ndbapi/Makefile.in mysql-5.0.67/ndb/src/n
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/test/Makefile.in mysql-5.0.67/ndb/test/Makefile.in
 --- mysql-5.0.67_patched/ndb/test/Makefile.in	2008-08-04 21:22:22.000000000 +0900
-+++ mysql-5.0.67/ndb/test/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/test/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -174,6 +174,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1246,7 +1246,7 @@ diff -ruN mysql-5.0.67_patched/ndb/test/Makefile.in mysql-5.0.67/ndb/test/Makefi
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/test/ndbapi/Makefile.in mysql-5.0.67/ndb/test/ndbapi/Makefile.in
 --- mysql-5.0.67_patched/ndb/test/ndbapi/Makefile.in	2008-08-04 21:22:22.000000000 +0900
-+++ mysql-5.0.67/ndb/test/ndbapi/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/test/ndbapi/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -611,6 +611,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1257,7 +1257,7 @@ diff -ruN mysql-5.0.67_patched/ndb/test/ndbapi/Makefile.in mysql-5.0.67/ndb/test
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/test/ndbapi/bank/Makefile.in mysql-5.0.67/ndb/test/ndbapi/bank/Makefile.in
 --- mysql-5.0.67_patched/ndb/test/ndbapi/bank/Makefile.in	2008-08-04 21:22:23.000000000 +0900
-+++ mysql-5.0.67/ndb/test/ndbapi/bank/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/test/ndbapi/bank/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -303,6 +303,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1268,7 +1268,7 @@ diff -ruN mysql-5.0.67_patched/ndb/test/ndbapi/bank/Makefile.in mysql-5.0.67/ndb
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/test/run-test/Makefile.in mysql-5.0.67/ndb/test/run-test/Makefile.in
 --- mysql-5.0.67_patched/ndb/test/run-test/Makefile.in	2008-08-04 21:22:23.000000000 +0900
-+++ mysql-5.0.67/ndb/test/run-test/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/test/run-test/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -262,6 +262,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1279,7 +1279,7 @@ diff -ruN mysql-5.0.67_patched/ndb/test/run-test/Makefile.in mysql-5.0.67/ndb/te
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/test/src/Makefile.in mysql-5.0.67/ndb/test/src/Makefile.in
 --- mysql-5.0.67_patched/ndb/test/src/Makefile.in	2008-08-04 21:22:24.000000000 +0900
-+++ mysql-5.0.67/ndb/test/src/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/test/src/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -232,6 +232,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1290,7 +1290,7 @@ diff -ruN mysql-5.0.67_patched/ndb/test/src/Makefile.in mysql-5.0.67/ndb/test/sr
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/test/tools/Makefile.in mysql-5.0.67/ndb/test/tools/Makefile.in
 --- mysql-5.0.67_patched/ndb/test/tools/Makefile.in	2008-08-04 21:22:24.000000000 +0900
-+++ mysql-5.0.67/ndb/test/tools/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/test/tools/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -345,6 +345,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1301,7 +1301,7 @@ diff -ruN mysql-5.0.67_patched/ndb/test/tools/Makefile.in mysql-5.0.67/ndb/test/
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/ndb/tools/Makefile.in mysql-5.0.67/ndb/tools/Makefile.in
 --- mysql-5.0.67_patched/ndb/tools/Makefile.in	2008-08-04 21:22:25.000000000 +0900
-+++ mysql-5.0.67/ndb/tools/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/ndb/tools/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -331,6 +331,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1312,7 +1312,7 @@ diff -ruN mysql-5.0.67_patched/ndb/tools/Makefile.in mysql-5.0.67/ndb/tools/Make
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/netware/Makefile.in mysql-5.0.67/netware/Makefile.in
 --- mysql-5.0.67_patched/netware/Makefile.in	2008-08-04 21:22:25.000000000 +0900
-+++ mysql-5.0.67/netware/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/netware/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -219,6 +219,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1323,7 +1323,7 @@ diff -ruN mysql-5.0.67_patched/netware/Makefile.in mysql-5.0.67/netware/Makefile
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/os2/Makefile.in mysql-5.0.67/os2/Makefile.in
 --- mysql-5.0.67_patched/os2/Makefile.in	2008-08-04 21:22:25.000000000 +0900
-+++ mysql-5.0.67/os2/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/os2/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -174,6 +174,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1334,7 +1334,7 @@ diff -ruN mysql-5.0.67_patched/os2/Makefile.in mysql-5.0.67/os2/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/os2/include/Makefile.in mysql-5.0.67/os2/include/Makefile.in
 --- mysql-5.0.67_patched/os2/include/Makefile.in	2008-08-04 21:22:26.000000000 +0900
-+++ mysql-5.0.67/os2/include/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/os2/include/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -174,6 +174,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1345,7 +1345,7 @@ diff -ruN mysql-5.0.67_patched/os2/include/Makefile.in mysql-5.0.67/os2/include/
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/os2/include/sys/Makefile.in mysql-5.0.67/os2/include/sys/Makefile.in
 --- mysql-5.0.67_patched/os2/include/sys/Makefile.in	2008-08-04 21:22:26.000000000 +0900
-+++ mysql-5.0.67/os2/include/sys/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/os2/include/sys/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -165,6 +165,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1356,19 +1356,22 @@ diff -ruN mysql-5.0.67_patched/os2/include/sys/Makefile.in mysql-5.0.67/os2/incl
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/patch_info/userstats.info mysql-5.0.67/patch_info/userstats.info
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ mysql-5.0.67/patch_info/userstats.info	2008-11-26 20:57:50.000000000 +0900
-@@ -0,0 +1,8 @@
++++ mysql-5.0.67/patch_info/userstats.info	2008-12-01 09:18:20.000000000 +0900
+@@ -0,0 +1,11 @@
 +File=userstatsv2.patch
 +Name=SHOW USER/TABLE/INDEX statistics
 +Version=V2
 +Author=Google
 +License=GPL
 +Comment=Added INFORMATION_SCHEMA.*_STATISTICS
++2008-12-01
++YK: fix behavior for prepared statements
++
 +2008-11-26
 +YK: add switch variable "userstat_running" to control INFORMATION_SCHEMA.*_STATISTICS (default:OFF)
 diff -ruN mysql-5.0.67_patched/pstack/Makefile.in mysql-5.0.67/pstack/Makefile.in
 --- mysql-5.0.67_patched/pstack/Makefile.in	2008-08-04 21:22:26.000000000 +0900
-+++ mysql-5.0.67/pstack/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/pstack/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -213,6 +213,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1379,7 +1382,7 @@ diff -ruN mysql-5.0.67_patched/pstack/Makefile.in mysql-5.0.67/pstack/Makefile.i
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/pstack/aout/Makefile.in mysql-5.0.67/pstack/aout/Makefile.in
 --- mysql-5.0.67_patched/pstack/aout/Makefile.in	2008-08-04 21:22:27.000000000 +0900
-+++ mysql-5.0.67/pstack/aout/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/pstack/aout/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -155,6 +155,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1390,7 +1393,7 @@ diff -ruN mysql-5.0.67_patched/pstack/aout/Makefile.in mysql-5.0.67/pstack/aout/
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/regex/Makefile.in mysql-5.0.67/regex/Makefile.in
 --- mysql-5.0.67_patched/regex/Makefile.in	2008-08-04 21:22:27.000000000 +0900
-+++ mysql-5.0.67/regex/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/regex/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -197,6 +197,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1401,7 +1404,7 @@ diff -ruN mysql-5.0.67_patched/regex/Makefile.in mysql-5.0.67/regex/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/scripts/Makefile.in mysql-5.0.67/scripts/Makefile.in
 --- mysql-5.0.67_patched/scripts/Makefile.in	2008-08-04 21:22:27.000000000 +0900
-+++ mysql-5.0.67/scripts/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/scripts/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -196,6 +196,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1412,7 +1415,7 @@ diff -ruN mysql-5.0.67_patched/scripts/Makefile.in mysql-5.0.67/scripts/Makefile
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/server-tools/Makefile.in mysql-5.0.67/server-tools/Makefile.in
 --- mysql-5.0.67_patched/server-tools/Makefile.in	2008-08-04 21:22:28.000000000 +0900
-+++ mysql-5.0.67/server-tools/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/server-tools/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -173,6 +173,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1423,7 +1426,7 @@ diff -ruN mysql-5.0.67_patched/server-tools/Makefile.in mysql-5.0.67/server-tool
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/server-tools/instance-manager/Makefile.in mysql-5.0.67/server-tools/instance-manager/Makefile.in
 --- mysql-5.0.67_patched/server-tools/instance-manager/Makefile.in	2008-08-04 21:22:28.000000000 +0900
-+++ mysql-5.0.67/server-tools/instance-manager/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/server-tools/instance-manager/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -221,6 +221,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1433,8 +1436,8 @@ diff -ruN mysql-5.0.67_patched/server-tools/instance-manager/Makefile.in mysql-5
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/sql/Makefile.in mysql-5.0.67/sql/Makefile.in
---- mysql-5.0.67_patched/sql/Makefile.in	2008-11-26 16:52:55.000000000 +0900
-+++ mysql-5.0.67/sql/Makefile.in	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/Makefile.in	2008-12-01 09:18:48.000000000 +0900
++++ mysql-5.0.67/sql/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -283,6 +283,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1444,8 +1447,8 @@ diff -ruN mysql-5.0.67_patched/sql/Makefile.in mysql-5.0.67/sql/Makefile.in
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/sql/ha_innodb.cc mysql-5.0.67/sql/ha_innodb.cc
---- mysql-5.0.67_patched/sql/ha_innodb.cc	2008-11-26 16:53:03.000000000 +0900
-+++ mysql-5.0.67/sql/ha_innodb.cc	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/ha_innodb.cc	2008-12-01 09:18:51.000000000 +0900
++++ mysql-5.0.67/sql/ha_innodb.cc	2008-12-01 09:18:20.000000000 +0900
 @@ -3314,6 +3314,8 @@
  
  	error = row_insert_for_mysql((byte*) record, prebuilt);
@@ -1485,7 +1488,7 @@ diff -ruN mysql-5.0.67_patched/sql/ha_innodb.cc mysql-5.0.67/sql/ha_innodb.cc
  		error = HA_ERR_END_OF_FILE;
 diff -ruN mysql-5.0.67_patched/sql/ha_myisam.cc mysql-5.0.67/sql/ha_myisam.cc
 --- mysql-5.0.67_patched/sql/ha_myisam.cc	2008-08-04 21:20:03.000000000 +0900
-+++ mysql-5.0.67/sql/ha_myisam.cc	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/sql/ha_myisam.cc	2008-12-01 09:18:20.000000000 +0900
 @@ -670,7 +670,9 @@
      if ((error= update_auto_increment()))
        return error;
@@ -1647,8 +1650,8 @@ diff -ruN mysql-5.0.67_patched/sql/ha_myisam.cc mysql-5.0.67/sql/ha_myisam.cc
  
 diff -ruN mysql-5.0.67_patched/sql/handler.cc mysql-5.0.67/sql/handler.cc
 --- mysql-5.0.67_patched/sql/handler.cc	2008-08-04 21:20:04.000000000 +0900
-+++ mysql-5.0.67/sql/handler.cc	2008-11-26 21:05:23.000000000 +0900
-@@ -725,6 +732,8 @@
++++ mysql-5.0.67/sql/handler.cc	2008-12-01 09:18:20.000000000 +0900
+@@ -725,6 +725,8 @@
      if (cookie)
        tc_log->unlog(cookie, xid);
      DBUG_EXECUTE_IF("crash_commit_after", abort(););
@@ -1657,7 +1660,7 @@ diff -ruN mysql-5.0.67_patched/sql/handler.cc mysql-5.0.67/sql/handler.cc
  end:
      if (is_real_trans)
        start_waiting_global_read_lock(thd);
-@@ -824,6 +833,7 @@
+@@ -824,6 +826,7 @@
        thd->transaction.cleanup();
      }
    }
@@ -1665,7 +1668,7 @@ diff -ruN mysql-5.0.67_patched/sql/handler.cc mysql-5.0.67/sql/handler.cc
  #endif /* USING_TRANSACTIONS */
    if (all)
      thd->transaction_rollback_request= FALSE;
-@@ -1207,6 +1217,7 @@
+@@ -1207,6 +1210,7 @@
      statistic_increment(thd->status_var.ha_rollback_count,&LOCK_status);
      *ht=0; // keep it conveniently zero-filled
    }
@@ -1673,7 +1676,7 @@ diff -ruN mysql-5.0.67_patched/sql/handler.cc mysql-5.0.67/sql/handler.cc
    DBUG_RETURN(error);
  }
  
-@@ -1437,6 +1448,8 @@
+@@ -1437,6 +1441,8 @@
      else
        dupp_ref=ref+ALIGN_SIZE(ref_length);
    }
@@ -1682,7 +1685,7 @@ diff -ruN mysql-5.0.67_patched/sql/handler.cc mysql-5.0.67/sql/handler.cc
    DBUG_RETURN(error);
  }
  
-@@ -2222,6 +2235,111 @@
+@@ -2222,6 +2228,111 @@
    return error;
  }
  
@@ -1796,7 +1799,7 @@ diff -ruN mysql-5.0.67_patched/sql/handler.cc mysql-5.0.67/sql/handler.cc
  ** Some general functions that isn't in the handler class
 diff -ruN mysql-5.0.67_patched/sql/handler.h mysql-5.0.67/sql/handler.h
 --- mysql-5.0.67_patched/sql/handler.h	2008-08-04 21:20:04.000000000 +0900
-+++ mysql-5.0.67/sql/handler.h	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/sql/handler.h	2008-12-01 09:18:20.000000000 +0900
 @@ -32,6 +32,10 @@
  #define USING_TRANSACTIONS
  #endif
@@ -1855,8 +1858,8 @@ diff -ruN mysql-5.0.67_patched/sql/handler.h mysql-5.0.67/sql/handler.h
      default rename_table() and delete_table() rename/delete files with a
      given name and extensions from bas_ext()
 diff -ruN mysql-5.0.67_patched/sql/lex.h mysql-5.0.67/sql/lex.h
---- mysql-5.0.67_patched/sql/lex.h	2008-11-26 16:52:55.000000000 +0900
-+++ mysql-5.0.67/sql/lex.h	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/lex.h	2008-12-01 09:18:48.000000000 +0900
++++ mysql-5.0.67/sql/lex.h	2008-12-01 09:18:20.000000000 +0900
 @@ -109,6 +109,7 @@
    { "CHECKSUM",		SYM(CHECKSUM_SYM)},
    { "CIPHER",		SYM(CIPHER_SYM)},
@@ -1898,8 +1901,8 @@ diff -ruN mysql-5.0.67_patched/sql/lex.h mysql-5.0.67/sql/lex.h
    { "USING",		SYM(USING)},
    { "UTC_DATE",         SYM(UTC_DATE_SYM)},
 diff -ruN mysql-5.0.67_patched/sql/log.cc mysql-5.0.67/sql/log.cc
---- mysql-5.0.67_patched/sql/log.cc	2008-11-26 16:53:03.000000000 +0900
-+++ mysql-5.0.67/sql/log.cc	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/log.cc	2008-12-01 09:18:51.000000000 +0900
++++ mysql-5.0.67/sql/log.cc	2008-12-01 09:18:20.000000000 +0900
 @@ -1847,18 +1847,24 @@
  			   thd->current_insert_id);
  	if (e.write(file))
@@ -1978,8 +1981,8 @@ diff -ruN mysql-5.0.67_patched/sql/log.cc mysql-5.0.67/sql/log.cc
  DBUG_skip_commit:
  #endif
 diff -ruN mysql-5.0.67_patched/sql/mysql_priv.h mysql-5.0.67/sql/mysql_priv.h
---- mysql-5.0.67_patched/sql/mysql_priv.h	2008-11-26 16:53:03.000000000 +0900
-+++ mysql-5.0.67/sql/mysql_priv.h	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/mysql_priv.h	2008-12-01 09:18:51.000000000 +0900
++++ mysql-5.0.67/sql/mysql_priv.h	2008-12-01 09:18:20.000000000 +0900
 @@ -816,7 +816,15 @@
  bool multi_delete_set_locks_and_link_aux_tables(LEX *lex);
  void init_max_user_conn(void);
@@ -2028,8 +2031,8 @@ diff -ruN mysql-5.0.67_patched/sql/mysql_priv.h mysql-5.0.67/sql/mysql_priv.h
  extern const char *opt_date_time_formats[];
  extern KNOWN_DATE_TIME_FORMAT known_date_time_formats[];
 diff -ruN mysql-5.0.67_patched/sql/mysqld.cc mysql-5.0.67/sql/mysqld.cc
---- mysql-5.0.67_patched/sql/mysqld.cc	2008-11-26 16:53:03.000000000 +0900
-+++ mysql-5.0.67/sql/mysqld.cc	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/mysqld.cc	2008-12-01 09:18:51.000000000 +0900
++++ mysql-5.0.67/sql/mysqld.cc	2008-12-01 09:18:20.000000000 +0900
 @@ -414,6 +414,7 @@
  uint    opt_large_page_size= 0;
  my_bool opt_old_style_user_limits= 0, trust_function_creators= 0;
@@ -2138,8 +2141,8 @@ diff -ruN mysql-5.0.67_patched/sql/mysqld.cc mysql-5.0.67/sql/mysqld.cc
  };
  
 diff -ruN mysql-5.0.67_patched/sql/set_var.cc mysql-5.0.67/sql/set_var.cc
---- mysql-5.0.67_patched/sql/set_var.cc	2008-11-26 16:53:03.000000000 +0900
-+++ mysql-5.0.67/sql/set_var.cc	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/set_var.cc	2008-12-01 09:18:51.000000000 +0900
++++ mysql-5.0.67/sql/set_var.cc	2008-12-01 09:18:20.000000000 +0900
 @@ -320,6 +320,7 @@
  sys_var_thd_ulong	sys_read_buff_size("read_buffer_size",
  					   &SV::read_buff_size);
@@ -2166,7 +2169,7 @@ diff -ruN mysql-5.0.67_patched/sql/set_var.cc mysql-5.0.67/sql/set_var.cc
    {sys_version_bdb.name,      (char*) &sys_version_bdb,             SHOW_SYS},
 diff -ruN mysql-5.0.67_patched/sql/share/Makefile.in mysql-5.0.67/sql/share/Makefile.in
 --- mysql-5.0.67_patched/sql/share/Makefile.in	2008-08-04 21:22:29.000000000 +0900
-+++ mysql-5.0.67/sql/share/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/sql/share/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -165,6 +165,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -2177,7 +2180,7 @@ diff -ruN mysql-5.0.67_patched/sql/share/Makefile.in mysql-5.0.67/sql/share/Make
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/sql/sql_base.cc mysql-5.0.67/sql/sql_base.cc
 --- mysql-5.0.67_patched/sql/sql_base.cc	2008-08-04 21:20:09.000000000 +0900
-+++ mysql-5.0.67/sql/sql_base.cc	2008-11-26 21:05:23.000000000 +0900
++++ mysql-5.0.67/sql/sql_base.cc	2008-12-01 09:18:20.000000000 +0900
 @@ -624,6 +624,12 @@
    DBUG_ENTER("close_thread_table");
    DBUG_ASSERT(table->key_read == 0);
@@ -2202,8 +2205,8 @@ diff -ruN mysql-5.0.67_patched/sql/sql_base.cc mysql-5.0.67/sql/sql_base.cc
    strmov(path,table->s->path);
    free_io_cache(table);
 diff -ruN mysql-5.0.67_patched/sql/sql_class.cc mysql-5.0.67/sql/sql_class.cc
---- mysql-5.0.67_patched/sql/sql_class.cc	2008-11-26 16:53:03.000000000 +0900
-+++ mysql-5.0.67/sql/sql_class.cc	2008-11-26 21:05:23.000000000 +0900
+--- mysql-5.0.67_patched/sql/sql_class.cc	2008-12-01 09:18:51.000000000 +0900
++++ mysql-5.0.67/sql/sql_class.cc	2008-12-01 09:18:20.000000000 +0900
 @@ -235,6 +235,12 @@
    bzero(ha_data, sizeof(ha_data));
    mysys_var=0;
@@ -2367,8 +2370,8 @@ diff -ruN mysql-5.0.67_patched/sql/sql_class.cc mysql-5.0.67/sql/sql_class.cc
  
  
 diff -ruN mysql-5.0.67_patched/sql/sql_class.h mysql-5.0.67/sql/sql_class.h
---- mysql-5.0.67_patched/sql/sql_class.h	2008-11-26 16:53:03.000000000 +0900
-+++ mysql-5.0.67/sql/sql_class.h	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/sql_class.h	2008-12-01 09:18:51.000000000 +0900
++++ mysql-5.0.67/sql/sql_class.h	2008-12-01 09:18:20.000000000 +0900
 @@ -1289,6 +1289,8 @@
      first byte of the packet in do_command()
    */
@@ -2477,7 +2480,7 @@ diff -ruN mysql-5.0.67_patched/sql/sql_class.h mysql-5.0.67/sql/sql_class.h
    {ulonglong tmp_disable_binlog__save_options= (A)->options; \
 diff -ruN mysql-5.0.67_patched/sql/sql_delete.cc mysql-5.0.67/sql/sql_delete.cc
 --- mysql-5.0.67_patched/sql/sql_delete.cc	2008-08-04 21:20:09.000000000 +0900
-+++ mysql-5.0.67/sql/sql_delete.cc	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/sql/sql_delete.cc	2008-12-01 09:18:20.000000000 +0900
 @@ -358,6 +358,7 @@
      send_ok(thd,deleted);
      DBUG_PRINT("info",("%ld records deleted",(long) deleted));
@@ -2496,7 +2499,7 @@ diff -ruN mysql-5.0.67_patched/sql/sql_delete.cc mysql-5.0.67/sql/sql_delete.cc
  
 diff -ruN mysql-5.0.67_patched/sql/sql_insert.cc mysql-5.0.67/sql/sql_insert.cc
 --- mysql-5.0.67_patched/sql/sql_insert.cc	2008-08-04 21:20:09.000000000 +0900
-+++ mysql-5.0.67/sql/sql_insert.cc	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/sql/sql_insert.cc	2008-12-01 09:18:20.000000000 +0900
 @@ -989,6 +989,7 @@
      thd->row_count_func= info.copied + info.deleted + updated;
      ::send_ok(thd, (ulong) thd->row_count_func, id, buff);
@@ -2514,8 +2517,8 @@ diff -ruN mysql-5.0.67_patched/sql/sql_insert.cc mysql-5.0.67/sql/sql_insert.cc
  }
  
 diff -ruN mysql-5.0.67_patched/sql/sql_lex.h mysql-5.0.67/sql/sql_lex.h
---- mysql-5.0.67_patched/sql/sql_lex.h	2008-11-26 16:52:55.000000000 +0900
-+++ mysql-5.0.67/sql/sql_lex.h	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/sql_lex.h	2008-12-01 09:18:48.000000000 +0900
++++ mysql-5.0.67/sql/sql_lex.h	2008-12-01 09:18:20.000000000 +0900
 @@ -101,6 +101,9 @@
      When a command is added here, be sure it's also added in mysqld.cc
      in "struct show_var_st status_vars[]= {" ...
@@ -2527,8 +2530,8 @@ diff -ruN mysql-5.0.67_patched/sql/sql_lex.h mysql-5.0.67/sql/sql_lex.h
    SQLCOM_END
  };
 diff -ruN mysql-5.0.67_patched/sql/sql_parse.cc mysql-5.0.67/sql/sql_parse.cc
---- mysql-5.0.67_patched/sql/sql_parse.cc	2008-11-26 16:53:03.000000000 +0900
-+++ mysql-5.0.67/sql/sql_parse.cc	2008-11-26 21:05:23.000000000 +0900
+--- mysql-5.0.67_patched/sql/sql_parse.cc	2008-12-01 09:18:51.000000000 +0900
++++ mysql-5.0.67/sql/sql_parse.cc	2008-12-01 09:19:50.000000000 +0900
 @@ -79,6 +79,12 @@
  static bool check_show_create_table_access(THD *thd, TABLE_LIST *table);
  static bool test_if_data_home_dir(const char *dir);
@@ -2537,7 +2540,7 @@ diff -ruN mysql-5.0.67_patched/sql/sql_parse.cc mysql-5.0.67/sql/sql_parse.cc
 +static int increment_connection_count(THD* thd, bool use_lock);
 +
 +// Uses the THD to update the global stats by user name and client IP
-+static void update_global_user_stats(THD* thd, bool create_user, time_t now);
++void update_global_user_stats(THD* thd, bool create_user, time_t now);
 +
  const char *any_db="*any*";	// Special symbol for check_access
  
@@ -2910,7 +2913,7 @@ diff -ruN mysql-5.0.67_patched/sql/sql_parse.cc mysql-5.0.67/sql/sql_parse.cc
 +}
 +
 +// Updates the global stats of a user or client
-+static void update_global_user_stats(THD* thd, bool create_user, time_t now)
++void update_global_user_stats(THD* thd, bool create_user, time_t now)
 +{
 +  if (opt_userstat_running) {
 +  char* user_string = get_valid_user_string(thd->main_security_ctx.user);
@@ -3303,9 +3306,331 @@ diff -ruN mysql-5.0.67_patched/sql/sql_parse.cc mysql-5.0.67/sql/sql_parse.cc
   *write_to_binlog= tmp_write_to_binlog;
   return result;
  }
+diff -ruN mysql-5.0.67_patched/sql/sql_prepare.cc mysql-5.0.67/sql/sql_prepare.cc
+--- mysql-5.0.67_patched/sql/sql_prepare.cc	2008-12-01 09:18:48.000000000 +0900
++++ mysql-5.0.67/sql/sql_prepare.cc	2008-12-01 09:19:14.000000000 +0900
+@@ -81,6 +81,9 @@
+ #include <mysql_com.h>
+ #endif
+ 
++// Uses the THD to update the global stats by user name and client IP
++void update_global_user_stats(THD* thd, bool create_user, time_t now);
++
+ /* A result class used to send cursor rows using the binary protocol. */
+ 
+ class Select_fetch_protocol_prep: public select_send
+@@ -1910,8 +1913,32 @@
+   /* First of all clear possible warnings from the previous command */
+   mysql_reset_thd_for_next_command(thd);
+ 
++  int start_time_error = 0;
++  int end_time_error = 0;
++  struct timeval start_time, end_time;
++  double start_usecs = 0;
++  double end_usecs = 0;
++  /* cpu time */
++  int cputime_error = 0;
++  struct timespec tp;
++  double start_cpu_nsecs = 0;
++  double end_cpu_nsecs = 0;
++
++  if (opt_userstat_running) {
++#ifdef HAVE_CLOCK_GETTIME
++    /* get start cputime */
++    if (!(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
++      start_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
++#endif
++
++    // Gets the start time, in order to measure how long this command takes.
++    if (!(start_time_error = gettimeofday(&start_time, NULL))) {
++      start_usecs = start_time.tv_sec * 1000000.0 + start_time.tv_usec;
++    }
++  }
++
+   if (! (stmt= new Prepared_statement(thd, &thd->protocol_prep)))
+-    DBUG_VOID_RETURN; /* out of memory: error is set in Sql_alloc */
++    goto end; /* out of memory: error is set in Sql_alloc */
+ 
+   if (thd->stmt_map.insert(thd, stmt))
+   {
+@@ -1919,7 +1946,7 @@
+       The error is set in the insert. The statement itself
+       will be also deleted there (this is how the hash works).
+     */
+-    DBUG_VOID_RETURN;
++    goto end;
+   }
+ 
+   /* Reset warnings from previous command */
+@@ -1941,6 +1968,40 @@
+     thd->stmt_map.erase(stmt);
+   }
+   /* check_prepared_statemnt sends the metadata packet in case of success */
++end:
++  if (opt_userstat_running) {
++    // Gets the end time.
++    if (!(end_time_error = gettimeofday(&end_time, NULL))) {
++      end_usecs = end_time.tv_sec * 1000000.0 + end_time.tv_usec;
++    }
++
++    // Calculates the difference between the end and start times.
++    if (start_usecs && end_usecs >= start_usecs && !start_time_error && !end_time_error) {
++      thd->busy_time = (end_usecs - start_usecs) / 1000000;
++      // In case there are bad values, 2629743 is the #seconds in a month.
++      if (thd->busy_time > 2629743) {
++        thd->busy_time = 0;
++      }
++    } else {
++      // end time went back in time, or gettimeofday() failed.
++      thd->busy_time = 0;
++    }
++
++#ifdef HAVE_CLOCK_GETTIME
++    /* get end cputime */
++    if (!cputime_error &&
++        !(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
++      end_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
++#endif
++    if (start_cpu_nsecs && !cputime_error)
++      thd->cpu_time = (end_cpu_nsecs - start_cpu_nsecs) / 1000000000;
++    else
++      thd->cpu_time = 0;
++  }
++  // Updates THD stats and the global user stats.
++  thd->update_stats(true);
++  update_global_user_stats(thd, true, time(NULL));
++
+   DBUG_VOID_RETURN;
+ }
+ 
+@@ -2281,8 +2342,32 @@
+   /* First of all clear possible warnings from the previous command */
+   mysql_reset_thd_for_next_command(thd);
+ 
++  int start_time_error = 0;
++  int end_time_error = 0;
++  struct timeval start_time, end_time;
++  double start_usecs = 0;
++  double end_usecs = 0;
++  /* cpu time */
++  int cputime_error = 0;
++  struct timespec tp;
++  double start_cpu_nsecs = 0;
++  double end_cpu_nsecs = 0;
++
++  if (opt_userstat_running) {
++#ifdef HAVE_CLOCK_GETTIME
++    /* get start cputime */
++    if (!(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
++      start_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
++#endif
++
++    // Gets the start time, in order to measure how long this command takes.
++    if (!(start_time_error = gettimeofday(&start_time, NULL))) {
++      start_usecs = start_time.tv_sec * 1000000.0 + start_time.tv_usec;
++    }
++  }
++
+   if (!(stmt= find_prepared_statement(thd, stmt_id, "mysql_stmt_execute")))
+-    DBUG_VOID_RETURN;
++    goto end;
+ 
+ #ifdef ENABLED_PROFILING
+   thd->profiling.set_query_source(stmt->query, stmt->query_length);
+@@ -2325,11 +2410,46 @@
+                        test(flags & (ulong) CURSOR_TYPE_READ_ONLY));
+   if (!(specialflag & SPECIAL_NO_PRIOR))
+     my_pthread_setprio(pthread_self(), WAIT_PRIOR);
+-  DBUG_VOID_RETURN;
++  goto end;
+ 
+ set_params_data_err:
+   my_error(ER_WRONG_ARGUMENTS, MYF(0), "mysql_stmt_execute");
+   reset_stmt_params(stmt);
++
++end:
++  if (opt_userstat_running) {
++    // Gets the end time.
++    if (!(end_time_error = gettimeofday(&end_time, NULL))) {
++      end_usecs = end_time.tv_sec * 1000000.0 + end_time.tv_usec;
++    }
++
++    // Calculates the difference between the end and start times.
++    if (start_usecs && end_usecs >= start_usecs && !start_time_error && !end_time_error) {
++      thd->busy_time = (end_usecs - start_usecs) / 1000000;
++      // In case there are bad values, 2629743 is the #seconds in a month.
++      if (thd->busy_time > 2629743) {
++        thd->busy_time = 0;
++      }
++    } else {
++      // end time went back in time, or gettimeofday() failed.
++      thd->busy_time = 0;
++    }
++
++#ifdef HAVE_CLOCK_GETTIME
++    /* get end cputime */
++    if (!cputime_error &&
++        !(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
++      end_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
++#endif
++    if (start_cpu_nsecs && !cputime_error)
++      thd->cpu_time = (end_cpu_nsecs - start_cpu_nsecs) / 1000000000;
++    else
++      thd->cpu_time = 0;
++  }
++  // Updates THD stats and the global user stats.
++  thd->update_stats(true);
++  update_global_user_stats(thd, true, time(NULL));
++
+   DBUG_VOID_RETURN;
+ }
+ 
+@@ -2423,6 +2543,31 @@
+ 
+   /* First of all clear possible warnings from the previous command */
+   mysql_reset_thd_for_next_command(thd);
++
++  int start_time_error = 0;
++  int end_time_error = 0;
++  struct timeval start_time, end_time;
++  double start_usecs = 0;
++  double end_usecs = 0;
++  /* cpu time */
++  int cputime_error = 0;
++  struct timespec tp;
++  double start_cpu_nsecs = 0;
++  double end_cpu_nsecs = 0;
++
++  if (opt_userstat_running) {
++#ifdef HAVE_CLOCK_GETTIME
++    /* get start cputime */
++    if (!(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
++      start_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
++#endif
++
++    // Gets the start time, in order to measure how long this command takes.
++    if (!(start_time_error = gettimeofday(&start_time, NULL))) {
++      start_usecs = start_time.tv_sec * 1000000.0 + start_time.tv_usec;
++    }
++  }
++
+   statistic_increment(thd->status_var.com_stmt_fetch, &LOCK_status);
+   if (!(stmt= find_prepared_statement(thd, stmt_id, "mysql_stmt_fetch")))
+     DBUG_VOID_RETURN;
+@@ -2455,6 +2600,39 @@
+   thd->restore_backup_statement(stmt, &stmt_backup);
+   thd->stmt_arena= thd;
+ 
++  if (opt_userstat_running) {
++    // Gets the end time.
++    if (!(end_time_error = gettimeofday(&end_time, NULL))) {
++      end_usecs = end_time.tv_sec * 1000000.0 + end_time.tv_usec;
++    }
++
++    // Calculates the difference between the end and start times.
++    if (start_usecs && end_usecs >= start_usecs && !start_time_error && !end_time_error) {
++      thd->busy_time = (end_usecs - start_usecs) / 1000000;
++      // In case there are bad values, 2629743 is the #seconds in a month.
++      if (thd->busy_time > 2629743) {
++        thd->busy_time = 0;
++      }
++    } else {
++      // end time went back in time, or gettimeofday() failed.
++      thd->busy_time = 0;
++    }
++
++#ifdef HAVE_CLOCK_GETTIME
++    /* get end cputime */
++    if (!cputime_error &&
++        !(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
++      end_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
++#endif
++    if (start_cpu_nsecs && !cputime_error)
++      thd->cpu_time = (end_cpu_nsecs - start_cpu_nsecs) / 1000000000;
++    else
++      thd->cpu_time = 0;
++  }
++  // Updates THD stats and the global user stats.
++  thd->update_stats(true);
++  update_global_user_stats(thd, true, time(NULL));
++
+   DBUG_VOID_RETURN;
+ }
+ 
+@@ -2487,6 +2665,30 @@
+   /* First of all clear possible warnings from the previous command */
+   mysql_reset_thd_for_next_command(thd);
+ 
++  int start_time_error = 0;
++  int end_time_error = 0;
++  struct timeval start_time, end_time;
++  double start_usecs = 0;
++  double end_usecs = 0;
++  /* cpu time */
++  int cputime_error = 0;
++  struct timespec tp;
++  double start_cpu_nsecs = 0;
++  double end_cpu_nsecs = 0;
++
++  if (opt_userstat_running) {
++#ifdef HAVE_CLOCK_GETTIME
++    /* get start cputime */
++    if (!(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
++      start_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
++#endif
++
++    // Gets the start time, in order to measure how long this command takes.
++    if (!(start_time_error = gettimeofday(&start_time, NULL))) {
++      start_usecs = start_time.tv_sec * 1000000.0 + start_time.tv_usec;
++    }
++  }
++
+   statistic_increment(thd->status_var.com_stmt_reset, &LOCK_status);
+   if (!(stmt= find_prepared_statement(thd, stmt_id, "mysql_stmt_reset")))
+     DBUG_VOID_RETURN;
+@@ -2503,6 +2705,39 @@
+ 
+   send_ok(thd);
+ 
++  if (opt_userstat_running) {
++    // Gets the end time.
++    if (!(end_time_error = gettimeofday(&end_time, NULL))) {
++      end_usecs = end_time.tv_sec * 1000000.0 + end_time.tv_usec;
++    }
++
++    // Calculates the difference between the end and start times.
++    if (start_usecs && end_usecs >= start_usecs && !start_time_error && !end_time_error) {
++      thd->busy_time = (end_usecs - start_usecs) / 1000000;
++      // In case there are bad values, 2629743 is the #seconds in a month.
++      if (thd->busy_time > 2629743) {
++        thd->busy_time = 0;
++      }
++    } else {
++      // end time went back in time, or gettimeofday() failed.
++      thd->busy_time = 0;
++    }
++
++#ifdef HAVE_CLOCK_GETTIME
++    /* get end cputime */
++    if (!cputime_error &&
++        !(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
++      end_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
++#endif
++    if (start_cpu_nsecs && !cputime_error)
++      thd->cpu_time = (end_cpu_nsecs - start_cpu_nsecs) / 1000000000;
++    else
++      thd->cpu_time = 0;
++  }
++  // Updates THD stats and the global user stats.
++  thd->update_stats(true);
++  update_global_user_stats(thd, true, time(NULL));
++
+   DBUG_VOID_RETURN;
+ }
+ 
 diff -ruN mysql-5.0.67_patched/sql/sql_show.cc mysql-5.0.67/sql/sql_show.cc
---- mysql-5.0.67_patched/sql/sql_show.cc	2008-11-26 16:53:03.000000000 +0900
-+++ mysql-5.0.67/sql/sql_show.cc	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/sql_show.cc	2008-12-01 09:18:51.000000000 +0900
++++ mysql-5.0.67/sql/sql_show.cc	2008-12-01 09:18:20.000000000 +0900
 @@ -530,6 +530,7 @@
  		sctx->master_access);
    if (!(db_access & DB_ACLS) && (!grant_option || check_grant_db(thd,dbname)))
@@ -3728,7 +4053,7 @@ diff -ruN mysql-5.0.67_patched/sql/sql_show.cc mysql-5.0.67/sql/sql_show.cc
    {"VIEWS", view_fields_info, create_schema_table, 
 diff -ruN mysql-5.0.67_patched/sql/sql_update.cc mysql-5.0.67/sql/sql_update.cc
 --- mysql-5.0.67_patched/sql/sql_update.cc	2008-08-04 21:20:12.000000000 +0900
-+++ mysql-5.0.67/sql/sql_update.cc	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/sql/sql_update.cc	2008-12-01 09:18:20.000000000 +0900
 @@ -601,7 +601,8 @@
        (thd->client_capabilities & CLIENT_FOUND_ROWS) ? found : updated;
      send_ok(thd, (ulong) thd->row_count_func,
@@ -3747,8 +4072,8 @@ diff -ruN mysql-5.0.67_patched/sql/sql_update.cc mysql-5.0.67/sql/sql_update.cc
    return FALSE;
  }
 diff -ruN mysql-5.0.67_patched/sql/sql_yacc.yy mysql-5.0.67/sql/sql_yacc.yy
---- mysql-5.0.67_patched/sql/sql_yacc.yy	2008-11-26 16:52:55.000000000 +0900
-+++ mysql-5.0.67/sql/sql_yacc.yy	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/sql_yacc.yy	2008-12-01 09:18:48.000000000 +0900
++++ mysql-5.0.67/sql/sql_yacc.yy	2008-12-01 09:18:20.000000000 +0900
 @@ -522,6 +522,7 @@
  %token  CHECK_SYM
  %token  CIPHER_SYM
@@ -3885,8 +4210,8 @@ diff -ruN mysql-5.0.67_patched/sql/sql_yacc.yy mysql-5.0.67/sql/sql_yacc.yy
  	| VARIABLES		{}
  	| VIEW_SYM		{}
 diff -ruN mysql-5.0.67_patched/sql/structs.h mysql-5.0.67/sql/structs.h
---- mysql-5.0.67_patched/sql/structs.h	2008-11-26 16:53:03.000000000 +0900
-+++ mysql-5.0.67/sql/structs.h	2008-11-26 20:57:50.000000000 +0900
+--- mysql-5.0.67_patched/sql/structs.h	2008-12-01 09:18:51.000000000 +0900
++++ mysql-5.0.67/sql/structs.h	2008-12-01 09:18:20.000000000 +0900
 @@ -273,6 +273,98 @@
    time_t intime;
  } USER_CONN;
@@ -3988,7 +4313,7 @@ diff -ruN mysql-5.0.67_patched/sql/structs.h mysql-5.0.67/sql/structs.h
  #define REG_NEW_RECORD		2	/* Write a new record if not found */
 diff -ruN mysql-5.0.67_patched/sql/table.h mysql-5.0.67/sql/table.h
 --- mysql-5.0.67_patched/sql/table.h	2008-08-04 21:20:12.000000000 +0900
-+++ mysql-5.0.67/sql/table.h	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/sql/table.h	2008-12-01 09:18:20.000000000 +0900
 @@ -370,10 +370,12 @@
  enum enum_schema_tables
  {
@@ -4015,7 +4340,7 @@ diff -ruN mysql-5.0.67_patched/sql/table.h mysql-5.0.67/sql/table.h
  };
 diff -ruN mysql-5.0.67_patched/strings/Makefile.in mysql-5.0.67/strings/Makefile.in
 --- mysql-5.0.67_patched/strings/Makefile.in	2008-08-04 21:22:30.000000000 +0900
-+++ mysql-5.0.67/strings/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/strings/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -359,6 +359,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4026,7 +4351,7 @@ diff -ruN mysql-5.0.67_patched/strings/Makefile.in mysql-5.0.67/strings/Makefile
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/support-files/MacOSX/Makefile.in mysql-5.0.67/support-files/MacOSX/Makefile.in
 --- mysql-5.0.67_patched/support-files/MacOSX/Makefile.in	2008-08-04 21:22:30.000000000 +0900
-+++ mysql-5.0.67/support-files/MacOSX/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/support-files/MacOSX/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -169,6 +169,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4037,7 +4362,7 @@ diff -ruN mysql-5.0.67_patched/support-files/MacOSX/Makefile.in mysql-5.0.67/sup
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/support-files/Makefile.in mysql-5.0.67/support-files/Makefile.in
 --- mysql-5.0.67_patched/support-files/Makefile.in	2008-08-04 21:22:30.000000000 +0900
-+++ mysql-5.0.67/support-files/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/support-files/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -189,6 +189,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4048,7 +4373,7 @@ diff -ruN mysql-5.0.67_patched/support-files/Makefile.in mysql-5.0.67/support-fi
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/support-files/RHEL4-SElinux/Makefile.in mysql-5.0.67/support-files/RHEL4-SElinux/Makefile.in
 --- mysql-5.0.67_patched/support-files/RHEL4-SElinux/Makefile.in	2008-08-04 21:22:31.000000000 +0900
-+++ mysql-5.0.67/support-files/RHEL4-SElinux/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/support-files/RHEL4-SElinux/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -167,6 +167,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4059,7 +4384,7 @@ diff -ruN mysql-5.0.67_patched/support-files/RHEL4-SElinux/Makefile.in mysql-5.0
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/tests/Makefile.in mysql-5.0.67/tests/Makefile.in
 --- mysql-5.0.67_patched/tests/Makefile.in	2008-08-04 21:22:31.000000000 +0900
-+++ mysql-5.0.67/tests/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/tests/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -213,6 +213,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4070,7 +4395,7 @@ diff -ruN mysql-5.0.67_patched/tests/Makefile.in mysql-5.0.67/tests/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/tools/Makefile.in mysql-5.0.67/tools/Makefile.in
 --- mysql-5.0.67_patched/tools/Makefile.in	2008-08-04 21:22:31.000000000 +0900
-+++ mysql-5.0.67/tools/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/tools/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -187,6 +187,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4081,7 +4406,7 @@ diff -ruN mysql-5.0.67_patched/tools/Makefile.in mysql-5.0.67/tools/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/vio/Makefile.in mysql-5.0.67/vio/Makefile.in
 --- mysql-5.0.67_patched/vio/Makefile.in	2008-08-04 21:22:32.000000000 +0900
-+++ mysql-5.0.67/vio/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/vio/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -196,6 +196,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4092,7 +4417,7 @@ diff -ruN mysql-5.0.67_patched/vio/Makefile.in mysql-5.0.67/vio/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/win/Makefile.in mysql-5.0.67/win/Makefile.in
 --- mysql-5.0.67_patched/win/Makefile.in	2008-08-04 21:22:32.000000000 +0900
-+++ mysql-5.0.67/win/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/win/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -165,6 +165,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4103,7 +4428,7 @@ diff -ruN mysql-5.0.67_patched/win/Makefile.in mysql-5.0.67/win/Makefile.in
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
 diff -ruN mysql-5.0.67_patched/zlib/Makefile.in mysql-5.0.67/zlib/Makefile.in
 --- mysql-5.0.67_patched/zlib/Makefile.in	2008-08-04 21:22:32.000000000 +0900
-+++ mysql-5.0.67/zlib/Makefile.in	2008-11-26 20:57:50.000000000 +0900
++++ mysql-5.0.67/zlib/Makefile.in	2008-12-01 09:18:20.000000000 +0900
 @@ -204,6 +204,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
