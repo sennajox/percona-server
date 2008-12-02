@@ -1185,8 +1185,8 @@ diff -r 33aeb569ade5 sql/mysqld.cc
    {"Handler_delete",           (char*) offsetof(STATUS_VAR, ha_delete_count), SHOW_LONG_STATUS},
 diff -r 33aeb569ade5 sql/repl_mule.cc
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/sql/repl_mule.cc	Mon Dec 01 21:29:14 2008 -0800
-@@ -0,0 +1,462 @@
++++ b/sql/repl_mule.cc	Mon Dec 01 22:45:33 2008 -0800
+@@ -0,0 +1,466 @@
 +/*
 + Copyright (C) 2007 Google Inc.
 +                                                                                                                                                    
@@ -1257,6 +1257,7 @@ diff -r 33aeb569ade5 sql/repl_mule.cc
 +                            llstr(dump_position_, llbuf2));
 +      break;
 +    case RELAY_MATCH_MULE:
++    case RELAY_MATCH_MULE_RUN:
 +      dump_position_     = mi->master_log_pos;
 +      sql_print_information("ReplicationMule: RELAY_MATCH_MULE.");
 +      break;
@@ -1392,12 +1393,13 @@ diff -r 33aeb569ade5 sql/repl_mule.cc
 +        dump_status = WRITE_ERROR;
 +      }
 +      break;
-+    case RELAY_MATCH_MULE:
++    case RELAY_MATCH_MULE_RUN:
 +      if (buf[EVENT_TYPE_OFFSET] == FORMAT_DESCRIPTION_EVENT) {
 +        sql_print_information(" RELAY_MATCH_MULE event %d", buf[EVENT_TYPE_OFFSET] );
 +        /* Do not write format description record if size is the same */
 +        break;
 +      }
++    case RELAY_MATCH_MULE:
 +      if (queueEvent(buf, event_len, &skip_event) != 0)
 +        dump_status = WRITE_ERROR;
 +      break;
@@ -1546,6 +1548,7 @@ diff -r 33aeb569ade5 sql/repl_mule.cc
 +  binlog->lock_index();
 +  index_opened = binlog->open_index_file(binlog_indexname, NULL);
 +  DBUG_PRINT("info",("open index file succeed: %d", index_opened));
++  sql_print_information("createReplicationMule");
 +
 +  /* Scan the existing binlog index to find the last relayed binlog */
 +  if (index_opened ||
@@ -1602,16 +1605,17 @@ diff -r 33aeb569ade5 sql/repl_mule.cc
 +         * verify events because the mule log might be used for serving during
 +         * anytime.  We must be sure that they are correct.
 +         */
-+        if (stat.st_size == mi->master_log_pos) {
++	sql_print_information("Binglog size %d", stat.st_size);
++        if (stat.st_size == BIN_LOG_HEADER_SIZE) {
++          mule = new ReplMule(thd, mi, MULE_BEHIND, BIN_LOG_HEADER_SIZE,
++                              binlog_indexname, binlog,
++                              sync_mirror_binlog_period);
++        } else if (stat.st_size == mi->master_log_pos) {
 +          mule = new ReplMule(thd, mi, RELAY_MATCH_MULE, stat.st_size,
 +                              binlog_indexname, binlog,
 +                              sync_mirror_binlog_period);
 +        } else if (stat.st_size > BIN_LOG_HEADER_SIZE) {
 +          mule = new ReplMule(thd, mi, MULE_VERIFY, stat.st_size,
-+                              binlog_indexname, binlog,
-+                              sync_mirror_binlog_period);
-+        } else if (stat.st_size == BIN_LOG_HEADER_SIZE) {
-+          mule = new ReplMule(thd, mi, MULE_BEHIND, BIN_LOG_HEADER_SIZE,
 +                              binlog_indexname, binlog,
 +                              sync_mirror_binlog_period);
 +        } else {
@@ -1651,8 +1655,8 @@ diff -r 33aeb569ade5 sql/repl_mule.cc
 +}
 diff -r 33aeb569ade5 sql/repl_mule.h
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/sql/repl_mule.h	Mon Dec 01 21:29:14 2008 -0800
-@@ -0,0 +1,164 @@
++++ b/sql/repl_mule.h	Mon Dec 01 22:45:33 2008 -0800
+@@ -0,0 +1,166 @@
 +/*
 + Copyright (C) 2007 Google Inc.
 +
@@ -1701,6 +1705,7 @@ diff -r 33aeb569ade5 sql/repl_mule.h
 +   *  MULE_BEHIND - the mule's header is behind:
 +   *                (mule is activated for the first time)
 +   *  RELAY_MATCH_MULE - mule matches relay-log
++   *  RELAY_MATCH_MULE_RUN - mule matches relay-log and it was not empty binlog
 +   *  MULE_VERIFY - mule has more events than the relay-log and needs
 +   *                verification; we can not verify based on relay-log
 +   *                events because events might get changed a little;
@@ -1717,6 +1722,7 @@ diff -r 33aeb569ade5 sql/repl_mule.h
 +  enum RelayStatus {
 +    MULE_BEHIND = 1,
 +    RELAY_MATCH_MULE = 2,
++    RELAY_MATCH_MULE_RUN = 7,
 +    MULE_VERIFY = 3,
 +    MULE_VERIFY_RELAY_BEHIND = 4,
 +    MULE_ERROR = 5,
