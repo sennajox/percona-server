@@ -1,6 +1,6 @@
-diff -r bcc459854078 mysql-test/lib/mtr_cases.pl
---- a/mysql-test/lib/mtr_cases.pl	Fri Nov 07 06:46:08 2008 -0800
-+++ b/mysql-test/lib/mtr_cases.pl	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 mysql-test/lib/mtr_cases.pl
+--- a/mysql-test/lib/mtr_cases.pl	Mon Dec 01 21:24:08 2008 -0800
++++ b/mysql-test/lib/mtr_cases.pl	Mon Dec 01 21:29:14 2008 -0800
 @@ -334,6 +334,10 @@
  
      $tinfo->{'slave_num'}= 1; # Default for rpl* tests, use one slave
@@ -54,9 +54,9 @@ diff -r bcc459854078 mysql-test/lib/mtr_cases.pl
    }
  
    if ( -f $master_sh )
-diff -r bcc459854078 mysql-test/mysql-test-run.pl
---- a/mysql-test/mysql-test-run.pl	Fri Nov 07 06:46:08 2008 -0800
-+++ b/mysql-test/mysql-test-run.pl	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 mysql-test/mysql-test-run.pl
+--- a/mysql-test/mysql-test-run.pl	Mon Dec 01 21:24:08 2008 -0800
++++ b/mysql-test/mysql-test-run.pl	Mon Dec 01 21:29:14 2008 -0800
 @@ -275,6 +275,7 @@
  our $opt_stress_test_file=     "";
  
@@ -160,9 +160,9 @@ diff -r bcc459854078 mysql-test/mysql-test-run.pl
  
  Options that specify ports
  
-diff -r bcc459854078 mysql-test/r/rpl_mirror_binlog.result
+diff -r 33aeb569ade5 mysql-test/r/rpl_mirror_binlog.result
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/mysql-test/r/rpl_mirror_binlog.result	Fri Nov 07 06:47:09 2008 -0800
++++ b/mysql-test/r/rpl_mirror_binlog.result	Mon Dec 01 21:29:14 2008 -0800
 @@ -0,0 +1,441 @@
 +stop slave;
 +drop table if exists t1,t2,t3,t4,t5,t6,t7,t8,t9;
@@ -605,29 +605,29 @@ diff -r bcc459854078 mysql-test/r/rpl_mirror_binlog.result
 +master-bin.000015	265
 +reset master;
 +ERROR HY000: Binlog closed, cannot RESET MASTER
-diff -r bcc459854078 mysql-test/t/rpl_mirror_binlog-master.opt
+diff -r 33aeb569ade5 mysql-test/t/rpl_mirror_binlog-master.opt
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/mysql-test/t/rpl_mirror_binlog-master.opt	Fri Nov 07 06:47:09 2008 -0800
++++ b/mysql-test/t/rpl_mirror_binlog-master.opt	Mon Dec 01 21:29:14 2008 -0800
 @@ -0,0 +1,1 @@
 +-O max_binlog_size=4096
-diff -r bcc459854078 mysql-test/t/rpl_mirror_binlog-slave.opt
+diff -r 33aeb569ade5 mysql-test/t/rpl_mirror_binlog-slave.opt
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/mysql-test/t/rpl_mirror_binlog-slave.opt	Fri Nov 07 06:47:09 2008 -0800
++++ b/mysql-test/t/rpl_mirror_binlog-slave.opt	Mon Dec 01 21:29:14 2008 -0800
 @@ -0,0 +1,1 @@
 +--rpl_mirror_binlog_enabled=1 --log-bin-index=replication_log
-diff -r bcc459854078 mysql-test/t/rpl_mirror_binlog.1.slave-mi
+diff -r 33aeb569ade5 mysql-test/t/rpl_mirror_binlog.1.slave-mi
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/mysql-test/t/rpl_mirror_binlog.1.slave-mi	Fri Nov 07 06:47:09 2008 -0800
++++ b/mysql-test/t/rpl_mirror_binlog.1.slave-mi	Mon Dec 01 21:29:14 2008 -0800
 @@ -0,0 +1,1 @@
 +--master-user=root --master-connect-retry=1 --master-host=127.0.0.1 --master-password="" --master-port=9308 --server-id=3 
-diff -r bcc459854078 mysql-test/t/rpl_mirror_binlog.2.slave-mi
+diff -r 33aeb569ade5 mysql-test/t/rpl_mirror_binlog.2.slave-mi
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/mysql-test/t/rpl_mirror_binlog.2.slave-mi	Fri Nov 07 06:47:09 2008 -0800
++++ b/mysql-test/t/rpl_mirror_binlog.2.slave-mi	Mon Dec 01 21:29:14 2008 -0800
 @@ -0,0 +1,1 @@
 +--master-user=root --master-connect-retry=1 --master-host=127.0.0.1 --master-password="" --master-port=9308 --server-id=4 
-diff -r bcc459854078 mysql-test/t/rpl_mirror_binlog.test
+diff -r 33aeb569ade5 mysql-test/t/rpl_mirror_binlog.test
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/mysql-test/t/rpl_mirror_binlog.test	Fri Nov 07 06:47:09 2008 -0800
++++ b/mysql-test/t/rpl_mirror_binlog.test	Mon Dec 01 21:29:14 2008 -0800
 @@ -0,0 +1,119 @@
 +-- source include/master-slave.inc
 +-- source include/have_innodb.inc
@@ -748,9 +748,9 @@ diff -r bcc459854078 mysql-test/t/rpl_mirror_binlog.test
 +show master logs;
 +--error 1186
 +reset master;
-diff -r bcc459854078 patch_info/mirror_binlog.info
+diff -r 33aeb569ade5 patch_info/mirror_binlog.info
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/patch_info/mirror_binlog.info	Fri Nov 07 06:47:09 2008 -0800
++++ b/patch_info/mirror_binlog.info	Mon Dec 01 21:29:14 2008 -0800
 @@ -0,0 +1,6 @@
 +File=mirror_binlog.patch
 +Name=Mirroring binary logs on slave
@@ -758,9 +758,9 @@ diff -r bcc459854078 patch_info/mirror_binlog.info
 +Author=Google
 +License=GPL
 +Comment=contains FastMaster promotion patch
-diff -r bcc459854078 sql/Makefile.am
---- a/sql/Makefile.am	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/Makefile.am	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/Makefile.am
+--- a/sql/Makefile.am	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/Makefile.am	Mon Dec 01 21:29:14 2008 -0800
 @@ -68,7 +68,7 @@
  			sql_array.h sql_cursor.h \
  			examples/ha_example.h ha_archive.h \
@@ -779,9 +779,9 @@ diff -r bcc459854078 sql/Makefile.am
  
  gen_lex_hash_SOURCES =	gen_lex_hash.cc
  gen_lex_hash_LDADD =	$(LDADD) $(CXXLDFLAGS)
-diff -r bcc459854078 sql/Makefile.in
---- a/sql/Makefile.in	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/Makefile.in	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/Makefile.in
+--- a/sql/Makefile.in	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/Makefile.in	Mon Dec 01 21:29:14 2008 -0800
 @@ -152,7 +152,7 @@
  	sp_rcontext.$(OBJEXT) sp.$(OBJEXT) sp_cache.$(OBJEXT) \
  	parse_file.$(OBJEXT) sql_trigger.$(OBJEXT) \
@@ -817,9 +817,9 @@ diff -r bcc459854078 sql/Makefile.in
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/set_var.Po@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/slave.Po@am__quote@
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sp.Po@am__quote@
-diff -r bcc459854078 sql/lex.h
---- a/sql/lex.h	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/lex.h	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/lex.h
+--- a/sql/lex.h	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/lex.h	Mon Dec 01 21:29:14 2008 -0800
 @@ -292,6 +292,7 @@
    { "LONGTEXT",		SYM(LONGTEXT)},
    { "LOOP",             SYM(LOOP_SYM)},
@@ -828,9 +828,9 @@ diff -r bcc459854078 sql/lex.h
    { "MASTER",           SYM(MASTER_SYM)},
    { "MASTER_CONNECT_RETRY",           SYM(MASTER_CONNECT_RETRY_SYM)},
    { "MASTER_HOST",           SYM(MASTER_HOST_SYM)},
-diff -r bcc459854078 sql/log.cc
---- a/sql/log.cc	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/log.cc	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/log.cc
+--- a/sql/log.cc	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/log.cc	Mon Dec 01 21:29:14 2008 -0800
 @@ -406,6 +406,7 @@
    :bytes_written(0), last_time(0), query_start(0), name(0),
     prepared_xids(0), log_type(LOG_CLOSED), file_id(1), open_count(1),
@@ -961,9 +961,9 @@ diff -r bcc459854078 sql/log.cc
  
  /*
    Check if a string is a valid number
-diff -r bcc459854078 sql/log_event.h
---- a/sql/log_event.h	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/log_event.h	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/log_event.h
+--- a/sql/log_event.h	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/log_event.h	Mon Dec 01 21:29:14 2008 -0800
 @@ -94,6 +94,14 @@
  #define LINE_TERM_EMPTY		0x4
  #define LINE_START_EMPTY	0x8
@@ -979,10 +979,10 @@ diff -r bcc459854078 sql/log_event.h
  
  /*****************************************************************************
  
-diff -r bcc459854078 sql/mysql_priv.h
---- a/sql/mysql_priv.h	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/mysql_priv.h	Fri Nov 07 06:47:09 2008 -0800
-@@ -460,6 +460,7 @@
+diff -r 33aeb569ade5 sql/mysql_priv.h
+--- a/sql/mysql_priv.h	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/mysql_priv.h	Mon Dec 01 21:29:14 2008 -0800
+@@ -462,6 +462,7 @@
  /* BINLOG_DUMP options */
  
  #define BINLOG_DUMP_NON_BLOCK   1
@@ -990,7 +990,7 @@ diff -r bcc459854078 sql/mysql_priv.h
  
  /* sql_show.cc:show_log_files() */
  #define SHOW_LOG_STATUS_FREE "FREE"
-@@ -1372,6 +1373,7 @@
+@@ -1374,6 +1375,7 @@
  extern const char **errmesg;			/* Error messages */
  extern const char *myisam_recover_options_str;
  extern const char *in_left_expr_name, *in_additional_cond, *in_having_cond;
@@ -998,7 +998,7 @@ diff -r bcc459854078 sql/mysql_priv.h
  extern const char * const triggers_file_ext;
  extern const char * const trigname_file_ext;
  extern Eq_creator eq_creator;
-@@ -1871,6 +1873,10 @@
+@@ -1875,6 +1877,10 @@
  extern "C" void unireg_abort(int exit_code);
  void kill_delayed_threads(void);
  bool check_stack_overrun(THD *thd, long margin, char *dummy);
@@ -1009,10 +1009,10 @@ diff -r bcc459854078 sql/mysql_priv.h
  #else
  #define unireg_abort(exit_code) DBUG_RETURN(exit_code)
  inline void kill_delayed_threads(void) {}
-diff -r bcc459854078 sql/mysqld.cc
---- a/sql/mysqld.cc	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/mysqld.cc	Fri Nov 07 06:47:09 2008 -0800
-@@ -553,6 +553,7 @@
+diff -r 33aeb569ade5 sql/mysqld.cc
+--- a/sql/mysqld.cc	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/mysqld.cc	Mon Dec 01 21:29:14 2008 -0800
+@@ -555,6 +555,7 @@
  pthread_mutex_t LOCK_global_user_client_stats;
  pthread_mutex_t LOCK_global_table_stats;
  pthread_mutex_t LOCK_global_index_stats;
@@ -1020,7 +1020,7 @@ diff -r bcc459854078 sql/mysqld.cc
  /*
    The below lock protects access to two global server variables:
    max_prepared_stmt_count and prepared_stmt_count. These variables
-@@ -582,13 +583,15 @@
+@@ -584,13 +585,15 @@
  char *master_ssl_key, *master_ssl_cert;
  char *master_ssl_ca, *master_ssl_capath, *master_ssl_cipher;
  
@@ -1037,7 +1037,7 @@ diff -r bcc459854078 sql/mysqld.cc
  static char *opt_tc_heuristic_recover;
  static char *mysql_home_ptr, *pidfile_name_ptr;
  static char **defaults_argv;
-@@ -596,6 +599,32 @@
+@@ -598,6 +601,32 @@
  
  static my_socket unix_sock,ip_sock;
  struct rand_struct sql_rand; // used by sql_class.cc:THD::THD()
@@ -1070,7 +1070,7 @@ diff -r bcc459854078 sql/mysqld.cc
  
  /* OS specific variables */
  
-@@ -1313,6 +1342,7 @@
+@@ -1315,6 +1344,7 @@
    (void) pthread_cond_destroy(&COND_flush_thread_cache);
    (void) pthread_cond_destroy(&COND_manager);
    (void) pthread_mutex_destroy(&LOCK_stats);
@@ -1078,7 +1078,7 @@ diff -r bcc459854078 sql/mysqld.cc
    (void) pthread_mutex_destroy(&LOCK_global_user_client_stats);
    (void) pthread_mutex_destroy(&LOCK_global_table_stats);
    (void) pthread_mutex_destroy(&LOCK_global_index_stats);
-@@ -3162,6 +3192,7 @@
+@@ -3164,6 +3194,7 @@
    (void) pthread_cond_init(&COND_rpl_status, NULL);
  #endif
    (void) pthread_mutex_init(&LOCK_stats, MY_MUTEX_INIT_FAST);
@@ -1086,7 +1086,7 @@ diff -r bcc459854078 sql/mysqld.cc
    (void) pthread_mutex_init(&LOCK_global_user_client_stats, MY_MUTEX_INIT_FAST);
    (void) pthread_mutex_init(&LOCK_global_table_stats, MY_MUTEX_INIT_FAST);
    (void) pthread_mutex_init(&LOCK_global_index_stats, MY_MUTEX_INIT_FAST);
-@@ -3396,39 +3427,8 @@
+@@ -3398,39 +3429,8 @@
  
    if (opt_bin_log)
    {
@@ -1128,7 +1128,7 @@ diff -r bcc459854078 sql/mysqld.cc
    }
  
    if (xid_cache_init())
-@@ -3478,9 +3478,10 @@
+@@ -3480,9 +3480,10 @@
      unireg_abort(1);
    }
  
@@ -1142,7 +1142,7 @@ diff -r bcc459854078 sql/mysqld.cc
  
  #ifdef HAVE_REPLICATION
    if (opt_bin_log && expire_logs_days)
-@@ -5031,6 +5032,8 @@
+@@ -5036,6 +5037,8 @@
    OPT_INNODB_READ_IO_THREADS,
    OPT_INNODB_WRITE_IO_THREADS,
    OPT_INNODB_ADAPTIVE_HASH_INDEX,
@@ -1151,7 +1151,7 @@ diff -r bcc459854078 sql/mysqld.cc
    OPT_FEDERATED
  };
  
-@@ -5716,6 +5719,11 @@
+@@ -5725,6 +5728,11 @@
    {"rpl-recovery-rank", OPT_RPL_RECOVERY_RANK, "Undocumented.",
     (gptr*) &rpl_recovery_rank, (gptr*) &rpl_recovery_rank, 0, GET_ULONG,
     REQUIRED_ARG, 0, 0, 0, 0, 0, 0},
@@ -1163,7 +1163,7 @@ diff -r bcc459854078 sql/mysqld.cc
    {"safe-mode", OPT_SAFE, "Skip some optimize stages (for testing).",
     0, 0, 0, GET_NO_ARG, NO_ARG, 0, 0, 0, 0, 0, 0},
  #ifndef TO_BE_DELETED
-@@ -5837,6 +5845,11 @@
+@@ -5849,6 +5857,11 @@
    {"symbolic-links", 's', "Enable symbolic link support.",
     (gptr*) &my_use_symdir, (gptr*) &my_use_symdir, 0, GET_BOOL, NO_ARG,
     IF_PURIFY(0,1), 0, 0, 0, 0, 0},
@@ -1175,7 +1175,7 @@ diff -r bcc459854078 sql/mysqld.cc
    {"sysdate-is-now", OPT_SYSDATE_IS_NOW,
     "Non-default option to alias SYSDATE() to NOW() to make it safe-replicable. Since 5.0, SYSDATE() returns a `dynamic' value different for different invocations, even within the same statement.",
     (gptr*) &global_system_variables.sysdate_is_now,
-@@ -6609,6 +6622,7 @@
+@@ -6625,6 +6638,7 @@
    {"Delayed_errors",           (char*) &delayed_insert_errors,  SHOW_LONG},
    {"Delayed_insert_threads",   (char*) &delayed_insert_threads, SHOW_LONG_CONST},
    {"Delayed_writes",           (char*) &delayed_insert_writes,  SHOW_LONG},
@@ -1183,10 +1183,10 @@ diff -r bcc459854078 sql/mysqld.cc
    {"Flush_commands",           (char*) &refresh_version,        SHOW_LONG_CONST},
    {"Handler_commit",           (char*) offsetof(STATUS_VAR, ha_commit_count), SHOW_LONG_STATUS},
    {"Handler_delete",           (char*) offsetof(STATUS_VAR, ha_delete_count), SHOW_LONG_STATUS},
-diff -r bcc459854078 sql/repl_mule.cc
+diff -r 33aeb569ade5 sql/repl_mule.cc
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/sql/repl_mule.cc	Fri Nov 07 06:47:09 2008 -0800
-@@ -0,0 +1,457 @@
++++ b/sql/repl_mule.cc	Mon Dec 01 21:29:14 2008 -0800
+@@ -0,0 +1,462 @@
 +/*
 + Copyright (C) 2007 Google Inc.
 +                                                                                                                                                    
@@ -1393,6 +1393,11 @@ diff -r bcc459854078 sql/repl_mule.cc
 +      }
 +      break;
 +    case RELAY_MATCH_MULE:
++      if (buf[EVENT_TYPE_OFFSET] == FORMAT_DESCRIPTION_EVENT) {
++        sql_print_information(" RELAY_MATCH_MULE event %d", buf[EVENT_TYPE_OFFSET] );
++        /* Do not write format description record if size is the same */
++        break;
++      }
 +      if (queueEvent(buf, event_len, &skip_event) != 0)
 +        dump_status = WRITE_ERROR;
 +      break;
@@ -1543,7 +1548,7 @@ diff -r bcc459854078 sql/repl_mule.cc
 +  DBUG_PRINT("info",("open index file succeed: %d", index_opened));
 +
 +  /* Scan the existing binlog index to find the last relayed binlog */
-+  if (!index_opened ||
++  if (index_opened ||
 +      binlog->find_log_pos(&linfo, NullS, false) != 0) {
 +    /* binlog index is not created or has no log file inside:
 +     *  . old_relay_binlog <- requested dumping position
@@ -1644,9 +1649,9 @@ diff -r bcc459854078 sql/repl_mule.cc
 +
 +  DBUG_RETURN(mule);
 +}
-diff -r bcc459854078 sql/repl_mule.h
+diff -r 33aeb569ade5 sql/repl_mule.h
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/sql/repl_mule.h	Fri Nov 07 06:47:09 2008 -0800
++++ b/sql/repl_mule.h	Mon Dec 01 21:29:14 2008 -0800
 @@ -0,0 +1,164 @@
 +/*
 + Copyright (C) 2007 Google Inc.
@@ -1812,10 +1817,10 @@ diff -r bcc459854078 sql/repl_mule.h
 +};
 +
 +#endif   /* SQL_REPL_MULE_H__ */
-diff -r bcc459854078 sql/set_var.cc
---- a/sql/set_var.cc	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/set_var.cc	Fri Nov 07 06:47:09 2008 -0800
-@@ -342,6 +342,8 @@
+diff -r 33aeb569ade5 sql/set_var.cc
+--- a/sql/set_var.cc	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/set_var.cc	Mon Dec 01 21:29:14 2008 -0800
+@@ -345,6 +345,8 @@
                                         slog_verb);
  sys_var_long_ptr	sys_rpl_recovery_rank("rpl_recovery_rank",
  					      &rpl_recovery_rank);
@@ -1824,7 +1829,7 @@ diff -r bcc459854078 sql/set_var.cc
  sys_var_long_ptr	sys_query_cache_size("query_cache_size",
  					     &query_cache_size,
  					     fix_query_cache_size);
-@@ -361,6 +363,9 @@
+@@ -364,6 +366,9 @@
  sys_var_thd_ulong	sys_trans_prealloc_size("transaction_prealloc_size",
  						&SV::trans_prealloc_size,
  						0, fix_trans_mem_root);
@@ -1834,7 +1839,7 @@ diff -r bcc459854078 sql/set_var.cc
  
  #ifdef HAVE_QUERY_CACHE
  sys_var_long_ptr	sys_query_cache_limit("query_cache_limit",
-@@ -771,6 +776,7 @@
+@@ -774,6 +779,7 @@
    &sys_relay_log_purge,
  #endif
    &sys_rpl_recovery_rank,
@@ -1842,7 +1847,7 @@ diff -r bcc459854078 sql/set_var.cc
    &sys_safe_updates,
    &sys_secure_auth,
    &sys_secure_file_priv,
-@@ -1107,6 +1113,8 @@
+@@ -1113,6 +1119,8 @@
    {"relay_log_space_limit",  (char*) &relay_log_space_limit,        SHOW_LONGLONG},
  #endif
    {sys_rpl_recovery_rank.name,(char*) &sys_rpl_recovery_rank,       SHOW_SYS},
@@ -1851,9 +1856,9 @@ diff -r bcc459854078 sql/set_var.cc
    {"secure_auth",             (char*) &sys_secure_auth,             SHOW_SYS},
    {"secure_file_priv",        (char*) &sys_secure_file_priv,        SHOW_SYS},
  #ifdef HAVE_SMEM
-diff -r bcc459854078 sql/slave.cc
---- a/sql/slave.cc	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/slave.cc	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/slave.cc
+--- a/sql/slave.cc	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/slave.cc	Mon Dec 01 21:29:14 2008 -0800
 @@ -25,6 +25,7 @@
  #include <thr_alarm.h>
  #include <my_dir.h>
@@ -1938,9 +1943,9 @@ diff -r bcc459854078 sql/slave.cc
    close_thread_tables(thd, 0);
    pthread_mutex_lock(&LOCK_thread_count);
    THD_CHECK_SENTRY(thd);
-diff -r bcc459854078 sql/sql_class.h
---- a/sql/sql_class.h	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/sql_class.h	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/sql_class.h
+--- a/sql/sql_class.h	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/sql_class.h	Mon Dec 01 21:29:14 2008 -0800
 @@ -152,6 +152,12 @@
  #define LOG_INFO_FATAL -7
  #define LOG_INFO_IN_USE -8
@@ -2022,9 +2027,9 @@ diff -r bcc459854078 sql/sql_class.h
  };
  
  /*
-diff -r bcc459854078 sql/sql_lex.h
---- a/sql/sql_lex.h	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/sql_lex.h	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/sql_lex.h
+--- a/sql/sql_lex.h	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/sql_lex.h	Mon Dec 01 21:29:14 2008 -0800
 @@ -104,6 +104,7 @@
    // TODO(mcallaghan): update status_vars in mysqld to export these
    SQLCOM_SHOW_USER_STATS, SQLCOM_SHOW_TABLE_STATS, SQLCOM_SHOW_INDEX_STATS,
@@ -2046,9 +2051,9 @@ diff -r bcc459854078 sql/sql_lex.h
  } LEX_MASTER_INFO;
  
  
-diff -r bcc459854078 sql/sql_parse.cc
---- a/sql/sql_parse.cc	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/sql_parse.cc	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/sql_parse.cc
+--- a/sql/sql_parse.cc	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/sql_parse.cc	Mon Dec 01 21:29:14 2008 -0800
 @@ -402,6 +402,15 @@
                    passwd_len ? "yes": "no",
                    thd->main_security_ctx.master_access,
@@ -2065,7 +2070,7 @@ diff -r bcc459854078 sql/sql_parse.cc
  
        if (check_count)
        {
-@@ -3466,6 +3475,22 @@
+@@ -3470,6 +3479,22 @@
      else
        res = load_master_data(thd);
      break;
@@ -2088,9 +2093,9 @@ diff -r bcc459854078 sql/sql_parse.cc
  #endif /* HAVE_REPLICATION */
  #ifdef HAVE_NDBCLUSTER_DB
    case SQLCOM_SHOW_NDBCLUSTER_STATUS:
-diff -r bcc459854078 sql/sql_repl.cc
---- a/sql/sql_repl.cc	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/sql_repl.cc	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/sql_repl.cc
+--- a/sql/sql_repl.cc	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/sql_repl.cc	Mon Dec 01 21:29:14 2008 -0800
 @@ -20,11 +20,19 @@
  #include "log_event.h"
  #include <my_dir.h>
@@ -2563,9 +2568,9 @@ diff -r bcc459854078 sql/sql_repl.cc
  #endif /* HAVE_REPLICATION */
  
  
-diff -r bcc459854078 sql/sql_repl.h
---- a/sql/sql_repl.h	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/sql_repl.h	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/sql_repl.h
+--- a/sql/sql_repl.h	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/sql_repl.h	Mon Dec 01 21:29:14 2008 -0800
 @@ -38,6 +38,10 @@
  int start_slave(THD* thd, MASTER_INFO* mi, bool net_report);
  int stop_slave(THD* thd, MASTER_INFO* mi, bool net_report);
@@ -2577,9 +2582,9 @@ diff -r bcc459854078 sql/sql_repl.h
  bool mysql_show_binlog_events(THD* thd);
  int cmp_master_pos(const char* log_file_name1, ulonglong log_pos1,
  		   const char* log_file_name2, ulonglong log_pos2);
-diff -r bcc459854078 sql/sql_yacc.yy
---- a/sql/sql_yacc.yy	Fri Nov 07 06:46:08 2008 -0800
-+++ b/sql/sql_yacc.yy	Fri Nov 07 06:47:09 2008 -0800
+diff -r 33aeb569ade5 sql/sql_yacc.yy
+--- a/sql/sql_yacc.yy	Mon Dec 01 21:24:08 2008 -0800
++++ b/sql/sql_yacc.yy	Mon Dec 01 21:29:14 2008 -0800
 @@ -735,6 +735,7 @@
  %token  LOOP_SYM
  %token  LOW_PRIORITY
