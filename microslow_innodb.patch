@@ -1,6 +1,19 @@
-diff -ruN mysql-5.0.67_orig/include/my_time.h mysql-5.0.67/include/my_time.h
---- mysql-5.0.67_orig/include/my_time.h	2008-08-04 21:19:12.000000000 +0900
-+++ mysql-5.0.67/include/my_time.h	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 include/my_getopt.h
+--- a/include/my_getopt.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/include/my_getopt.h	Thu Dec 04 00:32:56 2008 -0800
+@@ -28,7 +28,8 @@
+ #define GET_ULL        8
+ #define GET_STR        9
+ #define GET_STR_ALLOC 10
+-#define GET_DISABLED  11
++#define GET_DOUBLE    11
++#define GET_DISABLED  12
+ 
+ #define GET_ASK_ADDR	 128
+ #define GET_TYPE_MASK	 127
+diff -r ea2366a3ea79 include/my_time.h
+--- a/include/my_time.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/include/my_time.h	Thu Dec 04 00:32:56 2008 -0800
 @@ -140,7 +140,7 @@
  int my_date_to_str(const MYSQL_TIME *l_time, char *to);
  int my_datetime_to_str(const MYSQL_TIME *l_time, char *to);
@@ -10,19 +23,19 @@ diff -ruN mysql-5.0.67_orig/include/my_time.h mysql-5.0.67/include/my_time.h
  C_MODE_END
  
  #endif /* _my_time_h_ */
-diff -ruN mysql-5.0.67_orig/innobase/buf/buf0buf.c mysql-5.0.67/innobase/buf/buf0buf.c
---- mysql-5.0.67_orig/innobase/buf/buf0buf.c	2008-08-04 21:19:12.000000000 +0900
-+++ mysql-5.0.67/innobase/buf/buf0buf.c	2008-11-26 16:29:45.000000000 +0900
-@@ -38,6 +38,9 @@
+diff -r ea2366a3ea79 innobase/buf/buf0buf.c
+--- a/innobase/buf/buf0buf.c	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/buf/buf0buf.c	Thu Dec 04 00:32:56 2008 -0800
+@@ -37,6 +37,9 @@
+ #include "log0log.h"
  #include "trx0undo.h"
  #include "srv0srv.h"
- 
++
 +/* prototypes for new functions added to ha_innodb.cc */
 +trx_t* innobase_get_trx();
-+
+ 
  /*
  		IMPLEMENTATION OF THE BUFFER POOL
- 		=================================
 @@ -1086,6 +1089,36 @@
  	return(block);
  }
@@ -103,19 +116,19 @@ diff -ruN mysql-5.0.67_orig/innobase/buf/buf0buf.c mysql-5.0.67/innobase/buf/buf
  		        for (;;) {
  				mutex_enter(&block->mutex);
  
-@@ -1276,6 +1322,12 @@
+@@ -1275,6 +1321,12 @@
+ 
  				       break;
  				}
- 			}
++			}
 +                	if (srv_slow_log && trx && trx->take_stats && start_time)
 +			{
 +				ut_usectime(&sec, &ms);
 +        	        	finish_time = (ib_longlong)sec * 1000000 + ms;
 +                		trx->io_reads_wait_timer += (ulint)(finish_time - start_time);
-+			}
+ 			}
  		}
  
- 		fix_type = MTR_MEMO_BUF_FIX;
 @@ -1296,12 +1348,17 @@
  		/* In the case of a first access, try to apply linear
  		read-ahead */
@@ -143,7 +156,7 @@ diff -ruN mysql-5.0.67_orig/innobase/buf/buf0buf.c mysql-5.0.67/innobase/buf/buf
  
  	ut_ad(mtr && block);
  	ut_ad((rw_latch == RW_S_LATCH) || (rw_latch == RW_X_LATCH));
-@@ -1440,7 +1498,7 @@
+@@ -1440,13 +1498,18 @@
  		read-ahead */
  
  		buf_read_ahead_linear(buf_frame_get_space_id(guess),
@@ -152,18 +165,17 @@ diff -ruN mysql-5.0.67_orig/innobase/buf/buf0buf.c mysql-5.0.67/innobase/buf/buf
  	}
  
  #ifdef UNIV_IBUF_DEBUG
-@@ -1448,6 +1506,11 @@
+ 	ut_a(ibuf_count_get(block->space, block->offset) == 0);
  #endif
  	buf_pool->n_page_gets++;
- 
++
 +	if (srv_slow_log) {
 +		trx = innobase_get_trx();
 +		_increment_page_get_statistics(block, trx);
 +	}
-+
+ 
  	return(TRUE);
  }
- 
 @@ -1470,6 +1533,7 @@
  	buf_block_t*	block;
  	ibool		success;
@@ -172,21 +184,21 @@ diff -ruN mysql-5.0.67_orig/innobase/buf/buf0buf.c mysql-5.0.67/innobase/buf/buf
  
  	ut_ad(mtr);
  	ut_ad((rw_latch == RW_S_LATCH) || (rw_latch == RW_X_LATCH));
-@@ -1559,6 +1623,11 @@
+@@ -1558,6 +1622,11 @@
+ 		|| (ibuf_count_get(block->space, block->offset) == 0));
  #endif
  	buf_pool->n_page_gets++;
- 
++
 +	if (srv_slow_log) {
 +		trx = innobase_get_trx();
 +		_increment_page_get_statistics(block, trx);
 +	}
-+
+ 
  	return(TRUE);
  }
- 
-diff -ruN mysql-5.0.67_orig/innobase/buf/buf0rea.c mysql-5.0.67/innobase/buf/buf0rea.c
---- mysql-5.0.67_orig/innobase/buf/buf0rea.c	2008-08-04 21:19:12.000000000 +0900
-+++ mysql-5.0.67/innobase/buf/buf0rea.c	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 innobase/buf/buf0rea.c
+--- a/innobase/buf/buf0rea.c	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/buf/buf0rea.c	Thu Dec 04 00:32:56 2008 -0800
 @@ -70,7 +70,8 @@
  			treat the tablespace as dropped; this is a timestamp we
  			use to stop dangling page reads from a tablespace
@@ -303,9 +315,9 @@ diff -ruN mysql-5.0.67_orig/innobase/buf/buf0rea.c mysql-5.0.67/innobase/buf/buf
  		}
  	}
  	
-diff -ruN mysql-5.0.67_orig/innobase/fil/fil0fil.c mysql-5.0.67/innobase/fil/fil0fil.c
---- mysql-5.0.67_orig/innobase/fil/fil0fil.c	2008-08-04 21:19:13.000000000 +0900
-+++ mysql-5.0.67/innobase/fil/fil0fil.c	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 innobase/fil/fil0fil.c
+--- a/innobase/fil/fil0fil.c	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/fil/fil0fil.c	Thu Dec 04 00:32:56 2008 -0800
 @@ -3527,7 +3527,7 @@
  			node->name, node->handle, buf,
  			offset_low, offset_high,
@@ -344,9 +356,9 @@ diff -ruN mysql-5.0.67_orig/innobase/fil/fil0fil.c mysql-5.0.67/innobase/fil/fil
  #endif
  	ut_a(ret);
  
-diff -ruN mysql-5.0.67_orig/innobase/include/buf0rea.h mysql-5.0.67/innobase/include/buf0rea.h
---- mysql-5.0.67_orig/innobase/include/buf0rea.h	2008-08-04 21:19:13.000000000 +0900
-+++ mysql-5.0.67/innobase/include/buf0rea.h	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 innobase/include/buf0rea.h
+--- a/innobase/include/buf0rea.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/include/buf0rea.h	Thu Dec 04 00:32:56 2008 -0800
 @@ -10,6 +10,7 @@
  #define buf0rea_h
  
@@ -376,9 +388,9 @@ diff -ruN mysql-5.0.67_orig/innobase/include/buf0rea.h mysql-5.0.67/innobase/inc
  /************************************************************************
  Issues read requests for pages which the ibuf module wants to read in, in
  order to contract the insert buffer tree. Technically, this function is like
-diff -ruN mysql-5.0.67_orig/innobase/include/fil0fil.h mysql-5.0.67/innobase/include/fil0fil.h
---- mysql-5.0.67_orig/innobase/include/fil0fil.h	2008-08-04 21:19:13.000000000 +0900
-+++ mysql-5.0.67/innobase/include/fil0fil.h	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 innobase/include/fil0fil.h
+--- a/innobase/include/fil0fil.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/include/fil0fil.h	Thu Dec 04 00:32:56 2008 -0800
 @@ -534,8 +534,11 @@
  /************************************************************************
  Reads or writes data. This operation is asynchronous (aio). */
@@ -403,18 +415,18 @@ diff -ruN mysql-5.0.67_orig/innobase/include/fil0fil.h mysql-5.0.67/innobase/inc
  /************************************************************************
  Reads data from a space to a buffer. Remember that the possible incomplete
  blocks at the end of file are ignored: they are not taken into account when
-diff -ruN mysql-5.0.67_orig/innobase/include/os0file.h mysql-5.0.67/innobase/include/os0file.h
---- mysql-5.0.67_orig/innobase/include/os0file.h	2008-08-04 21:19:14.000000000 +0900
-+++ mysql-5.0.67/innobase/include/os0file.h	2008-11-25 15:50:03.000000000 +0900
-@@ -11,6 +11,8 @@
+diff -r ea2366a3ea79 innobase/include/os0file.h
+--- a/innobase/include/os0file.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/include/os0file.h	Thu Dec 04 00:32:56 2008 -0800
+@@ -10,6 +10,8 @@
+ #define os0file_h
  
  #include "univ.i"
- 
-+#include "trx0types.h"
 +
++#include "trx0types.h"
+ 
  #ifndef __WIN__
  #include <dirent.h>
- #include <sys/stat.h>
 @@ -421,8 +423,11 @@
  /***********************************************************************
  Requests a synchronous read operation. */
@@ -448,21 +460,21 @@ diff -ruN mysql-5.0.67_orig/innobase/include/os0file.h mysql-5.0.67/innobase/inc
  /****************************************************************************
  Wakes up all async i/o threads so that they know to exit themselves in
  shutdown. */
-diff -ruN mysql-5.0.67_orig/innobase/include/srv0srv.h mysql-5.0.67/innobase/include/srv0srv.h
---- mysql-5.0.67_orig/innobase/include/srv0srv.h	2008-08-04 21:19:15.000000000 +0900
-+++ mysql-5.0.67/innobase/include/srv0srv.h	2008-11-25 15:50:03.000000000 +0900
-@@ -27,6 +27,8 @@
+diff -r ea2366a3ea79 innobase/include/srv0srv.h
+--- a/innobase/include/srv0srv.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/include/srv0srv.h	Thu Dec 04 00:32:56 2008 -0800
+@@ -26,6 +26,8 @@
+ at a time */
  #define SRV_AUTO_EXTEND_INCREMENT	\
  	(srv_auto_extend_increment * ((1024 * 1024) / UNIV_PAGE_SIZE))
- 
-+extern ibool	srv_slow_log;
 +
++extern ibool	srv_slow_log;
+ 
  /* This is set to TRUE if the MySQL user has set it in MySQL */
  extern ibool	srv_lower_case_table_names;
- 
-diff -ruN mysql-5.0.67_orig/innobase/include/trx0trx.h mysql-5.0.67/innobase/include/trx0trx.h
---- mysql-5.0.67_orig/innobase/include/trx0trx.h	2008-08-04 21:19:15.000000000 +0900
-+++ mysql-5.0.67/innobase/include/trx0trx.h	2008-11-26 16:29:45.000000000 +0900
+diff -r ea2366a3ea79 innobase/include/trx0trx.h
+--- a/innobase/include/trx0trx.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/include/trx0trx.h	Thu Dec 04 00:32:56 2008 -0800
 @@ -668,6 +668,17 @@
  	/*------------------------------*/
  	char detailed_error[256];	/* detailed error message for last
@@ -481,9 +493,9 @@ diff -ruN mysql-5.0.67_orig/innobase/include/trx0trx.h mysql-5.0.67/innobase/inc
  };
  
  #define TRX_MAX_N_THREADS	32	/* maximum number of concurrent
-diff -ruN mysql-5.0.67_orig/innobase/lock/lock0lock.c mysql-5.0.67/innobase/lock/lock0lock.c
---- mysql-5.0.67_orig/innobase/lock/lock0lock.c	2008-08-04 21:19:16.000000000 +0900
-+++ mysql-5.0.67/innobase/lock/lock0lock.c	2008-11-26 16:29:45.000000000 +0900
+diff -r ea2366a3ea79 innobase/lock/lock0lock.c
+--- a/innobase/lock/lock0lock.c	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/lock/lock0lock.c	Thu Dec 04 00:32:56 2008 -0800
 @@ -1806,6 +1806,8 @@
  {
  	lock_t*	lock;
@@ -526,9 +538,9 @@ diff -ruN mysql-5.0.67_orig/innobase/lock/lock0lock.c mysql-5.0.67/innobase/lock
  	trx->que_state = TRX_QUE_LOCK_WAIT;
  	trx->was_chosen_as_deadlock_victim = FALSE;
  	trx->wait_started = time(NULL);
-diff -ruN mysql-5.0.67_orig/innobase/os/os0file.c mysql-5.0.67/innobase/os/os0file.c
---- mysql-5.0.67_orig/innobase/os/os0file.c	2008-08-04 21:19:16.000000000 +0900
-+++ mysql-5.0.67/innobase/os/os0file.c	2008-11-26 16:29:45.000000000 +0900
+diff -r ea2366a3ea79 innobase/os/os0file.c
+--- a/innobase/os/os0file.c	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/os/os0file.c	Thu Dec 04 00:32:56 2008 -0800
 @@ -14,6 +14,7 @@
  #include "srv0start.h"
  #include "fil0fil.h"
@@ -557,8 +569,9 @@ diff -ruN mysql-5.0.67_orig/innobase/os/os0file.c mysql-5.0.67/innobase/os/os0fi
  	ulint		offset,	/* in: least significant 32 bits of file
  				offset from where to read */
 -	ulint		offset_high) /* in: most significant 32 bits of
+-				offset */
 +	ulint		offset_high, /* in: most significant 32 bits of
- 				offset */
++				offset */
 +        trx_t*		trx)
  {
          off_t	offs;
@@ -601,20 +614,20 @@ diff -ruN mysql-5.0.67_orig/innobase/os/os0file.c mysql-5.0.67/innobase/os/os0fi
  	return(n_bytes);
  #else
  	{
-@@ -1981,6 +2004,13 @@
+@@ -1980,6 +2003,13 @@
+         os_mutex_enter(os_file_count_mutex);
  	os_n_pending_reads--;
          os_mutex_exit(os_file_count_mutex);
- 
++
 +        if (srv_slow_log && trx && trx->take_stats && start_time)
 +        {
 +		ut_usectime(&sec, &ms);
 +        	finish_time = (ib_longlong)sec * 1000000 + ms;
 +                trx->io_reads_wait_timer += (ulint)(finish_time - start_time);
 +	}
-+
+ 
  	return(ret);
  	}
- #endif
 @@ -2103,7 +2133,7 @@
  Requests a synchronous positioned read operation. */
  
@@ -689,18 +702,18 @@ diff -ruN mysql-5.0.67_orig/innobase/os/os0file.c mysql-5.0.67/innobase/os/os0fi
  	if (type == OS_FILE_READ) {
  		if (os_aio_use_native_aio) {
  #ifdef WIN_ASYNC_IO
-diff -ruN mysql-5.0.67_orig/innobase/srv/srv0srv.c mysql-5.0.67/innobase/srv/srv0srv.c
---- mysql-5.0.67_orig/innobase/srv/srv0srv.c	2008-08-04 21:19:17.000000000 +0900
-+++ mysql-5.0.67/innobase/srv/srv0srv.c	2008-11-26 16:29:45.000000000 +0900
-@@ -48,6 +48,8 @@
+diff -r ea2366a3ea79 innobase/srv/srv0srv.c
+--- a/innobase/srv/srv0srv.c	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/srv/srv0srv.c	Thu Dec 04 00:32:56 2008 -0800
+@@ -47,6 +47,8 @@
+ #include "dict0boot.h"
  #include "srv0start.h"
  #include "row0mysql.h"
- 
-+ibool	srv_slow_log = 0;
 +
++ibool	srv_slow_log = 0;
+ 
  /* This is set to TRUE if the MySQL user has set it in MySQL; currently
  affects only FOREIGN KEY definition parsing */
- ibool	srv_lower_case_table_names	= FALSE;
 @@ -996,6 +998,10 @@
  	ibool			has_slept = FALSE;
  	srv_conc_slot_t*	slot	  = NULL;
@@ -720,7 +733,7 @@ diff -ruN mysql-5.0.67_orig/innobase/srv/srv0srv.c mysql-5.0.67/innobase/srv/srv
      }
  
  		trx->op_info = "";
-@@ -1109,12 +1116,23 @@
+@@ -1109,11 +1116,22 @@
  	/* Go to wait for the event; when a thread leaves InnoDB it will
  	release this thread */
  
@@ -734,19 +747,18 @@ diff -ruN mysql-5.0.67_orig/innobase/srv/srv0srv.c mysql-5.0.67/innobase/srv/srv
  	os_event_wait(slot->event);
  
  	trx->op_info = "";
- 
++
 +	if (srv_slow_log && trx->take_stats && start_time) {
 +		ut_usectime(&sec, &ms);
 +		finish_time = (ib_longlong)sec * 1000000 + ms;
 +		trx->innodb_que_wait_timer += (ulint)(finish_time - start_time);
 +	}
-+
+ 
  	os_fast_mutex_lock(&srv_conc_mutex);
  
- 	srv_conc_n_waiting_threads--;
-diff -ruN mysql-5.0.67_orig/innobase/trx/trx0trx.c mysql-5.0.67/innobase/trx/trx0trx.c
---- mysql-5.0.67_orig/innobase/trx/trx0trx.c	2008-08-04 21:19:17.000000000 +0900
-+++ mysql-5.0.67/innobase/trx/trx0trx.c	2008-11-26 16:29:45.000000000 +0900
+diff -r ea2366a3ea79 innobase/trx/trx0trx.c
+--- a/innobase/trx/trx0trx.c	Thu Dec 04 00:30:51 2008 -0800
++++ b/innobase/trx/trx0trx.c	Thu Dec 04 00:32:56 2008 -0800
 @@ -190,6 +190,15 @@
  	trx->global_read_view_heap = mem_heap_create(256);
  	trx->global_read_view = NULL;
@@ -834,9 +846,22 @@ diff -ruN mysql-5.0.67_orig/innobase/trx/trx0trx.c mysql-5.0.67/innobase/trx/trx
  	trx->que_state = TRX_QUE_RUNNING;
  }
  
-diff -ruN mysql-5.0.67_orig/patch_info/microslow_innodb.info mysql-5.0.67/patch_info/microslow_innodb.info
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ mysql-5.0.67/patch_info/microslow_innodb.info	2008-11-25 15:53:46.000000000 +0900
+diff -r ea2366a3ea79 mysys/my_getopt.c
+--- a/mysys/my_getopt.c	Thu Dec 04 00:30:51 2008 -0800
++++ b/mysys/my_getopt.c	Thu Dec 04 00:32:56 2008 -0800
+@@ -1061,6 +1061,9 @@
+       case GET_ULONG:
+ 	printf("%lu\n", *((ulong*) value));
+ 	break;
++      case GET_DOUBLE:
++	printf("%6f\n", *((double*) value));
++	break;
+       case GET_LL:
+ 	printf("%s\n", llstr(*((longlong*) value), buff));
+ 	break;
+diff -r ea2366a3ea79 patch_info/microslow_innodb.info
+--- /dev/null	Thu Jan 01 00:00:00 1970 +0000
++++ b/patch_info/microslow_innodb.info	Thu Dec 04 00:32:56 2008 -0800
 @@ -0,0 +1,15 @@
 +File=microslow_innodb.patch
 +Name=Extended statistics in slow.log
@@ -853,9 +878,9 @@ diff -ruN mysql-5.0.67_orig/patch_info/microslow_innodb.info mysql-5.0.67/patch_
 +
 +2008-11
 +Arjen Lentz: Fixups (backward compatibility) by Arjen Lentz <arjen@openquery.com.au>
-diff -ruN mysql-5.0.67_orig/scripts/mysqldumpslow.sh mysql-5.0.67/scripts/mysqldumpslow.sh
---- mysql-5.0.67_orig/scripts/mysqldumpslow.sh	2008-08-04 21:20:02.000000000 +0900
-+++ mysql-5.0.67/scripts/mysqldumpslow.sh	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 scripts/mysqldumpslow.sh
+--- a/scripts/mysqldumpslow.sh	Thu Dec 04 00:30:51 2008 -0800
++++ b/scripts/mysqldumpslow.sh	Thu Dec 04 00:32:56 2008 -0800
 @@ -83,8 +83,8 @@
      s/^#? Time: \d{6}\s+\d+:\d+:\d+.*\n//;
      my ($user,$host) = s/^#? User\@Host:\s+(\S+)\s+\@\s+(\S+).*\n// ? ($1,$2) : ('','');
@@ -867,9 +892,50 @@ diff -ruN mysql-5.0.67_orig/scripts/mysqldumpslow.sh mysql-5.0.67/scripts/mysqld
      $t -= $l unless $opt{l};
  
      # remove fluff that mysqld writes to log when it (re)starts:
-diff -ruN mysql-5.0.67_orig/sql/filesort.cc mysql-5.0.67/sql/filesort.cc
---- mysql-5.0.67_orig/sql/filesort.cc	2008-08-04 21:20:03.000000000 +0900
-+++ mysql-5.0.67/sql/filesort.cc	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 sql-common/my_time.c
+--- a/sql-common/my_time.c	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql-common/my_time.c	Thu Dec 04 00:32:56 2008 -0800
+@@ -1252,3 +1252,37 @@
+   return 0;
+ }
+ 
++/*
++ int my_timer(ulonglong *ltime, ulonglong frequency)
++
++ For performance measurement this function returns the number
++ of microseconds since the epoch (SVr4, BSD 4.3, POSIX 1003.1-2001)
++ or system start (Windows platforms).
++
++ For windows platforms frequency value (obtained via 
++ QueryPerformanceFrequency) has to be specified. The global frequency
++ value is set in mysqld.cc. 
++
++ If Windows platform doesn't support QueryPerformanceFrequency we will
++ obtain the time via GetClockCount, which supports microseconds only.
++*/
++
++ulonglong my_timer(ulonglong *ltime, ulonglong frequency)
++{
++  ulonglong newtime= 0;
++#ifdef __WIN__
++  if (frequency) 
++  {
++    QueryPerformanceCounter((LARGE_INTEGER *)&newtime);
++    newtime/= (frequency * 1000000);
++  } else
++    newtime= (GetTickCount() * 1000; /* GetTickCount only returns milliseconds */
++#else
++  struct timeval t;
++  gettimeofday(&t, NULL);
++  newtime= (ulonglong)t.tv_sec * 1000000 + t.tv_usec;
++#endif
++  if (ltime)
++    *ltime= newtime;
++  return newtime;
++}
+diff -r ea2366a3ea79 sql/filesort.cc
+--- a/sql/filesort.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/filesort.cc	Thu Dec 04 00:32:56 2008 -0800
 @@ -180,6 +180,7 @@
    {
      statistic_increment(thd->status_var.filesort_scan_count, &LOCK_status);
@@ -894,9 +960,9 @@ diff -ruN mysql-5.0.67_orig/sql/filesort.cc mysql-5.0.67/sql/filesort.cc
    if (param->not_killable)
    {
      killed= &not_killable;
-diff -ruN mysql-5.0.67_orig/sql/ha_innodb.cc mysql-5.0.67/sql/ha_innodb.cc
---- mysql-5.0.67_orig/sql/ha_innodb.cc	2008-08-04 21:20:03.000000000 +0900
-+++ mysql-5.0.67/sql/ha_innodb.cc	2008-11-26 16:29:45.000000000 +0900
+diff -r ea2366a3ea79 sql/ha_innodb.cc
+--- a/sql/ha_innodb.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/ha_innodb.cc	Thu Dec 04 00:32:56 2008 -0800
 @@ -1,3 +1,4 @@
 +
  /* Copyright (C) 2000-2005 MySQL AB & Innobase Oy
@@ -937,15 +1003,15 @@ diff -ruN mysql-5.0.67_orig/sql/ha_innodb.cc mysql-5.0.67/sql/ha_innodb.cc
  
  /*************************************************************************
  Construct ha_innobase handler. */
-@@ -1308,6 +1334,8 @@
+@@ -1307,6 +1333,8 @@
+ 	}
  
  	/* -------------- Log files ---------------------------*/
- 
-+	srv_slow_log = (ibool) opt_slow_log;
 +
++	srv_slow_log = (ibool) opt_slow_log;
+ 
  	/* The default dir for log files is the datadir of MySQL */
  
- 	if (!innobase_log_group_home_dir) {
 @@ -4671,6 +4699,12 @@
  		trx->check_unique_secondary = FALSE;
  	}
@@ -985,19 +1051,19 @@ diff -ruN mysql-5.0.67_orig/sql/ha_innodb.cc mysql-5.0.67/sql/ha_innodb.cc
    	error = row_drop_database_for_mysql(namebuf, trx);
  	my_free(namebuf, MYF(0));
  
-@@ -5089,6 +5135,12 @@
- 		trx->check_foreigns = FALSE;
- 	}
+@@ -5087,6 +5133,12 @@
  
+ 	if (current_thd->options & OPTION_NO_FOREIGN_KEY_CHECKS) {
+ 		trx->check_foreigns = FALSE;
++	}
++
 +	if (current_thd->variables.log_slow_verbosity & SLOG_V_INNODB) {
 +		trx->take_stats = TRUE;
 +	} else {
 +		trx->take_stats = FALSE;
-+	}
-+
- 	name_len1 = strlen(from);
- 	name_len2 = strlen(to);
+ 	}
  
+ 	name_len1 = strlen(from);
 @@ -6096,6 +6148,7 @@
  {
  	row_prebuilt_t* prebuilt = (row_prebuilt_t*) innobase_prebuilt;
@@ -1032,9 +1098,9 @@ diff -ruN mysql-5.0.67_orig/sql/ha_innodb.cc mysql-5.0.67/sql/ha_innodb.cc
  		prebuilt->used_in_HANDLER = FALSE;
  
  		if (!(thd->options & (OPTION_NOT_AUTOCOMMIT | OPTION_BEGIN))) {
-diff -ruN mysql-5.0.67_orig/sql/ha_innodb.h mysql-5.0.67/sql/ha_innodb.h
---- mysql-5.0.67_orig/sql/ha_innodb.h	2008-08-04 21:20:03.000000000 +0900
-+++ mysql-5.0.67/sql/ha_innodb.h	2008-11-25 15:53:46.000000000 +0900
+diff -r ea2366a3ea79 sql/ha_innodb.h
+--- a/sql/ha_innodb.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/ha_innodb.h	Thu Dec 04 00:32:56 2008 -0800
 @@ -266,6 +266,8 @@
  
  int innobase_start_trx_and_assign_read_view(THD* thd);
@@ -1044,9 +1110,9 @@ diff -ruN mysql-5.0.67_orig/sql/ha_innodb.h mysql-5.0.67/sql/ha_innodb.h
  /***********************************************************************
  This function is used to prepare X/Open XA distributed transaction   */
  
-diff -ruN mysql-5.0.67_orig/sql/log.cc mysql-5.0.67/sql/log.cc
---- mysql-5.0.67_orig/sql/log.cc	2008-08-04 21:20:07.000000000 +0900
-+++ mysql-5.0.67/sql/log.cc	2008-11-26 10:14:01.000000000 +0900
+diff -r ea2366a3ea79 sql/log.cc
+--- a/sql/log.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/log.cc	Thu Dec 04 00:32:56 2008 -0800
 @@ -2177,11 +2177,12 @@
  */
  
@@ -1150,9 +1216,9 @@ diff -ruN mysql-5.0.67_orig/sql/log.cc mysql-5.0.67/sql/log.cc
      }
      if (thd->db && strcmp(thd->db,db))
      {						// Database changed
-diff -ruN mysql-5.0.67_orig/sql/log_event.cc mysql-5.0.67/sql/log_event.cc
---- mysql-5.0.67_orig/sql/log_event.cc	2008-08-04 21:20:07.000000000 +0900
-+++ mysql-5.0.67/sql/log_event.cc	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 sql/log_event.cc
+--- a/sql/log_event.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/log_event.cc	Thu Dec 04 00:32:56 2008 -0800
 @@ -2039,6 +2039,7 @@
        /* Execute the query (note that we bypass dispatch_command()) */
        const char* found_semicolon= NULL;
@@ -1161,13 +1227,14 @@ diff -ruN mysql-5.0.67_orig/sql/log_event.cc mysql-5.0.67/sql/log_event.cc
  
      }
      else
-diff -ruN mysql-5.0.67_orig/sql/mysql_priv.h mysql-5.0.67/sql/mysql_priv.h
---- mysql-5.0.67_orig/sql/mysql_priv.h	2008-08-04 21:20:07.000000000 +0900
-+++ mysql-5.0.67/sql/mysql_priv.h	2008-11-26 10:14:02.000000000 +0900
-@@ -489,6 +489,78 @@
+diff -r ea2366a3ea79 sql/mysql_priv.h
+--- a/sql/mysql_priv.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/mysql_priv.h	Thu Dec 04 00:32:56 2008 -0800
+@@ -488,6 +488,78 @@
+ #define WEEK_FIRST_WEEKDAY   4
  
  #define STRING_BUFFER_USUAL_SIZE 80
- 
++
 +/* Slow log */
 +
 +struct msl_opts
@@ -1239,11 +1306,10 @@ diff -ruN mysql-5.0.67_orig/sql/mysql_priv.h mysql-5.0.67/sql/mysql_priv.h
 +  { SLOG_F_FILESORT_DISK, "filesort_on_disk" },
 +  { SLOG_F_INVALID,       (char *)0 }
 +};
-+
+ 
  enum enum_parsing_place
  {
-   NO_MATTER,
-@@ -1341,6 +1413,7 @@
+@@ -1342,6 +1414,7 @@
  extern bool using_update_log, opt_large_files, server_id_supplied;
  extern bool opt_update_log, opt_bin_log, opt_error_log;
  extern my_bool opt_log, opt_slow_log, opt_log_queries_not_using_indexes;
@@ -1251,7 +1317,7 @@ diff -ruN mysql-5.0.67_orig/sql/mysql_priv.h mysql-5.0.67/sql/mysql_priv.h
  extern bool opt_disable_networking, opt_skip_show_db;
  extern my_bool opt_character_set_client_handshake;
  extern bool volatile abort_loop, shutdown_in_progress, grant_option;
-@@ -1352,7 +1425,7 @@
+@@ -1353,7 +1426,7 @@
  extern my_bool opt_enable_named_pipe, opt_sync_frm, opt_allow_suspicious_udfs;
  extern my_bool opt_secure_auth;
  extern char* opt_secure_file_priv;
@@ -1260,17 +1326,17 @@ diff -ruN mysql-5.0.67_orig/sql/mysql_priv.h mysql-5.0.67/sql/mysql_priv.h
  extern my_bool sp_automatic_privileges, opt_noacl;
  extern my_bool opt_old_style_user_limits, trust_function_creators;
  extern uint opt_crash_binlog_innodb;
-diff -ruN mysql-5.0.67_orig/sql/mysqld.cc mysql-5.0.67/sql/mysqld.cc
---- mysql-5.0.67_orig/sql/mysqld.cc	2008-08-04 21:20:07.000000000 +0900
-+++ mysql-5.0.67/sql/mysqld.cc	2008-11-26 16:29:45.000000000 +0900
-@@ -176,7 +176,6 @@
+diff -r ea2366a3ea79 sql/mysqld.cc
+--- a/sql/mysqld.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/mysqld.cc	Thu Dec 04 00:32:56 2008 -0800
+@@ -175,7 +175,6 @@
+ static void getvolumename();
  static void getvolumeID(BYTE *volumeName);
  #endif /* __NETWARE__ */
- 
 -
+ 
  #ifdef _AIX41
  int initgroups(const char *,unsigned int);
- #endif
 @@ -409,10 +408,12 @@
  my_bool opt_secure_auth= 0;
  char* opt_secure_file_priv= 0;
@@ -1337,7 +1403,7 @@ diff -ruN mysql-5.0.67_orig/sql/mysqld.cc mysql-5.0.67/sql/mysqld.cc
    OPT_INNODB_ROLLBACK_ON_TIMEOUT,
    OPT_SECURE_FILE_PRIV,
    OPT_KEEP_FILES_ON_CREATE,
-@@ -5380,10 +5390,19 @@
+@@ -5380,8 +5390,17 @@
     (gptr*) &opt_log_slow_admin_statements,
     (gptr*) &opt_log_slow_admin_statements,
     0, GET_BOOL, NO_ARG, 0, 0, 0, 0, 0, 0},
@@ -1348,15 +1414,13 @@ diff -ruN mysql-5.0.67_orig/sql/mysqld.cc mysql-5.0.67/sql/mysqld.cc
 +   0, GET_BOOL, NO_ARG, 0, 0, 0, 0, 0, 0},
    {"log-slow-queries", OPT_SLOW_QUERY_LOG,
      "Log slow queries to this log file. Defaults logging to hostname-slow.log file. Must be enabled to activate other slow log options.",
-    (gptr*) &opt_slow_logname, (gptr*) &opt_slow_logname, 0, GET_STR, OPT_ARG,
-    0, 0, 0, 0, 0, 0},
-+  {"slow_query_log_file", OPT_SLOW_QUERY_LOG_FILE,
-+    "Log slow queries to given log file. Defaults logging to hostname-slow.log. Must be enabled to activate other slow log options.",
 +   (gptr*) &opt_slow_logname, (gptr*) &opt_slow_logname, 0, GET_STR, OPT_ARG,
 +   0, 0, 0, 0, 0, 0},
++  {"slow_query_log_file", OPT_SLOW_QUERY_LOG_FILE,
++    "Log slow queries to given log file. Defaults logging to hostname-slow.log. Must be enabled to activate other slow log options.",
+    (gptr*) &opt_slow_logname, (gptr*) &opt_slow_logname, 0, GET_STR, OPT_ARG,
+    0, 0, 0, 0, 0, 0},
    {"log-tc", OPT_LOG_TC,
-    "Path to transaction coordinator log (used for transactions that affect "
-    "more than one storage engine, when binary log is disabled)",
 @@ -5747,6 +5766,9 @@
     "Tells the slave thread to continue replication when a query returns an error from the provided list.",
     0, 0, 0, GET_STR, REQUIRED_ARG, 0, 0, 0, 0, 0, 0},
@@ -1390,7 +1454,7 @@ diff -ruN mysql-5.0.67_orig/sql/mysqld.cc mysql-5.0.67/sql/mysqld.cc
 +   {"long_query_time", OPT_LONG_QUERY_TIME,
 +    "Log all queries that have taken more than long_query_time seconds to execute to file.",
 +    (gptr*) &global_system_variables.long_query_time,
-+    (gptr*) &max_system_variables.long_query_time, 0, GET_STR,
++    (gptr*) &max_system_variables.long_query_time, 0, GET_DOUBLE,
 +    REQUIRED_ARG, 10000000, 0, LONG_TIMEOUT * 1000000, 0, 1, 0},
 +  {"min_examined_row_limit", OPT_MIN_EXAMINED_ROW_LIMIT,
 +    "Don't log queries which examine less than min_examined_row_limit rows to file.",
@@ -1467,9 +1531,9 @@ diff -ruN mysql-5.0.67_orig/sql/mysqld.cc mysql-5.0.67/sql/mysqld.cc
    if (argc > 0)
    {
      fprintf(stderr, "%s: Too many arguments (first extra is '%s').\nUse --help to get a list of available options\n", my_progname, *argv);
-diff -ruN mysql-5.0.67_orig/sql/set_var.cc mysql-5.0.67/sql/set_var.cc
---- mysql-5.0.67_orig/sql/set_var.cc	2008-08-04 21:20:08.000000000 +0900
-+++ mysql-5.0.67/sql/set_var.cc	2008-11-26 16:29:45.000000000 +0900
+diff -r ea2366a3ea79 sql/set_var.cc
+--- a/sql/set_var.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/set_var.cc	Thu Dec 04 00:32:56 2008 -0800
 @@ -215,9 +215,11 @@
    sys_log_queries_not_using_indexes("log_queries_not_using_indexes",
                                      &opt_log_queries_not_using_indexes);
@@ -1588,10 +1652,11 @@ diff -ruN mysql-5.0.67_orig/sql/set_var.cc mysql-5.0.67/sql/set_var.cc
  bool sys_var_thd_bool::update(THD *thd,  set_var *var)
  {
    if (var->type == OPT_GLOBAL)
-@@ -1911,6 +1952,19 @@
+@@ -1910,6 +1951,19 @@
+     value= *(longlong*) value_ptr(thd, var_type, base);
      pthread_mutex_unlock(&LOCK_global_system_variables);
      return new Item_int(value);
-   }
++  }
 +  case SHOW_MICROTIME:
 +  {
 +    longlong value;
@@ -1604,10 +1669,9 @@ diff -ruN mysql-5.0.67_orig/sql/set_var.cc mysql-5.0.67/sql/set_var.cc
 +
 +    len = snprintf(buff, 80, "%f", ((double) value) / 1000000.0);
 +    return new Item_float(buff,len);
-+  }
+   }
    case SHOW_HA_ROWS:
    {
-     ha_rows value;
 @@ -2736,6 +2790,30 @@
  }
  
@@ -1831,9 +1895,9 @@ diff -ruN mysql-5.0.67_orig/sql/set_var.cc mysql-5.0.67/sql/set_var.cc
  /****************************************************************************
   Functions to handle table_type
  ****************************************************************************/
-diff -ruN mysql-5.0.67_orig/sql/set_var.h mysql-5.0.67/sql/set_var.h
---- mysql-5.0.67_orig/sql/set_var.h	2008-08-04 21:20:08.000000000 +0900
-+++ mysql-5.0.67/sql/set_var.h	2008-11-25 15:53:46.000000000 +0900
+diff -r ea2366a3ea79 sql/set_var.h
+--- a/sql/set_var.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/set_var.h	Thu Dec 04 00:32:56 2008 -0800
 @@ -123,6 +123,7 @@
  };
  
@@ -1872,14 +1936,14 @@ diff -ruN mysql-5.0.67_orig/sql/set_var.h mysql-5.0.67/sql/set_var.h
  class sys_var_thd_ha_rows :public sys_var_thd
  {
  public:
-@@ -347,7 +353,6 @@
+@@ -346,7 +352,6 @@
+   SHOW_TYPE show_type() { return SHOW_HA_ROWS; }
    byte *value_ptr(THD *thd, enum_var_type type, LEX_STRING *base);
  };
- 
 -
+ 
  class sys_var_thd_ulonglong :public sys_var_thd
  {
- public:
 @@ -376,6 +381,19 @@
    }
  };
@@ -1900,10 +1964,11 @@ diff -ruN mysql-5.0.67_orig/sql/set_var.h mysql-5.0.67/sql/set_var.h
  
  class sys_var_thd_bool :public sys_var_thd
  {
-@@ -447,6 +465,66 @@
+@@ -446,6 +464,66 @@
+                                             ulong *length);
  };
  
- 
++
 +class sys_var_thd_msl_option :public sys_var_thd
 +{
 +protected:
@@ -1963,10 +2028,9 @@ diff -ruN mysql-5.0.67_orig/sql/set_var.h mysql-5.0.67/sql/set_var.h
 +  bool update(THD *thd, set_var *var);
 +  byte *value_ptr(THD *thd, enum_var_type type, LEX_STRING *base);
 +};
-+
+ 
  class sys_var_thd_storage_engine :public sys_var_thd
  {
- protected:
 @@ -1042,3 +1120,11 @@
  bool process_key_caches(int (* func) (const char *name, KEY_CACHE *));
  void delete_elements(I_List<NAMED_LIST> *list,
@@ -1979,9 +2043,9 @@ diff -ruN mysql-5.0.67_orig/sql/set_var.h mysql-5.0.67/sql/set_var.h
 +                               const ulong none_val, const ulong invalid_val);
 +const char *msl_option_get_name(const struct msl_opts *opts, ulong val);
 +char *msl_flag_get_name(const struct msl_opts *opts, char *buf, ulong val);
-diff -ruN mysql-5.0.67_orig/sql/slave.cc mysql-5.0.67/sql/slave.cc
---- mysql-5.0.67_orig/sql/slave.cc	2008-08-04 21:20:08.000000000 +0900
-+++ mysql-5.0.67/sql/slave.cc	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 sql/slave.cc
+--- a/sql/slave.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/slave.cc	Thu Dec 04 00:32:56 2008 -0800
 @@ -2925,6 +2925,12 @@
      + MAX_LOG_EVENT_HEADER;  /* note, incr over the global not session var */
    thd->slave_thread = 1;
@@ -1995,9 +2059,9 @@ diff -ruN mysql-5.0.67_orig/sql/slave.cc mysql-5.0.67/sql/slave.cc
    thd->client_capabilities = CLIENT_LOCAL_FILES;
    thd->real_id=pthread_self();
    pthread_mutex_lock(&LOCK_thread_count);
-diff -ruN mysql-5.0.67_orig/sql/sql_cache.cc mysql-5.0.67/sql/sql_cache.cc
---- mysql-5.0.67_orig/sql/sql_cache.cc	2008-08-04 21:20:09.000000000 +0900
-+++ mysql-5.0.67/sql/sql_cache.cc	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 sql/sql_cache.cc
+--- a/sql/sql_cache.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/sql_cache.cc	Thu Dec 04 00:32:56 2008 -0800
 @@ -1341,6 +1341,7 @@
  
    thd->limit_found_rows = query->found_rows();
@@ -2014,9 +2078,9 @@ diff -ruN mysql-5.0.67_orig/sql/sql_cache.cc mysql-5.0.67/sql/sql_cache.cc
    DBUG_RETURN(0);				// Query was not cached
  }
  
-diff -ruN mysql-5.0.67_orig/sql/sql_class.cc mysql-5.0.67/sql/sql_class.cc
---- mysql-5.0.67_orig/sql/sql_class.cc	2008-08-04 21:20:09.000000000 +0900
-+++ mysql-5.0.67/sql/sql_class.cc	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 sql/sql_class.cc
+--- a/sql/sql_class.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/sql_class.cc	Thu Dec 04 00:32:56 2008 -0800
 @@ -188,7 +188,7 @@
     lock_id(&main_lock_id),
     user_time(0), in_sub_stmt(0), global_read_lock(0), is_fatal_error(0),
@@ -2067,9 +2131,9 @@ diff -ruN mysql-5.0.67_orig/sql/sql_class.cc mysql-5.0.67/sql/sql_class.cc
  }
  
  
-diff -ruN mysql-5.0.67_orig/sql/sql_class.h mysql-5.0.67/sql/sql_class.h
---- mysql-5.0.67_orig/sql/sql_class.h	2008-08-04 21:20:09.000000000 +0900
-+++ mysql-5.0.67/sql/sql_class.h	2008-11-25 15:50:03.000000000 +0900
+diff -r ea2366a3ea79 sql/sql_class.h
+--- a/sql/sql_class.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/sql_class.h	Thu Dec 04 00:32:56 2008 -0800
 @@ -43,6 +43,13 @@
  extern char internal_table_name[2];
  extern char empty_c_string[1];
@@ -2190,9 +2254,9 @@ diff -ruN mysql-5.0.67_orig/sql/sql_class.h mysql-5.0.67/sql/sql_class.h
    inline void	insert_id(ulonglong id_arg)
    {
      last_insert_id= id_arg;
-diff -ruN mysql-5.0.67_orig/sql/sql_parse.cc mysql-5.0.67/sql/sql_parse.cc
---- mysql-5.0.67_orig/sql/sql_parse.cc	2008-08-04 21:20:10.000000000 +0900
-+++ mysql-5.0.67/sql/sql_parse.cc	2008-11-25 15:50:04.000000000 +0900
+diff -r ea2366a3ea79 sql/sql_parse.cc
+--- a/sql/sql_parse.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/sql_parse.cc	Thu Dec 04 00:32:56 2008 -0800
 @@ -20,6 +20,7 @@
  #include <m_ctype.h>
  #include <myisam.h>
@@ -2223,7 +2287,7 @@ diff -ruN mysql-5.0.67_orig/sql/sql_parse.cc mysql-5.0.67/sql/sql_parse.cc
    start_of_query= thd->start_time;
 +  ulonglong start_of_query_timer= thd->start_timer;
    thd->end_time();				// Set start time
- 
++
 +
 +  /* Follow the slow log filter configuration. */
 +  if (thd->variables.log_slow_filter != SLOG_F_NONE && 
@@ -2245,7 +2309,7 @@ diff -ruN mysql-5.0.67_orig/sql/sql_parse.cc mysql-5.0.67/sql/sql_parse.cc
 +  /* Do not log this thread's queries due to rate limiting. */
 +  if (thd->write_to_slow_log != TRUE)
 +    return;
-+
+ 
    /*
      Do not log administrative statements unless the appropriate option is
      set; do not log into slow log if reading from backup.
@@ -2280,7 +2344,7 @@ diff -ruN mysql-5.0.67_orig/sql/sql_parse.cc mysql-5.0.67/sql/sql_parse.cc
      }
    }
  }
-@@ -5995,6 +6031,15 @@
+@@ -5998,6 +6034,15 @@
      thd->total_warn_count=0;			// Warnings for this query
      thd->rand_used= 0;
      thd->sent_row_count= thd->examined_row_count= 0;
@@ -2296,9 +2360,9 @@ diff -ruN mysql-5.0.67_orig/sql/sql_parse.cc mysql-5.0.67/sql/sql_parse.cc
    }
    DBUG_VOID_RETURN;
  }
-diff -ruN mysql-5.0.67_orig/sql/sql_select.cc mysql-5.0.67/sql/sql_select.cc
---- mysql-5.0.67_orig/sql/sql_select.cc	2008-08-04 21:20:11.000000000 +0900
-+++ mysql-5.0.67/sql/sql_select.cc	2008-11-25 15:50:04.000000000 +0900
+diff -r ea2366a3ea79 sql/sql_select.cc
+--- a/sql/sql_select.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/sql_select.cc	Thu Dec 04 00:32:56 2008 -0800
 @@ -6210,8 +6210,11 @@
  	  {
  	    join->thd->server_status|=SERVER_QUERY_NO_INDEX_USED;
@@ -2339,25 +2403,25 @@ diff -ruN mysql-5.0.67_orig/sql/sql_select.cc mysql-5.0.67/sql/sql_select.cc
    table->s->db_record_offset= 1;
    DBUG_RETURN(0);
   err:
-diff -ruN mysql-5.0.67_orig/sql/sql_show.cc mysql-5.0.67/sql/sql_show.cc
---- mysql-5.0.67_orig/sql/sql_show.cc	2008-08-04 21:20:11.000000000 +0900
-+++ mysql-5.0.67/sql/sql_show.cc	2008-11-25 15:50:04.000000000 +0900
-@@ -1489,6 +1489,12 @@
+diff -r ea2366a3ea79 sql/sql_show.cc
+--- a/sql/sql_show.cc	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/sql_show.cc	Thu Dec 04 00:32:56 2008 -0800
+@@ -1530,6 +1530,12 @@
+           value= ((char *) status_var + (ulonglong) value);
          case SHOW_LONGLONG:
            end= longlong10_to_str(*(longlong*) value, buff, 10);
-           break;
++          break;
 +        case SHOW_MICROTIME:
 +          show_type= ((sys_var*) value)->show_type();
 +          value=     (char*) ((sys_var*) value)->value_ptr(thd, value_type,
 +                                                           &null_lex_str);
 +          end= buff + sprintf(buff, "%f", (((double) (*(ulonglong*)value))) / 1000000.0);
-+          break;
+           break;
          case SHOW_HA_ROWS:
            end= longlong10_to_str((longlong) *(ha_rows*) value, buff, 10);
-           break;
-diff -ruN mysql-5.0.67_orig/sql/structs.h mysql-5.0.67/sql/structs.h
---- mysql-5.0.67_orig/sql/structs.h	2008-08-04 21:20:12.000000000 +0900
-+++ mysql-5.0.67/sql/structs.h	2008-11-25 15:50:04.000000000 +0900
+diff -r ea2366a3ea79 sql/structs.h
+--- a/sql/structs.h	Thu Dec 04 00:30:51 2008 -0800
++++ b/sql/structs.h	Thu Dec 04 00:32:56 2008 -0800
 @@ -168,8 +168,8 @@
  enum SHOW_TYPE
  {
@@ -2369,44 +2433,3 @@ diff -ruN mysql-5.0.67_orig/sql/structs.h mysql-5.0.67/sql/structs.h
    SHOW_BOOL, SHOW_MY_BOOL, SHOW_OPENTABLES, SHOW_STARTTIME, SHOW_QUESTION,
    SHOW_LONG_CONST, SHOW_INT_CONST, SHOW_HAVE, SHOW_SYS, SHOW_HA_ROWS,
    SHOW_VARS,
-diff -ruN mysql-5.0.67_orig/sql-common/my_time.c mysql-5.0.67/sql-common/my_time.c
---- mysql-5.0.67_orig/sql-common/my_time.c	2008-08-04 21:20:14.000000000 +0900
-+++ mysql-5.0.67/sql-common/my_time.c	2008-11-25 15:50:04.000000000 +0900
-@@ -1252,3 +1252,37 @@
-   return 0;
- }
- 
-+/*
-+ int my_timer(ulonglong *ltime, ulonglong frequency)
-+
-+ For performance measurement this function returns the number
-+ of microseconds since the epoch (SVr4, BSD 4.3, POSIX 1003.1-2001)
-+ or system start (Windows platforms).
-+
-+ For windows platforms frequency value (obtained via 
-+ QueryPerformanceFrequency) has to be specified. The global frequency
-+ value is set in mysqld.cc. 
-+
-+ If Windows platform doesn't support QueryPerformanceFrequency we will
-+ obtain the time via GetClockCount, which supports microseconds only.
-+*/
-+
-+ulonglong my_timer(ulonglong *ltime, ulonglong frequency)
-+{
-+  ulonglong newtime= 0;
-+#ifdef __WIN__
-+  if (frequency) 
-+  {
-+    QueryPerformanceCounter((LARGE_INTEGER *)&newtime);
-+    newtime/= (frequency * 1000000);
-+  } else
-+    newtime= (GetTickCount() * 1000; /* GetTickCount only returns milliseconds */
-+#else
-+  struct timeval t;
-+  gettimeofday(&t, NULL);
-+  newtime= (ulonglong)t.tv_sec * 1000000 + t.tv_usec;
-+#endif
-+  if (ltime)
-+    *ltime= newtime;
-+  return newtime;
-+}
