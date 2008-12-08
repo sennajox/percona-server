@@ -1711,7 +1711,7 @@ diff -ruN mysql-5.0.67_patched/sql/handler.cc mysql-5.0.67/sql/handler.cc
 +                                                (byte*)key,
 +                                                strlen(key)))) {
 +    if (!(table_stats = ((TABLE_STATS*)
-+                         my_malloc(sizeof(TABLE_STATS), MYF(MY_WME))))) {
++                         my_malloc(sizeof(TABLE_STATS), MYF(MY_WME | MY_ZEROFILL))))) {
 +      // Out of memory.
 +      sql_print_error("Allocating table stats failed.");
 +      goto end;
@@ -1771,7 +1771,7 @@ diff -ruN mysql-5.0.67_patched/sql/handler.cc mysql-5.0.67/sql/handler.cc
 +                                                    (byte*)key,
 +                                                    strlen(key)))) {
 +        if (!(index_stats = ((INDEX_STATS*)
-+                             my_malloc(sizeof(INDEX_STATS), MYF(MY_WME))))) {
++                             my_malloc(sizeof(INDEX_STATS), MYF(MY_WME | MY_ZEROFILL))))) {
 +          // Out of memory.
 +          sql_print_error("Allocating index stats failed.");
 +          goto end;
@@ -2829,7 +2829,7 @@ diff -ruN mysql-5.0.67_patched/sql/sql_parse.cc mysql-5.0.67/sql/sql_parse.cc
 +  {
 +    // First connection for this user or client
 +    if (!(user_stats = ((USER_STATS*)
-+                        my_malloc(sizeof(USER_STATS), MYF(MY_WME)))))
++                        my_malloc(sizeof(USER_STATS), MYF(MY_WME | MY_ZEROFILL)))))
 +    {
 +      return 1; // Out of memory
 +    }
@@ -3677,7 +3677,7 @@ diff -ruN mysql-5.0.67_patched/sql/sql_show.cc mysql-5.0.67/sql/sql_show.cc
 +    {
 +      // First entry for this role.
 +      if (!(agg_user =
-+            (USER_STATS*) my_malloc(sizeof(USER_STATS), MYF(MY_WME))))
++            (USER_STATS*) my_malloc(sizeof(USER_STATS), MYF(MY_WME | MY_ZEROFILL))))
 +      {
 +        sql_print_error("Malloc in aggregate_user_stats failed");
 +        DBUG_RETURN(1);

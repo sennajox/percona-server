@@ -800,7 +800,20 @@ diff -r ea2366a3ea79 innobase/trx/trx0trx.c
  	thr_local_free(trx->mysql_thread_id);
  
  	mutex_enter(&kernel_mutex);
-@@ -1064,7 +1084,10 @@
+@@ -389,6 +409,12 @@
+ /*====================*/
+ 	trx_t*	trx)	/* in, own: trx object */
+ {
++	if (trx->distinct_page_access_hash)
++	{
++		mem_free(trx->distinct_page_access_hash);
++		trx->distinct_page_access_hash= NULL;
++	}
++
+ 	mutex_enter(&kernel_mutex);
+ 	
+ 	trx_free(trx);
+@@ -1064,7 +1090,10 @@
  	trx_t*	trx)	/* in: transaction */
  {
  	que_thr_t*	thr;
@@ -812,7 +825,7 @@ diff -r ea2366a3ea79 innobase/trx/trx0trx.c
  #ifdef UNIV_SYNC_DEBUG
  	ut_ad(mutex_own(&kernel_mutex));
  #endif /* UNIV_SYNC_DEBUG */
-@@ -1080,6 +1103,11 @@
+@@ -1080,6 +1109,11 @@
  		thr = UT_LIST_GET_FIRST(trx->wait_thrs);
  	}
  
@@ -824,7 +837,7 @@ diff -r ea2366a3ea79 innobase/trx/trx0trx.c
  	trx->que_state = TRX_QUE_RUNNING;
  }
  
-@@ -1093,6 +1121,9 @@
+@@ -1093,6 +1127,9 @@
  	trx_t*	trx)	/* in: transaction in the TRX_QUE_LOCK_WAIT state */
  {
  	que_thr_t*	thr;
@@ -834,7 +847,7 @@ diff -r ea2366a3ea79 innobase/trx/trx0trx.c
  
  #ifdef UNIV_SYNC_DEBUG
  	ut_ad(mutex_own(&kernel_mutex));
-@@ -1109,6 +1140,11 @@
+@@ -1109,6 +1146,11 @@
  		thr = UT_LIST_GET_FIRST(trx->wait_thrs);
  	}
  
