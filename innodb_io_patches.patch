@@ -1,6 +1,6 @@
-diff -r 1896c03576e5 innobase/buf/buf0rea.c
---- a/innobase/buf/buf0rea.c	Fri Nov 07 06:40:46 2008 -0800
-+++ b/innobase/buf/buf0rea.c	Fri Nov 07 06:46:07 2008 -0800
+diff -r 45683461331d innobase/buf/buf0rea.c
+--- a/innobase/buf/buf0rea.c	Mon Dec 22 00:31:16 2008 -0800
++++ b/innobase/buf/buf0rea.c	Mon Dec 22 00:32:02 2008 -0800
 @@ -188,6 +188,10 @@
  	ulint		low, high;
  	ulint		err;
@@ -23,9 +23,9 @@ diff -r 1896c03576e5 innobase/buf/buf0rea.c
  	if (srv_startup_is_before_trx_rollback_phase) {
  	        /* No read-ahead to avoid thread deadlocks */
  	        return(0);
-diff -r 1896c03576e5 innobase/include/os0file.h
---- a/innobase/include/os0file.h	Fri Nov 07 06:40:46 2008 -0800
-+++ b/innobase/include/os0file.h	Fri Nov 07 06:46:07 2008 -0800
+diff -r 45683461331d innobase/include/os0file.h
+--- a/innobase/include/os0file.h	Mon Dec 22 00:31:16 2008 -0800
++++ b/innobase/include/os0file.h	Mon Dec 22 00:32:02 2008 -0800
 @@ -551,8 +551,10 @@
  /*========*/
  	ulint	n,		/* in: maximum number of pending aio operations
@@ -39,10 +39,10 @@ diff -r 1896c03576e5 innobase/include/os0file.h
  	ulint	n_slots_sync);	/* in: number of slots in the sync aio array */
  /***********************************************************************
  Requests an asynchronous i/o operation. */
-diff -r 1896c03576e5 innobase/include/srv0srv.h
---- a/innobase/include/srv0srv.h	Fri Nov 07 06:40:46 2008 -0800
-+++ b/innobase/include/srv0srv.h	Fri Nov 07 06:46:07 2008 -0800
-@@ -87,6 +87,8 @@
+diff -r 45683461331d innobase/include/srv0srv.h
+--- a/innobase/include/srv0srv.h	Mon Dec 22 00:31:16 2008 -0800
++++ b/innobase/include/srv0srv.h	Mon Dec 22 00:32:02 2008 -0800
+@@ -89,6 +89,8 @@
  extern ulint	srv_lock_table_size;
  
  extern ulint	srv_n_file_io_threads;
@@ -51,7 +51,7 @@ diff -r 1896c03576e5 innobase/include/srv0srv.h
  
  #ifdef UNIV_LOG_ARCHIVE
  extern ibool	srv_log_archive_on;
-@@ -131,6 +133,10 @@
+@@ -133,6 +135,10 @@
  extern ulong	srv_max_purge_lag;
  extern ibool	srv_use_awe;
  extern ibool	srv_use_adaptive_hash_indexes;
@@ -62,9 +62,9 @@ diff -r 1896c03576e5 innobase/include/srv0srv.h
  /*-------------------------------------------*/
  
  extern ulint	srv_n_rows_inserted;
-diff -r 1896c03576e5 innobase/log/log0log.c
---- a/innobase/log/log0log.c	Fri Nov 07 06:40:46 2008 -0800
-+++ b/innobase/log/log0log.c	Fri Nov 07 06:46:07 2008 -0800
+diff -r 45683461331d innobase/log/log0log.c
+--- a/innobase/log/log0log.c	Mon Dec 22 00:31:16 2008 -0800
++++ b/innobase/log/log0log.c	Mon Dec 22 00:32:02 2008 -0800
 @@ -3326,6 +3326,15 @@
  			(ulong) ut_dulint_get_high(log_sys->last_checkpoint_lsn),
  			(ulong) ut_dulint_get_low(log_sys->last_checkpoint_lsn));
@@ -81,9 +81,9 @@ diff -r 1896c03576e5 innobase/log/log0log.c
  	current_time = time(NULL);
  			
  	time_elapsed = 0.001 + difftime(current_time,
-diff -r 1896c03576e5 innobase/os/os0file.c
---- a/innobase/os/os0file.c	Fri Nov 07 06:40:46 2008 -0800
-+++ b/innobase/os/os0file.c	Fri Nov 07 06:46:07 2008 -0800
+diff -r 45683461331d innobase/os/os0file.c
+--- a/innobase/os/os0file.c	Mon Dec 22 00:31:16 2008 -0800
++++ b/innobase/os/os0file.c	Mon Dec 22 00:32:02 2008 -0800
 @@ -2877,8 +2877,10 @@
  /*========*/
  	ulint	n,		/* in: maximum number of pending aio operations
@@ -155,10 +155,10 @@ diff -r 1896c03576e5 innobase/os/os0file.c
  	}
  
  	array->n_reserved++;
-diff -r 1896c03576e5 innobase/srv/srv0srv.c
---- a/innobase/srv/srv0srv.c	Fri Nov 07 06:40:46 2008 -0800
-+++ b/innobase/srv/srv0srv.c	Fri Nov 07 06:46:07 2008 -0800
-@@ -165,6 +165,8 @@
+diff -r 45683461331d innobase/srv/srv0srv.c
+--- a/innobase/srv/srv0srv.c	Mon Dec 22 00:31:16 2008 -0800
++++ b/innobase/srv/srv0srv.c	Mon Dec 22 00:32:02 2008 -0800
+@@ -167,6 +167,8 @@
  ulint	srv_lock_table_size	= ULINT_MAX;
  
  ulint	srv_n_file_io_threads	= ULINT_MAX;
@@ -167,7 +167,7 @@ diff -r 1896c03576e5 innobase/srv/srv0srv.c
  
  #ifdef UNIV_LOG_ARCHIVE
  ibool	srv_log_archive_on	= FALSE;
-@@ -322,6 +324,15 @@
+@@ -324,6 +326,15 @@
  ibool	srv_use_awe			= FALSE;
  ibool	srv_use_adaptive_hash_indexes 	= TRUE;
  
@@ -183,7 +183,7 @@ diff -r 1896c03576e5 innobase/srv/srv0srv.c
  /*-------------------------------------------*/
  ulong	srv_n_spin_wait_rounds	= 20;
  ulong	srv_n_free_tickets_to_enter = 500;
-@@ -2206,6 +2217,8 @@
+@@ -2214,6 +2225,8 @@
  	ibool		skip_sleep	= FALSE;
  	ulint		i;
  	
@@ -192,7 +192,7 @@ diff -r 1896c03576e5 innobase/srv/srv0srv.c
  #ifdef UNIV_DEBUG_THREAD_CREATION
  	fprintf(stderr, "Master thread starts, id %lu\n",
  			      os_thread_pf(os_thread_get_curr_id()));
-@@ -2294,9 +2307,9 @@
+@@ -2302,9 +2315,9 @@
  						+ log_sys->n_pending_writes;
  		n_ios = log_sys->n_log_ios + buf_pool->n_pages_read
  						+ buf_pool->n_pages_written;
@@ -204,7 +204,7 @@ diff -r 1896c03576e5 innobase/srv/srv0srv.c
  
  			srv_main_thread_op_info = "flushing log";
  
-@@ -2309,7 +2322,7 @@
+@@ -2317,7 +2330,7 @@
  			/* Try to keep the number of modified pages in the
  			buffer pool under the limit wished by the user */
  			
@@ -213,7 +213,7 @@ diff -r 1896c03576e5 innobase/srv/srv0srv.c
  							  ut_dulint_max);
  
  		        /* If we had to do the flush, it may have taken
-@@ -2318,6 +2331,44 @@
+@@ -2326,6 +2339,44 @@
  			iteration of this loop. */
  			     
  			skip_sleep = TRUE;
@@ -258,7 +258,7 @@ diff -r 1896c03576e5 innobase/srv/srv0srv.c
  		}
  
  		if (srv_activity_count == old_activity_count) {
-@@ -2344,10 +2395,10 @@
+@@ -2352,10 +2403,10 @@
  	n_pend_ios = buf_get_n_pending_ios() + log_sys->n_pending_writes;
  	n_ios = log_sys->n_log_ios + buf_pool->n_pages_read
  						+ buf_pool->n_pages_written;
@@ -271,7 +271,7 @@ diff -r 1896c03576e5 innobase/srv/srv0srv.c
  
  		srv_main_thread_op_info = "flushing log";
  		log_buffer_flush_to_disk();
-@@ -2357,7 +2408,7 @@
+@@ -2365,7 +2416,7 @@
  	even if the server were active */
  
  	srv_main_thread_op_info = "doing insert buffer merge";
@@ -280,7 +280,7 @@ diff -r 1896c03576e5 innobase/srv/srv0srv.c
  
  	srv_main_thread_op_info = "flushing log";
  	log_buffer_flush_to_disk();
-@@ -2399,14 +2450,14 @@
+@@ -2407,14 +2458,14 @@
  		(> 70 %), we assume we can afford reserving the disk(s) for
  		the time it requires to flush 100 pages */
  
@@ -297,7 +297,7 @@ diff -r 1896c03576e5 innobase/srv/srv0srv.c
  							ut_dulint_max);
  	}
  
-@@ -2495,7 +2546,7 @@
+@@ -2503,7 +2554,7 @@
  	if (srv_fast_shutdown && srv_shutdown_state > 0) {
  	        n_bytes_merged = 0;
  	} else {
@@ -306,7 +306,7 @@ diff -r 1896c03576e5 innobase/srv/srv0srv.c
  	}
  
  	srv_main_thread_op_info = "reserving kernel mutex";
-@@ -2512,7 +2563,7 @@
+@@ -2520,7 +2571,7 @@
  
  	if (srv_fast_shutdown < 2) {
  		n_pages_flushed =
@@ -315,9 +315,9 @@ diff -r 1896c03576e5 innobase/srv/srv0srv.c
  	} else {
  		/* In the fastest shutdown we do not flush the buffer pool
  		to data files: we set n_pages_flushed to 0 artificially. */
-diff -r 1896c03576e5 innobase/srv/srv0start.c
---- a/innobase/srv/srv0start.c	Fri Nov 07 06:40:46 2008 -0800
-+++ b/innobase/srv/srv0start.c	Fri Nov 07 06:46:07 2008 -0800
+diff -r 45683461331d innobase/srv/srv0start.c
+--- a/innobase/srv/srv0start.c	Mon Dec 22 00:31:16 2008 -0800
++++ b/innobase/srv/srv0start.c	Mon Dec 22 00:32:02 2008 -0800
 @@ -1205,24 +1205,28 @@
  		return(DB_ERROR);
  	}
@@ -351,9 +351,9 @@ diff -r 1896c03576e5 innobase/srv/srv0start.c
  					SRV_MAX_N_PENDING_SYNC_IOS);
  	}
  	
-diff -r 1896c03576e5 patch_info/innodb_io_patches.info
+diff -r 45683461331d patch_info/innodb_io_patches.info
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/patch_info/innodb_io_patches.info	Fri Nov 07 06:46:08 2008 -0800
++++ b/patch_info/innodb_io_patches.info	Mon Dec 22 00:32:02 2008 -0800
 @@ -0,0 +1,9 @@
 +File=innodb_io_patches.patch
 +Name=Cluster of past InnoDB IO patches
@@ -364,9 +364,9 @@ diff -r 1896c03576e5 patch_info/innodb_io_patches.info
 +ChangeLog=
 +2008-11-06
 +YK: Initial release
-diff -r 1896c03576e5 sql/ha_innodb.cc
---- a/sql/ha_innodb.cc	Fri Nov 07 06:40:46 2008 -0800
-+++ b/sql/ha_innodb.cc	Fri Nov 07 06:46:08 2008 -0800
+diff -r 45683461331d sql/ha_innodb.cc
+--- a/sql/ha_innodb.cc	Mon Dec 22 00:31:16 2008 -0800
++++ b/sql/ha_innodb.cc	Mon Dec 22 00:32:02 2008 -0800
 @@ -149,6 +149,7 @@
       innobase_lock_wait_timeout, innobase_force_recovery,
       innobase_open_files;
@@ -375,7 +375,7 @@ diff -r 1896c03576e5 sql/ha_innodb.cc
  longlong innobase_buffer_pool_size, innobase_log_file_size;
  
  /* The default values for the following char* start-up parameters
-@@ -1374,6 +1375,8 @@
+@@ -1403,6 +1404,8 @@
  	srv_mem_pool_size = (ulint) innobase_additional_mem_pool_size;
  
  	srv_n_file_io_threads = (ulint) innobase_file_io_threads;
@@ -384,9 +384,9 @@ diff -r 1896c03576e5 sql/ha_innodb.cc
  
  	srv_lock_wait_timeout = (ulint) innobase_lock_wait_timeout;
  	srv_force_recovery = (ulint) innobase_force_recovery;
-diff -r 1896c03576e5 sql/ha_innodb.h
---- a/sql/ha_innodb.h	Fri Nov 07 06:40:46 2008 -0800
-+++ b/sql/ha_innodb.h	Fri Nov 07 06:46:08 2008 -0800
+diff -r 45683461331d sql/ha_innodb.h
+--- a/sql/ha_innodb.h	Mon Dec 22 00:31:16 2008 -0800
++++ b/sql/ha_innodb.h	Mon Dec 22 00:32:02 2008 -0800
 @@ -204,6 +204,7 @@
  extern long innobase_additional_mem_pool_size;
  extern long innobase_buffer_pool_awe_mem_mb;
@@ -405,10 +405,10 @@ diff -r 1896c03576e5 sql/ha_innodb.h
  }
  
  bool innobase_init(void);
-diff -r 1896c03576e5 sql/mysqld.cc
---- a/sql/mysqld.cc	Fri Nov 07 06:40:46 2008 -0800
-+++ b/sql/mysqld.cc	Fri Nov 07 06:46:08 2008 -0800
-@@ -5025,6 +5025,11 @@
+diff -r 45683461331d sql/mysqld.cc
+--- a/sql/mysqld.cc	Mon Dec 22 00:31:16 2008 -0800
++++ b/sql/mysqld.cc	Mon Dec 22 00:32:02 2008 -0800
+@@ -5036,6 +5036,11 @@
    OPT_INNODB_ROLLBACK_ON_TIMEOUT,
    OPT_SECURE_FILE_PRIV,
    OPT_KEEP_FILES_ON_CREATE,
@@ -420,7 +420,7 @@ diff -r 1896c03576e5 sql/mysqld.cc
    OPT_INNODB_ADAPTIVE_HASH_INDEX,
    OPT_FEDERATED
  };
-@@ -5333,6 +5338,26 @@
+@@ -5344,6 +5349,26 @@
     (gptr*) &global_system_variables.innodb_table_locks,
     (gptr*) &global_system_variables.innodb_table_locks,
     0, GET_BOOL, OPT_ARG, 1, 0, 0, 0, 0, 0},
@@ -447,10 +447,10 @@ diff -r 1896c03576e5 sql/mysqld.cc
  #endif /* End HAVE_INNOBASE_DB */
    {"isam", OPT_ISAM, "Obsolete. ISAM storage engine is no longer supported.",
     (gptr*) &opt_isam, (gptr*) &opt_isam, 0, GET_BOOL, NO_ARG, 0, 0, 0,
-diff -r 1896c03576e5 sql/set_var.cc
---- a/sql/set_var.cc	Fri Nov 07 06:40:46 2008 -0800
-+++ b/sql/set_var.cc	Fri Nov 07 06:46:08 2008 -0800
-@@ -476,6 +476,12 @@
+diff -r 45683461331d sql/set_var.cc
+--- a/sql/set_var.cc	Mon Dec 22 00:31:16 2008 -0800
++++ b/sql/set_var.cc	Mon Dec 22 00:32:02 2008 -0800
+@@ -484,6 +484,12 @@
  sys_var_long_ptr  sys_innodb_flush_log_at_trx_commit(
                                          "innodb_flush_log_at_trx_commit",
                                          &srv_flush_log_at_trx_commit);
@@ -460,10 +460,10 @@ diff -r 1896c03576e5 sql/set_var.cc
 +                                              &srv_read_ahead);
 +sys_var_long_ptr	sys_innodb_adaptive_checkpoint("innodb_adaptive_checkpoint",
 +                                                      &srv_adaptive_checkpoint);
- #endif
- 
- /* Condition pushdown to storage engine */
-@@ -828,6 +834,9 @@
+ sys_var_const_os_str_ptr sys_innodb_data_file_path("innodb_data_file_path", 
+                                                &innobase_data_file_path);
+ sys_var_const_os_str_ptr sys_innodb_data_home_dir("innodb_data_home_dir", 
+@@ -847,6 +853,9 @@
    &sys_innodb_thread_concurrency,
    &sys_innodb_commit_concurrency,
    &sys_innodb_flush_log_at_trx_commit,
@@ -473,7 +473,7 @@ diff -r 1896c03576e5 sql/set_var.cc
  #endif
    &sys_trust_routine_creators,
    &sys_trust_function_creators,
-@@ -963,6 +972,11 @@
+@@ -982,6 +991,11 @@
    {sys_innodb_table_locks.name, (char*) &sys_innodb_table_locks, SHOW_SYS},
    {sys_innodb_thread_concurrency.name, (char*) &sys_innodb_thread_concurrency, SHOW_SYS},
    {sys_innodb_thread_sleep_delay.name, (char*) &sys_innodb_thread_sleep_delay, SHOW_SYS},
