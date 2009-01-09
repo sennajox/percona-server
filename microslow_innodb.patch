@@ -2147,17 +2147,11 @@ diff -r 25523be1816e sql/sql_class.cc
 diff -r 25523be1816e sql/sql_class.h
 --- a/sql/sql_class.h	Mon Dec 22 00:25:06 2008 -0800
 +++ b/sql/sql_class.h	Mon Dec 22 00:26:39 2008 -0800
-@@ -43,6 +43,13 @@
+@@ -43,6 +43,7 @@
  extern char internal_table_name[2];
  extern char empty_c_string[1];
  extern const char **errmesg;
-+#ifdef __cplusplus
-+__BEGIN_DECLS
-+#endif
 +extern ulonglong frequency;
-+#ifdef __cplusplus
-+__END_DECLS
-+#endif
  
  #define TC_LOG_PAGE_SIZE   8192
  #define TC_LOG_MIN_SIZE    (3*TC_LOG_PAGE_SIZE)

@@ -2825,7 +2825,7 @@ diff -r 1270c564d514 sql/sql_parse.cc
  
  
  /*
-@@ -698,6 +916,211 @@
+@@ -698,6 +916,214 @@
    return uc_update_queries[command] != 0;
  }
  
@@ -2885,6 +2885,9 @@ diff -r 1270c564d514 sql/sql_parse.cc
 +  char* user_string = get_valid_user_string(thd->main_security_ctx.user);
 +  const char* client_string = get_client_host(thd);
 +  int return_value = 0;
++
++  if (!opt_userstat_running)
++    return return_value;
 +
 +  if (use_lock) pthread_mutex_lock(&LOCK_global_user_client_stats);
 +
