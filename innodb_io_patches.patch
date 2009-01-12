@@ -111,7 +111,7 @@ diff -ruN a/innobase/include/srv0srv.h b/innobase/include/srv0srv.h
 +extern ulint	srv_ibuf_active_contract;
 +extern ulint	srv_ibuf_accel_rate;
 +extern ulint	srv_flush_neighbor_pages;
-+extern ulint	srv_read_ahead;
++extern uint	srv_read_ahead;
 +extern ulint	srv_adaptive_checkpoint;
  /*-------------------------------------------*/
  
@@ -240,7 +240,7 @@ diff -ruN a/innobase/srv/srv0srv.c b/innobase/srv/srv0srv.c
 +
 +ulint	srv_flush_neighbor_pages = 1; /* 0:disable 1:enable */
 +
-+ulint	srv_read_ahead = 3; /* 1: random  2: linear  3: Both */
++uint	srv_read_ahead = 3; /* 1: random  2: linear  3: Both */
 +ulint	srv_adaptive_checkpoint = 0; /* 0:disable 1:enable */
  /*-------------------------------------------*/
  ulong	srv_n_spin_wait_rounds	= 20;
@@ -473,7 +473,7 @@ diff -ruN a/sql/ha_innodb.h b/sql/ha_innodb.h
 +extern ulong srv_ibuf_active_contract;
 +extern ulong srv_ibuf_accel_rate;
 +extern ulong srv_flush_neighbor_pages;
-+extern ulong srv_read_ahead;
++extern uint srv_read_ahead;
 +extern ulong srv_adaptive_checkpoint;
  }
  
@@ -497,7 +497,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    OPT_INNODB_ADAPTIVE_HASH_INDEX,
    OPT_FEDERATED
  };
-@@ -5344,6 +5353,42 @@
+@@ -5344,6 +5353,41 @@
     (gptr*) &global_system_variables.innodb_table_locks,
     (gptr*) &global_system_variables.innodb_table_locks,
     0, GET_BOOL, OPT_ARG, 1, 0, 0, 0, 0, 0},
@@ -522,9 +522,8 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
 +   (gptr*) &srv_flush_neighbor_pages, (gptr*) &srv_flush_neighbor_pages,
 +   0, GET_ULONG, REQUIRED_ARG, 1, 0, 1, 0, 0, 0},
 +  {"innodb_read_ahead", OPT_INNODB_READ_AHEAD,
-+   "Enable/Diasable read aheads bit0:random bit1:linear",
-+   (gptr*) &srv_read_ahead, (gptr*) &srv_read_ahead,
-+   0, GET_ULONG, REQUIRED_ARG, 3, 0, 3, 0, 0, 0},
++   "Control read ahead activity. (none, random, linear, [both])",
++   0, 0, 0, GET_ULONG, REQUIRED_ARG, 0, 0, 0, 0, 0, 0},
 +  {"innodb_adaptive_checkpoint", OPT_INNODB_ADAPTIVE_CHECKPOINT,
 +   "Enable/Diasable flushing along modified age. 0:disable 1:enable",
 +   (gptr*) &srv_adaptive_checkpoint, (gptr*) &srv_adaptive_checkpoint,
@@ -540,10 +539,33 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
  #endif /* End HAVE_INNOBASE_DB */
    {"isam", OPT_ISAM, "Obsolete. ISAM storage engine is no longer supported.",
     (gptr*) &opt_isam, (gptr*) &opt_isam, 0, GET_BOOL, NO_ARG, 0, 0, 0,
+@@ -7637,6 +7636,22 @@
+   case OPT_INNODB_LOG_ARCHIVE:
+     innobase_log_archive= argument ? test(atoi(argument)) : 1;
+     break;
++  case OPT_INNODB_READ_AHEAD:
++    if (argument == disabled_my_option)
++      srv_read_ahead = 0;
++    else if (! argument)
++      srv_read_ahead = 3;
++    else
++    {
++      int type;
++      if ((type=find_type(argument, &innodb_read_ahead_typelib, 2)) <= 0)
++      {
++        fprintf(stderr,"Unknown innodb_read_ahead type: %s\n",argument);
++        exit(1);
++      }
++      srv_read_ahead = (uint) ((type - 1) & 3);
++    }
++    break;
+ #endif /* HAVE_INNOBASE_DB */
+   case OPT_MYISAM_RECOVER:
+   {
 diff -ruN a/sql/set_var.cc b/sql/set_var.cc
 --- a/sql/set_var.cc	2009-01-09 15:40:23.000000000 +0900
 +++ b/sql/set_var.cc	2009-01-09 16:05:22.000000000 +0900
-@@ -484,6 +484,18 @@
+@@ -484,6 +484,37 @@
  sys_var_long_ptr  sys_innodb_flush_log_at_trx_commit(
                                          "innodb_flush_log_at_trx_commit",
                                          &srv_flush_log_at_trx_commit);
@@ -555,8 +577,27 @@ diff -ruN a/sql/set_var.cc b/sql/set_var.cc
 +                                                   &srv_ibuf_accel_rate);
 +sys_var_long_ptr	sys_innodb_flush_neighbor_pages("innodb_flush_neighbor_pages",
 +                                                        &srv_flush_neighbor_pages);
-+sys_var_long_ptr	sys_innodb_read_ahead("innodb_read_ahead",
-+                                              &srv_read_ahead);
++
++const char *innodb_read_ahead_names[]=
++{
++  "none", /* 0 */
++  "random",
++  "linear",
++  "both", /* 3 */
++  /* For compatibility of the older patch */
++  "0", /* 4 ("none" + 4) */
++  "1",
++  "2",
++  "3", /* 7 ("both" + 4) */
++  NullS
++};
++TYPELIB innodb_read_ahead_typelib=
++{
++  array_elements(innodb_read_ahead_names) - 1, "innodb_read_ahead_typelib",
++  innodb_read_ahead_names, NULL
++};
++sys_var_enum	sys_innodb_read_ahead("innodb_read_ahead", &srv_read_ahead,
++                                      &innodb_read_ahead_typelib, fix_innodb_read_ahead);
 +sys_var_long_ptr	sys_innodb_adaptive_checkpoint("innodb_adaptive_checkpoint",
 +                                                      &srv_adaptive_checkpoint);
  sys_var_const_os_str_ptr sys_innodb_data_file_path("innodb_data_file_path", 
@@ -591,3 +632,41 @@ diff -ruN a/sql/set_var.cc b/sql/set_var.cc
  #endif
    {sys_interactive_timeout.name,(char*) &sys_interactive_timeout,   SHOW_SYS},
    {sys_join_buffer_size.name,   (char*) &sys_join_buffer_size,	    SHOW_SYS},
+@@ -1482,6 +1501,13 @@
+   }
+ }
+
++#ifdef HAVE_INNOBASE_DB
++extern void fix_innodb_read_ahead(THD *thd, enum_var_type type)
++{
++  srv_read_ahead &= 3;
++}
++#endif /* HAVE_INNOBASE_DB */
++
+ static void fix_max_binlog_size(THD *thd, enum_var_type type)
+ {
+   DBUG_ENTER("fix_max_binlog_size");
+diff -ruN a/sql/set_var.h b/sql/set_var.h
+--- a/sql/set_var.h	2009-01-12 11:20:31.000000000 +0900
++++ b/sql/set_var.h	2009-01-12 15:26:35.000000000 +0900
+@@ -31,6 +31,10 @@
+
+ extern TYPELIB bool_typelib, delay_key_write_typelib, sql_mode_typelib;
+
++#ifdef HAVE_INNOBASE_DB
++extern TYPELIB innodb_read_ahead_typelib;
++#endif /* HAVE_INNOBASE_DB */
++
+ typedef int (*sys_check_func)(THD *,  set_var *);
+ typedef bool (*sys_update_func)(THD *, set_var *);
+ typedef void (*sys_after_update_func)(THD *,enum_var_type);
+@@ -1114,6 +1118,9 @@
+ int sql_set_variables(THD *thd, List<set_var_base> *var_list);
+ bool not_all_support_one_shot(List<set_var_base> *var_list);
+ void fix_delay_key_write(THD *thd, enum_var_type type);
++#ifdef HAVE_INNOBASE_DB
++void fix_innodb_read_ahead(THD *thd, enum_var_type type);
++#endif /* HAVE_INNOBASE_DB */
+ ulong fix_sql_mode(ulong sql_mode);
+ extern sys_var_const_str sys_charset_system;
+ extern sys_var_str sys_init_connect;
