@@ -939,8 +939,8 @@ diff -r 25523be1816e sql-common/my_time.c
 +    newtime= (GetTickCount() * 1000; /* GetTickCount only returns milliseconds */
 +#else
 +  struct timeval t;
-+  gettimeofday(&t, NULL);
-+  newtime= (ulonglong)t.tv_sec * 1000000 + t.tv_usec;
++  if (gettimeofday(&t, NULL) != -1)
++    newtime= (ulonglong)t.tv_sec * 1000000 + t.tv_usec;
 +#endif
 +  if (ltime)
 +    *ltime= newtime;
@@ -1167,8 +1167,8 @@ diff -r 25523be1816e sql/log.cc
      {
 +      char buf[5][20];
 +      ulonglong current_timer= my_timer(&current_timer, frequency);
-+      sprintf(buf[0], "%.6f", (current_timer - query_start_timer) / 1000000.0);
-+      sprintf(buf[1], "%.6f", (thd->timer_after_lock - query_start_timer) / 1000000.0);
++      snprintf(buf[0], 20, "%.6f", (current_timer ? (current_timer - query_start_timer):0) / 1000000.0);
++      snprintf(buf[1], 20, "%.6f", (thd->timer_after_lock - query_start_timer) / 1000000.0);
 +      if (!query_length)
 +      {
 +        thd->sent_row_count= thd->examined_row_count= 0;
@@ -1207,9 +1207,9 @@ diff -r 25523be1816e sql/log.cc
 +        tmp_errno=errno;
 +      if ((thd->variables.log_slow_verbosity & SLOG_V_INNODB) && thd->innodb_was_used)
 +      {
-+        sprintf(buf[2], "%.6f", thd->innodb_io_reads_wait_timer / 1000000.0);
-+        sprintf(buf[3], "%.6f", thd->innodb_lock_que_wait_timer / 1000000.0);
-+        sprintf(buf[4], "%.6f", thd->innodb_innodb_que_wait_timer / 1000000.0);
++        snprintf(buf[2], 20, "%.6f", thd->innodb_io_reads_wait_timer / 1000000.0);
++        snprintf(buf[3], 20, "%.6f", thd->innodb_lock_que_wait_timer / 1000000.0);
++        snprintf(buf[4], 20, "%.6f", thd->innodb_innodb_que_wait_timer / 1000000.0);
 +        if (my_b_printf(&log_file,
 +                        "#   InnoDB_IO_r_ops: %lu  InnoDB_IO_r_bytes: %lu  InnoDB_IO_r_wait: %s\n" \
 +                        "#   InnoDB_rec_lock_wait: %s  InnoDB_queue_wait: %s\n" \
