@@ -424,7 +424,7 @@ diff -ruN a/patch_info/innodb_io_patches.info b/patch_info/innodb_io_patches.inf
 @@ -0,0 +1,11 @@
 +File=innodb_io_patches.patch
 +Name=Cluster of past InnoDB IO patches
-+Version=1.0
++Version=1.1
 +Author=Percona
 +License=GPL
 +Comment=This patch contains fixed (control_flush_and_merge_and_read, control_io-threads, adaptive_flush)
