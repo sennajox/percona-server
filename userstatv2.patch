@@ -2129,9 +2129,9 @@ diff -r 1270c564d514 sql/mysqld.cc
    OPT_SLOW_LOG,
    OPT_SLOW_QUERY_LOG_FILE,
 +  OPT_USERSTAT_RUNNING,
+   OPT_USE_GLOBAL_LONG_QUERY_TIME,
    OPT_INNODB_ROLLBACK_ON_TIMEOUT,
    OPT_SECURE_FILE_PRIV,
-   OPT_KEEP_FILES_ON_CREATE,
 @@ -6450,6 +6476,10 @@
     (gptr*) &max_system_variables.net_wait_timeout, 0, GET_ULONG,
     REQUIRED_ARG, NET_WAIT_TIMEOUT, 1, IF_WIN(INT_MAX32/1000, LONG_TIMEOUT),
@@ -2167,9 +2167,9 @@ diff -r 1270c564d514 sql/set_var.cc
    {sys_updatable_views_with_limit.name,
                                (char*) &sys_updatable_views_with_limit,SHOW_SYS},
 +  {sys_userstat_running.name, (char*) &sys_userstat_running,        SHOW_SYS},
+   {sys_use_global_long_query_time.name, (char*) &sys_use_global_long_query_time, SHOW_SYS},
    {sys_version.name,          (char*) &sys_version,                 SHOW_SYS},
  #ifdef HAVE_BERKELEY_DB
-   {sys_version_bdb.name,      (char*) &sys_version_bdb,             SHOW_SYS},
 diff -r 1270c564d514 sql/share/Makefile.in
 --- a/sql/share/Makefile.in	Mon Dec 22 00:26:39 2008 -0800
 +++ b/sql/share/Makefile.in	Mon Dec 22 00:31:13 2008 -0800
