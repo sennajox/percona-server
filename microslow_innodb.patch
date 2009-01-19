@@ -878,7 +878,7 @@ diff -r 25523be1816e patch_info/microslow_innodb.info
 @@ -0,0 +1,15 @@
 +File=microslow_innodb.patch
 +Name=Extended statistics in slow.log
-+Version=1.1
++Version=1.2
 +Author=Percona <info@percona.com>
 +License=GPL
 +Comment=
