@@ -1,6 +1,6 @@
-diff -r abdcb400519c patch_info/mysqld_safe_syslog.info
+diff -r d91edeb58b50 patch_info/mysqld_safe_syslog.info
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/patch_info/mysqld_safe_syslog.info	Sat Jan 17 21:12:28 2009 -0800
++++ b/patch_info/mysqld_safe_syslog.info	Mon Sep 01 21:58:00 2008 -0700
 @@ -0,0 +1,6 @@
 +File=mysqld_safe_syslog.patch
 +Name=Patch allows redirect output of error.log to syslog-ng
@@ -8,38 +8,14 @@ diff -r abdcb400519c patch_info/mysqld_safe_syslog.info
 +Author=Percona <info@percona.com>
 +License=GPL
 +Comment=Ported from Debian
-diff -r abdcb400519c scripts/mysqld_safe.sh
---- a/scripts/mysqld_safe.sh	Sat Jan 17 21:11:09 2009 -0800
-+++ b/scripts/mysqld_safe.sh	Sat Jan 17 21:12:28 2009 -0800
-@@ -10,12 +10,40 @@
+diff -r d91edeb58b50 scripts/mysqld_safe.sh
+--- a/scripts/mysqld_safe.sh	Mon Sep 01 21:57:21 2008 -0700
++++ b/scripts/mysqld_safe.sh	Mon Sep 01 21:58:00 2008 -0700
+@@ -10,12 +10,16 @@
  # mysql.server works by first doing a cd to the base directory and from there
  # executing mysqld_safe
  
 -KILL_MYSQLD=1;
-+# the syslog-ng patch ignores the --log-error setting.  this restores it, more or less.
-+function logger () {
-+       local foo="$*"
-+       local arg_s=false
-+       local f
-+       for f in "$@"
-+       do
-+               if [ "$f" = -s ]
-+               then
-+                       arg_s=true
-+               fi
-+       done
-+       if [ -n "$err_log" ]
-+       then
-+               if $arg_s
-+               then
-+                       foo="tee '$err_log' 1>&2"
-+               else
-+                       foo="cat >> '$err_log'"
-+               fi
-+       fi
-+       eval "$foo"
-+       }
-+
  MYSQLD=
  
  trap '' 1 2 3 15			# we shouldn't let anyone kill us
@@ -53,7 +29,15 @@ diff -r abdcb400519c scripts/mysqld_safe.sh
  
  defaults=
  case "$1" in
-@@ -245,7 +273,6 @@
+@@ -177,7 +181,6 @@
+ 
+ # these rely on $DATADIR by default, so we'll set them later on
+ pid_file=
+-err_log=
+ 
+ # Get first arguments from the my.cnf file, groups [mysqld] and [mysqld_safe]
+ # and then merge with the command line arguments
+@@ -245,7 +248,6 @@
      * )  pid_file="$DATADIR/$pid_file" ;;
    esac
  fi
@@ -61,7 +45,7 @@ diff -r abdcb400519c scripts/mysqld_safe.sh
  
  if test -n "$mysql_unix_port"
  then
-@@ -315,8 +342,6 @@
+@@ -315,8 +317,6 @@
    then
      USER_OPTION="--user=$user"
    fi
@@ -70,7 +54,7 @@ diff -r abdcb400519c scripts/mysqld_safe.sh
    if test -n "$open_files"
    then
      ulimit -n $open_files
-@@ -341,18 +366,16 @@
+@@ -341,18 +341,16 @@
    then
      if @FIND_PROC@
      then    # The pid contains a mysqld process
@@ -93,7 +77,7 @@ diff -r abdcb400519c scripts/mysqld_safe.sh
      exit 1
    fi
  fi
-@@ -377,15 +400,15 @@
+@@ -377,15 +375,15 @@
  #  ulimit -n 256 > /dev/null 2>&1		# Fix for BSD and FreeBSD systems
  #fi
  
@@ -112,7 +96,7 @@ diff -r abdcb400519c scripts/mysqld_safe.sh
    fi
    if test ! -f $pid_file		# This is removed if normal shutdown
    then
-@@ -402,7 +425,7 @@
+@@ -402,7 +400,7 @@
      # kill -9 is used or the process won't react on the kill.
      numofproces=`ps xaww | grep -v "grep" | grep "$ledir/$MYSQLD\>" | grep -c "pid-file=$pid_file"`
  
@@ -121,7 +105,7 @@ diff -r abdcb400519c scripts/mysqld_safe.sh
      I=1
      while test "$I" -le "$numofproces"
      do 
-@@ -415,16 +438,14 @@
+@@ -415,16 +413,14 @@
        #    echo "TEST $I - $T **"
        if kill -9 $T
        then
