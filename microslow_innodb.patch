@@ -1151,7 +1151,7 @@ diff -r 25523be1816e sql/log.cc
      {
        VOID(pthread_mutex_unlock(&LOCK_log));
        DBUG_RETURN(0);
-@@ -2273,22 +2275,71 @@
+@@ -2273,22 +2275,72 @@
        if (my_b_printf(&log_file, "# User@Host: %s[%s] @ %s [%s]\n",
                        sctx->priv_user ?
                        sctx->priv_user : "",
@@ -1172,6 +1172,7 @@ diff -r 25523be1816e sql/log.cc
 +      if (!query_length)
 +      {
 +        thd->sent_row_count= thd->examined_row_count= 0;
++        thd->row_count= 0;
 +        thd->innodb_was_used= FALSE;
 +        thd->query_plan_flags= QPLAN_NONE;
 +        thd->query_plan_fsort_passes= 0;
@@ -2371,6 +2372,15 @@ diff -r 25523be1816e sql/sql_parse.cc
      }
    }
  }
+@@ -2664,6 +2702,8 @@
+     context.resolve_in_table_list_only((TABLE_LIST*)select_lex->
+                                        table_list.first);
+ 
++  /* Reset the counter at all cases for the extended slow query log */
++  thd->row_count= 1;
+   /*
+     Reset warning count for each query that uses tables
+     A better approach would be to reset this for any commands
 @@ -6084,6 +6120,15 @@
      thd->total_warn_count=0;			// Warnings for this query
      thd->rand_used= 0;
