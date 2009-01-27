@@ -219,7 +219,7 @@ diff -ru mysql-5.0.75_base/innobase/include/dict0dict.ic mysql-5.0.75/innobase/i
  	
 diff -ru mysql-5.0.75_base/innobase/include/srv0srv.h mysql-5.0.75/innobase/include/srv0srv.h
 --- mysql-5.0.75_base/innobase/include/srv0srv.h	2009-01-23 11:44:19.000000000 +0900
-+++ mysql-5.0.75/innobase/include/srv0srv.h	2009-01-26 15:55:17.000000000 +0900
++++ mysql-5.0.75/innobase/include/srv0srv.h	2009-01-27 10:47:26.000000000 +0900
 @@ -146,6 +146,8 @@
  extern uint	srv_read_ahead;
  extern ulint	srv_adaptive_checkpoint;
@@ -229,9 +229,17 @@ diff -ru mysql-5.0.75_base/innobase/include/srv0srv.h mysql-5.0.75/innobase/incl
  extern volatile ibool srv_io_pattern;
  extern ulong	srv_io_pattern_trace;
  extern ulong	srv_io_pattern_trace_running;
+@@ -545,6 +547,7 @@
+         ulint innodb_data_writes;
+         ulint innodb_data_written;
+         ulint innodb_data_reads;
++        ulint innodb_dict_tables;
+         ulint innodb_buffer_pool_pages_total;
+         ulint innodb_buffer_pool_pages_data;
+         ulint innodb_buffer_pool_pages_dirty;
 diff -ru mysql-5.0.75_base/innobase/srv/srv0srv.c mysql-5.0.75/innobase/srv/srv0srv.c
 --- mysql-5.0.75_base/innobase/srv/srv0srv.c	2009-01-23 11:44:19.000000000 +0900
-+++ mysql-5.0.75/innobase/srv/srv0srv.c	2009-01-26 15:54:39.000000000 +0900
++++ mysql-5.0.75/innobase/srv/srv0srv.c	2009-01-27 10:52:19.000000000 +0900
 @@ -345,6 +345,8 @@
  uint	srv_read_ahead = 3; /* 1: random  2: linear  3: Both */
  ulint	srv_adaptive_checkpoint = 0; /* 0:disable 1:enable */
@@ -241,6 +249,26 @@ diff -ru mysql-5.0.75_base/innobase/srv/srv0srv.c mysql-5.0.75/innobase/srv/srv0
  volatile ibool srv_io_pattern = FALSE;
  ulint   srv_io_pattern_trace = 0;
  ulint   srv_io_pattern_trace_running = 0;
+@@ -1936,6 +1938,7 @@
+         export_vars.innodb_data_reads= os_n_file_reads;
+         export_vars.innodb_data_writes= os_n_file_writes;
+         export_vars.innodb_data_written= srv_data_written;
++        export_vars.innodb_dict_tables= (dict_sys ? UT_LIST_GET_LEN(dict_sys->table_LRU) : 0);
+         export_vars.innodb_buffer_pool_read_requests= buf_pool->n_page_gets;
+         export_vars.innodb_buffer_pool_write_requests= srv_buf_pool_write_requests;
+         export_vars.innodb_buffer_pool_wait_free= srv_buf_pool_wait_free;
+diff -ru mysql-5.0.75_base/sql/ha_innodb.cc mysql-5.0.75/sql/ha_innodb.cc
+--- mysql-5.0.75_base/sql/ha_innodb.cc	2009-01-23 11:44:19.000000000 +0900
++++ mysql-5.0.75/sql/ha_innodb.cc	2009-01-27 10:54:08.000000000 +0900
+@@ -288,6 +288,8 @@
+   (char*) &export_vars.innodb_dblwr_pages_written,        SHOW_LONG},
+   {"dblwr_writes",
+   (char*) &export_vars.innodb_dblwr_writes,               SHOW_LONG},
++  {"dict_tables",
++  (char*) &export_vars.innodb_dict_tables,                SHOW_LONG},
+   {"log_waits",
+   (char*) &export_vars.innodb_log_waits,                  SHOW_LONG},
+   {"log_write_requests",
 diff -ru mysql-5.0.75_base/sql/ha_innodb.h mysql-5.0.75/sql/ha_innodb.h
 --- mysql-5.0.75_base/sql/ha_innodb.h	2009-01-23 11:44:19.000000000 +0900
 +++ mysql-5.0.75/sql/ha_innodb.h	2009-01-26 15:49:37.000000000 +0900
@@ -302,6 +330,137 @@ diff -ru mysql-5.0.75_base/sql/set_var.cc mysql-5.0.75/sql/set_var.cc
    {sys_innodb_io_pattern_trace.name, (char*) &sys_innodb_io_pattern_trace, SHOW_SYS},
    {sys_innodb_io_pattern_trace_running.name, (char*) &sys_innodb_io_pattern_trace_running, SHOW_SYS},
    {sys_innodb_io_pattern_size_limit.name, (char*) &sys_innodb_io_pattern_size_limit, SHOW_SYS},
+diff -ruN mysql-5.0.75_base/mysql-test/r/innodb_dict_size_limit.result mysql-5.0.75/mysql-test/r/innodb_dict_size_limit.result
+--- /dev/null	1970-01-01 09:00:00.000000000 +0900
++++ mysql-5.0.75/mysql-test/r/innodb_dict_size_limit.result	2009-01-27 11:43:46.000000000 +0900
+@@ -0,0 +1,60 @@
++DROP TABLE IF EXISTS `test_5`;
++DROP TABLE IF EXISTS `test_4`;
++DROP TABLE IF EXISTS `test_3`;
++DROP TABLE IF EXISTS `test_2`;
++DROP TABLE IF EXISTS `test_1`;
++SET storage_engine=InnoDB;
++SET GLOBAL innodb_dict_size_limit=0;
++FLUSH TABLES;
++CREATE TABLE `test_1` (`a` int, `b` int, PRIMARY KEY  (`a`));
++CREATE TABLE `test_2` (`a` int, `b` int, PRIMARY KEY  (`a`));
++CREATE TABLE `test_3` (`a` int, `b` int, PRIMARY KEY  (`a`));
++CREATE TABLE `test_4` (`a` int, `b` int, PRIMARY KEY  (`a`));
++CREATE TABLE `test_5` (`a` int, `b` int, PRIMARY KEY  (`a`));
++ALTER TABLE `test_5` ADD CONSTRAINT FOREIGN KEY(`b`) REFERENCES `test_4`(`a`);
++ALTER TABLE `test_4` ADD CONSTRAINT FOREIGN KEY(`b`) REFERENCES `test_3`(`a`);
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++Variable_name	Value
++Innodb_dict_tables	9
++FLUSH TABLES;
++SELECT * FROM `test_1`;
++a	b
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++Variable_name	Value
++Innodb_dict_tables	8
++SELECT * FROM `test_3`;
++a	b
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++Variable_name	Value
++Innodb_dict_tables	11
++FLUSH TABLES;
++SELECT * FROM `test_2`;
++a	b
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++Variable_name	Value
++Innodb_dict_tables	8
++SELECT * FROM `test_1`;
++a	b
++FLUSH TABLES;
++SELECT * FROM `test_4`;
++a	b
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++Variable_name	Value
++Innodb_dict_tables	9
++SELECT * FROM `test_3`;
++a	b
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++Variable_name	Value
++Innodb_dict_tables	10
++SET GLOBAL innodb_dict_size_limit=1024*1024*1024;
++FLUSH TABLES;
++SELECT * FROM `test_2`;
++a	b
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++Variable_name	Value
++Innodb_dict_tables	11
++DROP TABLE `test_5`;
++DROP TABLE `test_4`;
++DROP TABLE `test_3`;
++DROP TABLE `test_2`;
++DROP TABLE `test_1`;
+diff -ruN mysql-5.0.75_base/mysql-test/t/innodb_dict_size_limit.test mysql-5.0.75/mysql-test/t/innodb_dict_size_limit.test
+--- /dev/null	1970-01-01 09:00:00.000000000 +0900
++++ mysql-5.0.75/mysql-test/t/innodb_dict_size_limit.test	2009-01-27 11:43:36.000000000 +0900
+@@ -0,0 +1,63 @@
++#
++# Test for new variable innodb_dict_size_limit;
++#
++-- source include/have_innodb.inc
++
++--disable_warnings
++DROP TABLE IF EXISTS `test_5`;
++DROP TABLE IF EXISTS `test_4`;
++DROP TABLE IF EXISTS `test_3`;
++DROP TABLE IF EXISTS `test_2`;
++DROP TABLE IF EXISTS `test_1`;
++--enable_warnings
++
++SET storage_engine=InnoDB;
++SET GLOBAL innodb_dict_size_limit=0;
++
++FLUSH TABLES;
++
++CREATE TABLE `test_1` (`a` int, `b` int, PRIMARY KEY  (`a`));
++CREATE TABLE `test_2` (`a` int, `b` int, PRIMARY KEY  (`a`));
++CREATE TABLE `test_3` (`a` int, `b` int, PRIMARY KEY  (`a`));
++CREATE TABLE `test_4` (`a` int, `b` int, PRIMARY KEY  (`a`));
++CREATE TABLE `test_5` (`a` int, `b` int, PRIMARY KEY  (`a`));
++
++ALTER TABLE `test_5` ADD CONSTRAINT FOREIGN KEY(`b`) REFERENCES `test_4`(`a`);
++ALTER TABLE `test_4` ADD CONSTRAINT FOREIGN KEY(`b`) REFERENCES `test_3`(`a`);
++
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++
++FLUSH TABLES;
++SELECT * FROM `test_1`;
++
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++
++SELECT * FROM `test_3`;
++
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++
++FLUSH TABLES;
++SELECT * FROM `test_2`;
++
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++
++SELECT * FROM `test_1`;
++FLUSH TABLES;
++SELECT * FROM `test_4`;
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++
++SELECT * FROM `test_3`;
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++
++SET GLOBAL innodb_dict_size_limit=1024*1024*1024;
++FLUSH TABLES;
++SELECT * FROM `test_2`;
++
++SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
++
++DROP TABLE `test_5`;
++DROP TABLE `test_4`;
++DROP TABLE `test_3`;
++DROP TABLE `test_2`;
++DROP TABLE `test_1`;
++
 diff -ruN mysql-5.0.75_base/patch_info/innodb_dict_size_limit.info mysql-5.0.75/patch_info/innodb_dict_size_limit.info
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ mysql-5.0.75/patch_info/innodb_dict_size_limit.info	2009-01-26 15:46:45.000000000 +0900
@@ -311,7 +470,7 @@ diff -ruN mysql-5.0.75_base/patch_info/innodb_dict_size_limit.info mysql-5.0.75/
 +Version=1.0
 +Author=Percona
 +License=GPL
-+Comment=Valiable innodb_dict_size_limit in bytes
++Comment=Variable innodb_dict_size_limit in bytes
 +ChangeLog=
 +2009-01-26
 +YK: Initial release
