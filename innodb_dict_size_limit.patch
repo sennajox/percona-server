@@ -88,7 +88,7 @@ diff -ru mysql-5.0.75_base/innobase/dict/dict0dict.c mysql-5.0.75/innobase/dict/
  	mutex_exit(&(dict_sys->mutex));
  
  	if (table != NULL) {
-@@ -1267,20 +1273,63 @@
+@@ -1267,20 +1273,64 @@
  too much space. Currently not used! */
  
  void
@@ -116,10 +116,11 @@ diff -ru mysql-5.0.75_base/innobase/dict/dict0dict.c mysql-5.0.75/innobase/dict/
 +	n_removed = n_have_parent = 0;
  	table = UT_LIST_GET_LAST(dict_sys->table_LRU);
  
-+	while (table && ((dict_sys->table_hash->n_cells
-+			  + dict_sys->table_id_hash->n_cells
-+			  + dict_sys->col_hash->n_cells) * sizeof(hash_cell_t)
-+			 + dict_sys->size) > srv_dict_size_limit ) {
++	while ( srv_dict_size_limit && table
++		&& ((dict_sys->table_hash->n_cells
++		     + dict_sys->table_id_hash->n_cells
++		     + dict_sys->col_hash->n_cells) * sizeof(hash_cell_t)
++		    + dict_sys->size) > srv_dict_size_limit ) {
 +		prev_table = UT_LIST_GET_PREV(table_LRU, table);
 +
 +		if (table == self || table->n_mysql_handles_opened)
@@ -145,7 +146,7 @@ diff -ru mysql-5.0.75_base/innobase/dict/dict0dict.c mysql-5.0.75/innobase/dict/
 +		table = prev_table;
 +	}
 +
-+	if ( n_have_parent && n_removed
++	if ( srv_dict_size_limit && n_have_parent && n_removed
 +		&& ((dict_sys->table_hash->n_cells
 +		     + dict_sys->table_id_hash->n_cells
 +		     + dict_sys->col_hash->n_cells) * sizeof(hash_cell_t)
@@ -244,7 +245,7 @@ diff -ru mysql-5.0.75_base/innobase/srv/srv0srv.c mysql-5.0.75/innobase/srv/srv0
  uint	srv_read_ahead = 3; /* 1: random  2: linear  3: Both */
  ulint	srv_adaptive_checkpoint = 0; /* 0:disable 1:enable */
  
-+ulint	srv_dict_size_limit = 1024*1024*1024L;
++ulint	srv_dict_size_limit = 0;
 +
  volatile ibool srv_io_pattern = FALSE;
  ulint   srv_io_pattern_trace = 0;
@@ -296,9 +297,9 @@ diff -ru mysql-5.0.75_base/sql/mysqld.cc mysql-5.0.75/sql/mysqld.cc
     (gptr*) &innobase_write_io_threads, (gptr*) &innobase_write_io_threads,
     0, GET_LONG, REQUIRED_ARG, 1, 1, 64, 0, 0, 0},
 +  {"innodb_dict_size_limit", OPT_INNODB_DICT_SIZE_LIMIT,
-+   "Limit the allocated memory for dictionary cache.",
++   "Limit the allocated memory for dictionary cache. (0: unlimited)",
 +   (gptr*) &srv_dict_size_limit, (gptr*) &srv_dict_size_limit, 0,
-+   GET_ULONG, REQUIRED_ARG, 1024*1024*1024L, 0, ULONG_MAX, 0, 0 ,0},
++   GET_ULONG, REQUIRED_ARG, 0, 0, ULONG_MAX, 0, 0 ,0},
    {"innodb_io_pattern_trace", OPT_INNODB_IO_PATTERN_TRACE,
     "Create/Drop the internal hash table for IO pattern tracing.",
     (gptr*) &srv_io_pattern_trace, (gptr*) &srv_io_pattern_trace,
@@ -340,7 +341,7 @@ diff -ruN mysql-5.0.75_base/mysql-test/r/innodb_dict_size_limit.result mysql-5.0
 +DROP TABLE IF EXISTS `test_2`;
 +DROP TABLE IF EXISTS `test_1`;
 +SET storage_engine=InnoDB;
-+SET GLOBAL innodb_dict_size_limit=0;
++SET GLOBAL innodb_dict_size_limit=1;
 +FLUSH TABLES;
 +CREATE TABLE `test_1` (`a` int, `b` int, PRIMARY KEY  (`a`));
 +CREATE TABLE `test_2` (`a` int, `b` int, PRIMARY KEY  (`a`));
@@ -382,7 +383,7 @@ diff -ruN mysql-5.0.75_base/mysql-test/r/innodb_dict_size_limit.result mysql-5.0
 +SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
 +Variable_name	Value
 +Innodb_dict_tables	10
-+SET GLOBAL innodb_dict_size_limit=1024*1024*1024;
++SET GLOBAL innodb_dict_size_limit=0;
 +FLUSH TABLES;
 +SELECT * FROM `test_2`;
 +a	b
@@ -412,7 +413,7 @@ diff -ruN mysql-5.0.75_base/mysql-test/t/innodb_dict_size_limit.test mysql-5.0.7
 +--enable_warnings
 +
 +SET storage_engine=InnoDB;
-+SET GLOBAL innodb_dict_size_limit=0;
++SET GLOBAL innodb_dict_size_limit=1;
 +
 +FLUSH TABLES;
 +
@@ -449,7 +450,7 @@ diff -ruN mysql-5.0.75_base/mysql-test/t/innodb_dict_size_limit.test mysql-5.0.7
 +SELECT * FROM `test_3`;
 +SHOW GLOBAL STATUS LIKE 'Innodb_dict_tables';
 +
-+SET GLOBAL innodb_dict_size_limit=1024*1024*1024;
++SET GLOBAL innodb_dict_size_limit=0;
 +FLUSH TABLES;
 +SELECT * FROM `test_2`;
 +
