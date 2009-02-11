@@ -3252,7 +3252,7 @@ diff -r 1270c564d514 sql/sql_parse.cc
  
    if (query_cache_send_result_to_client(thd, (char*) inBuf, length) <= 0)
    {
-@@ -6396,6 +6899,39 @@
+@@ -6396,6 +6899,43 @@
      *found_semicolon= NULL;
    }
  
@@ -3280,9 +3280,13 @@ diff -r 1270c564d514 sql/sql_parse.cc
 +        !(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
 +      end_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
 +#endif
-+    if (start_cpu_nsecs && !cputime_error)
++    if (start_cpu_nsecs && !cputime_error) {
 +      thd->cpu_time = (end_cpu_nsecs - start_cpu_nsecs) / 1000000000;
-+    else
++      // In case there are bad values, 2629743 is the #seconds in a month.
++      if (thd->cpu_time > 2629743) {
++        thd->cpu_time = 0;
++      }
++    } else
 +      thd->cpu_time = 0;
 +  }
 +  // Updates THD stats and the global user stats.
@@ -3386,7 +3390,7 @@ diff -r 1270c564d514 sql/sql_prepare.cc
    }
  
    /* Reset warnings from previous command */
-@@ -1941,6 +1968,40 @@
+@@ -1941,6 +1968,44 @@
      thd->stmt_map.erase(stmt);
    }
    /* check_prepared_statemnt sends the metadata packet in case of success */
@@ -3415,9 +3419,13 @@ diff -r 1270c564d514 sql/sql_prepare.cc
 +        !(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
 +      end_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
 +#endif
-+    if (start_cpu_nsecs && !cputime_error)
++    if (start_cpu_nsecs && !cputime_error) {
 +      thd->cpu_time = (end_cpu_nsecs - start_cpu_nsecs) / 1000000000;
-+    else
++      // In case there are bad values, 2629743 is the #seconds in a month.
++      if (thd->cpu_time > 2629743) {
++        thd->cpu_time = 0;
++      }
++    } else
 +      thd->cpu_time = 0;
 +  }
 +  // Updates THD stats and the global user stats.
@@ -3461,7 +3469,7 @@ diff -r 1270c564d514 sql/sql_prepare.cc
  
  #ifdef ENABLED_PROFILING
    thd->profiling.set_query_source(stmt->query, stmt->query_length);
-@@ -2325,11 +2410,46 @@
+@@ -2325,11 +2410,50 @@
                         test(flags & (ulong) CURSOR_TYPE_READ_ONLY));
    if (!(specialflag & SPECIAL_NO_PRIOR))
      my_pthread_setprio(pthread_self(), WAIT_PRIOR);
@@ -3497,9 +3505,13 @@ diff -r 1270c564d514 sql/sql_prepare.cc
 +        !(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
 +      end_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
 +#endif
-+    if (start_cpu_nsecs && !cputime_error)
++    if (start_cpu_nsecs && !cputime_error) {
 +      thd->cpu_time = (end_cpu_nsecs - start_cpu_nsecs) / 1000000000;
-+    else
++      // In case there are bad values, 2629743 is the #seconds in a month.
++      if (thd->cpu_time > 2629743) {
++        thd->cpu_time = 0;
++      }
++    } else
 +      thd->cpu_time = 0;
 +  }
 +  // Updates THD stats and the global user stats.
@@ -3541,7 +3553,7 @@ diff -r 1270c564d514 sql/sql_prepare.cc
    statistic_increment(thd->status_var.com_stmt_fetch, &LOCK_status);
    if (!(stmt= find_prepared_statement(thd, stmt_id, "mysql_stmt_fetch")))
      DBUG_VOID_RETURN;
-@@ -2455,6 +2600,39 @@
+@@ -2455,6 +2600,43 @@
    thd->restore_backup_statement(stmt, &stmt_backup);
    thd->stmt_arena= thd;
  
@@ -3569,9 +3581,13 @@ diff -r 1270c564d514 sql/sql_prepare.cc
 +        !(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
 +      end_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
 +#endif
-+    if (start_cpu_nsecs && !cputime_error)
++    if (start_cpu_nsecs && !cputime_error) {
 +      thd->cpu_time = (end_cpu_nsecs - start_cpu_nsecs) / 1000000000;
-+    else
++      // In case there are bad values, 2629743 is the #seconds in a month.
++      if (thd->cpu_time > 2629743) {
++        thd->cpu_time = 0;
++      }
++    } else
 +      thd->cpu_time = 0;
 +  }
 +  // Updates THD stats and the global user stats.
@@ -3612,7 +3628,7 @@ diff -r 1270c564d514 sql/sql_prepare.cc
    statistic_increment(thd->status_var.com_stmt_reset, &LOCK_status);
    if (!(stmt= find_prepared_statement(thd, stmt_id, "mysql_stmt_reset")))
      DBUG_VOID_RETURN;
-@@ -2502,6 +2704,39 @@
+@@ -2502,6 +2704,43 @@
    stmt->state= Query_arena::PREPARED;
  
    send_ok(thd);
@@ -3641,9 +3657,13 @@ diff -r 1270c564d514 sql/sql_prepare.cc
 +        !(cputime_error = clock_gettime(CLOCK_THREAD_CPUTIME_ID, &tp)))
 +      end_cpu_nsecs = tp.tv_sec*1000000000.0+tp.tv_nsec;
 +#endif
-+    if (start_cpu_nsecs && !cputime_error)
++    if (start_cpu_nsecs && !cputime_error) {
 +      thd->cpu_time = (end_cpu_nsecs - start_cpu_nsecs) / 1000000000;
-+    else
++      // In case there are bad values, 2629743 is the #seconds in a month.
++      if (thd->cpu_time > 2629743) {
++        thd->cpu_time = 0;
++      }
++    } else
 +      thd->cpu_time = 0;
 +  }
 +  // Updates THD stats and the global user stats.
