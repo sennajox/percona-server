@@ -951,6 +951,15 @@ diff -r 2e0c46e78b50 innobase/buf/buf0lru.c
  
  	if (!recv_recovery_on && UT_LIST_GET_LEN(buf_pool->free)
  	   + UT_LIST_GET_LEN(buf_pool->LRU) < buf_pool->max_size / 20) {
+@@ -409,7 +449,7 @@
+ 	/* If there is a block in the free list, take it */
+ 	if (UT_LIST_GET_LEN(buf_pool->free) > 0) {
+ 		
+-		block = UT_LIST_GET_FIRST(buf_pool->free);
++		block = UT_LIST_GET_LAST(buf_pool->free);
+ 		ut_a(block->in_free_list);
+ 		UT_LIST_REMOVE(free, buf_pool->free, block);
+ 		block->in_free_list = FALSE;
 @@ -437,7 +477,7 @@
  
  		mutex_exit(&block->mutex);
