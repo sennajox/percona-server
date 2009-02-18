@@ -277,7 +277,7 @@ diff -ru mysql-5.0.75_base/sql/ha_innodb.h mysql-5.0.75/sql/ha_innodb.h
  extern ulong srv_flush_neighbor_pages;
  extern uint srv_read_ahead;
  extern ulong srv_adaptive_checkpoint;
-+extern ulint srv_dict_size_limit;
++extern ulong srv_dict_size_limit;
  extern ulong srv_show_locks_held;
  extern ulong srv_show_verbose_locks;
  extern ulong srv_io_pattern_trace;
