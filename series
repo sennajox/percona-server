@@ -1,5 +1,6 @@
 show_patches.patch
 microslow_innodb.patch
+profiling_slow.patch
 userstatv2.patch
 microsec_process.patch
 innodb_io_patches.patch
