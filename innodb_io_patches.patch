@@ -22,6 +22,14 @@ diff -ruN a/innobase/buf/buf0flu.c b/innobase/buf/buf0flu.c
 diff -ruN a/innobase/buf/buf0rea.c b/innobase/buf/buf0rea.c
 --- a/innobase/buf/buf0rea.c	2009-05-06 10:04:12.000000000 +0900
 +++ b/innobase/buf/buf0rea.c	2009-05-06 10:06:28.000000000 +0900
+@@ -20,6 +20,7 @@
+ #include "os0file.h"
+ #include "srv0start.h"
+ 
++extern ulint srv_read_ahead;
+ extern ulint srv_read_ahead_rnd;
+ extern ulint srv_read_ahead_seq;
+ extern ulint srv_buf_pool_reads;
 @@ -189,6 +189,10 @@
  	ulint		err;
  	ulint		i;
