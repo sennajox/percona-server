@@ -26,10 +26,11 @@ diff -r 04958490fc6d include/my_time.h
 diff -r 04958490fc6d innobase/buf/buf0buf.c
 --- a/innobase/buf/buf0buf.c	Tue Feb 17 22:32:27 2009 -0800
 +++ b/innobase/buf/buf0buf.c	Tue Feb 17 22:33:00 2009 -0800
-@@ -37,6 +37,9 @@
+@@ -37,6 +37,10 @@
  #include "log0log.h"
  #include "trx0undo.h"
  #include "srv0srv.h"
++#include "trx0trx.h"
 +
 +/* prototypes for new functions added to ha_innodb.cc */
 +trx_t* innobase_get_trx();
@@ -541,11 +542,12 @@ diff -r 04958490fc6d innobase/lock/lock0lock.c
 diff -r 04958490fc6d innobase/os/os0file.c
 --- a/innobase/os/os0file.c	Tue Feb 17 22:32:27 2009 -0800
 +++ b/innobase/os/os0file.c	Tue Feb 17 22:33:00 2009 -0800
-@@ -14,6 +14,7 @@
+@@ -14,6 +14,8 @@
  #include "srv0start.h"
  #include "fil0fil.h"
  #include "buf0buf.h"
 +#include "trx0sys.h"
++#include "trx0trx.h"
  
  #if defined(UNIV_HOTBACKUP) && defined(__WIN__)
  /* Add includes for the _stat() call to compile on Windows */
