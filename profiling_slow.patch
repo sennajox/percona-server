@@ -1,6 +1,6 @@
 diff -r 483c5a750443 patch_info/profiling_slow.info
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/patch_info/profiling_slow.info	Wed May 20 19:21:04 2009 -0700
++++ b/patch_info/profiling_slow.info	Wed May 20 20:13:02 2009 -0700
 @@ -0,0 +1,9 @@
 +File=profiling_slow.info
 +Name=profiling from SHOW PROFILE to slow.log
@@ -13,7 +13,7 @@ diff -r 483c5a750443 patch_info/profiling_slow.info
 +Initial implementation
 diff -r 483c5a750443 sql/log.cc
 --- a/sql/log.cc	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/log.cc	Wed May 20 19:21:04 2009 -0700
++++ b/sql/log.cc	Wed May 20 20:13:02 2009 -0700
 @@ -2397,6 +2397,9 @@
            tmp_errno=errno;
        }
@@ -26,7 +26,7 @@ diff -r 483c5a750443 sql/log.cc
        if (my_b_printf(&log_file,"use %s;\n",thd->db) == (uint) -1)
 diff -r 483c5a750443 sql/mysqld.cc
 --- a/sql/mysqld.cc	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/mysqld.cc	Wed May 20 19:21:04 2009 -0700
++++ b/sql/mysqld.cc	Wed May 20 20:13:02 2009 -0700
 @@ -5048,6 +5048,7 @@
    OPT_PORT_OPEN_TIMEOUT,
    OPT_MERGE,
@@ -54,7 +54,7 @@ diff -r 483c5a750443 sql/mysqld.cc
     "The location and name to use for relay logs.",
 diff -r 483c5a750443 sql/set_var.cc
 --- a/sql/set_var.cc	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/set_var.cc	Wed May 20 19:21:04 2009 -0700
++++ b/sql/set_var.cc	Wed May 20 20:13:02 2009 -0700
 @@ -589,6 +589,10 @@
                                        ulonglong(OPTION_PROFILING));
  static sys_var_thd_ulong	sys_profiling_history_size("profiling_history_size",
@@ -86,7 +86,7 @@ diff -r 483c5a750443 sql/set_var.cc
    {sys_query_alloc_block_size.name, (char*) &sys_query_alloc_block_size,
 diff -r 483c5a750443 sql/sql_class.h
 --- a/sql/sql_class.h	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/sql_class.h	Wed May 20 19:21:04 2009 -0700
++++ b/sql/sql_class.h	Wed May 20 20:13:02 2009 -0700
 @@ -550,6 +550,8 @@
    ulong optimizer_search_depth;
    ulong preload_buff_size;
@@ -98,7 +98,7 @@ diff -r 483c5a750443 sql/sql_class.h
    ulong read_buff_size;
 diff -r 483c5a750443 sql/sql_profile.cc
 --- a/sql/sql_profile.cc	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/sql_profile.cc	Wed May 20 19:21:04 2009 -0700
++++ b/sql/sql_profile.cc	Wed May 20 20:13:02 2009 -0700
 @@ -221,9 +221,22 @@
  */
  void PROF_MEASUREMENT::collect()
@@ -107,7 +107,7 @@ diff -r 483c5a750443 sql/sql_profile.cc
    time_usecs= (double) my_getsystime() / 10.0;  /* 1 sec was 1e7, now is 1e6 */
  #ifdef HAVE_GETRUSAGE
 -  getrusage(RUSAGE_SELF, &rusage);
-+  if (thd->variables.profiling_use_getrusage)
++  if ((profile->get_profiling())->enabled_getrusage())
 +    getrusage(RUSAGE_SELF, &rusage);
 +#endif
 +
@@ -142,10 +142,16 @@ diff -r 483c5a750443 sql/sql_profile.cc
          (current->query_source != NULL) &&
          (! current->entries.is_empty()))
      {
-@@ -481,6 +495,83 @@
+@@ -480,6 +494,88 @@
+   DBUG_VOID_RETURN;
  }
  
- /**
++bool PROFILING::enabled_getrusage()
++{
++  return thd->variables.profiling_use_getrusage;
++}
++
++/**
 +  Print output for current query to file 
 +*/
 +
@@ -222,13 +228,12 @@ diff -r 483c5a750443 sql/sql_profile.cc
 +  DBUG_RETURN(0);
 +}
 +
-+/**
+ /**
    Fill the information schema table, "query_profile", as defined in show.cc .
    There are two ways to get to this function:  Selecting from the information
-   schema, and a SHOW command.
 diff -r 483c5a750443 sql/sql_profile.h
 --- a/sql/sql_profile.h	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/sql_profile.h	Wed May 20 19:21:04 2009 -0700
++++ b/sql/sql_profile.h	Wed May 20 20:13:02 2009 -0700
 @@ -193,6 +193,7 @@
    unsigned int line;
  
@@ -237,7 +242,23 @@ diff -r 483c5a750443 sql/sql_profile.h
    char *allocated_status_memory;
  
    void set_label(const char *status_arg, const char *function_arg, 
-@@ -291,6 +292,7 @@
+@@ -243,6 +244,11 @@
+ 
+   /* Show this profile.  This is called by PROFILING. */
+   bool show(uint options);
++
++public:
++
++  inline PROFILING * get_profiling() { return profiling; };
++
+ };
+ 
+ 
+@@ -288,9 +294,11 @@
+ 
+   /* SHOW PROFILES */
+   bool show_profiles();
++  bool enabled_getrusage();
  
    /* ... from INFORMATION_SCHEMA.PROFILING ... */
    int fill_statistics_info(THD *thd, TABLE_LIST *tables, Item *cond);
@@ -247,7 +268,7 @@ diff -r 483c5a750443 sql/sql_profile.h
  #  endif /* HAVE_PROFILING */
 diff -r 483c5a750443 sql/sql_update.cc
 --- a/sql/sql_update.cc	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/sql_update.cc	Wed May 20 19:21:04 2009 -0700
++++ b/sql/sql_update.cc	Wed May 20 20:13:02 2009 -0700
 @@ -457,6 +457,7 @@
    */
    can_compare_record= !(table->file->table_flags() &
