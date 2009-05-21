@@ -26,7 +26,7 @@ diff -ruN a/innobase/buf/buf0rea.c b/innobase/buf/buf0rea.c
  #include "os0file.h"
  #include "srv0start.h"
  
-+extern ulint srv_read_ahead;
++extern uint srv_read_ahead;
  extern ulint srv_read_ahead_rnd;
  extern ulint srv_read_ahead_seq;
  extern ulint srv_buf_pool_reads;
