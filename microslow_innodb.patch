@@ -2330,14 +2330,14 @@ diff -r 04958490fc6d sql/sql_parse.cc
 +    limit, if one of them takes long enough (>= 1 second) it will be sensible 
 +    to make an exception and write to slow log anyway.
 +  */
++
 +  if (opt_use_global_long_query_time)
 +    thd->variables.long_query_time = global_system_variables.long_query_time;
-+  if (thd->write_to_slow_log != TRUE && thd->variables.long_query_time < 1000000 &&
-+      (ulong) (thd->start_timer - thd->timer_after_lock) >= 1000000)
-+    thd->write_to_slow_log= TRUE;
 +
 +  /* Do not log this thread's queries due to rate limiting. */
-+  if (thd->write_to_slow_log != TRUE)
++  if (thd->write_to_slow_log != TRUE
++      && (thd->variables.long_query_time >= 1000000
++          || (ulong) (thd->start_timer - thd->timer_after_lock) < 1000000))
 +    return;
  
    /*
