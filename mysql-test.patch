@@ -78,38 +78,6 @@
  +---------------------------------------+
  Wildcard: inf_rmation_schema
  +--------------------+
---- a/mysql-test/r/variables-big.result	2009-05-07 19:31:27.000000000 +0000
-+++ b/mysql-test/r/variables-big.result	2009-05-07 19:38:40.000000000 +0000
-@@ -1,24 +1,20 @@
- set session transaction_prealloc_size=1024*1024*1024*1;
- show processlist;
- Id	User	Host	db	Command	Time	State	Info
--6	root	localhost	test	Query	0	NULL	show processlist
-+1	root	localhost	test	Query	0	NULL	show processlist
- set session transaction_prealloc_size=1024*1024*1024*2;
- show processlist;
- Id	User	Host	db	Command	Time	State	Info
--6	root	localhost	test	Query	1	NULL	show processlist
-+1	root	localhost	test	Query	0	NULL	show processlist
- set session transaction_prealloc_size=1024*1024*1024*3;
- show processlist;
- Id	User	Host	db	Command	Time	State	Info
--6	root	localhost	test	Query	0	NULL	show processlist
-+1	root	localhost	test	Query	0	NULL	show processlist
- set session transaction_prealloc_size=1024*1024*1024*4;
--Warnings:
--Warning	1292	Truncated incorrect transaction_prealloc_size value: '4294967296'
- show processlist;
- Id	User	Host	db	Command	Time	State	Info
--6	root	localhost	test	Query	0	NULL	show processlist
-+1	root	localhost	test	Query	0	NULL	show processlist
- set session transaction_prealloc_size=1024*1024*1024*5;
--Warnings:
--Warning	1292	Truncated incorrect transaction_prealloc_size value: '5368709120'
- show processlist;
- Id	User	Host	db	Command	Time	State	Info
--6	root	localhost	test	Query	0	NULL	show processlist
-+1	root	localhost	test	Query	0	NULL	show processlist
 --- a/mysql-test/r/profiling.result	2009-05-28 19:39:42.000000000 +0000
 +++ b/mysql-test/r/profiling.result	2009-05-28 19:40:14.000000000 +0000
 @@ -6,6 +6,8 @@

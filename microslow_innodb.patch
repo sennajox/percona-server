@@ -2309,25 +2309,26 @@ diff -r 04958490fc6d sql/sql_parse.cc
      while (!net->error && net->vio != 0 &&
             !(thd->killed == THD::KILL_CONNECTION))
      {
-@@ -2353,27 +2363,55 @@
+@@ -2363,28 +2363,58 @@
      return;                                     // Don't set time for sub stmt
  
    start_of_query= thd->start_time;
+-  thd->end_time();				// Set start time
 +  ulonglong start_of_query_timer= thd->start_timer;
-   thd->end_time();				// Set start time
++  thd->end_time();				// Set start timea
 +
 +
 +  /* Follow the slow log filter configuration. */
-+  if (thd->variables.log_slow_filter != SLOG_F_NONE && 
++  if (thd->variables.log_slow_filter != SLOG_F_NONE &&
 +      (!(thd->variables.log_slow_filter & thd->query_plan_flags) ||
-+       ((thd->variables.log_slow_filter & SLOG_F_QC_NO) && 
++       ((thd->variables.log_slow_filter & SLOG_F_QC_NO) &&
 +        (thd->query_plan_flags & QPLAN_QC))))
 +    return;
 +
 +  /*
-+    Low long_query_time value most likely means user is debugging stuff and even 
-+    though some thread's queries are not supposed to be logged b/c of the rate 
-+    limit, if one of them takes long enough (>= 1 second) it will be sensible 
++    Low long_query_time value most likely means user is debugging stuff and even
++    though some thread's queries are not supposed to be logged b/c of the rate
++    limit, if one of them takes long enough (>= 1 second) it will be sensible
 +    to make an exception and write to slow log anyway.
 +  */
 +
@@ -2339,6 +2340,7 @@ diff -r 04958490fc6d sql/sql_parse.cc
 +      && (thd->variables.long_query_time >= 1000000
 +          || (ulong) (thd->start_timer - thd->timer_after_lock) < 1000000))
 +    return;
++
  
    /*
      Do not log administrative statements unless the appropriate option is
@@ -2348,11 +2350,13 @@ diff -r 04958490fc6d sql/sql_parse.cc
 +  if (thd->enable_slow_log &&
 +      (!thd->user_time || (thd->slave_thread && opt_log_slow_slave_statements))
 +     )
++
    {
      thd_proc_info(thd, "logging slow query");
  
--    if ((ulong) (thd->start_time - thd->time_after_lock) >
--	thd->variables.long_query_time ||
+-    if ((thd->start_time > thd->time_after_lock && 
+-         (ulong) (thd->start_time - thd->time_after_lock) >
+-	thd->variables.long_query_time) ||
 -        (thd->server_status &
 -	  (SERVER_QUERY_NO_INDEX_USED | SERVER_QUERY_NO_GOOD_INDEX_USED)) &&
 -        opt_log_queries_not_using_indexes &&
@@ -2366,6 +2370,7 @@ diff -r 04958490fc6d sql/sql_parse.cc
 +         /* == SQLCOM_END unless this is a SHOW command */
 +         thd->lex->orig_sql_command == SQLCOM_END) &&
 +        thd->examined_row_count >= thd->variables.min_examined_row_limit)
++
      {
        thd_proc_info(thd, "logging slow query");
        thd->status_var.long_query_count++;

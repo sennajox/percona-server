@@ -1153,15 +1153,15 @@ diff -r 66cc9e0a6768 sql/mysqld.cc
  
  #ifdef HAVE_REPLICATION
    if (opt_bin_log && expire_logs_days)
-@@ -5036,6 +5037,8 @@
+@@ -5098,6 +5098,8 @@
    OPT_INNODB_READ_IO_THREADS,
    OPT_INNODB_WRITE_IO_THREADS,
    OPT_INNODB_ADAPTIVE_HASH_INDEX,
 +  OPT_RPL_MIRROR_BINLOG,
 +  OPT_SYNC_MIRROR_BINLOG,
-   OPT_FEDERATED
+   OPT_FEDERATED,
+   OPT_INNODB_USE_LEGACY_CARDINALITY_ALGORITHM
  };
- 
 @@ -5725,6 +5728,11 @@
    {"rpl-recovery-rank", OPT_RPL_RECOVERY_RANK, "Undocumented.",
     (gptr*) &rpl_recovery_rank, (gptr*) &rpl_recovery_rank, 0, GET_ULONG,

@@ -147,15 +147,15 @@ diff -r 7d3d7786b927 patch_info/innodb_locks_held.info
 diff -r 7d3d7786b927 sql/ha_innodb.h
 --- a/sql/ha_innodb.h	Tue Feb 17 22:33:33 2009 -0800
 +++ b/sql/ha_innodb.h	Tue Feb 17 22:33:47 2009 -0800
-@@ -242,6 +242,8 @@
- extern ulong srv_flush_neighbor_pages;
+@@ -243,6 +243,8 @@
+ extern ulong srv_enable_unsafe_group_commit;
  extern uint srv_read_ahead;
  extern ulong srv_adaptive_checkpoint;
 +extern ulong srv_show_locks_held;
 +extern ulong srv_show_verbose_locks;
- }
- 
- bool innobase_init(void);
+
+ /* An option to enable the fix for "Bug#43660 SHOW INDEXES/ANALYZE does
+ NOT update cardinality for indexes of InnoDB table". By default we are
 diff -r 7d3d7786b927 sql/mysqld.cc
 --- a/sql/mysqld.cc	Tue Feb 17 22:33:33 2009 -0800
 +++ b/sql/mysqld.cc	Tue Feb 17 22:33:47 2009 -0800

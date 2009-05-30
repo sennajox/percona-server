@@ -486,7 +486,7 @@ diff -ruN a/sql/ha_innodb.h b/sql/ha_innodb.h
  extern long innobase_force_recovery;
  extern long innobase_open_files;
  extern char *innobase_data_home_dir, *innobase_data_file_path;
-@@ -234,6 +235,14 @@
+@@ -235,6 +235,15 @@
  extern ulong srv_thread_concurrency;
  extern ulong srv_commit_concurrency;
  extern ulong srv_flush_log_at_trx_commit;
@@ -498,9 +498,10 @@ diff -ruN a/sql/ha_innodb.h b/sql/ha_innodb.h
 +extern ulong srv_enable_unsafe_group_commit;
 +extern uint srv_read_ahead;
 +extern ulong srv_adaptive_checkpoint;
- }
- 
- bool innobase_init(void);
++
+ /* An option to enable the fix for "Bug#43660 SHOW INDEXES/ANALYZE does
+ NOT update cardinality for indexes of InnoDB table". By default we are
+ running with the fix disabled because MySQL 5.1 is frozen for such
 diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
 --- a/sql/mysqld.cc	2009-05-06 10:04:19.000000000 +0900
 +++ b/sql/mysqld.cc	2009-05-06 10:33:23.000000000 +0900
@@ -647,7 +648,7 @@ diff -ruN a/sql/set_var.cc b/sql/set_var.cc
  #endif
    &sys_trust_routine_creators,
    &sys_trust_function_creators,
-@@ -985,6 +1025,16 @@
+@@ -1037,6 +1037,16 @@
    {sys_innodb_table_locks.name, (char*) &sys_innodb_table_locks, SHOW_SYS},
    {sys_innodb_thread_concurrency.name, (char*) &sys_innodb_thread_concurrency, SHOW_SYS},
    {sys_innodb_thread_sleep_delay.name, (char*) &sys_innodb_thread_sleep_delay, SHOW_SYS},
@@ -661,9 +662,9 @@ diff -ruN a/sql/set_var.cc b/sql/set_var.cc
 +  {sys_innodb_adaptive_checkpoint.name, (char*) &sys_innodb_adaptive_checkpoint, SHOW_SYS},
 +  {"innodb_read_io_threads", (char*) &innobase_read_io_threads, SHOW_LONG},
 +  {"innodb_write_io_threads", (char*) &innobase_write_io_threads, SHOW_LONG},
+   {sys_innodb_use_legacy_cardinality_algorithm.name,
+    (char*) &sys_innodb_use_legacy_cardinality_algorithm, SHOW_SYS},
  #endif
-   {sys_interactive_timeout.name,(char*) &sys_interactive_timeout,   SHOW_SYS},
-   {sys_join_buffer_size.name,   (char*) &sys_join_buffer_size,	    SHOW_SYS},
 @@ -1443,6 +1493,13 @@
    }
  }
