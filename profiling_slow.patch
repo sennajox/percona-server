@@ -1,6 +1,6 @@
-diff -r 483c5a750443 patch_info/profiling_slow.info
+diff -r 92e70e675363 patch_info/profiling_slow.info
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/patch_info/profiling_slow.info	Wed May 20 20:14:42 2009 -0700
++++ b/patch_info/profiling_slow.info	Mon Jun 01 00:50:00 2009 -0700
 @@ -0,0 +1,9 @@
 +File=profiling_slow.info
 +Name=profiling from SHOW PROFILE to slow.log
@@ -11,10 +11,10 @@ diff -r 483c5a750443 patch_info/profiling_slow.info
 +Changelog
 +2009-05-18
 +Initial implementation
-diff -r 483c5a750443 sql/log.cc
---- a/sql/log.cc	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/log.cc	Wed May 20 20:14:42 2009 -0700
-@@ -2397,6 +2397,9 @@
+diff -r 92e70e675363 sql/log.cc
+--- a/sql/log.cc	Mon Jun 01 00:48:56 2009 -0700
++++ b/sql/log.cc	Mon Jun 01 00:50:00 2009 -0700
+@@ -2402,6 +2402,9 @@
            tmp_errno=errno;
        }
      }
@@ -24,10 +24,10 @@ diff -r 483c5a750443 sql/log.cc
      if (thd->db && strcmp(thd->db,db))
      {						// Database changed
        if (my_b_printf(&log_file,"use %s;\n",thd->db) == (uint) -1)
-diff -r 483c5a750443 sql/mysqld.cc
---- a/sql/mysqld.cc	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/mysqld.cc	Wed May 20 20:14:42 2009 -0700
-@@ -5048,6 +5048,8 @@
+diff -r 92e70e675363 sql/mysqld.cc
+--- a/sql/mysqld.cc	Mon Jun 01 00:48:56 2009 -0700
++++ b/sql/mysqld.cc	Mon Jun 01 00:50:00 2009 -0700
+@@ -5052,6 +5052,8 @@
    OPT_PORT_OPEN_TIMEOUT,
    OPT_MERGE,
    OPT_PROFILING,
@@ -36,7 +36,7 @@ diff -r 483c5a750443 sql/mysqld.cc
    OPT_SLOW_LOG,
    OPT_SLOW_QUERY_LOG_FILE,
    OPT_USE_GLOBAL_LONG_QUERY_TIME,
-@@ -5662,6 +5664,16 @@
+@@ -5675,6 +5677,16 @@
     (gptr*) &global_system_variables.profiling_history_size,
     (gptr*) &max_system_variables.profiling_history_size,
     0, GET_ULONG, REQUIRED_ARG, 15, 0, 100, 0, 0, 0},
@@ -53,10 +53,10 @@ diff -r 483c5a750443 sql/mysqld.cc
  #endif
    {"relay-log", OPT_RELAY_LOG,
     "The location and name to use for relay logs.",
-diff -r 483c5a750443 sql/set_var.cc
---- a/sql/set_var.cc	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/set_var.cc	Wed May 20 20:14:42 2009 -0700
-@@ -589,6 +589,10 @@
+diff -r 92e70e675363 sql/set_var.cc
+--- a/sql/set_var.cc	Mon Jun 01 00:48:56 2009 -0700
++++ b/sql/set_var.cc	Mon Jun 01 00:50:00 2009 -0700
+@@ -592,6 +592,10 @@
                                        ulonglong(OPTION_PROFILING));
  static sys_var_thd_ulong	sys_profiling_history_size("profiling_history_size",
  					      &SV::profiling_history_size);
@@ -67,7 +67,7 @@ diff -r 483c5a750443 sql/set_var.cc
  #endif
  
  /* Local state variables */
-@@ -761,6 +765,8 @@
+@@ -764,6 +768,8 @@
  #ifdef ENABLED_PROFILING
    &sys_profiling,
    &sys_profiling_history_size,
@@ -76,7 +76,7 @@ diff -r 483c5a750443 sql/set_var.cc
  #endif
    &sys_pseudo_thread_id,
    &sys_query_alloc_block_size,
-@@ -1086,6 +1092,8 @@
+@@ -1094,6 +1100,8 @@
  #ifdef ENABLED_PROFILING
    {sys_profiling.name,        (char*) &sys_profiling,               SHOW_SYS},
    {sys_profiling_history_size.name, (char*) &sys_profiling_history_size, SHOW_SYS},
@@ -85,9 +85,9 @@ diff -r 483c5a750443 sql/set_var.cc
  #endif
    {"protocol_version",        (char*) &protocol_version,            SHOW_INT},
    {sys_query_alloc_block_size.name, (char*) &sys_query_alloc_block_size,
-diff -r 483c5a750443 sql/sql_class.h
---- a/sql/sql_class.h	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/sql_class.h	Wed May 20 20:14:42 2009 -0700
+diff -r 92e70e675363 sql/sql_class.h
+--- a/sql/sql_class.h	Mon Jun 01 00:48:56 2009 -0700
++++ b/sql/sql_class.h	Mon Jun 01 00:50:00 2009 -0700
 @@ -550,6 +550,8 @@
    ulong optimizer_search_depth;
    ulong preload_buff_size;
@@ -97,9 +97,9 @@ diff -r 483c5a750443 sql/sql_class.h
    ulong query_cache_type;
    ulong log_slow_rate_limit;
    ulong read_buff_size;
-diff -r 483c5a750443 sql/sql_profile.cc
---- a/sql/sql_profile.cc	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/sql_profile.cc	Wed May 20 20:14:42 2009 -0700
+diff -r 92e70e675363 sql/sql_profile.cc
+--- a/sql/sql_profile.cc	Mon Jun 01 00:48:56 2009 -0700
++++ b/sql/sql_profile.cc	Mon Jun 01 00:50:00 2009 -0700
 @@ -221,9 +221,22 @@
  */
  void PROF_MEASUREMENT::collect()
@@ -232,9 +232,9 @@ diff -r 483c5a750443 sql/sql_profile.cc
  /**
    Fill the information schema table, "query_profile", as defined in show.cc .
    There are two ways to get to this function:  Selecting from the information
-diff -r 483c5a750443 sql/sql_profile.h
---- a/sql/sql_profile.h	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/sql_profile.h	Wed May 20 20:14:42 2009 -0700
+diff -r 92e70e675363 sql/sql_profile.h
+--- a/sql/sql_profile.h	Mon Jun 01 00:48:56 2009 -0700
++++ b/sql/sql_profile.h	Mon Jun 01 00:50:00 2009 -0700
 @@ -193,6 +193,7 @@
    unsigned int line;
  
@@ -267,30 +267,3 @@ diff -r 483c5a750443 sql/sql_profile.h
  };
  
  #  endif /* HAVE_PROFILING */
-diff -r 483c5a750443 sql/sql_update.cc
---- a/sql/sql_update.cc	Wed May 20 19:06:56 2009 -0700
-+++ b/sql/sql_update.cc	Wed May 20 20:14:42 2009 -0700
-@@ -457,6 +457,7 @@
-   */
-   can_compare_record= !(table->file->table_flags() &
-                         HA_PARTIAL_COLUMN_READ);
-+  thd_proc_info(thd, "Updating, get first row");
-   while (!(error=info.read_record(&info)) && !thd->killed)
-   {
-     if (!(select && select->skip_record()))
-@@ -483,6 +484,7 @@
-             break;
-           }
-         }
-+	thd_proc_info(thd, "Updating row");
-         if (!(error=table->file->update_row((byte*) table->record[1],
-                                             (byte*) table->record[0])))
-         {
-@@ -508,6 +510,7 @@
-           error= 1;
-           break;
-         }
-+	thd_proc_info(thd, "Updating, get next row");
-       }
-       
-       if (!--limit && using_limit)
