@@ -6,7 +6,7 @@ diff -r 069dc6d4f269 include/my_getopt.h
  #define GET_STR        9
  #define GET_STR_ALLOC 10
 -#define GET_DISABLED  11
-+#define GET_DOUBLE    11
++#define GET_MICROTIME 11
 +#define GET_DISABLED  12
  
  #define GET_ASK_ADDR	 128
@@ -866,12 +866,22 @@ diff -r 069dc6d4f269 innobase/trx/trx0trx.c
 diff -r 069dc6d4f269 mysys/my_getopt.c
 --- a/mysys/my_getopt.c	Mon Jun 01 00:35:20 2009 -0700
 +++ b/mysys/my_getopt.c	Mon Jun 01 00:35:30 2009 -0700
+@@ -827,7 +827,8 @@
+ #endif
+     break;
+   default:
+-    DBUG_ASSERT((optp->var_type & GET_TYPE_MASK) == GET_ULL);
++    DBUG_ASSERT((optp->var_type & GET_TYPE_MASK) == GET_ULL
++                || (optp->var_type & GET_TYPE_MASK) == GET_MICROTIME);
+     break;
+   }
+ 
 @@ -1061,6 +1061,9 @@
        case GET_ULONG:
  	printf("%lu\n", *((ulong*) value));
  	break;
-+      case GET_DOUBLE:
-+	printf("%6f\n", *((double*) value));
++      case GET_MICROTIME:
++	printf("%6f\n", ((double)(*((longlong*) value))) / 1000000.0);
 +	break;
        case GET_LL:
  	printf("%s\n", llstr(*((longlong*) value), buff));
@@ -1477,7 +1487,7 @@ diff -r 069dc6d4f269 sql/mysqld.cc
 +   {"long_query_time", OPT_LONG_QUERY_TIME,
 +    "Log all queries that have taken more than long_query_time seconds to execute to file.",
 +    (gptr*) &global_system_variables.long_query_time,
-+    (gptr*) &max_system_variables.long_query_time, 0, GET_DOUBLE,
++    (gptr*) &max_system_variables.long_query_time, 0, GET_MICROTIME,
 +    REQUIRED_ARG, 10000000, 0, LONG_TIMEOUT * 1000000, 0, 1, 0},
 +  {"min_examined_row_limit", OPT_MIN_EXAMINED_ROW_LIMIT,
 +    "Don't log queries which examine less than min_examined_row_limit rows to file.",
