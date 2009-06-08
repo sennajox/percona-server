@@ -14,12 +14,14 @@ diff -r 92e70e675363 patch_info/profiling_slow.info
 diff -r 92e70e675363 sql/log.cc
 --- a/sql/log.cc	Mon Jun 01 00:48:56 2009 -0700
 +++ b/sql/log.cc	Mon Jun 01 00:50:00 2009 -0700
-@@ -2402,6 +2402,9 @@
+@@ -2402,6 +2402,11 @@
            tmp_errno=errno;
        }
      }
 +
++#if defined(ENABLED_PROFILING) && defined(COMMUNITY_SERVER)
 +    thd->profiling.print_current(&log_file);
++#endif
 +
      if (thd->db && strcmp(thd->db,db))
      {						// Database changed
