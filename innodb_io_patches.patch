@@ -145,7 +145,7 @@ diff -ruN a/innobase/include/srv0srv.h b/innobase/include/srv0srv.h
 diff -ruN a/innobase/log/log0log.c b/innobase/log/log0log.c
 --- a/innobase/log/log0log.c	2009-05-08 06:12:10.000000000 +0900
 +++ b/innobase/log/log0log.c	2009-06-25 09:50:16.000000000 +0900
-@@ -1524,6 +1524,26 @@
+@@ -1524,6 +1524,29 @@
  }
  
  /********************************************************************
@@ -156,7 +156,7 @@ diff -ruN a/innobase/log/log0log.c b/innobase/log/log0log.c
 +log_buffer_flush_maybe_sync(void)
 +/*=============================*/
 +{
-+	ib_uint64_t	lsn;
++	dulint	lsn;
 +
 +	mutex_enter(&(log_sys->mutex));
 +
@@ -166,7 +166,10 @@ diff -ruN a/innobase/log/log0log.c b/innobase/log/log0log.c
 +
 +	/* Force log buffer to disk when innodb_flush_log_at_trx_commit = 1. */
 +	log_write_up_to(lsn, LOG_WAIT_ALL_GROUPS,
-+			srv_flush_log_at_trx_commit == 1 ? TRUE : FALSE);
++			srv_flush_log_at_trx_commit == 1 ? TRUE : FALSE,
++			srv_flush_log_at_trx_commit == 1 ?
++				LOG_WRITE_FROM_BACKGROUND_SYNC :
++				LOG_WRITE_FROM_BACKGROUND_ASYNC);
 +}
 +/********************************************************************
  Tries to establish a big enough margin of free space in the log buffer, such
