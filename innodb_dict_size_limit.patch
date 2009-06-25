@@ -295,7 +295,7 @@ diff -ru mysql-5.0.75_base/sql/mysqld.cc mysql-5.0.75/sql/mysqld.cc
 @@ -5406,6 +5407,10 @@
     "Number of background write I/O threads in InnoDB.",
     (gptr*) &innobase_write_io_threads, (gptr*) &innobase_write_io_threads,
-    0, GET_LONG, REQUIRED_ARG, 1, 1, 64, 0, 0, 0},
+    0, GET_LONG, REQUIRED_ARG, 8, 1, 64, 0, 0, 0},
 +  {"innodb_dict_size_limit", OPT_INNODB_DICT_SIZE_LIMIT,
 +   "Limit the allocated memory for dictionary cache. (0: unlimited)",
 +   (gptr*) &srv_dict_size_limit, (gptr*) &srv_dict_size_limit, 0,
