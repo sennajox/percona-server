@@ -652,7 +652,7 @@ diff -ruN a/innobase/buf/buf0flu.c b/innobase/buf/buf0flu.c
  	    					&& (block->io_fix == 0)) {
  	    	if (flush_type != BUF_FLUSH_LRU) {
  
-@@ -182,16 +189,19 @@
+@@ -182,15 +189,17 @@
  {
  	ut_ad(block);
  #ifdef UNIV_SYNC_DEBUG
@@ -669,18 +669,8 @@ diff -ruN a/innobase/buf/buf0flu.c b/innobase/buf/buf0flu.c
  	ut_d(UT_LIST_VALIDATE(flush_list, buf_block_t, buf_pool->flush_list));
 +	mutex_exit(&(buf_pool->flush_list_mutex));
  
-+	mutex_enter(&(buf_pool->mutex));
  	(buf_pool->n_flush[block->flush_type])--;
  
- 	if (block->flush_type == BUF_FLUSH_LRU) {
-@@ -213,6 +223,7 @@
- 
- 		os_event_set(buf_pool->no_flush[block->flush_type]);
- 	}
-+	mutex_exit(&(buf_pool->mutex));
- }
- 
- /************************************************************************
 @@ -536,18 +547,20 @@
  	ut_ad(flush_type == BUF_FLUSH_LRU || flush_type == BUF_FLUSH_LIST
  				|| flush_type == BUF_FLUSH_SINGLE_PAGE);
