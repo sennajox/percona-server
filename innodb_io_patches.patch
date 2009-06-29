@@ -786,7 +786,7 @@ diff -ruN a/innobase/srv/srv0srv.c b/innobase/srv/srv0srv.c
  							  ut_dulint_max);
  
  		        /* If we had to do the flush, it may have taken
-@@ -2341,6 +2369,72 @@
+@@ -2341,6 +2369,77 @@
  			iteration of this loop. */
  			     
  			skip_sleep = TRUE;
@@ -825,8 +825,11 @@ diff -ruN a/innobase/srv/srv0srv.c b/innobase/srv/srv0srv.c
 +					bpage = UT_LIST_GET_FIRST(buf_pool->flush_list);
 +
 +					while (bpage != NULL) {
-+						level += log_sys->max_checkpoint_age
-+							 - ut_dulint_minus(lsn, bpage->oldest_modification);
++						dulint	oldest_modification = bpage->oldest_modification;
++						if (!ut_dulint_is_zero(oldest_modification)) {
++							level += log_sys->max_checkpoint_age
++								 - ut_dulint_minus(lsn, oldest_modification);
++						}
 +						bpage = UT_LIST_GET_NEXT(flush_list, bpage);
 +					}
 +
@@ -843,7 +846,9 @@ diff -ruN a/innobase/srv/srv0srv.c b/innobase/srv/srv0srv.c
 +					if(bpl)
 +						n_pages_flushed = buf_flush_batch(BUF_FLUSH_LIST,
 +									bpl,
-+									ut_dulint_max);
++									ut_dulint_add(oldest_lsn,
++										ut_dulint_minus(lsn,
++											lsn_old)));
 +
 +					/*
 +					fprintf(stderr,
