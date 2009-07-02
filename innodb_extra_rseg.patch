@@ -3,7 +3,7 @@ diff -ruN a/innobase/include/srv0srv.h b/innobase/include/srv0srv.h
 +++ b/innobase/include/srv0srv.h	2009-05-06 13:37:45.000000000 +0900
 @@ -147,6 +147,8 @@
  extern uint	srv_read_ahead;
- extern ulint	srv_adaptive_checkpoint;
+ extern uint	srv_adaptive_checkpoint;
  
 +extern ulint	srv_extra_rsegments;
 +
@@ -32,7 +32,7 @@ diff -ruN a/innobase/srv/srv0srv.c b/innobase/srv/srv0srv.c
 +++ b/innobase/srv/srv0srv.c	2009-05-06 13:38:23.000000000 +0900
 @@ -347,6 +347,8 @@
  uint	srv_read_ahead = 3; /* 1: random  2: linear  3: Both */
- ulint	srv_adaptive_checkpoint = 0; /* 0:disable 1:enable */
+ uint	srv_adaptive_checkpoint = 0; /* 0: none  1: reflex  2: estimate */
  
 +ulint	srv_extra_rsegments = 0; /* extra rseg for users */
 +

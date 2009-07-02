@@ -213,7 +213,7 @@ diff -r 5060df9888d7 innobase/include/srv0srv.h
 @@ -145,6 +145,11 @@
  extern ulint	srv_flush_neighbor_pages;
  extern uint	srv_read_ahead;
- extern ulint	srv_adaptive_checkpoint;
+ extern uint	srv_adaptive_checkpoint;
 +
 +extern volatile ibool srv_io_pattern;
 +extern ulong	srv_io_pattern_trace;
@@ -228,7 +228,7 @@ diff -r 5060df9888d7 innobase/srv/srv0srv.c
 @@ -344,6 +344,11 @@
  
  uint	srv_read_ahead = 3; /* 1: random  2: linear  3: Both */
- ulint	srv_adaptive_checkpoint = 0; /* 0:disable 1:enable */
+ uint	srv_adaptive_checkpoint = 0; /* 0: none  1: reflex  2: estimate */
 +
 +volatile ibool srv_io_pattern = FALSE;
 +ulint   srv_io_pattern_trace = 0;

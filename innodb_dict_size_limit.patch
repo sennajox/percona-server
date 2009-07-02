@@ -223,7 +223,7 @@ diff -ru mysql-5.0.75_base/innobase/include/srv0srv.h mysql-5.0.75/innobase/incl
 +++ mysql-5.0.75/innobase/include/srv0srv.h	2009-01-27 10:47:26.000000000 +0900
 @@ -146,6 +146,8 @@
  extern uint	srv_read_ahead;
- extern ulint	srv_adaptive_checkpoint;
+ extern uint	srv_adaptive_checkpoint;
  
 +extern ulint	srv_dict_size_limit;
 +
@@ -243,7 +243,7 @@ diff -ru mysql-5.0.75_base/innobase/srv/srv0srv.c mysql-5.0.75/innobase/srv/srv0
 +++ mysql-5.0.75/innobase/srv/srv0srv.c	2009-01-27 10:52:19.000000000 +0900
 @@ -345,6 +345,8 @@
  uint	srv_read_ahead = 3; /* 1: random  2: linear  3: Both */
- ulint	srv_adaptive_checkpoint = 0; /* 0:disable 1:enable */
+ uint	srv_adaptive_checkpoint = 0; /* 0: none  1: reflex  2: estimate */
  
 +ulint	srv_dict_size_limit = 0;
 +
@@ -276,7 +276,7 @@ diff -ru mysql-5.0.75_base/sql/ha_innodb.h mysql-5.0.75/sql/ha_innodb.h
 @@ -242,6 +242,7 @@
  extern ulong srv_flush_neighbor_pages;
  extern uint srv_read_ahead;
- extern ulong srv_adaptive_checkpoint;
+ extern uint srv_adaptive_checkpoint;
 +extern ulong srv_dict_size_limit;
  extern ulong srv_show_locks_held;
  extern ulong srv_show_verbose_locks;
@@ -307,9 +307,9 @@ diff -ru mysql-5.0.75_base/sql/set_var.cc mysql-5.0.75/sql/set_var.cc
 --- mysql-5.0.75_base/sql/set_var.cc	2009-01-23 11:44:19.000000000 +0900
 +++ mysql-5.0.75/sql/set_var.cc	2009-01-26 15:46:45.000000000 +0900
 @@ -522,6 +522,8 @@
-                                       &innodb_read_ahead_typelib, fix_innodb_read_ahead);
- sys_var_long_ptr	sys_innodb_adaptive_checkpoint("innodb_adaptive_checkpoint",
-                                                       &srv_adaptive_checkpoint);
+ sys_var_enum	sys_innodb_adaptive_checkpoint("innodb_adaptive_checkpoint",
+                            &srv_adaptive_checkpoint,
+                            &innodb_adaptive_checkpoint_typelib, fix_innodb_adaptive_checkpoint);
 +sys_var_long_ptr	sys_innodb_dict_size_limit("innodb_dict_size_limit",
 +                                                   &srv_dict_size_limit);
  sys_var_long_ptr  sys_innodb_show_locks_held(
