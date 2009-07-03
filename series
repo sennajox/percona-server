@@ -15,6 +15,6 @@ innodb_show_hashed_memory.patch
 innodb_dict_size_limit.patch
 innodb_extra_rseg.patch
 innodb_thread_concurrency_timer_based.patch
-split_buf_pool_mutex_fixed_optimistic_safe.patch
+innodb_split_buf_pool_mutex.patch
 innodb_rw_lock.patch
 mysql-test.patch
