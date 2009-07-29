@@ -1,6 +1,6 @@
-diff -r c7ae2bca6417 BUILD/Makefile.in
---- a/BUILD/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/BUILD/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c BUILD/Makefile.in
+--- a/BUILD/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/BUILD/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -146,6 +146,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -9,9 +9,9 @@ diff -r c7ae2bca6417 BUILD/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 Docs/Makefile.in
---- a/Docs/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/Docs/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c Docs/Makefile.in
+--- a/Docs/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/Docs/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -144,6 +144,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -20,9 +20,9 @@ diff -r c7ae2bca6417 Docs/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 Makefile.in
---- a/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c Makefile.in
+--- a/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -171,6 +171,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -31,9 +31,9 @@ diff -r c7ae2bca6417 Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 SSL/Makefile.in
---- a/SSL/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/SSL/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c SSL/Makefile.in
+--- a/SSL/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/SSL/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -144,6 +144,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -42,9 +42,9 @@ diff -r c7ae2bca6417 SSL/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 client/Makefile.in
---- a/client/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/client/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c client/Makefile.in
+--- a/client/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/client/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -247,6 +247,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -53,9 +53,9 @@ diff -r c7ae2bca6417 client/Makefile.in
  LIBS = @CLIENT_LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 cmd-line-utils/Makefile.in
---- a/cmd-line-utils/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/cmd-line-utils/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c cmd-line-utils/Makefile.in
+--- a/cmd-line-utils/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/cmd-line-utils/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -157,6 +157,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -64,9 +64,9 @@ diff -r c7ae2bca6417 cmd-line-utils/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 cmd-line-utils/libedit/Makefile.in
---- a/cmd-line-utils/libedit/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/cmd-line-utils/libedit/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c cmd-line-utils/libedit/Makefile.in
+--- a/cmd-line-utils/libedit/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/cmd-line-utils/libedit/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -166,6 +166,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -75,9 +75,9 @@ diff -r c7ae2bca6417 cmd-line-utils/libedit/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 cmd-line-utils/readline/Makefile.in
---- a/cmd-line-utils/readline/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/cmd-line-utils/readline/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c cmd-line-utils/readline/Makefile.in
+--- a/cmd-line-utils/readline/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/cmd-line-utils/readline/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -173,6 +173,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -86,9 +86,9 @@ diff -r c7ae2bca6417 cmd-line-utils/readline/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 configure
---- a/configure	Tue Jul 28 23:42:46 2009 -0700
-+++ b/configure	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c configure
+--- a/configure	Wed Jul 29 00:09:40 2009 -0700
++++ b/configure	Wed Jul 29 00:09:56 2009 -0700
 @@ -35347,7 +35347,91 @@
  	# We also disable for SCO for the time being, the headers for the
  	# thread library we use conflicts with other headers.
@@ -191,9 +191,9 @@ diff -r c7ae2bca6417 configure
  
  
  
-diff -r c7ae2bca6417 configure.in
---- a/configure.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/configure.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c configure.in
+--- a/configure.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/configure.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -2136,7 +2136,18 @@
  	# We also disable for SCO for the time being, the headers for the
  	# thread library we use conflicts with other headers.
@@ -223,9 +223,9 @@ diff -r c7ae2bca6417 configure.in
  
  AC_SUBST(CLIENT_LIBS)
  AC_SUBST(NON_THREADED_LIBS)
-diff -r c7ae2bca6417 dbug/Makefile.in
---- a/dbug/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/dbug/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c dbug/Makefile.in
+--- a/dbug/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/dbug/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -192,6 +192,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -234,9 +234,9 @@ diff -r c7ae2bca6417 dbug/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 extra/Makefile.in
---- a/extra/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/extra/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c extra/Makefile.in
+--- a/extra/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/extra/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -240,6 +240,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -245,9 +245,9 @@ diff -r c7ae2bca6417 extra/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 extra/yassl/Makefile.in
---- a/extra/yassl/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/extra/yassl/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c extra/yassl/Makefile.in
+--- a/extra/yassl/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/extra/yassl/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -142,6 +142,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -256,9 +256,9 @@ diff -r c7ae2bca6417 extra/yassl/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 extra/yassl/src/Makefile.in
---- a/extra/yassl/src/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/extra/yassl/src/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c extra/yassl/src/Makefile.in
+--- a/extra/yassl/src/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/extra/yassl/src/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -151,6 +151,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -267,9 +267,9 @@ diff -r c7ae2bca6417 extra/yassl/src/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 extra/yassl/taocrypt/Makefile.in
---- a/extra/yassl/taocrypt/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/extra/yassl/taocrypt/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c extra/yassl/taocrypt/Makefile.in
+--- a/extra/yassl/taocrypt/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/extra/yassl/taocrypt/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -142,6 +142,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -278,9 +278,9 @@ diff -r c7ae2bca6417 extra/yassl/taocrypt/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 extra/yassl/taocrypt/benchmark/Makefile.in
---- a/extra/yassl/taocrypt/benchmark/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/extra/yassl/taocrypt/benchmark/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c extra/yassl/taocrypt/benchmark/Makefile.in
+--- a/extra/yassl/taocrypt/benchmark/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/extra/yassl/taocrypt/benchmark/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -153,6 +153,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -289,9 +289,9 @@ diff -r c7ae2bca6417 extra/yassl/taocrypt/benchmark/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 extra/yassl/taocrypt/src/Makefile.in
---- a/extra/yassl/taocrypt/src/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/extra/yassl/taocrypt/src/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c extra/yassl/taocrypt/src/Makefile.in
+--- a/extra/yassl/taocrypt/src/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/extra/yassl/taocrypt/src/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -164,6 +164,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -300,9 +300,9 @@ diff -r c7ae2bca6417 extra/yassl/taocrypt/src/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 extra/yassl/taocrypt/test/Makefile.in
---- a/extra/yassl/taocrypt/test/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/extra/yassl/taocrypt/test/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c extra/yassl/taocrypt/test/Makefile.in
+--- a/extra/yassl/taocrypt/test/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/extra/yassl/taocrypt/test/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -153,6 +153,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -311,9 +311,9 @@ diff -r c7ae2bca6417 extra/yassl/taocrypt/test/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 extra/yassl/testsuite/Makefile.in
---- a/extra/yassl/testsuite/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/extra/yassl/testsuite/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c extra/yassl/testsuite/Makefile.in
+--- a/extra/yassl/testsuite/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/extra/yassl/testsuite/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -156,6 +156,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -322,9 +322,9 @@ diff -r c7ae2bca6417 extra/yassl/testsuite/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 heap/Makefile.in
---- a/heap/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/heap/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c heap/Makefile.in
+--- a/heap/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/heap/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -202,6 +202,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -333,9 +333,9 @@ diff -r c7ae2bca6417 heap/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 include/Makefile.in
---- a/include/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/include/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c include/Makefile.in
+--- a/include/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/include/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -160,6 +160,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -344,10 +344,10 @@ diff -r c7ae2bca6417 include/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 include/mysql_com.h
---- a/include/mysql_com.h	Tue Jul 28 23:42:46 2009 -0700
-+++ b/include/mysql_com.h	Tue Jul 28 23:42:52 2009 -0700
-@@ -106,6 +106,11 @@
+diff -r 85ce661bd25c include/mysql_com.h
+--- a/include/mysql_com.h	Wed Jul 29 00:09:40 2009 -0700
++++ b/include/mysql_com.h	Wed Jul 29 00:09:56 2009 -0700
+@@ -106,6 +106,10 @@
  					   thread */
  #define REFRESH_MASTER          128     /* Remove all bin logs in the index
  					   and truncate the index */
@@ -355,13 +355,12 @@ diff -r c7ae2bca6417 include/mysql_com.h
 +#define REFRESH_INDEX_STATS     512     /* Refresh index stats hash table */
 +#define REFRESH_USER_STATS      1024    /* Refresh user stats hash table */
 +#define REFRESH_SLOW_QUERY_LOG  4096    /* Flush slow query log and rotate*/
-+#define REFRESH_CLIENT_STATS    8192    /* Refresh client stats hash table */
  
  /* The following can't be set with mysql_refresh() */
  #define REFRESH_READ_LOCK	16384	/* Lock tables for read */
-diff -r c7ae2bca6417 libmysql/Makefile.in
---- a/libmysql/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/libmysql/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c libmysql/Makefile.in
+--- a/libmysql/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/libmysql/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -224,6 +224,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -370,9 +369,9 @@ diff -r c7ae2bca6417 libmysql/Makefile.in
  LIBS = @CLIENT_LIBS@ 
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 libmysql_r/Makefile.in
---- a/libmysql_r/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/libmysql_r/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c libmysql_r/Makefile.in
+--- a/libmysql_r/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/libmysql_r/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -221,6 +221,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -381,9 +380,9 @@ diff -r c7ae2bca6417 libmysql_r/Makefile.in
  LIBS = @LIBS@ @ZLIB_LIBS@ @openssl_libs@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 libmysqld/Makefile.in
---- a/libmysqld/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/libmysqld/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c libmysqld/Makefile.in
+--- a/libmysqld/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/libmysqld/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -246,6 +246,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -392,9 +391,9 @@ diff -r c7ae2bca6417 libmysqld/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 libmysqld/examples/Makefile.in
---- a/libmysqld/examples/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/libmysqld/examples/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c libmysqld/examples/Makefile.in
+--- a/libmysqld/examples/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/libmysqld/examples/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -192,6 +192,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -403,9 +402,9 @@ diff -r c7ae2bca6417 libmysqld/examples/Makefile.in
  LIBS = @LIBS@ @WRAPLIBS@ @CLIENT_LIBS@ $(yassl_libs)
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 man/Makefile.in
---- a/man/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/man/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c man/Makefile.in
+--- a/man/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/man/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -151,6 +151,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -414,9 +413,9 @@ diff -r c7ae2bca6417 man/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 myisam/Makefile.in
---- a/myisam/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/myisam/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c myisam/Makefile.in
+--- a/myisam/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/myisam/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -235,6 +235,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -425,9 +424,9 @@ diff -r c7ae2bca6417 myisam/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 myisammrg/Makefile.in
---- a/myisammrg/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/myisammrg/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c myisammrg/Makefile.in
+--- a/myisammrg/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/myisammrg/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -183,6 +183,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -436,9 +435,9 @@ diff -r c7ae2bca6417 myisammrg/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 mysql-test/Makefile.in
---- a/mysql-test/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/mysql-test/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c mysql-test/Makefile.in
+--- a/mysql-test/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/mysql-test/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -161,6 +161,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -447,9 +446,9 @@ diff -r c7ae2bca6417 mysql-test/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 mysql-test/ndb/Makefile.in
---- a/mysql-test/ndb/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/mysql-test/ndb/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c mysql-test/ndb/Makefile.in
+--- a/mysql-test/ndb/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/mysql-test/ndb/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -147,6 +147,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -458,9 +457,9 @@ diff -r c7ae2bca6417 mysql-test/ndb/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 mysql-test/r/information_schema.result
---- a/mysql-test/r/information_schema.result	Tue Jul 28 23:42:46 2009 -0700
-+++ b/mysql-test/r/information_schema.result	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c mysql-test/r/information_schema.result
+--- a/mysql-test/r/information_schema.result	Wed Jul 29 00:09:40 2009 -0700
++++ b/mysql-test/r/information_schema.result	Wed Jul 29 00:09:56 2009 -0700
 @@ -37,10 +37,12 @@
  select * from v1;
  c
@@ -643,9 +642,9 @@ diff -r c7ae2bca6417 mysql-test/r/information_schema.result
  VIEWS	information_schema.VIEWS	1
  create table t1(f1 int);
  create view v1 as select f1+1 as a from t1;
-diff -r c7ae2bca6417 mysql-test/r/information_schema_db.result
---- a/mysql-test/r/information_schema_db.result	Tue Jul 28 23:42:46 2009 -0700
-+++ b/mysql-test/r/information_schema_db.result	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c mysql-test/r/information_schema_db.result
+--- a/mysql-test/r/information_schema_db.result	Wed Jul 29 00:09:40 2009 -0700
++++ b/mysql-test/r/information_schema_db.result	Wed Jul 29 00:09:56 2009 -0700
 @@ -6,10 +6,12 @@
  show tables;
  Tables_in_information_schema
@@ -677,9 +676,9 @@ diff -r c7ae2bca6417 mysql-test/r/information_schema_db.result
  TRIGGERS
  create database `inf%`;
  create database mbase;
-diff -r c7ae2bca6417 mysql-test/r/mysqlshow.result
---- a/mysql-test/r/mysqlshow.result	Tue Jul 28 23:42:46 2009 -0700
-+++ b/mysql-test/r/mysqlshow.result	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c mysql-test/r/mysqlshow.result
+--- a/mysql-test/r/mysqlshow.result	Wed Jul 29 00:09:40 2009 -0700
++++ b/mysql-test/r/mysqlshow.result	Wed Jul 29 00:09:56 2009 -0700
 @@ -80,10 +80,12 @@
  |                Tables                 |
  +---------------------------------------+
@@ -728,9 +727,9 @@ diff -r c7ae2bca6417 mysql-test/r/mysqlshow.result
  | VIEWS                                 |
  +---------------------------------------+
  Wildcard: inf_rmation_schema
-diff -r c7ae2bca6417 mysys/Makefile.in
---- a/mysys/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/mysys/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c mysys/Makefile.in
+--- a/mysys/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/mysys/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -228,6 +228,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -739,9 +738,9 @@ diff -r c7ae2bca6417 mysys/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/Makefile.in
---- a/ndb/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/Makefile.in
+--- a/ndb/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -171,6 +171,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -750,9 +749,9 @@ diff -r c7ae2bca6417 ndb/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/docs/Makefile.in
---- a/ndb/docs/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/docs/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/docs/Makefile.in
+--- a/ndb/docs/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/docs/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -149,6 +149,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -761,9 +760,9 @@ diff -r c7ae2bca6417 ndb/docs/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/include/Makefile.in
---- a/ndb/include/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/include/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/include/Makefile.in
+--- a/ndb/include/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/include/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -179,6 +179,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -772,9 +771,9 @@ diff -r c7ae2bca6417 ndb/include/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/Makefile.in
---- a/ndb/src/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/Makefile.in
+--- a/ndb/src/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -204,6 +204,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -783,9 +782,9 @@ diff -r c7ae2bca6417 ndb/src/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/common/Makefile.in
---- a/ndb/src/common/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/common/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/common/Makefile.in
+--- a/ndb/src/common/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/common/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -174,6 +174,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -794,9 +793,9 @@ diff -r c7ae2bca6417 ndb/src/common/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/common/debugger/Makefile.in
---- a/ndb/src/common/debugger/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/common/debugger/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/common/debugger/Makefile.in
+--- a/ndb/src/common/debugger/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/common/debugger/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -206,6 +206,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -805,9 +804,9 @@ diff -r c7ae2bca6417 ndb/src/common/debugger/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/common/debugger/signaldata/Makefile.in
---- a/ndb/src/common/debugger/signaldata/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/common/debugger/signaldata/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/common/debugger/signaldata/Makefile.in
+--- a/ndb/src/common/debugger/signaldata/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/common/debugger/signaldata/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -211,6 +211,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -816,9 +815,9 @@ diff -r c7ae2bca6417 ndb/src/common/debugger/signaldata/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/common/logger/Makefile.in
---- a/ndb/src/common/logger/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/common/logger/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/common/logger/Makefile.in
+--- a/ndb/src/common/logger/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/common/logger/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -197,6 +197,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -827,9 +826,9 @@ diff -r c7ae2bca6417 ndb/src/common/logger/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/common/mgmcommon/Makefile.in
---- a/ndb/src/common/mgmcommon/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/common/mgmcommon/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/common/mgmcommon/Makefile.in
+--- a/ndb/src/common/mgmcommon/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/common/mgmcommon/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -211,6 +211,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -838,9 +837,9 @@ diff -r c7ae2bca6417 ndb/src/common/mgmcommon/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/common/portlib/Makefile.in
---- a/ndb/src/common/portlib/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/common/portlib/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/common/portlib/Makefile.in
+--- a/ndb/src/common/portlib/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/common/portlib/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -222,6 +222,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -849,9 +848,9 @@ diff -r c7ae2bca6417 ndb/src/common/portlib/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/common/transporter/Makefile.in
---- a/ndb/src/common/transporter/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/common/transporter/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/common/transporter/Makefile.in
+--- a/ndb/src/common/transporter/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/common/transporter/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -197,6 +197,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -860,9 +859,9 @@ diff -r c7ae2bca6417 ndb/src/common/transporter/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/common/util/Makefile.in
---- a/ndb/src/common/util/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/common/util/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/common/util/Makefile.in
+--- a/ndb/src/common/util/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/common/util/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -217,6 +217,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -871,9 +870,9 @@ diff -r c7ae2bca6417 ndb/src/common/util/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/cw/Makefile.in
---- a/ndb/src/cw/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/cw/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/cw/Makefile.in
+--- a/ndb/src/cw/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/cw/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -156,6 +156,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -882,9 +881,9 @@ diff -r c7ae2bca6417 ndb/src/cw/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/cw/cpcd/Makefile.in
---- a/ndb/src/cw/cpcd/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/cw/cpcd/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/cw/cpcd/Makefile.in
+--- a/ndb/src/cw/cpcd/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/cw/cpcd/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -207,6 +207,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -893,9 +892,9 @@ diff -r c7ae2bca6417 ndb/src/cw/cpcd/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/Makefile.in
---- a/ndb/src/kernel/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/Makefile.in
+--- a/ndb/src/kernel/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -227,6 +227,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -904,9 +903,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/Makefile.in
---- a/ndb/src/kernel/blocks/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/Makefile.in
+--- a/ndb/src/kernel/blocks/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -156,6 +156,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -915,9 +914,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/backup/Makefile.in
---- a/ndb/src/kernel/blocks/backup/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/backup/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/backup/Makefile.in
+--- a/ndb/src/kernel/blocks/backup/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/backup/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -196,6 +196,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -926,9 +925,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/backup/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/cmvmi/Makefile.in
---- a/ndb/src/kernel/blocks/cmvmi/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/cmvmi/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/cmvmi/Makefile.in
+--- a/ndb/src/kernel/blocks/cmvmi/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/cmvmi/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -196,6 +196,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -937,9 +936,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/cmvmi/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbacc/Makefile.in
---- a/ndb/src/kernel/blocks/dbacc/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/dbacc/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/dbacc/Makefile.in
+--- a/ndb/src/kernel/blocks/dbacc/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/dbacc/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -196,6 +196,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -948,9 +947,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbacc/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbdict/Makefile.in
---- a/ndb/src/kernel/blocks/dbdict/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/dbdict/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/dbdict/Makefile.in
+--- a/ndb/src/kernel/blocks/dbdict/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/dbdict/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -206,6 +206,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -959,9 +958,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbdict/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbdih/Makefile.in
---- a/ndb/src/kernel/blocks/dbdih/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/dbdih/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/dbdih/Makefile.in
+--- a/ndb/src/kernel/blocks/dbdih/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/dbdih/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -203,6 +203,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -970,9 +969,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbdih/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/dblqh/Makefile.in
---- a/ndb/src/kernel/blocks/dblqh/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/dblqh/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/dblqh/Makefile.in
+--- a/ndb/src/kernel/blocks/dblqh/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/dblqh/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -204,6 +204,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -981,9 +980,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/dblqh/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbtc/Makefile.in
---- a/ndb/src/kernel/blocks/dbtc/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/dbtc/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/dbtc/Makefile.in
+--- a/ndb/src/kernel/blocks/dbtc/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/dbtc/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -196,6 +196,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -992,9 +991,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbtc/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbtup/Makefile.in
---- a/ndb/src/kernel/blocks/dbtup/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/dbtup/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/dbtup/Makefile.in
+--- a/ndb/src/kernel/blocks/dbtup/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/dbtup/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -204,6 +204,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1003,9 +1002,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbtup/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbtux/Makefile.in
---- a/ndb/src/kernel/blocks/dbtux/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/dbtux/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/dbtux/Makefile.in
+--- a/ndb/src/kernel/blocks/dbtux/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/dbtux/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -199,6 +199,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1014,9 +1013,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbtux/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbutil/Makefile.in
---- a/ndb/src/kernel/blocks/dbutil/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/dbutil/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/dbutil/Makefile.in
+--- a/ndb/src/kernel/blocks/dbutil/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/dbutil/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -196,6 +196,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1025,9 +1024,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/dbutil/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/ndbcntr/Makefile.in
---- a/ndb/src/kernel/blocks/ndbcntr/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/ndbcntr/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/ndbcntr/Makefile.in
+--- a/ndb/src/kernel/blocks/ndbcntr/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/ndbcntr/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -197,6 +197,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1036,9 +1035,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/ndbcntr/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/ndbfs/Makefile.in
---- a/ndb/src/kernel/blocks/ndbfs/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/ndbfs/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/ndbfs/Makefile.in
+--- a/ndb/src/kernel/blocks/ndbfs/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/ndbfs/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -197,6 +197,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1047,9 +1046,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/ndbfs/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/qmgr/Makefile.in
---- a/ndb/src/kernel/blocks/qmgr/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/qmgr/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/qmgr/Makefile.in
+--- a/ndb/src/kernel/blocks/qmgr/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/qmgr/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -196,6 +196,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1058,9 +1057,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/qmgr/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/suma/Makefile.in
---- a/ndb/src/kernel/blocks/suma/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/suma/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/suma/Makefile.in
+--- a/ndb/src/kernel/blocks/suma/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/suma/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -196,6 +196,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1069,9 +1068,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/suma/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/blocks/trix/Makefile.in
---- a/ndb/src/kernel/blocks/trix/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/blocks/trix/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/blocks/trix/Makefile.in
+--- a/ndb/src/kernel/blocks/trix/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/blocks/trix/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -196,6 +196,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1080,9 +1079,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/blocks/trix/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/error/Makefile.in
---- a/ndb/src/kernel/error/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/error/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/error/Makefile.in
+--- a/ndb/src/kernel/error/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/error/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -206,6 +206,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1091,9 +1090,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/error/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/kernel/vm/Makefile.in
---- a/ndb/src/kernel/vm/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/kernel/vm/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/kernel/vm/Makefile.in
+--- a/ndb/src/kernel/vm/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/kernel/vm/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -207,6 +207,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1102,9 +1101,9 @@ diff -r c7ae2bca6417 ndb/src/kernel/vm/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/mgmapi/Makefile.in
---- a/ndb/src/mgmapi/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/mgmapi/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/mgmapi/Makefile.in
+--- a/ndb/src/mgmapi/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/mgmapi/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -205,6 +205,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1113,9 +1112,9 @@ diff -r c7ae2bca6417 ndb/src/mgmapi/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/mgmclient/Makefile.in
---- a/ndb/src/mgmclient/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/mgmclient/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/mgmclient/Makefile.in
+--- a/ndb/src/mgmclient/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/mgmclient/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -216,6 +216,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1124,9 +1123,9 @@ diff -r c7ae2bca6417 ndb/src/mgmclient/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/mgmsrv/Makefile.in
---- a/ndb/src/mgmsrv/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/mgmsrv/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/mgmsrv/Makefile.in
+--- a/ndb/src/mgmsrv/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/mgmsrv/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -213,6 +213,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1135,9 +1134,9 @@ diff -r c7ae2bca6417 ndb/src/mgmsrv/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/src/ndbapi/Makefile.in
---- a/ndb/src/ndbapi/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/src/ndbapi/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/src/ndbapi/Makefile.in
+--- a/ndb/src/ndbapi/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/src/ndbapi/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -215,6 +215,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1146,9 +1145,9 @@ diff -r c7ae2bca6417 ndb/src/ndbapi/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/test/Makefile.in
---- a/ndb/test/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/test/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/test/Makefile.in
+--- a/ndb/test/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/test/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -156,6 +156,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1157,9 +1156,9 @@ diff -r c7ae2bca6417 ndb/test/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/test/ndbapi/Makefile.in
---- a/ndb/test/ndbapi/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/test/ndbapi/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/test/ndbapi/Makefile.in
+--- a/ndb/test/ndbapi/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/test/ndbapi/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -595,6 +595,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1168,9 +1167,9 @@ diff -r c7ae2bca6417 ndb/test/ndbapi/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/test/ndbapi/bank/Makefile.in
---- a/ndb/test/ndbapi/bank/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/test/ndbapi/bank/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/test/ndbapi/bank/Makefile.in
+--- a/ndb/test/ndbapi/bank/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/test/ndbapi/bank/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -282,6 +282,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1179,9 +1178,9 @@ diff -r c7ae2bca6417 ndb/test/ndbapi/bank/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/test/run-test/Makefile.in
---- a/ndb/test/run-test/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/test/run-test/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/test/run-test/Makefile.in
+--- a/ndb/test/run-test/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/test/run-test/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -243,6 +243,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1190,9 +1189,9 @@ diff -r c7ae2bca6417 ndb/test/run-test/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/test/src/Makefile.in
---- a/ndb/test/src/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/test/src/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/test/src/Makefile.in
+--- a/ndb/test/src/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/test/src/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -213,6 +213,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1201,9 +1200,9 @@ diff -r c7ae2bca6417 ndb/test/src/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/test/tools/Makefile.in
---- a/ndb/test/tools/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/test/tools/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/test/tools/Makefile.in
+--- a/ndb/test/tools/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/test/tools/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -325,6 +325,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1212,9 +1211,9 @@ diff -r c7ae2bca6417 ndb/test/tools/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 ndb/tools/Makefile.in
---- a/ndb/tools/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/ndb/tools/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c ndb/tools/Makefile.in
+--- a/ndb/tools/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/ndb/tools/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -344,6 +344,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1223,9 +1222,9 @@ diff -r c7ae2bca6417 ndb/tools/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 netware/Makefile.in
---- a/netware/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/netware/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c netware/Makefile.in
+--- a/netware/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/netware/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -199,6 +199,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1234,9 +1233,9 @@ diff -r c7ae2bca6417 netware/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 os2/Makefile.in
---- a/os2/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/os2/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c os2/Makefile.in
+--- a/os2/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/os2/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -156,6 +156,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1245,9 +1244,9 @@ diff -r c7ae2bca6417 os2/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 os2/include/Makefile.in
---- a/os2/include/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/os2/include/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c os2/include/Makefile.in
+--- a/os2/include/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/os2/include/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -156,6 +156,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1256,9 +1255,9 @@ diff -r c7ae2bca6417 os2/include/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 os2/include/sys/Makefile.in
---- a/os2/include/sys/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/os2/include/sys/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c os2/include/sys/Makefile.in
+--- a/os2/include/sys/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/os2/include/sys/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -144,6 +144,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1267,9 +1266,9 @@ diff -r c7ae2bca6417 os2/include/sys/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 patch_info/userstats.info
+diff -r 85ce661bd25c patch_info/userstats.info
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/patch_info/userstats.info	Tue Jul 28 23:42:52 2009 -0700
++++ b/patch_info/userstats.info	Wed Jul 29 00:09:56 2009 -0700
 @@ -0,0 +1,14 @@
 +File=userstatsv2.patch
 +Name=SHOW USER/TABLE/INDEX statistics
@@ -1285,9 +1284,9 @@ diff -r c7ae2bca6417 patch_info/userstats.info
 +
 +2008-12-09
 +YK: fixed "Row_sent: 0" problem at microslow_innodb.patch
-diff -r c7ae2bca6417 pstack/Makefile.in
---- a/pstack/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/pstack/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c pstack/Makefile.in
+--- a/pstack/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/pstack/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -196,6 +196,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1296,9 +1295,9 @@ diff -r c7ae2bca6417 pstack/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 pstack/aout/Makefile.in
---- a/pstack/aout/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/pstack/aout/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c pstack/aout/Makefile.in
+--- a/pstack/aout/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/pstack/aout/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -134,6 +134,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1307,9 +1306,9 @@ diff -r c7ae2bca6417 pstack/aout/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 regex/Makefile.in
---- a/regex/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/regex/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c regex/Makefile.in
+--- a/regex/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/regex/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -180,6 +180,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1318,9 +1317,9 @@ diff -r c7ae2bca6417 regex/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 scripts/Makefile.in
---- a/scripts/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/scripts/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c scripts/Makefile.in
+--- a/scripts/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/scripts/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -176,6 +176,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1329,9 +1328,9 @@ diff -r c7ae2bca6417 scripts/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 server-tools/Makefile.in
---- a/server-tools/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/server-tools/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c server-tools/Makefile.in
+--- a/server-tools/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/server-tools/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -155,6 +155,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1340,9 +1339,9 @@ diff -r c7ae2bca6417 server-tools/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 server-tools/instance-manager/Makefile.in
---- a/server-tools/instance-manager/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/server-tools/instance-manager/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c server-tools/instance-manager/Makefile.in
+--- a/server-tools/instance-manager/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/server-tools/instance-manager/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -205,6 +205,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1351,9 +1350,9 @@ diff -r c7ae2bca6417 server-tools/instance-manager/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 sql/Makefile.in
---- a/sql/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/Makefile.in
+--- a/sql/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -274,6 +274,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -1362,9 +1361,9 @@ diff -r c7ae2bca6417 sql/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 sql/ha_innodb.cc
---- a/sql/ha_innodb.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/ha_innodb.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/ha_innodb.cc
+--- a/sql/ha_innodb.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/ha_innodb.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -3341,6 +3341,8 @@
  
  	error = row_insert_for_mysql((byte*) record, prebuilt);
@@ -1402,9 +1401,9 @@ diff -r c7ae2bca6417 sql/ha_innodb.cc
  
  	} else if (ret == DB_RECORD_NOT_FOUND) {
  		error = HA_ERR_END_OF_FILE;
-diff -r c7ae2bca6417 sql/ha_myisam.cc
---- a/sql/ha_myisam.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/ha_myisam.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/ha_myisam.cc
+--- a/sql/ha_myisam.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/ha_myisam.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -670,7 +670,9 @@
      if ((error= update_auto_increment()))
        return error;
@@ -1564,9 +1563,9 @@ diff -r c7ae2bca6417 sql/ha_myisam.cc
    return error;
  }
  
-diff -r c7ae2bca6417 sql/handler.cc
---- a/sql/handler.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/handler.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/handler.cc
+--- a/sql/handler.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/handler.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -726,6 +726,8 @@
      if (cookie)
        tc_log->unlog(cookie, xid);
@@ -1713,9 +1712,9 @@ diff -r c7ae2bca6417 sql/handler.cc
  
  /****************************************************************************
  ** Some general functions that isn't in the handler class
-diff -r c7ae2bca6417 sql/handler.h
---- a/sql/handler.h	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/handler.h	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/handler.h
+--- a/sql/handler.h	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/handler.h	Wed Jul 29 00:09:56 2009 -0700
 @@ -32,6 +32,10 @@
  #define USING_TRANSACTIONS
  #endif
@@ -1773,18 +1772,10 @@ diff -r c7ae2bca6417 sql/handler.h
    /*
      default rename_table() and delete_table() rename/delete files with a
      given name and extensions from bas_ext()
-diff -r c7ae2bca6417 sql/lex.h
---- a/sql/lex.h	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/lex.h	Tue Jul 28 23:42:52 2009 -0700
-@@ -109,6 +109,7 @@
-   { "CHECKSUM",		SYM(CHECKSUM_SYM)},
-   { "CIPHER",		SYM(CIPHER_SYM)},
-   { "CLIENT",		SYM(CLIENT_SYM)},
-+  { "CLIENT_STATISTICS", SYM(CLIENT_STATS_SYM)},
-   { "CLOSE",		SYM(CLOSE_SYM)},
-   { "CODE",             SYM(CODE_SYM)},
-   { "COLLATE",		SYM(COLLATE_SYM)},
-@@ -238,6 +239,7 @@
+diff -r 85ce661bd25c sql/lex.h
+--- a/sql/lex.h	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/lex.h	Wed Jul 29 00:09:56 2009 -0700
+@@ -238,6 +238,7 @@
    { "IN",		SYM(IN_SYM)},
    { "INDEX",		SYM(INDEX_SYM)},
    { "INDEXES",		SYM(INDEXES)},
@@ -1792,7 +1783,7 @@ diff -r c7ae2bca6417 sql/lex.h
    { "INFILE",		SYM(INFILE)},
    { "INNER",		SYM(INNER_SYM)},
    { "INNOBASE",		SYM(INNOBASE_SYM)},
-@@ -443,6 +445,7 @@
+@@ -443,6 +444,7 @@
    { "SIGNED",		SYM(SIGNED_SYM)},
    { "SIMPLE",		SYM(SIMPLE_SYM)},
    { "SLAVE",            SYM(SLAVE)},
@@ -1800,7 +1791,7 @@ diff -r c7ae2bca6417 sql/lex.h
    { "SNAPSHOT",         SYM(SNAPSHOT_SYM)},
    { "SMALLINT",		SYM(SMALLINT)},
    { "SOME",             SYM(ANY_SYM)},
-@@ -488,6 +491,7 @@
+@@ -488,6 +490,7 @@
    { "TABLE",		SYM(TABLE_SYM)},
    { "TABLES",		SYM(TABLES)},
    { "TABLESPACE",	SYM(TABLESPACE)},
@@ -1808,7 +1799,7 @@ diff -r c7ae2bca6417 sql/lex.h
    { "TEMPORARY",	SYM(TEMPORARY)},
    { "TEMPTABLE",	SYM(TEMPTABLE_SYM)},
    { "TERMINATED",	SYM(TERMINATED)},
-@@ -525,6 +529,7 @@
+@@ -525,6 +528,7 @@
    { "USE",		SYM(USE_SYM)},
    { "USER",		SYM(USER)},
    { "USER_RESOURCES",	SYM(RESOURCES)},
@@ -1816,9 +1807,9 @@ diff -r c7ae2bca6417 sql/lex.h
    { "USE_FRM",		SYM(USE_FRM)},
    { "USING",		SYM(USING)},
    { "UTC_DATE",         SYM(UTC_DATE_SYM)},
-diff -r c7ae2bca6417 sql/log.cc
---- a/sql/log.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/log.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/log.cc
+--- a/sql/log.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/log.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -1958,18 +1958,24 @@
  			   thd->current_insert_id);
  	if (e.write(file))
@@ -1896,26 +1887,24 @@ diff -r c7ae2bca6417 sql/log.cc
  #ifndef DBUG_OFF
  DBUG_skip_commit:
  #endif
-diff -r c7ae2bca6417 sql/mysql_priv.h
---- a/sql/mysql_priv.h	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/mysql_priv.h	Tue Jul 28 23:42:52 2009 -0700
-@@ -837,7 +837,15 @@
+diff -r 85ce661bd25c sql/mysql_priv.h
+--- a/sql/mysql_priv.h	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/mysql_priv.h	Wed Jul 29 00:09:56 2009 -0700
+@@ -837,7 +837,13 @@
  bool multi_delete_set_locks_and_link_aux_tables(LEX *lex);
  void init_max_user_conn(void);
  void init_update_queries(void);
 +void init_global_user_stats(void);
 +void init_global_table_stats(void);
 +void init_global_index_stats(void);
-+void init_global_client_stats(void);
  void free_max_user_conn(void);
 +void free_global_user_stats(void);
 +void free_global_table_stats(void);
 +void free_global_index_stats(void);
-+void free_global_client_stats(void);
  pthread_handler_t handle_one_connection(void *arg);
  pthread_handler_t handle_bootstrap(void *arg);
  void end_thread(THD *thd,bool put_in_cache);
-@@ -1416,6 +1424,7 @@
+@@ -1416,6 +1422,7 @@
  extern ulong max_connections,max_connect_errors, connect_timeout;
  extern ulong slave_net_timeout, slave_trans_retries;
  extern uint max_user_connections;
@@ -1923,7 +1912,7 @@ diff -r c7ae2bca6417 sql/mysql_priv.h
  extern ulong what_to_log,flush_time;
  extern ulong query_buff_size, thread_stack;
  extern ulong max_prepared_stmt_count, prepared_stmt_count;
-@@ -1446,6 +1455,7 @@
+@@ -1446,6 +1453,7 @@
  extern my_bool opt_safe_show_db, opt_local_infile;
  extern my_bool opt_slave_compressed_protocol, use_temp_pool;
  extern my_bool opt_readonly, lower_case_file_system;
@@ -1931,12 +1920,11 @@ diff -r c7ae2bca6417 sql/mysql_priv.h
  extern my_bool opt_enable_named_pipe, opt_sync_frm, opt_allow_suspicious_udfs;
  extern my_bool opt_secure_auth;
  extern char* opt_secure_file_priv;
-@@ -1493,6 +1503,14 @@
+@@ -1493,6 +1501,13 @@
  extern struct system_variables max_system_variables;
  extern struct system_status_var global_status_var;
  extern struct rand_struct sql_rand;
 +extern HASH global_user_stats;
-+extern HASH global_client_stats;
 +extern pthread_mutex_t LOCK_global_user_client_stats;
 +extern HASH global_table_stats;
 +extern pthread_mutex_t LOCK_global_table_stats;
@@ -1946,9 +1934,9 @@ diff -r c7ae2bca6417 sql/mysql_priv.h
  
  extern const char *opt_date_time_formats[];
  extern KNOWN_DATE_TIME_FORMAT known_date_time_formats[];
-diff -r c7ae2bca6417 sql/mysqld.cc
---- a/sql/mysqld.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/mysqld.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/mysqld.cc
+--- a/sql/mysqld.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/mysqld.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -417,6 +417,7 @@
  uint    opt_large_page_size= 0;
  my_bool opt_old_style_user_limits= 0, trust_function_creators= 0;
@@ -1976,18 +1964,17 @@ diff -r c7ae2bca6417 sql/mysqld.cc
  /*
    The below lock protects access to two global server variables:
    max_prepared_stmt_count and prepared_stmt_count. These variables
-@@ -1196,6 +1202,10 @@
+@@ -1196,6 +1202,9 @@
    x_free(opt_secure_file_priv);
    bitmap_free(&temp_pool);
    free_max_user_conn();
 +  free_global_user_stats();
-+  free_global_client_stats();
 +  free_global_table_stats();
 +  free_global_index_stats();
  #ifdef HAVE_REPLICATION
    end_slave_list();
    free_list(&replicate_do_db);
-@@ -1310,6 +1320,10 @@
+@@ -1310,6 +1319,10 @@
    (void) pthread_cond_destroy(&COND_thread_cache);
    (void) pthread_cond_destroy(&COND_flush_thread_cache);
    (void) pthread_cond_destroy(&COND_manager);
@@ -1998,7 +1985,7 @@ diff -r c7ae2bca6417 sql/mysqld.cc
  }
  
  #endif /*EMBEDDED_LIBRARY*/
-@@ -3157,6 +3171,10 @@
+@@ -3157,6 +3170,10 @@
    (void) pthread_mutex_init(&LOCK_rpl_status, MY_MUTEX_INIT_FAST);
    (void) pthread_cond_init(&COND_rpl_status, NULL);
  #endif
@@ -2009,7 +1996,7 @@ diff -r c7ae2bca6417 sql/mysqld.cc
    sp_cache_init();
    /* Parameter for threads created for connections */
    (void) pthread_attr_init(&connection_attrib);
-@@ -3428,6 +3446,10 @@
+@@ -3428,6 +3445,10 @@
      sql_print_error("Out of memory");
      unireg_abort(1);
    }
@@ -2020,16 +2007,15 @@ diff -r c7ae2bca6417 sql/mysqld.cc
    if (ha_init())
    {
      sql_print_error("Can't init databases");
-@@ -3510,6 +3532,8 @@
+@@ -3510,6 +3531,7 @@
  
    init_max_user_conn();
    init_update_queries();
 +  init_global_user_stats();
-+  init_global_client_stats();
    DBUG_RETURN(0);
  }
  
-@@ -4236,6 +4260,7 @@
+@@ -4236,6 +4258,7 @@
    {
      DBUG_PRINT("error",("Too many connections"));
      close_connection(thd, ER_CON_COUNT_ERROR, 1);
@@ -2037,7 +2023,7 @@ diff -r c7ae2bca6417 sql/mysqld.cc
      delete thd;
      DBUG_VOID_RETURN;
    }
-@@ -5056,6 +5081,7 @@
+@@ -5056,6 +5079,7 @@
    OPT_PROFILING_USE_GETRUSAGE,
    OPT_SLOW_LOG,
    OPT_SLOW_QUERY_LOG_FILE,
@@ -2045,20 +2031,20 @@ diff -r c7ae2bca6417 sql/mysqld.cc
    OPT_USE_GLOBAL_LONG_QUERY_TIME,
    OPT_INNODB_ROLLBACK_ON_TIMEOUT,
    OPT_SECURE_FILE_PRIV,
-@@ -6523,6 +6549,10 @@
+@@ -6523,6 +6547,10 @@
     (gptr*) &max_system_variables.net_wait_timeout, 0, GET_ULONG,
     REQUIRED_ARG, NET_WAIT_TIMEOUT, 1, IF_WIN(INT_MAX32/1000, LONG_TIMEOUT),
     0, 1, 0},
 +  {"userstat_running", OPT_USERSTAT_RUNNING,
-+   "Control USER_STATISTICS, CLIENT_STATISTICS, INDEX_STATISTICS and TABLE_STATISTICS running",
++   "Control USER_STATISTICS, INDEX_STATISTICS and TABLE_STATISTICS running",
 +   (gptr*) &opt_userstat_running, (gptr*) &opt_userstat_running,
 +   0, GET_BOOL, NO_ARG, 0, 0, 1, 0, 1, 0},
    {0, 0, 0, 0, 0, 0, GET_NO_ARG, NO_ARG, 0, 0, 0, 0, 0, 0}
  };
  
-diff -r c7ae2bca6417 sql/set_var.cc
---- a/sql/set_var.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/set_var.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/set_var.cc
+--- a/sql/set_var.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/set_var.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -325,6 +325,7 @@
  sys_var_thd_ulong	sys_read_buff_size("read_buffer_size",
  					   &SV::read_buff_size);
@@ -2083,9 +2069,9 @@ diff -r c7ae2bca6417 sql/set_var.cc
    {sys_use_global_long_query_time.name, (char*) &sys_use_global_long_query_time, SHOW_SYS},
    {sys_version.name,          (char*) &sys_version,                 SHOW_SYS},
  #ifdef HAVE_BERKELEY_DB
-diff -r c7ae2bca6417 sql/share/Makefile.in
---- a/sql/share/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/share/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/share/Makefile.in
+--- a/sql/share/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/share/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -144,6 +144,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -2094,9 +2080,9 @@ diff -r c7ae2bca6417 sql/share/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 sql/sql_base.cc
---- a/sql/sql_base.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/sql_base.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/sql_base.cc
+--- a/sql/sql_base.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/sql_base.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -624,6 +624,12 @@
    DBUG_ENTER("close_thread_table");
    DBUG_ASSERT(table->key_read == 0);
@@ -2120,9 +2106,9 @@ diff -r c7ae2bca6417 sql/sql_base.cc
    db_type table_type=table->s->db_type;
    strmov(path,table->s->path);
    free_io_cache(table);
-diff -r c7ae2bca6417 sql/sql_class.cc
---- a/sql/sql_class.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/sql_class.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/sql_class.cc
+--- a/sql/sql_class.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/sql_class.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -239,6 +239,13 @@
    bzero(ha_data, sizeof(ha_data));
    mysys_var=0;
@@ -2292,9 +2278,9 @@ diff -r c7ae2bca6417 sql/sql_class.cc
  }
  
  
-diff -r c7ae2bca6417 sql/sql_class.h
---- a/sql/sql_class.h	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/sql_class.h	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/sql_class.h
+--- a/sql/sql_class.h	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/sql_class.h	Wed Jul 29 00:09:56 2009 -0700
 @@ -1302,6 +1302,8 @@
      first byte of the packet in do_command()
    */
@@ -2402,9 +2388,9 @@ diff -r c7ae2bca6417 sql/sql_class.h
  
  #define tmp_disable_binlog(A)       \
    {ulonglong tmp_disable_binlog__save_options= (A)->options; \
-diff -r c7ae2bca6417 sql/sql_delete.cc
---- a/sql/sql_delete.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/sql_delete.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/sql_delete.cc
+--- a/sql/sql_delete.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/sql_delete.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -358,6 +358,7 @@
      send_ok(thd,deleted);
      DBUG_PRINT("info",("%ld records deleted",(long) deleted));
@@ -2421,9 +2407,9 @@ diff -r c7ae2bca6417 sql/sql_delete.cc
    return 0;
  }
  
-diff -r c7ae2bca6417 sql/sql_insert.cc
---- a/sql/sql_insert.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/sql_insert.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/sql_insert.cc
+--- a/sql/sql_insert.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/sql_insert.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -990,6 +990,7 @@
      thd->row_count_func= info.copied + info.deleted + updated;
      ::send_ok(thd, (ulong) thd->row_count_func, id, buff);
@@ -2440,22 +2426,21 @@ diff -r c7ae2bca6417 sql/sql_insert.cc
    DBUG_RETURN(0);
  }
  
-diff -r c7ae2bca6417 sql/sql_lex.h
---- a/sql/sql_lex.h	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/sql_lex.h	Tue Jul 28 23:42:52 2009 -0700
-@@ -101,6 +101,9 @@
+diff -r 85ce661bd25c sql/sql_lex.h
+--- a/sql/sql_lex.h	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/sql_lex.h	Wed Jul 29 00:09:56 2009 -0700
+@@ -101,6 +101,8 @@
      When a command is added here, be sure it's also added in mysqld.cc
      in "struct show_var_st status_vars[]= {" ...
    */
 +  // TODO(mcallaghan): update status_vars in mysqld to export these
 +  SQLCOM_SHOW_USER_STATS, SQLCOM_SHOW_TABLE_STATS, SQLCOM_SHOW_INDEX_STATS,
-+  SQLCOM_SHOW_CLIENT_STATS,
    /* This should be the last !!! */
    SQLCOM_END
  };
-diff -r c7ae2bca6417 sql/sql_parse.cc
---- a/sql/sql_parse.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/sql_parse.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/sql_parse.cc
+--- a/sql/sql_parse.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/sql_parse.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -78,6 +78,12 @@
  			       const char *table_name);
  static bool check_show_create_table_access(THD *thd, TABLE_LIST *table);
@@ -2469,12 +2454,11 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
  const char *any_db="*any*";	// Special symbol for check_access
  
  const char *command_name[]={
-@@ -146,6 +152,17 @@
+@@ -146,6 +152,16 @@
  static bool do_command(THD *thd);
  #endif // EMBEDDED_LIBRARY
  
 +HASH global_user_stats;
-+HASH global_client_stats;
 +// Protects global_user_stats and global_client_stats
 +extern pthread_mutex_t LOCK_global_user_client_stats;
 +
@@ -2487,7 +2471,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
  #ifdef __WIN__
  extern void win_install_sigabrt_handler(void);
  #endif
-@@ -504,6 +521,7 @@
+@@ -504,6 +520,7 @@
      mysql_log.write(thd,COM_CONNECT,"%s",ER(ER_NOT_SUPPORTED_AUTH_MODE));
      DBUG_RETURN(-1);
    }
@@ -2495,7 +2479,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
    net_printf_error(thd, ER_ACCESS_DENIED_ERROR,
                     thd->main_security_ctx.user,
                     thd->main_security_ctx.host_or_ip,
-@@ -536,12 +554,190 @@
+@@ -536,12 +553,181 @@
  void init_max_user_conn(void)
  {
  #ifndef NO_EMBEDDED_ACCESS_CHECKS
@@ -2635,15 +2619,6 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
 +  }
 +}
 +
-+void init_global_client_stats(void)
-+{
-+  if (hash_init(&global_client_stats, system_charset_info, max_connections,
-+                0, 0, (hash_get_key)get_key_user_stats,
-+                (hash_free_key)free_user_stats, 0)) {
-+    sql_print_error("Initializing global_client_stats failed.");
-+    exit(1);
-+  }
-+}
 +
 +extern "C" byte *get_key_table_stats(TABLE_STATS *table_stats, uint *length,
 +                                     my_bool not_used __attribute__((unused)))
@@ -2692,7 +2667,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
  
  
  /*
-@@ -599,7 +795,10 @@
+@@ -599,7 +785,10 @@
  
    end:
    if (error)
@@ -2703,7 +2678,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
    (void) pthread_mutex_unlock(&LOCK_user_conn);
    DBUG_RETURN(error);
  }
-@@ -646,6 +845,25 @@
+@@ -646,6 +835,20 @@
  #endif /* NO_EMBEDDED_ACCESS_CHECKS */
  }
  
@@ -2721,15 +2696,10 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
 +{
 +  hash_free(&global_index_stats);
 +}
-+
-+void free_global_client_stats(void)
-+{
-+  hash_free(&global_client_stats);
-+}
  
  
  /*
-@@ -698,6 +916,214 @@
+@@ -698,6 +901,178 @@
    return uc_update_queries[command] != 0;
  }
  
@@ -2801,13 +2771,6 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
 +    return_value = 1;
 +    goto end;
 +  }
-+  if (increment_count_by_name(client_string,
-+                              user_string,
-+                              &global_client_stats, thd))
-+  {
-+    return_value = 1;
-+    goto end;
-+  }
 +
 +end:
 +  if (use_lock) pthread_mutex_unlock(&LOCK_global_user_client_stats);
@@ -2845,7 +2808,6 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
 +{
 +  if (opt_userstat_running) {
 +  char* user_string = get_valid_user_string(thd->main_security_ctx.user);
-+  const char* client_string = get_client_host(thd);
 +
 +  USER_STATS* user_stats;
 +  pthread_mutex_lock(&LOCK_global_user_client_stats);
@@ -2864,20 +2826,6 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
 +    }
 +  }
 +
-+  // Update by client IP
-+  if ((user_stats = (USER_STATS*)hash_search(&global_client_stats,
-+                                             (byte*)client_string,
-+                                             strlen(client_string)))) {
-+    // Found by client IP
-+    update_global_user_stats_with_user(thd, user_stats, now);
-+  } else {
-+    // Create the entry
-+    if (create_user) {
-+      increment_count_by_name(client_string,
-+                              user_string,
-+                              &global_client_stats, thd);
-+    }
-+  }
 +  thd->reset_diff_stats();
 +
 +  pthread_mutex_unlock(&LOCK_global_user_client_stats);
@@ -2897,10 +2845,6 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
 +  // Resets all concurrent connections to 0.
 +  for (int i = 0; i < global_user_stats.records; ++i) {
 +    user_stats = (USER_STATS*)hash_element(&global_user_stats, i);
-+    user_stats->concurrent_connections = 0;
-+  }
-+  for (int i = 0; i < global_client_stats.records; ++i) {
-+    user_stats = (USER_STATS*)hash_element(&global_client_stats, i);
 +    user_stats->concurrent_connections = 0;
 +  }
 +
@@ -2925,16 +2869,6 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
 +      }
 +    }
 +
-+    const char* client_string = get_client_host(thd);
-+    if ((user_stats = (USER_STATS*)hash_search(&global_client_stats,
-+                                               (byte*)client_string,
-+                                               strlen(client_string)))) {
-+      // Found user.
-+      user_stats->concurrent_connections++;
-+      update_global_user_stats_with_user(thd, user_stats, now);
-+    } else {
-+      // Do nothing, unlike what is done for global_user_stats
-+    }
 +    thd->reset_diff_stats();
 +  }
 +  pthread_mutex_unlock(&LOCK_thread_count);
@@ -2944,7 +2878,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
  /*
    Reset per-hour user resource limits when it has been more than
    an hour since they were last checked
-@@ -1184,6 +1610,8 @@
+@@ -1184,6 +1559,8 @@
      my_net_set_read_timeout(net, connect_timeout);
      my_net_set_write_timeout(net, connect_timeout);
  
@@ -2953,7 +2887,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
      if ((error=check_connection(thd)))
      {						// Wrong permissions
        if (error > 0)
-@@ -1193,8 +1621,22 @@
+@@ -1193,8 +1570,22 @@
  	my_sleep(1000);				/* must wait after eof() */
  #endif
        statistic_increment(aborted_connects,&LOCK_status);
@@ -2976,7 +2910,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
  #ifdef __NETWARE__
      netware_reg_user(sctx->ip, sctx->user, "MySQL");
  #endif
-@@ -1251,6 +1693,7 @@
+@@ -1251,6 +1642,7 @@
          (net->vio && net->error && net->report_error))
      {
        statistic_increment(aborted_threads, &LOCK_status);
@@ -2984,7 +2918,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
      }
  
      if (net->error && net->vio != 0 && net->report_error)
-@@ -1270,6 +1713,8 @@
+@@ -1270,6 +1662,8 @@
  
  end_thread:
      close_connection(thd, 0, 1);
@@ -2993,7 +2927,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
      end_thread(thd,1);
      /*
        If end_thread returns, we are either running with --one-thread
-@@ -1601,6 +2046,13 @@
+@@ -1601,6 +1995,13 @@
  
    thd->clear_error();				// Clear error message
  
@@ -3007,7 +2941,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
    net_new_transaction(net);
  
    packet_length= my_net_read(net);
-@@ -1759,6 +2211,9 @@
+@@ -1759,6 +2160,9 @@
    }
  
    thd->command=command;
@@ -3017,7 +2951,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
    /*
      Commands which always take a long time are logged into
      the slow log only if opt_log_slow_admin_statements is set.
-@@ -4539,6 +4994,15 @@
+@@ -4539,6 +4943,15 @@
      if (check_global_access(thd,RELOAD_ACL))
        goto error;
  
@@ -3033,7 +2967,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
      /*
        reload_acl_and_cache() will tell us if we are allowed to write to the
        binlog or not.
-@@ -4847,6 +5311,7 @@
+@@ -4847,6 +5260,7 @@
      {
        if (check_global_access(thd, SUPER_ACL))
        {
@@ -3041,7 +2975,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
          my_error(ER_SPECIFIC_ACCESS_DENIED_ERROR, MYF(0), "SUPER");
          goto create_sp_error;
        }
-@@ -5691,6 +6156,7 @@
+@@ -5691,6 +6105,7 @@
        if (!no_errors)
        {
          const char *db_name= db ? db : thd->db;
@@ -3049,7 +2983,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
          my_error(ER_DBACCESS_DENIED_ERROR, MYF(0),
                   sctx->priv_user, sctx->priv_host, db_name);
        }
-@@ -5726,6 +6192,7 @@
+@@ -5726,6 +6141,7 @@
    {						// We can never grant this
      DBUG_PRINT("error",("No possible access"));
      if (!no_errors)
@@ -3057,7 +2991,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
        my_error(ER_ACCESS_DENIED_ERROR, MYF(0),
                 sctx->priv_user,
                 sctx->priv_host,
-@@ -5758,11 +6225,15 @@
+@@ -5758,11 +6174,15 @@
  
    DBUG_PRINT("error",("Access denied"));
    if (!no_errors)
@@ -3073,7 +3007,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
    DBUG_RETURN(TRUE);				/* purecov: tested */
  #endif /* NO_EMBEDDED_ACCESS_CHECKS */
  }
-@@ -5796,6 +6267,7 @@
+@@ -5796,6 +6216,7 @@
    if ((thd->security_ctx->master_access & want_access))
      return 0;
    get_privilege_desc(command, sizeof(command), want_access);
@@ -3081,7 +3015,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
    my_error(ER_SPECIFIC_ACCESS_DENIED_ERROR, MYF(0), command);
    return 1;
  #endif /* NO_EMBEDDED_ACCESS_CHECKS */
-@@ -5828,6 +6300,7 @@
+@@ -5828,6 +6249,7 @@
  
        if (!thd->col_access && check_grant_db(thd, dst_db_name))
        {
@@ -3089,20 +3023,19 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
          my_error(ER_DBACCESS_DENIED_ERROR, MYF(0),
                   thd->security_ctx->priv_user,
                   thd->security_ctx->priv_host,
-@@ -5859,6 +6332,12 @@
+@@ -5859,6 +6281,11 @@
               check_grant(thd, SELECT_ACL, dst_table, 2, UINT_MAX, FALSE);
      }
  
 + 
 +  case SCH_USER_STATS:
-+  case SCH_CLIENT_STATS:
 +     return check_global_access(thd, SUPER_ACL | PROCESS_ACL);
 +  case SCH_TABLE_STATS:
 +  case SCH_INDEX_STATS:
    case SCH_OPEN_TABLES:
    case SCH_VARIABLES:
    case SCH_STATUS:
-@@ -5912,8 +6391,8 @@
+@@ -5912,8 +6339,8 @@
  #ifndef NO_EMBEDDED_ACCESS_CHECKS
    TABLE_LIST *org_tables= tables;
  #endif
@@ -3112,7 +3045,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
    /*
      The check that first_not_own_table is not reached is for the case when
      the given table list refers to the list for prelocking (contains tables
-@@ -5930,9 +6409,12 @@
+@@ -5930,9 +6357,12 @@
          (want_access & ~(SELECT_ACL | EXTRA_ACL | FILE_ACL)))
      {
        if (!no_errors)
@@ -3125,7 +3058,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
        return TRUE;
      }
      /*
-@@ -6442,6 +6924,30 @@
+@@ -6442,6 +6872,30 @@
    lex_start(thd);
    mysql_reset_thd_for_next_command(thd);
  
@@ -3156,7 +3089,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
    if (query_cache_send_result_to_client(thd, (char*) inBuf, length) <= 0)
    {
      LEX *lex= thd->lex;
-@@ -6520,6 +7026,43 @@
+@@ -6520,6 +6974,43 @@
      *found_semicolon= NULL;
    }
  
@@ -3200,7 +3133,7 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
    DBUG_VOID_RETURN;
  }
  
-@@ -7531,8 +8074,35 @@
+@@ -7531,8 +8022,27 @@
     pthread_mutex_unlock(&LOCK_active_mi);
   }
  #endif
@@ -3220,27 +3153,19 @@ diff -r c7ae2bca6417 sql/sql_parse.cc
 +    init_global_index_stats();
 +    pthread_mutex_unlock(&LOCK_global_index_stats);
 +  }
-+  if (options & (REFRESH_USER_STATS | REFRESH_CLIENT_STATS))
++  if (options & (REFRESH_USER_STATS))
 +  {
 +    pthread_mutex_lock(&LOCK_global_user_client_stats);
-+    if (options & REFRESH_USER_STATS)
-+    {
-+      free_global_user_stats();
-+      init_global_user_stats();
-+    }
-+    if (options & REFRESH_CLIENT_STATS)
-+    {
-+      free_global_client_stats();
-+      init_global_client_stats();
-+    }
++    free_global_user_stats();
++    init_global_user_stats();
 +    pthread_mutex_unlock(&LOCK_global_user_client_stats);
 +  }
   *write_to_binlog= tmp_write_to_binlog;
   return result;
  }
-diff -r c7ae2bca6417 sql/sql_prepare.cc
---- a/sql/sql_prepare.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/sql_prepare.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/sql_prepare.cc
+--- a/sql/sql_prepare.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/sql_prepare.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -81,6 +81,9 @@
  #include <mysql_com.h>
  #endif
@@ -3576,9 +3501,9 @@ diff -r c7ae2bca6417 sql/sql_prepare.cc
    DBUG_VOID_RETURN;
  }
  
-diff -r c7ae2bca6417 sql/sql_show.cc
---- a/sql/sql_show.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/sql_show.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/sql_show.cc
+--- a/sql/sql_show.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/sql_show.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -540,6 +540,7 @@
  		sctx->master_access);
    if (!(db_access & DB_ACLS) && (!grant_option || check_grant_db(thd,dbname)))
@@ -3587,7 +3512,7 @@ diff -r c7ae2bca6417 sql/sql_show.cc
      my_error(ER_DBACCESS_DENIED_ERROR, MYF(0),
               sctx->priv_user, sctx->host_or_ip, dbname);
      mysql_log.write(thd,COM_INIT_DB,ER(ER_DBACCESS_DENIED_ERROR),
-@@ -1890,6 +1891,300 @@
+@@ -1890,6 +1891,260 @@
    DBUG_RETURN(FALSE);
  }
  
@@ -3760,46 +3685,6 @@ diff -r c7ae2bca6417 sql/sql_show.cc
 +  DBUG_RETURN(1);
 +}
 +
-+/*
-+   Process SHOW CLIENT_STATISTICS
-+
-+   SYNOPSIS
-+     mysqld_show_client_stats
-+       thd - current thread
-+       wild - limit results to the entry for this client
-+
-+   RETURN
-+     0 - OK
-+     1 - error
-+ */
-+
-+
-+int fill_schema_client_stats(THD* thd, TABLE_LIST* tables, COND* cond)
-+{
-+  TABLE *table= tables->table;
-+  DBUG_ENTER("fill_schema_client_stats");
-+
-+  if (check_global_access(thd, SUPER_ACL | PROCESS_ACL))
-+          DBUG_RETURN(1);
-+
-+  // Iterates through all the global stats and sends them to the client.
-+  // Pattern matching on the client IP is supported.
-+
-+  pthread_mutex_lock(&LOCK_global_user_client_stats);
-+  int result= send_user_stats(thd, &global_client_stats, table);
-+  pthread_mutex_unlock(&LOCK_global_user_client_stats);
-+  if (result)
-+    goto err;
-+
-+  DBUG_PRINT("exit", ("mysqld_show_client_stats result is 0"));
-+  DBUG_RETURN(0);
-+
-+ err:
-+  DBUG_PRINT("exit", ("mysqld_show_client_stats result is 1"));
-+  DBUG_RETURN(1);
-+}
-+
-+
 +// Sends the global table stats back to the client.
 +int fill_schema_table_stats(THD* thd, TABLE_LIST* tables, COND* cond)
 +{
@@ -3888,7 +3773,7 @@ diff -r c7ae2bca6417 sql/sql_show.cc
  
  /* collect status for all running threads */
  
-@@ -4500,6 +4795,77 @@
+@@ -4500,6 +4755,50 @@
    {0, 0, MYSQL_TYPE_STRING, 0, 0, 0}
  };
  
@@ -3918,33 +3803,6 @@ diff -r c7ae2bca6417 sql/sql_show.cc
 +  {0, 0, MYSQL_TYPE_STRING, 0, 0, 0}
 +};
 +
-+ST_FIELD_INFO client_stats_fields_info[]=
-+{
-+  {"CLIENT", 16, MYSQL_TYPE_STRING, 0, 0, "Client"},
-+  {"TOTAL_CONNECTIONS", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Total_connections"},
-+  {"CONCURRENT_CONNECTIONS", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Concurrent_connections"},
-+  {"CONNECTED_TIME", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Connected_time"},
-+  {"BUSY_TIME", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Busy_time"},
-+  {"CPU_TIME", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Cpu_time"},
-+  {"BYTES_RECEIVED", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Bytes_received"},
-+  {"BYTES_SENT", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Bytes_sent"},
-+  {"BINLOG_BYTES_WRITTEN", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Binlog_bytes_written"},
-+  {"ROWS_FETCHED", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Rows_fetched"},
-+  {"ROWS_UPDATED", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Rows_updated"},
-+  {"TABLE_ROWS_READ", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Table_rows_read"},
-+  {"SELECT_COMMANDS", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Select_commands"},
-+  {"UPDATE_COMMANDS", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Update_commands"},
-+  {"OTHER_COMMANDS", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Other_commands"},
-+  {"COMMIT_TRANSACTIONS", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Commit_transactions"},
-+  {"ROLLBACK_TRANSACTIONS", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Rollback_transactions"},
-+  {"DENIED_CONNECTIONS", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Denied_connections"},
-+  {"LOST_CONNECTIONS", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Lost_connections"},
-+  {"ACCESS_DENIED", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Access_denied"},
-+  {"EMPTY_QUERIES", MY_INT64_NUM_DECIMAL_DIGITS, MYSQL_TYPE_LONG, 0, 0, "Empty_queries"},
-+  {0, 0, MYSQL_TYPE_STRING, 0, 0, 0}
-+};
-+
-+
 +ST_FIELD_INFO table_stats_fields_info[]=
 +{
 +  {"TABLE_SCHEMA", NAME_LEN, MYSQL_TYPE_STRING, 0, 0, "Table_schema"},
@@ -3966,16 +3824,7 @@ diff -r c7ae2bca6417 sql/sql_show.cc
  
  /*
    Description of ST_FIELD_INFO in table.h
-@@ -4509,6 +4875,8 @@
- {
-   {"CHARACTER_SETS", charsets_fields_info, create_schema_table, 
-    fill_schema_charsets, make_character_sets_old_format, 0, -1, -1, 0},
-+  {"CLIENT_STATISTICS", client_stats_fields_info, create_schema_table, 
-+    fill_schema_client_stats, make_old_format, 0, -1, -1, 0},
-   {"COLLATIONS", collation_fields_info, create_schema_table, 
-    fill_schema_collation, make_old_format, 0, -1, -1, 0},
-   {"COLLATION_CHARACTER_SET_APPLICABILITY", coll_charset_app_fields_info,
-@@ -4517,6 +4885,8 @@
+@@ -4517,6 +4816,8 @@
     get_all_tables, make_columns_old_format, get_schema_column_record, 1, 2, 0},
    {"COLUMN_PRIVILEGES", column_privileges_fields_info, create_schema_table,
      fill_schema_column_privileges, 0, 0, -1, -1, 0},
@@ -3984,7 +3833,7 @@ diff -r c7ae2bca6417 sql/sql_show.cc
    {"KEY_COLUMN_USAGE", key_column_usage_fields_info, create_schema_table,
      get_all_tables, 0, get_schema_key_column_usage_record, 4, 5, 0},
    {"OPEN_TABLES", open_tables_fields_info, create_schema_table,
-@@ -4542,10 +4912,14 @@
+@@ -4542,10 +4843,14 @@
     get_all_tables, make_table_names_old_format, 0, 1, 2, 1},
    {"TABLE_PRIVILEGES", table_privileges_fields_info, create_schema_table,
      fill_schema_table_privileges, 0, 0, -1, -1, 0},
@@ -3999,9 +3848,9 @@ diff -r c7ae2bca6417 sql/sql_show.cc
    {"VARIABLES", variables_fields_info, create_schema_table, fill_variables,
     make_old_format, 0, -1, -1, 1},
    {"VIEWS", view_fields_info, create_schema_table, 
-diff -r c7ae2bca6417 sql/sql_update.cc
---- a/sql/sql_update.cc	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/sql_update.cc	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/sql_update.cc
+--- a/sql/sql_update.cc	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/sql_update.cc	Wed Jul 29 00:09:56 2009 -0700
 @@ -601,7 +601,8 @@
        (thd->client_capabilities & CLIENT_FOUND_ROWS) ? found : updated;
      send_ok(thd, (ulong) thd->row_count_func,
@@ -4019,18 +3868,10 @@ diff -r c7ae2bca6417 sql/sql_update.cc
 +  thd->updated_row_count += thd->row_count_func;
    return FALSE;
  }
-diff -r c7ae2bca6417 sql/sql_yacc.yy
---- a/sql/sql_yacc.yy	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/sql_yacc.yy	Tue Jul 28 23:42:52 2009 -0700
-@@ -523,6 +523,7 @@
- %token  CHECK_SYM
- %token  CIPHER_SYM
- %token  CLIENT_SYM
-+%token	CLIENT_STATS_SYM
- %token  CLOSE_SYM
- %token  COALESCE
- %token  CODE_SYM
-@@ -680,6 +681,7 @@
+diff -r 85ce661bd25c sql/sql_yacc.yy
+--- a/sql/sql_yacc.yy	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/sql_yacc.yy	Wed Jul 29 00:09:56 2009 -0700
+@@ -680,6 +680,7 @@
  %token  IMPORT
  %token  INDEXES
  %token  INDEX_SYM
@@ -4038,7 +3879,7 @@ diff -r c7ae2bca6417 sql/sql_yacc.yy
  %token  INFILE
  %token  INNER_SYM
  %token  INNOBASE_SYM
-@@ -909,6 +911,7 @@
+@@ -909,6 +910,7 @@
  %token  SIGNED_SYM
  %token  SIMPLE_SYM
  %token  SLAVE
@@ -4046,7 +3887,7 @@ diff -r c7ae2bca6417 sql/sql_yacc.yy
  %token  SMALLINT
  %token  SNAPSHOT_SYM
  %token  SOUNDS_SYM
-@@ -949,6 +952,7 @@
+@@ -949,6 +951,7 @@
  %token  TABLES
  %token  TABLESPACE
  %token  TABLE_SYM
@@ -4054,7 +3895,7 @@ diff -r c7ae2bca6417 sql/sql_yacc.yy
  %token  TEMPORARY
  %token  TEMPTABLE_SYM
  %token  TERMINATED
-@@ -991,6 +995,7 @@
+@@ -991,6 +994,7 @@
  %token  UPGRADE_SYM
  %token  USAGE
  %token  USER
@@ -4062,18 +3903,10 @@ diff -r c7ae2bca6417 sql/sql_yacc.yy
  %token  USE_FRM
  %token  USE_SYM
  %token  USING
-@@ -8255,6 +8260,38 @@
+@@ -8255,6 +8259,30 @@
            {
  	    Lex->sql_command = SQLCOM_SHOW_SLAVE_STAT;
            }
-+        | CLIENT_STATS_SYM wild_and_where 
-+          {
-+           LEX *lex= Lex;
-+	   Lex->sql_command = SQLCOM_SELECT;
-+           lex->orig_sql_command= SQLCOM_SHOW_CLIENT_STATS;
-+           if (prepare_schema_table(YYTHD, lex, 0, SCH_CLIENT_STATS))
-+             MYSQL_YYABORT;
-+          }
 +        | USER_STATS_SYM wild_and_where 
 +          {
 +           LEX *lex= Lex;
@@ -4101,7 +3934,7 @@ diff -r c7ae2bca6417 sql/sql_yacc.yy
  	| CREATE PROCEDURE sp_name
  	  {
  	    LEX *lex= Lex;
-@@ -8459,9 +8496,14 @@
+@@ -8459,9 +8487,13 @@
  	| LOGS_SYM	{ Lex->type|= REFRESH_LOG; }
  	| STATUS_SYM	{ Lex->type|= REFRESH_STATUS; }
          | SLAVE         { Lex->type|= REFRESH_SLAVE; }
@@ -4110,22 +3943,13 @@ diff -r c7ae2bca6417 sql/sql_yacc.yy
  	| DES_KEY_FILE	{ Lex->type|= REFRESH_DES_KEY_FILE; }
 - 	| RESOURCES     { Lex->type|= REFRESH_USER_RESOURCES; };
 + 	| RESOURCES     { Lex->type|= REFRESH_USER_RESOURCES; }
-+ 	| CLIENT_STATS_SYM { Lex->type|= REFRESH_CLIENT_STATS; }
 + 	| USER_STATS_SYM { Lex->type|= REFRESH_USER_STATS; }
 + 	| TABLE_STATS_SYM { Lex->type|= REFRESH_TABLE_STATS; }
 + 	| INDEX_STATS_SYM { Lex->type|= REFRESH_INDEX_STATS; };
  
  opt_table_list:
  	/* empty */  {;}
-@@ -9450,6 +9492,7 @@
- 	| CHAIN_SYM		{}
- 	| CHANGED		{}
- 	| CIPHER_SYM		{}
-+	| CLIENT_STATS_SYM      {}
- 	| CLIENT_SYM		{}
-         | CODE_SYM              {}
- 	| COLLATION_SYM		{}
-@@ -9502,6 +9545,7 @@
+@@ -9502,6 +9534,7 @@
  	| HOSTS_SYM		{}
  	| HOUR_SYM		{}
  	| IDENTIFIED_SYM	{}
@@ -4133,7 +3957,7 @@ diff -r c7ae2bca6417 sql/sql_yacc.yy
  	| INVOKER_SYM		{}
  	| IMPORT		{}
  	| INDEXES		{}
-@@ -9611,6 +9655,7 @@
+@@ -9611,6 +9644,7 @@
  	| SIMPLE_SYM		{}
  	| SHARE_SYM		{}
  	| SHUTDOWN		{}
@@ -4141,7 +3965,7 @@ diff -r c7ae2bca6417 sql/sql_yacc.yy
  	| SNAPSHOT_SYM		{}
  	| SOUNDS_SYM		{}
  	| SOURCE_SYM            {}
-@@ -9627,6 +9672,7 @@
+@@ -9627,6 +9661,7 @@
          | SUSPEND_SYM           {}
          | SWAPS_SYM             {}
  	| SWITCHES_SYM          {}
@@ -4149,7 +3973,7 @@ diff -r c7ae2bca6417 sql/sql_yacc.yy
          | TABLES                {}
  	| TABLESPACE		{}
  	| TEMPORARY		{}
-@@ -9647,6 +9693,7 @@
+@@ -9647,6 +9682,7 @@
  	| UNKNOWN_SYM		{}
  	| UNTIL_SYM		{}
  	| USER			{}
@@ -4157,9 +3981,9 @@ diff -r c7ae2bca6417 sql/sql_yacc.yy
  	| USE_FRM		{}
  	| VARIABLES		{}
  	| VIEW_SYM		{}
-diff -r c7ae2bca6417 sql/structs.h
---- a/sql/structs.h	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/structs.h	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c sql/structs.h
+--- a/sql/structs.h	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/structs.h	Wed Jul 29 00:09:56 2009 -0700
 @@ -273,6 +273,98 @@
    time_t intime;
  } USER_CONN;
@@ -4259,15 +4083,10 @@ diff -r c7ae2bca6417 sql/structs.h
  	/* Bits in form->update */
  #define REG_MAKE_DUPP		1	/* Make a copy of record when read */
  #define REG_NEW_RECORD		2	/* Write a new record if not found */
-diff -r c7ae2bca6417 sql/table.h
---- a/sql/table.h	Tue Jul 28 23:42:46 2009 -0700
-+++ b/sql/table.h	Tue Jul 28 23:42:52 2009 -0700
-@@ -371,10 +371,12 @@
- enum enum_schema_tables
- {
-   SCH_CHARSETS= 0,
-+  SCH_CLIENT_STATS,
-   SCH_COLLATIONS,
+diff -r 85ce661bd25c sql/table.h
+--- a/sql/table.h	Wed Jul 29 00:09:40 2009 -0700
++++ b/sql/table.h	Wed Jul 29 00:09:56 2009 -0700
+@@ -375,6 +375,7 @@
    SCH_COLLATION_CHARACTER_SET_APPLICABILITY,
    SCH_COLUMNS,
    SCH_COLUMN_PRIVILEGES,
@@ -4275,7 +4094,7 @@ diff -r c7ae2bca6417 sql/table.h
    SCH_KEY_COLUMN_USAGE,
    SCH_OPEN_TABLES,
    SCH_PROFILES,
-@@ -387,8 +389,10 @@
+@@ -387,8 +388,10 @@
    SCH_TABLE_CONSTRAINTS,
    SCH_TABLE_NAMES,
    SCH_TABLE_PRIVILEGES,
@@ -4286,9 +4105,9 @@ diff -r c7ae2bca6417 sql/table.h
    SCH_VARIABLES,
    SCH_VIEWS
  };
-diff -r c7ae2bca6417 strings/Makefile.in
---- a/strings/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/strings/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c strings/Makefile.in
+--- a/strings/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/strings/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -342,6 +342,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4297,9 +4116,9 @@ diff -r c7ae2bca6417 strings/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 support-files/MacOSX/Makefile.in
---- a/support-files/MacOSX/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/support-files/MacOSX/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c support-files/MacOSX/Makefile.in
+--- a/support-files/MacOSX/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/support-files/MacOSX/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -148,6 +148,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4308,9 +4127,9 @@ diff -r c7ae2bca6417 support-files/MacOSX/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 support-files/Makefile.in
---- a/support-files/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/support-files/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c support-files/Makefile.in
+--- a/support-files/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/support-files/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -171,6 +171,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4319,9 +4138,9 @@ diff -r c7ae2bca6417 support-files/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 support-files/RHEL4-SElinux/Makefile.in
---- a/support-files/RHEL4-SElinux/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/support-files/RHEL4-SElinux/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c support-files/RHEL4-SElinux/Makefile.in
+--- a/support-files/RHEL4-SElinux/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/support-files/RHEL4-SElinux/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -146,6 +146,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4330,9 +4149,9 @@ diff -r c7ae2bca6417 support-files/RHEL4-SElinux/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 tests/Makefile.in
---- a/tests/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/tests/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c tests/Makefile.in
+--- a/tests/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/tests/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -193,6 +193,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4341,9 +4160,9 @@ diff -r c7ae2bca6417 tests/Makefile.in
  LIBS = @CLIENT_LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 tools/Makefile.in
---- a/tools/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/tools/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c tools/Makefile.in
+--- a/tools/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/tools/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -167,6 +167,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4352,9 +4171,9 @@ diff -r c7ae2bca6417 tools/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 vio/Makefile.in
---- a/vio/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/vio/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c vio/Makefile.in
+--- a/vio/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/vio/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -176,6 +176,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4363,9 +4182,9 @@ diff -r c7ae2bca6417 vio/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 win/Makefile.in
---- a/win/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/win/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c win/Makefile.in
+--- a/win/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/win/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -144,6 +144,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
@@ -4374,9 +4193,9 @@ diff -r c7ae2bca6417 win/Makefile.in
  LIBS = @LIBS@
  LIBTOOL = @LIBTOOL@
  LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -r c7ae2bca6417 zlib/Makefile.in
---- a/zlib/Makefile.in	Tue Jul 28 23:42:46 2009 -0700
-+++ b/zlib/Makefile.in	Tue Jul 28 23:42:52 2009 -0700
+diff -r 85ce661bd25c zlib/Makefile.in
+--- a/zlib/Makefile.in	Wed Jul 29 00:09:40 2009 -0700
++++ b/zlib/Makefile.in	Wed Jul 29 00:09:56 2009 -0700
 @@ -187,6 +187,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@

@@ -1,19 +1,19 @@
-diff -r d13cd248f14e include/mysql_com.h
---- a/include/mysql_com.h	Fri Jul 03 15:41:20 2009 -0700
-+++ b/include/mysql_com.h	Fri Jul 03 15:41:25 2009 -0700
+diff -r c1558413099b include/mysql_com.h
+--- a/include/mysql_com.h	Wed Jul 29 00:10:19 2009 -0700
++++ b/include/mysql_com.h	Wed Jul 29 00:11:55 2009 -0700
 @@ -121,6 +121,9 @@
- #define REFRESH_QUERY_CACHE_FREE 0x20000L /* pack query cache */
  #define REFRESH_DES_KEY_FILE	0x40000L
  #define REFRESH_USER_RESOURCES	0x80000L
-+
+ 
 +/* TRUNCATE INFORMATION_SCHEMA.INNODB_IO_PATTERN */
 +#define REFRESH_INNODB_IO_PATTERN	0x1000000L
- 
++
  #define CLIENT_LONG_PASSWORD	1	/* new more secure passwords */
  #define CLIENT_FOUND_ROWS	2	/* Found instead of affected rows */
-diff -r d13cd248f14e innobase/buf/buf0buf.c
---- a/innobase/buf/buf0buf.c	Fri Jul 03 15:41:20 2009 -0700
-+++ b/innobase/buf/buf0buf.c	Fri Jul 03 15:41:25 2009 -0700
+ #define CLIENT_LONG_FLAG	4	/* Get all column flags */
+diff -r c1558413099b innobase/buf/buf0buf.c
+--- a/innobase/buf/buf0buf.c	Wed Jul 29 00:10:19 2009 -0700
++++ b/innobase/buf/buf0buf.c	Wed Jul 29 00:11:55 2009 -0700
 @@ -654,6 +654,9 @@
  	}
  
@@ -147,9 +147,9 @@ diff -r d13cd248f14e innobase/buf/buf0buf.c
 +       }
 +       mutex_exit(&(buf_pool->mutex));
 +}
-diff -r d13cd248f14e innobase/include/buf0buf.h
---- a/innobase/include/buf0buf.h	Fri Jul 03 15:41:20 2009 -0700
-+++ b/innobase/include/buf0buf.h	Fri Jul 03 15:41:25 2009 -0700
+diff -r c1558413099b innobase/include/buf0buf.h
+--- a/innobase/include/buf0buf.h	Wed Jul 29 00:10:19 2009 -0700
++++ b/innobase/include/buf0buf.h	Wed Jul 29 00:11:55 2009 -0700
 @@ -709,6 +709,18 @@
  void buf_pool_dump(void);
  buf_block_t* buf_pool_get_nth_block_no_inline(buf_pool_t* pool, ulint i);  
@@ -195,9 +195,9 @@ diff -r d13cd248f14e innobase/include/buf0buf.h
  /* States of a control block */
  #define	BUF_BLOCK_NOT_USED	211	/* is in the free list */
  #define BUF_BLOCK_READY_FOR_USE	212	/* when buf_get_free_block returns
-diff -r d13cd248f14e innobase/include/buf0types.h
---- a/innobase/include/buf0types.h	Fri Jul 03 15:41:20 2009 -0700
-+++ b/innobase/include/buf0types.h	Fri Jul 03 15:41:25 2009 -0700
+diff -r c1558413099b innobase/include/buf0types.h
+--- a/innobase/include/buf0types.h	Wed Jul 29 00:10:19 2009 -0700
++++ b/innobase/include/buf0types.h	Wed Jul 29 00:11:55 2009 -0700
 @@ -12,6 +12,8 @@
  typedef	struct buf_block_struct		buf_block_t;
  typedef	struct buf_pool_struct		buf_pool_t;
@@ -207,9 +207,9 @@ diff -r d13cd248f14e innobase/include/buf0types.h
  /* The 'type' used of a buffer frame */
  typedef	byte	buf_frame_t;
  
-diff -r d13cd248f14e innobase/include/srv0srv.h
---- a/innobase/include/srv0srv.h	Fri Jul 03 15:41:20 2009 -0700
-+++ b/innobase/include/srv0srv.h	Fri Jul 03 15:41:25 2009 -0700
+diff -r c1558413099b innobase/include/srv0srv.h
+--- a/innobase/include/srv0srv.h	Wed Jul 29 00:10:19 2009 -0700
++++ b/innobase/include/srv0srv.h	Wed Jul 29 00:11:55 2009 -0700
 @@ -146,6 +146,11 @@
  extern ulint	srv_enable_unsafe_group_commit;
  extern uint	srv_read_ahead;
@@ -222,9 +222,9 @@ diff -r d13cd248f14e innobase/include/srv0srv.h
  /*-------------------------------------------*/
  
  extern ulint	srv_n_rows_inserted;
-diff -r d13cd248f14e innobase/srv/srv0srv.c
---- a/innobase/srv/srv0srv.c	Fri Jul 03 15:41:20 2009 -0700
-+++ b/innobase/srv/srv0srv.c	Fri Jul 03 15:41:25 2009 -0700
+diff -r c1558413099b innobase/srv/srv0srv.c
+--- a/innobase/srv/srv0srv.c	Wed Jul 29 00:10:19 2009 -0700
++++ b/innobase/srv/srv0srv.c	Wed Jul 29 00:11:55 2009 -0700
 @@ -352,6 +352,11 @@
  
  uint	srv_read_ahead = 3; /* 1: random  2: linear  3: Both */
@@ -237,9 +237,9 @@ diff -r d13cd248f14e innobase/srv/srv0srv.c
  /*-------------------------------------------*/
  ulong	srv_n_spin_wait_rounds	= 20;
  ulong	srv_n_free_tickets_to_enter = 500;
-diff -r d13cd248f14e mysql-test/r/information_schema.result
---- a/mysql-test/r/information_schema.result	Fri Jul 03 15:41:20 2009 -0700
-+++ b/mysql-test/r/information_schema.result	Fri Jul 03 15:41:25 2009 -0700
+diff -r c1558413099b mysql-test/r/information_schema.result
+--- a/mysql-test/r/information_schema.result	Wed Jul 29 00:10:19 2009 -0700
++++ b/mysql-test/r/information_schema.result	Wed Jul 29 00:11:55 2009 -0700
 @@ -59,6 +59,7 @@
  USER_PRIVILEGES
  USER_STATISTICS
@@ -296,9 +296,9 @@ diff -r d13cd248f14e mysql-test/r/information_schema.result
  KEY_COLUMN_USAGE	information_schema.KEY_COLUMN_USAGE	1
  PROCESSLIST	information_schema.PROCESSLIST	1
  PROFILING	information_schema.PROFILING	1
-diff -r d13cd248f14e mysql-test/r/information_schema_db.result
---- a/mysql-test/r/information_schema_db.result	Fri Jul 03 15:41:20 2009 -0700
-+++ b/mysql-test/r/information_schema_db.result	Fri Jul 03 15:41:25 2009 -0700
+diff -r c1558413099b mysql-test/r/information_schema_db.result
+--- a/mysql-test/r/information_schema_db.result	Wed Jul 29 00:10:19 2009 -0700
++++ b/mysql-test/r/information_schema_db.result	Wed Jul 29 00:11:55 2009 -0700
 @@ -28,6 +28,7 @@
  USER_PRIVILEGES
  USER_STATISTICS
@@ -307,9 +307,9 @@ diff -r d13cd248f14e mysql-test/r/information_schema_db.result
  show tables from INFORMATION_SCHEMA like 'T%';
  Tables_in_information_schema (T%)
  TABLES
-diff -r d13cd248f14e mysql-test/r/mysqlshow.result
---- a/mysql-test/r/mysqlshow.result	Fri Jul 03 15:41:20 2009 -0700
-+++ b/mysql-test/r/mysqlshow.result	Fri Jul 03 15:41:25 2009 -0700
+diff -r c1558413099b mysql-test/r/mysqlshow.result
+--- a/mysql-test/r/mysqlshow.result	Wed Jul 29 00:10:19 2009 -0700
++++ b/mysql-test/r/mysqlshow.result	Wed Jul 29 00:11:55 2009 -0700
 @@ -102,6 +102,7 @@
  | USER_PRIVILEGES                       |
  | USER_STATISTICS                       |
@@ -326,9 +326,9 @@ diff -r d13cd248f14e mysql-test/r/mysqlshow.result
  +---------------------------------------+
  Wildcard: inf_rmation_schema
  +--------------------+
-diff -r d13cd248f14e patch_info/innodb_io_pattern.info
+diff -r c1558413099b patch_info/innodb_io_pattern.info
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
-+++ b/patch_info/innodb_io_pattern.info	Fri Jul 03 15:41:25 2009 -0700
++++ b/patch_info/innodb_io_pattern.info	Wed Jul 29 00:11:55 2009 -0700
 @@ -0,0 +1,8 @@
 +File=innodb_io_pattern.patch
 +Name=Information schema table of InnoDB IO counts for each datafile pages
@@ -338,9 +338,9 @@ diff -r d13cd248f14e patch_info/innodb_io_pattern.info
 +Comment=INFORMATION_SCHEMA.INNODB_IO_PATTERN
 +2008-12-01
 +YK: fix for mysql-test
-diff -r d13cd248f14e sql/ha_innodb.cc
---- a/sql/ha_innodb.cc	Fri Jul 03 15:41:20 2009 -0700
-+++ b/sql/ha_innodb.cc	Fri Jul 03 15:41:25 2009 -0700
+diff -r c1558413099b sql/ha_innodb.cc
+--- a/sql/ha_innodb.cc	Wed Jul 29 00:10:19 2009 -0700
++++ b/sql/ha_innodb.cc	Wed Jul 29 00:11:55 2009 -0700
 @@ -1583,6 +1583,8 @@
          pthread_cond_init(&commit_cond, NULL);
  	innodb_inited= 1;
@@ -350,7 +350,7 @@ diff -r d13cd248f14e sql/ha_innodb.cc
  	/* If this is a replication slave and we needed to do a crash recovery,
  	set the master binlog position to what InnoDB internally knew about
  	how far we got transactions durable inside InnoDB. There is a
-@@ -6548,6 +6550,28 @@
+@@ -6551,6 +6553,28 @@
  }
  
  /****************************************************************************
@@ -379,9 +379,9 @@ diff -r d13cd248f14e sql/ha_innodb.cc
  Implements the SHOW INNODB STATUS command. Sends the output of the InnoDB
  Monitor to the client. */
  
-diff -r d13cd248f14e sql/ha_innodb.h
---- a/sql/ha_innodb.h	Fri Jul 03 15:41:20 2009 -0700
-+++ b/sql/ha_innodb.h	Fri Jul 03 15:41:25 2009 -0700
+diff -r c1558413099b sql/ha_innodb.h
+--- a/sql/ha_innodb.h	Wed Jul 29 00:10:19 2009 -0700
++++ b/sql/ha_innodb.h	Wed Jul 29 00:11:55 2009 -0700
 @@ -245,6 +245,9 @@
  extern uint srv_adaptive_checkpoint;
  extern ulong srv_show_locks_held;
@@ -392,20 +392,20 @@ diff -r d13cd248f14e sql/ha_innodb.h
  
  /* An option to enable the fix for "Bug#43660 SHOW INDEXES/ANALYZE does
  NOT update cardinality for indexes of InnoDB table". By default we are
-@@ -277,6 +280,9 @@
- bool innodb_I_S_buffer_pool_content(THD* thd, TABLE_LIST *tables);
+@@ -278,6 +281,9 @@
  bool innodb_mutex_show_status(THD* thd);
  void innodb_export_status(void);
-+
+ 
 +void innodb_io_pattern_control(void);
 +void innodb_io_pattern_clear(void);
- 
++
  void innobase_release_temporary_latches(THD *thd);
  
-diff -r d13cd248f14e sql/lex.h
---- a/sql/lex.h	Fri Jul 03 15:41:20 2009 -0700
-+++ b/sql/lex.h	Fri Jul 03 15:41:25 2009 -0700
-@@ -244,6 +244,7 @@
+ void innobase_store_binlog_offset_and_flush_log(char *binlog_name,longlong offset);
+diff -r c1558413099b sql/lex.h
+--- a/sql/lex.h	Wed Jul 29 00:10:19 2009 -0700
++++ b/sql/lex.h	Wed Jul 29 00:11:55 2009 -0700
+@@ -243,6 +243,7 @@
    { "INNER",		SYM(INNER_SYM)},
    { "INNOBASE",		SYM(INNOBASE_SYM)},
    { "INNODB",		SYM(INNOBASE_SYM)},
@@ -413,10 +413,10 @@ diff -r d13cd248f14e sql/lex.h
    { "INOUT",            SYM(INOUT_SYM)},
    { "INSENSITIVE",      SYM(INSENSITIVE_SYM)},
    { "INSERT",		SYM(INSERT)},
-diff -r d13cd248f14e sql/mysqld.cc
---- a/sql/mysqld.cc	Fri Jul 03 15:41:20 2009 -0700
-+++ b/sql/mysqld.cc	Fri Jul 03 15:41:25 2009 -0700
-@@ -5029,6 +5029,9 @@
+diff -r c1558413099b sql/mysqld.cc
+--- a/sql/mysqld.cc	Wed Jul 29 00:10:19 2009 -0700
++++ b/sql/mysqld.cc	Wed Jul 29 00:11:55 2009 -0700
+@@ -5027,6 +5027,9 @@
    OPT_INNODB_SYNC_SPIN_LOOPS,
    OPT_INNODB_CONCURRENCY_TICKETS,
    OPT_INNODB_THREAD_SLEEP_DELAY,
@@ -426,7 +426,7 @@ diff -r d13cd248f14e sql/mysqld.cc
    OPT_BDB_CACHE_SIZE,
    OPT_BDB_LOG_BUFFER_SIZE,
    OPT_BDB_MAX_LOCK,
-@@ -5461,6 +5464,18 @@
+@@ -5459,6 +5462,18 @@
     "Number of background write I/O threads in InnoDB.",
     (gptr*) &innobase_write_io_threads, (gptr*) &innobase_write_io_threads,
     0, GET_LONG, REQUIRED_ARG, 8, 1, 64, 0, 0, 0},
@@ -445,9 +445,9 @@ diff -r d13cd248f14e sql/mysqld.cc
  #endif /* End HAVE_INNOBASE_DB */
    {"isam", OPT_ISAM, "Obsolete. ISAM storage engine is no longer supported.",
     (gptr*) &opt_isam, (gptr*) &opt_isam, 0, GET_BOOL, NO_ARG, 0, 0, 0,
-diff -r d13cd248f14e sql/set_var.cc
---- a/sql/set_var.cc	Fri Jul 03 15:41:20 2009 -0700
-+++ b/sql/set_var.cc	Fri Jul 03 15:41:25 2009 -0700
+diff -r c1558413099b sql/set_var.cc
+--- a/sql/set_var.cc	Wed Jul 29 00:10:19 2009 -0700
++++ b/sql/set_var.cc	Wed Jul 29 00:11:55 2009 -0700
 @@ -546,6 +546,12 @@
  sys_var_long_ptr  sys_innodb_show_verbose_locks(
                                          "innodb_show_verbose_locks",
@@ -481,7 +481,7 @@ diff -r d13cd248f14e sql/set_var.cc
    {sys_innodb_use_legacy_cardinality_algorithm.name,
     (char*) &sys_innodb_use_legacy_cardinality_algorithm, SHOW_SYS},
  #endif
-@@ -3195,6 +3207,19 @@
+@@ -3210,6 +3222,19 @@
      thd->variables.lc_time_names= global_system_variables.lc_time_names;
  }
  
@@ -501,10 +501,10 @@ diff -r d13cd248f14e sql/set_var.cc
  /*
    Functions to update thd->options bits
  */
-diff -r d13cd248f14e sql/set_var.h
---- a/sql/set_var.h	Fri Jul 03 15:41:20 2009 -0700
-+++ b/sql/set_var.h	Fri Jul 03 15:41:25 2009 -0700
-@@ -990,6 +990,17 @@
+diff -r c1558413099b sql/set_var.h
+--- a/sql/set_var.h	Wed Jul 29 00:10:19 2009 -0700
++++ b/sql/set_var.h	Wed Jul 29 00:11:55 2009 -0700
+@@ -1012,6 +1012,17 @@
    virtual void set_default(THD *thd, enum_var_type type);
  };
  
@@ -522,11 +522,11 @@ diff -r d13cd248f14e sql/set_var.h
  /****************************************************************************
    Classes for parsing of the SET command
  ****************************************************************************/
-diff -r d13cd248f14e sql/sql_parse.cc
---- a/sql/sql_parse.cc	Fri Jul 03 15:41:20 2009 -0700
-+++ b/sql/sql_parse.cc	Fri Jul 03 15:41:25 2009 -0700
-@@ -8105,6 +8105,13 @@
-     }
+diff -r c1558413099b sql/sql_parse.cc
+--- a/sql/sql_parse.cc	Wed Jul 29 00:10:19 2009 -0700
++++ b/sql/sql_parse.cc	Wed Jul 29 00:11:55 2009 -0700
+@@ -8044,6 +8044,13 @@
+     init_global_user_stats();
      pthread_mutex_unlock(&LOCK_global_user_client_stats);
    }
 +#ifdef HAVE_INNOBASE_DB
@@ -539,14 +539,13 @@ diff -r d13cd248f14e sql/sql_parse.cc
   *write_to_binlog= tmp_write_to_binlog;
   return result;
  }
-diff -r d13cd248f14e sql/sql_show.cc
---- a/sql/sql_show.cc	Fri Jul 03 15:41:20 2009 -0700
-+++ b/sql/sql_show.cc	Fri Jul 03 15:41:25 2009 -0700
-@@ -32,6 +32,17 @@
- #ifdef HAVE_INNOBASE_DB
+diff -r c1558413099b sql/sql_show.cc
+--- a/sql/sql_show.cc	Wed Jul 29 00:10:19 2009 -0700
++++ b/sql/sql_show.cc	Wed Jul 29 00:11:55 2009 -0700
+@@ -33,6 +33,17 @@
  #include "ha_innodb.h"
  #endif
-+
+ 
 +#ifdef HAVE_INNOBASE_DB
 +#define INSIDE_HA_INNOBASE_CC
 +extern "C" {
@@ -557,10 +556,11 @@ diff -r d13cd248f14e sql/sql_show.cc
 +/* We need to undef it in InnoDB */
 +#undef byte
 +#endif /* HAVE_INNOBASE_DB */
- 
++
  #ifndef NO_EMBEDDED_ACCESS_CHECKS
  static const char *grant_names[]={
-@@ -4108,6 +4119,67 @@
+   "select","insert","update","delete","create","drop","reload","shutdown",
+@@ -4068,6 +4079,67 @@
    DBUG_RETURN(res);
  }
  
@@ -628,7 +628,7 @@ diff -r d13cd248f14e sql/sql_show.cc
  /*
    Find schema_tables elment by name
  
-@@ -4914,6 +4986,19 @@
+@@ -4874,6 +4946,19 @@
    {0, 0, MYSQL_TYPE_STRING, 0, 0, 0}
  };
  
@@ -648,7 +648,7 @@ diff -r d13cd248f14e sql/sql_show.cc
  
  ST_FIELD_INFO variables_fields_info[]=
  {
-@@ -5089,6 +5174,10 @@
+@@ -5020,6 +5105,10 @@
     make_old_format, 0, -1, -1, 1},
    {"VIEWS", view_fields_info, create_schema_table, 
      get_all_tables, 0, get_schema_views_record, 1, 2, 0},
@@ -659,10 +659,10 @@ diff -r d13cd248f14e sql/sql_show.cc
    {0, 0, 0, 0, 0, 0, 0, 0, 0}
  };
  
-diff -r d13cd248f14e sql/sql_yacc.yy
---- a/sql/sql_yacc.yy	Fri Jul 03 15:41:20 2009 -0700
-+++ b/sql/sql_yacc.yy	Fri Jul 03 15:41:25 2009 -0700
-@@ -685,6 +685,7 @@
+diff -r c1558413099b sql/sql_yacc.yy
+--- a/sql/sql_yacc.yy	Wed Jul 29 00:10:19 2009 -0700
++++ b/sql/sql_yacc.yy	Wed Jul 29 00:11:55 2009 -0700
+@@ -684,6 +684,7 @@
  %token  INFILE
  %token  INNER_SYM
  %token  INNOBASE_SYM
@@ -670,15 +670,15 @@ diff -r d13cd248f14e sql/sql_yacc.yy
  %token  INOUT_SYM
  %token  INSENSITIVE_SYM
  %token  INSERT
-@@ -8500,6 +8501,7 @@
+@@ -8491,6 +8492,7 @@
          | MASTER_SYM    { Lex->type|= REFRESH_MASTER; }
  	| DES_KEY_FILE	{ Lex->type|= REFRESH_DES_KEY_FILE; }
   	| RESOURCES     { Lex->type|= REFRESH_USER_RESOURCES; }
 + 	| INNODB_IO_PATTERN { Lex->type|= REFRESH_INNODB_IO_PATTERN; }
-  	| CLIENT_STATS_SYM { Lex->type|= REFRESH_CLIENT_STATS; }
   	| USER_STATS_SYM { Lex->type|= REFRESH_USER_STATS; }
   	| TABLE_STATS_SYM { Lex->type|= REFRESH_TABLE_STATS; }
-@@ -9552,6 +9554,7 @@
+  	| INDEX_STATS_SYM { Lex->type|= REFRESH_INDEX_STATS; };
+@@ -9541,6 +9543,7 @@
  	| ISOLATION		{}
  	| ISSUER_SYM		{}
  	| INNOBASE_SYM		{}
