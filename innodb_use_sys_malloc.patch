@@ -9,6 +9,23 @@ diff -ruN a/innobase/include/srv0srv.h b/innobase/include/srv0srv.h
  extern ibool	srv_thread_concurrency_timer_based;
  
  extern ulint	srv_n_file_io_threads;
+diff -ruN a/innobase/include/ut0mem.h b/innobase/include/ut0mem.h
+--- a/innobase/include/ut0mem.h	2009-07-07 21:54:07.000000000 +0900
++++ b/innobase/include/ut0mem.h	2009-08-03 14:42:17.000000000 +0900
+@@ -30,6 +30,13 @@
+ 
+ 
+ /**************************************************************************
++Initializes the mem block list at database startup. */
++
++void
++ut_mem_block_list_init(void);
++/*========================*/
++
++/**************************************************************************
+ Allocates memory. Sets it also to zero if UNIV_SET_MEM_TO_ZERO is
+ defined and set_to_zero is TRUE. */
+ 
 diff -ruN a/innobase/mem/mem0dbg.c b/innobase/mem/mem0dbg.c
 --- a/innobase/mem/mem0dbg.c	2009-05-08 06:12:10.000000000 +0900
 +++ b/innobase/mem/mem0dbg.c	2009-07-06 16:48:17.000000000 +0900
@@ -81,6 +98,14 @@ diff -ruN a/innobase/srv/srv0srv.c b/innobase/srv/srv0srv.c
  ibool	srv_thread_concurrency_timer_based = TRUE;
  ulong	srv_thread_concurrency	= 0;
  ulong   srv_commit_concurrency  = 0;
+@@ -1012,6 +1013,7 @@
+ srv_general_init(void)
+ /*==================*/
+ {
++	ut_mem_block_list_init();
+ 	os_sync_init();
+ 	sync_init();
+ 	mem_init(srv_mem_pool_size);
 diff -ruN a/innobase/srv/srv0start.c b/innobase/srv/srv0start.c
 --- a/innobase/srv/srv0start.c	2009-07-06 15:59:52.000000000 +0900
 +++ b/innobase/srv/srv0start.c	2009-07-06 16:23:38.000000000 +0900
@@ -107,25 +132,40 @@ diff -ruN a/innobase/ut/ut0mem.c b/innobase/ut/ut0mem.c
  
  /* This struct is placed first in every allocated memory block */
  typedef struct ut_mem_block_struct ut_mem_block_t;
-@@ -70,6 +71,18 @@
+@@ -43,7 +44,7 @@
+ 
+ /**************************************************************************
+ Initializes the mem block list at database startup. */
+-static
++
+ void
+ ut_mem_block_list_init(void)
+ /*========================*/
+@@ -70,11 +71,21 @@
  	ulint	retry_count	= 0;
  	void*	ret;
  
+-	ut_ad((sizeof(ut_mem_block_t) % 8) == 0); /* check alignment ok */
 +	if (UNIV_LIKELY(srv_use_sys_malloc)) {
 +		ret = malloc(n);
 +		ut_a(ret || !assert_on_error);
-+
+ 
+-	if (!ut_mem_block_list_inited) {
+-	        ut_mem_block_list_init();
 +#ifdef UNIV_SET_MEM_TO_ZERO
 +		if (set_to_zero) {
 +			memset(ret, '\0', n);
 +		}
 +#endif
 +		return(ret);
-+	}
+ 	}
 +
- 	ut_ad((sizeof(ut_mem_block_t) % 8) == 0); /* check alignment ok */
++	ut_ad((sizeof(ut_mem_block_t) % 8) == 0); /* check alignment ok */
++
++	ut_a(ut_mem_block_list_inited);
+ retry:
+ 	os_fast_mutex_lock(&ut_list_mutex);
  
- 	if (!ut_mem_block_list_inited) {
 @@ -223,6 +236,11 @@
  {
          ut_mem_block_t* block;
