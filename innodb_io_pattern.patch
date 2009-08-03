@@ -560,7 +560,7 @@ diff -r d4826c0a98c2 sql/sql_show.cc
  #ifndef NO_EMBEDDED_ACCESS_CHECKS
  static const char *grant_names[]={
    "select","insert","update","delete","create","drop","reload","shutdown",
-@@ -4108,6 +4119,67 @@
+@@ -4108,6 +4119,72 @@
    DBUG_RETURN(res);
  }
  
@@ -573,6 +573,11 @@ diff -r d4826c0a98c2 sql/sql_show.cc
 +
 +  DBUG_ENTER("innodb_io_pattern_fill_table");
 +  int returnable= 0;
++
++  /* deny access to non-superusers */
++  if (check_global_access(thd, PROCESS_ACL)) {
++    DBUG_RETURN(0);
++  }
 +
 +  /* We cannot use inline functions of InnoDB here */
 +
