@@ -15,6 +15,7 @@ innodb_dict_size_limit.patch
 innodb_extra_rseg.patch
 innodb_thread_concurrency_timer_based.patch
 innodb_use_sys_malloc.patch
+innodb_recovery_patches.patch
 innodb_split_buf_pool_mutex.patch
 innodb_rw_lock.patch
 mysql-test.patch
