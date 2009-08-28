@@ -29,7 +29,7 @@ diff -ruN a/innobase/btr/btr0sea.c b/innobase/btr/btr0sea.c
 +	ulint*		offsets;
 +
 +	rw_lock_x_lock(&btr_search_latch);
-+	mutex_enter(&buf_pool->LRU_mutex);
++	mutex_enter(&buf_pool->mutex);
 +
 +	table = btr_search_sys->hash_index;
 +
@@ -114,7 +114,7 @@ diff -ruN a/innobase/btr/btr0sea.c b/innobase/btr/btr0sea.c
 +		block = UT_LIST_GET_PREV(LRU, block);
 +	}
 +
-+	mutex_exit(&buf_pool->LRU_mutex);
++	mutex_exit(&buf_pool->mutex);
 +	rw_lock_x_unlock(&btr_search_latch);
 +
 +	if (UNIV_LIKELY_NULL(heap)) {
