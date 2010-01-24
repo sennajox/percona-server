@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 25_mysys__default.c.dpatch by  <ch@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: mysys__default.c
+
+@DPATCH@
+
+--- a/mysys/default.c   2009-08-27 04:01:28.000000000 -0400
++++ b/mysys/default.c   2009-08-27 04:06:37.000000000 -0400
+@@ -1077,7 +1077,7 @@
+
+ #else
+
+-  errors += add_directory(alloc, "/etc/", dirs);
++  errors += add_directory(alloc, "/etc/mysql", dirs);
+
+ #if defined(__EMX__) || defined(OS2)
+   if ((env= getenv("ETC")))

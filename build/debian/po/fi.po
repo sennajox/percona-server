@@ -1,0 +1,209 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mysql-dfsg-5.0_5.0.45-1\n"
+"Report-Msgid-Bugs-To: mysql-dfsg-5.0@packages.debian.org\n"
+"POT-Creation-Date: 2008-05-08 20:05+0200\n"
+"PO-Revision-Date: 2008-06-16 21:50+0200\n"
+"Last-Translator: Esko Arajärvi <edu@iki.fi>\n"
+"Language-Team: Finnish <debian-l10n-finnish@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Country: FINLAND\n"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid "Really proceed with downgrade?"
+msgstr "Haluatko varmasti varhentaa versiota?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid "A file named /var/lib/mysql/debian-*.flag exists on this system."
+msgstr "Järjestelmässä on tiedosto nimeltä /var/lib/mysql/debian-*.flag."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid ""
+"Such file is an indication that a mysql-server package with a higher version "
+"has been installed earlier."
+msgstr ""
+"Tiedoston olemassaolo merkitsee, että paketin mysql-server uudempi versio on "
+"ollut asennettuna aiemmin."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid ""
+"There is no guarantee that the version you're currently installing will be "
+"able to use the current databases."
+msgstr ""
+"Ei ole takuita, että versio jota ollaan asentamassa pystyy käyttämään "
+"olemassa olevia tietokantoja."
+
+#. Type: note
+#. Description
+#: ../mysql-server-5.0.templates:3001
+msgid "Important note for NIS/YP users"
+msgstr "Tärkeä tiedotus NIS/YP-käyttäjille"
+
+#. Type: note
+#. Description
+#: ../mysql-server-5.0.templates:3001
+msgid ""
+"To use MySQL, the following entries for users and groups should be added to "
+"the system:"
+msgstr ""
+"Järjestelmään tulisi lisätä äyttäjille ja ryhmille seuraavat rivit, jotta "
+"MySQL:ää voidaan käyttää:"
+
+#. Type: note
+#. Description
+#: ../mysql-server-5.0.templates:3001
+msgid ""
+"You should also check the permissions and the owner of the /var/lib/mysql "
+"directory:"
+msgstr "Myös hakemiston /var/lib/mysql oikeudet ja omistaja tulisi tarkistaa:"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:4001
+msgid "Remove all MySQL databases?"
+msgstr "Poistetaanko kaikki MySQL-tietokannat?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:4001
+msgid ""
+"The /var/lib/mysql directory which contains the MySQL databases is about to "
+"be removed."
+msgstr ""
+"MySQL-tietokannat sisältävää hakemistoa /var/lib/mysql ollaan poistamassa."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:4001
+msgid ""
+"If you're removing the MySQL package in order to later install a more recent "
+"version or if a different mysql-server package is already using it, the data "
+"should be kept."
+msgstr ""
+"Tiedot tulisi säilyttää, jos MySQL-pakettia ollaan poistamassa tarkoituksena "
+"asentaa myöhemmin uudempi versio, tai jos toinen mysql-server-paketti "
+"käyttää niitä jo."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:5001
+msgid "Start the MySQL server on boot?"
+msgstr "Käynnistetäänkö MySQL-palvelin käynnistettäessä tietokone?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:5001
+msgid ""
+"The MySQL server can be launched automatically at boot time or manually with "
+"the '/etc/init.d/mysql start' command."
+msgstr ""
+"MySQL-palvelin voidaan käynnistää automaattisesti käynnistettäessä tietokone "
+"tai käsin komennolla ”/etc/init.d/mysql start”."
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:6001
+msgid "New password for the MySQL \"root\" user:"
+msgstr "MySQL:n pääkäyttäjän uusi salasana:"
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:6001
+msgid ""
+"While not mandatory, it is highly recommended that you set a password for "
+"the MySQL administrative \"root\" user."
+msgstr ""
+"On hyvin suositeltavaa asettaa MySQL:ää ylläpitävän pääkäyttäjän salasana, "
+"vaikka se ei olekaan pakollista."
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:6001
+msgid "If that field is left blank, the password will not be changed."
+msgstr "Jos kenttä jätetään tyhjäksi, salasanaa ei vaihdeta."
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:7001
+msgid "Repeat password for the MySQL \"root\" user:"
+msgstr "Toista MySQL:n pääkäyttäjän salasana:"
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:8001
+msgid "Unable to set password for the MySQL \"root\" user"
+msgstr "Salasanan asetus MySQL:n pääkäyttäjälle ei onnistunut"
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:8001
+msgid ""
+"An error occurred while setting the password for the MySQL administrative "
+"user. This may have happened because the account already has a password, or "
+"because of a communication problem with the MySQL server."
+msgstr ""
+"Asetettaessa salasanaa MySQL:n ylläpitäjälle tapahtui virhe. Tämä saattaa "
+"johtua siitä, että tunnuksella on jo salasana tai viestintäongelmista MySQL-"
+"palvelimen kanssa."
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:8001
+msgid "You should check the account's password after the package installation."
+msgstr "Tarkista tunnuksen salasana paketin asennuksen jälkeen."
+
+#. Type: error
+#. Description
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:8001 ../mysql-server-5.0.templates:10001
+msgid ""
+"Please read the /usr/share/doc/mysql-server-5.0/README.Debian file for more "
+"information."
+msgstr ""
+"Tiedostosta /usr/share/doc/mysql-server-5.0/README.Debian löytyy lisätietoja "
+"(englanniksi)."
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:9001
+msgid "Password input error"
+msgstr "Virhe salasanojen syötössä"
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:9001
+msgid "The two passwords you entered were not the same. Please try again."
+msgstr "Annetut kaksi salasanaa eivät olleet sama. Yritä uudelleen."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:10001
+msgid "Support MySQL connections from hosts running Debian \"sarge\" or older?"
+msgstr ""
+"Tuetaanko MySQL-yhteyksiä koneilta, jotka ajavat Debianin jakelua ”sarge” "
+"tai vanhempia?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:10001
+msgid ""
+"In old versions of MySQL clients on Debian, passwords were not stored "
+"securely. This has been improved since then, however clients (such as PHP) "
+"from hosts running Debian 3.1 Sarge will not be able to connect to recent "
+"accounts or accounts whose password have been changed."
+msgstr ""
+"Vanhemmissa Debianin MySQL-asiakkaissa salasanoja ei tallennettu "
+"turvallisesti. Tilanne on parantunut sen jälkeen. Asiakkaat (kuten PHP), "
+"joita ajetaan Debianin versiossa 3.1 Sarge, eivät kuitenkaan pysty ottamaan "
+"yhteyttä uusiin tunnuksiin tai tunnuksiin, joiden salasana on vaihdettu."

@@ -1,0 +1,18 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 33_scripts__mysql_create_system_tables__no_test.dpatch by <nobse@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Don't create guest account
+
+@DPATCH@
+diff -Nur a/scripts/mysql_system_tables_data.sql b/scripts/mysql_system_tables_data.sql
+--- a/scripts/mysql_system_tables_data.sql	2009-08-27 04:25:34.000000000 -0400
++++ b/scripts/mysql_system_tables_data.sql	2009-08-27 04:25:56.000000000 -0400
+@@ -23,7 +23,5 @@
+ INSERT INTO tmp_user VALUES ('localhost','root','','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0);
+ REPLACE INTO tmp_user SELECT @current_hostname,'root','','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0 FROM dual WHERE LOWER( @current_hostname) != 'localhost';
+ REPLACE INTO tmp_user VALUES ('127.0.0.1','root','','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0);
+-INSERT INTO tmp_user (host,user) VALUES ('localhost','');
+-INSERT INTO tmp_user (host,user) SELECT @current_hostname,'' FROM dual WHERE LOWER(@current_hostname ) != 'localhost';
+ INSERT INTO user SELECT * FROM tmp_user WHERE @had_user_table=0;
+ DROP TABLE tmp_user;

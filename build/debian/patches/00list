@@ -1,0 +1,11 @@
+01_MAKEFILES__Docs_Images_Makefile.in.dpatch
+01_MAKEFILES__Docs_Makefile.in.dpatch
+10_mysql_secure_installation.dpatch
+25_mysys__default.c.dpatch
+33_scripts__mysql_create_system_tables__no_test.dpatch
+41_scripts__mysql_install_db.sh__no_test.dpatch
+44_scripts__mysql_config__libs.dpatch
+45_warn-CLI-passwords.dpatch
+86_PATH_MAX.dpatch
+89_ndb__staticlib.dpatch
+99_percona_support.dpatch
