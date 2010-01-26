@@ -1,0 +1,19 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 41_scripts__mysql_install_db.sh__no_test.dpatch by  <ch@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: scripts__mysql_install_db.sh__no_test
+## DP: http://bugs.mysql.com/bug.php?id=6901
+
+@DPATCH@
+--- mysql-dfsg-5.0-5.0.50.orig/scripts/mysql_install_db.sh	2007-10-19 17:17:12.000000000 +0200
++++ mysql-dfsg-5.0-5.0.50/scripts/mysql_install_db.sh	2007-11-26 19:48:30.000000000 +0100
+@@ -311,7 +311,7 @@
+ fi
+ 
+ # Create database directories mysql & test
+-for dir in $ldata $ldata/mysql $ldata/test
++for dir in $ldata $ldata/mysql
+ do
+   if test ! -d $dir
+   then

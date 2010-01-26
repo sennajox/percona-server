@@ -1,0 +1,164 @@
+# Slovak translation of mysql-dfsg-5.0.
+# Copyright (C) 2005 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the mysql-dfsg-5.0 package.
+# Ivan Masár <helix84@centrum.sk>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mysql-dfsg-5.0\n"
+"Report-Msgid-Bugs-To: mysql-dfsg-5.0@packages.debian.org\n"
+"POT-Creation-Date: 2008-06-25 15:53+0200\n"
+"PO-Revision-Date: 2008-07-04 17:19+0100\n"
+"Last-Translator: Ivan Masár <helix84@centrum.sk>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid "Really proceed with downgrade?"
+msgstr "Naozaj pokračovať v downgrade?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid "A file named /var/lib/mysql/debian-*.flag exists on this system."
+msgstr "Na tomto systéme sa nachhádza súbor s názvom /var/lib/mysql/debian-*.flag."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid "Such file is an indication that a mysql-server package with a higher version has been installed earlier."
+msgstr "Prítomnosť tohto súboru znamená, že v minulosti bol nainštalovaný balík mysql-server s vyššou verziou."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid "There is no guarantee that the version you're currently installing will be able to use the current databases."
+msgstr "Neexistuje záruka, že verzia, ktorú práve inštalujete, bude schopná pracovať s vašimi databázami v súčasnom formáte."
+
+#. Type: note
+#. Description
+#: ../mysql-server-5.0.templates:3001
+msgid "Important note for NIS/YP users"
+msgstr "Dôležitá poznámka pre používateľov  NIS/YP"
+
+#. Type: note
+#. Description
+#: ../mysql-server-5.0.templates:3001
+msgid "To use MySQL, the following entries for users and groups should be added to the system:"
+msgstr "Aby ste mohli používať MySQL, do systému by ste mali pridať nasledovných používateľov a skupiny:"
+
+#. Type: note
+#. Description
+#: ../mysql-server-5.0.templates:3001
+msgid "You should also check the permissions and the owner of the /var/lib/mysql directory:"
+msgstr "Tiež by ste mali skontrolovať oprávnenia a vlastníka adresára /var/lib/mysql:"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:4001
+msgid "Remove all MySQL databases?"
+msgstr "Odstrániť všetky databázy MySQL?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:4001
+msgid "The /var/lib/mysql directory which contains the MySQL databases is about to be removed."
+msgstr "Adresár /var/lib/mysql, ktorý obsahuje databázy MySQL bude odstránený."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:4001
+msgid "If you're removing the MySQL package in order to later install a more recent version or if a different mysql-server package is already using it, the data should be kept."
+msgstr "Ak odstraňujete balík MySQL aby ste mohli neskôr nainštalovať novšiu verziu alebo ak ich využíva iný balík mysql-server, údaje by ste mali ponechať."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:5001
+msgid "Start the MySQL server on boot?"
+msgstr "Spustiť MySQL server pri štarte systému?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:5001
+msgid "The MySQL server can be launched automatically at boot time or manually with the '/etc/init.d/mysql start' command."
+msgstr "MySQL server je možné automaticky spustiť pri štarte systému alebo ručne príkazom „/etc/init.d/mysql start”."
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:6001
+msgid "New password for the MySQL \"root\" user:"
+msgstr "Nové heslo MySQL používateľa „root”:"
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:6001
+msgid "While not mandatory, it is highly recommended that you set a password for the MySQL administrative \"root\" user."
+msgstr "Hoci to nie je nevyhnutné, silne sa odporúča, aby ste nastavili heslo používateľa „root”:"
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:6001
+msgid "If that field is left blank, the password will not be changed."
+msgstr "Ak toto pole necháte nevyplnené, heslo sa nezmení."
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:7001
+msgid "Repeat password for the MySQL \"root\" user:"
+msgstr "Zopakujte heslo MySQL používateľa „root”:"
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:8001
+msgid "Unable to set password for the MySQL \"root\" user"
+msgstr "Nebolo možné nastaviť heslo MySQL používateľa „root”:"
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:8001
+msgid "An error occurred while setting the password for the MySQL administrative user. This may have happened because the account already has a password, or because of a communication problem with the MySQL server."
+msgstr "Počas nastavovania hesla MySQL používateľa „root” sa vyskytla chyba. Možno sa to stalo preto, že tento účet už má heslo alebo kvôli problému pri komunikácii s MySQL serverom."
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:8001
+msgid "You should check the account's password after the package installation."
+msgstr "Po inštalácii balíka by ste mali skontrolovať heslo účtu."
+
+#. Type: error
+#. Description
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:8001
+#: ../mysql-server-5.0.templates:10001
+msgid "Please read the /usr/share/doc/mysql-server-5.0/README.Debian file for more information."
+msgstr "Prosím, prečítajte si súbor /usr/share/doc/mysql-server-5.0/README.Debian, kde nájdete podrobnejšie informácie."
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:9001
+msgid "Password input error"
+msgstr "Chyba pri zadávaní hesla"
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:9001
+msgid "The two passwords you entered were not the same. Please try again."
+msgstr "Dve heslá, ktoré ste zadali, sa nezhodujú. Skúste to prosím znova."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:10001
+msgid "Support MySQL connections from hosts running Debian \"sarge\" or older?"
+msgstr "Podporovať MySQL pripojenia od strojov, na ktorých beží Debian „sarge” alebo starší?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:10001
+msgid "In old versions of MySQL clients on Debian, passwords were not stored securely. This has been improved since then, however clients (such as PHP) from hosts running Debian 3.1 Sarge will not be able to connect to recent accounts or accounts whose password have been changed."
+msgstr "V starých verziách MySQL na systéme Debian neboli heslá ukladané bezpečne. Odvtedy sa situácia zlepšila, no klienti (ako napr. PHP) zo strojov , na ktorých beží Debian 3.1 Sarge nebudú schopní pripojiť sa k novým účtom ani účtom, ktorých heslo sa zmenilo."
+

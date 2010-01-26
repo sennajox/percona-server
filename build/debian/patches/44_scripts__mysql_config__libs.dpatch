@@ -1,0 +1,24 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 99-unnamed.dpatch by  <ch@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Removes unnecessary library dependencies. See #390692
+
+@DPATCH@
+
+--- old/scripts/mysql_config.sh	2006-08-25 23:12:10.000000000 +0200
++++ new/scripts/mysql_config.sh	2006-10-02 21:05:52.000000000 +0200
+@@ -98,10 +98,10 @@
+ 
+ # Create options 
+ # We intentionally add a space to the beginning and end of lib strings, simplifies replace later
+-libs=" $ldflags -L$pkglibdir -lmysqlclient @ZLIB_DEPS@ @NON_THREADED_LIBS@"
++libs=" $ldflags -L$pkglibdir -lmysqlclient"
+ libs="$libs @openssl_libs@ @STATIC_NSS_FLAGS@ "
+-libs_r=" $ldflags -L$pkglibdir -lmysqlclient_r @ZLIB_DEPS@ @LIBS@ @openssl_libs@ "
+-embedded_libs=" $ldflags -L$pkglibdir -lmysqld @ZLIB_DEPS@ @LIBS@ @WRAPLIBS@ @innodb_system_libs@ @openssl_libs@ "
++libs_r=" $ldflags -L$pkglibdir -lmysqlclient_r @openssl_libs@ "
++embedded_libs=" $ldflags -L$pkglibdir -lmysqld @WRAPLIBS@ @innodb_system_libs@ @openssl_libs@ "
+ 
+ cflags="-I$pkgincludedir @CFLAGS@ " #note: end space!
+ include="-I$pkgincludedir"

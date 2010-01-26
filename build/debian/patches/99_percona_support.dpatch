@@ -1,0 +1,20 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 99_percona_support.dpatch by  <aleksandr.kuzminsky@percona.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: percona_support
+
+@DPATCH@
+
+diff -Nur a/scripts/mysql_install_db.sh b/scripts/mysql_install_db.sh
+--- a/scripts/mysql_install_db.sh       2009-08-27 05:07:28.000000000 -0400
++++ b/scripts/mysql_install_db.sh       2009-08-27 05:49:57.000000000 -0400
+@@ -403,7 +403,7 @@
+     echo
+     echo "The latest information about MySQL is available on the web at"
+     echo "http://www.mysql.com"
+-    echo "Support MySQL by buying support/licenses at http://shop.mysql.com"
++    echo "For commercial support please contact Percona at http://www.percona.com/contacts.html"
+   fi
+   exit 0
+ else

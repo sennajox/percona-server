@@ -1,0 +1,221 @@
+# translation of ru.po to Russian
+# Russian messages:
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans#
+#    Developers do not need to manually edit POT or PO files.
+#
+# Ilgiz Kalmetev <translator@ilgiz.pp.ru>, 2003.
+# Yuriy Talakan' <yt@amur.elektra.ru>, 2005, 2006.
+# Yuriy Talakan' <yt@drsk.ru>, 2007.
+# Yuri Kozlov <kozlov.y@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: mysql-dfsg-5.0 5.0.51a-7\n"
+"Report-Msgid-Bugs-To: mysql-dfsg-5.0@packages.debian.org\n"
+"POT-Creation-Date: 2008-06-06 08:49+0200\n"
+"PO-Revision-Date: 2008-06-13 23:46+0400\n"
+"Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
+"Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid "Really proceed with downgrade?"
+msgstr "Вы действительно желаете понизить версию?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid "A file named /var/lib/mysql/debian-*.flag exists on this system."
+msgstr "В системе существует файл с именем /var/lib/mysql/debian-*.flag."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid ""
+"Such file is an indication that a mysql-server package with a higher version "
+"has been installed earlier."
+msgstr "Это означает, что ранее был установлен пакет mysql-server более новой версии."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:2001
+msgid ""
+"There is no guarantee that the version you're currently installing will be "
+"able to use the current databases."
+msgstr "Невозможно гарантировать, что текущая версия сможет использовать его данные."
+
+#. Type: note
+#. Description
+#: ../mysql-server-5.0.templates:3001
+msgid "Important note for NIS/YP users"
+msgstr "Важное замечание для пользователей NIS/YP"
+
+#. Type: note
+#. Description
+#: ../mysql-server-5.0.templates:3001
+msgid ""
+"To use MySQL, the following entries for users and groups should be added to "
+"the system:"
+msgstr ""
+"Чтобы использовать MySQL, в систему нужно добавить следующие записи о "
+"пользователях и группах:"
+
+#. Type: note
+#. Description
+#: ../mysql-server-5.0.templates:3001
+msgid ""
+"You should also check the permissions and the owner of the /var/lib/mysql "
+"directory:"
+msgstr "Также вы должны проверить права и владельца каталога /var/lib/mysql:"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:4001
+msgid "Remove all MySQL databases?"
+msgstr "Удалить все базы данных MySQL?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:4001
+msgid ""
+"The /var/lib/mysql directory which contains the MySQL databases is about to "
+"be removed."
+msgstr "Планируется удалить каталог /var/lib/mysql с базами данных MySQL."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:4001
+msgid ""
+"If you're removing the MySQL package in order to later install a more recent "
+"version or if a different mysql-server package is already using it, the data "
+"should be kept."
+msgstr ""
+"Если будет установлена новая версия MySQL или есть другие "
+"пакеты mysql-server, использующие этот каталог, то данные надо сохранить."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:5001
+msgid "Start the MySQL server on boot?"
+msgstr "Запускать MySQL при загрузке системы?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:5001
+msgid ""
+"The MySQL server can be launched automatically at boot time or manually with "
+"the '/etc/init.d/mysql start' command."
+msgstr ""
+"MySQL может запускаться при загрузке системы или вручную по "
+"команде '/etc/init.d/mysql start'."
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:6001
+msgid "New password for the MySQL \"root\" user:"
+msgstr "Новый пароль для MySQL пользователя \"root\":"
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:6001
+msgid ""
+"While not mandatory, it is highly recommended that you set a password for "
+"the MySQL administrative \"root\" user."
+msgstr ""
+"Хотя и необязательно, но крайне рекомендуется установить пароль для "
+"административного MySQL пользователя \"root\"."
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:6001
+msgid "If that field is left blank, the password will not be changed."
+msgstr "Если оставить поле пустым, то пароль изменён не будет."
+
+#. Type: password
+#. Description
+#: ../mysql-server-5.0.templates:7001
+msgid "Repeat password for the MySQL \"root\" user:"
+msgstr "Повторите ввод пароля для MySQL пользователя \"root\":"
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:8001
+msgid "Unable to set password for the MySQL \"root\" user"
+msgstr "Невозможно задать пароль MySQL пользователю \"root\""
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:8001
+msgid ""
+"An error occurred while setting the password for the MySQL administrative "
+"user. This may have happened because the account already has a password, or "
+"because of a communication problem with the MySQL server."
+msgstr ""
+"В процессе задания пароля административного MySQL пользователя произошла "
+"ошибка. Это могло произойти, если у пользователя уже был задан пароль, или "
+"из-за проблем соединения с сервером MySQL."
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:8001
+msgid "You should check the account's password after the package installation."
+msgstr "Вам нужно проверить пароль к учётной записи после установки пакета."
+
+#. Type: error
+#. Description
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:8001 ../mysql-server-5.0.templates:10001
+msgid ""
+"Please read the /usr/share/doc/mysql-server-5.0/README.Debian file for more "
+"information."
+msgstr ""
+"Прочтите дополнительную информацию из файла "
+"/usr/share/doc/mysql-server-5.0/README.Debian."
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:9001
+msgid "Password input error"
+msgstr "Ошибка при вводе пароля"
+
+#. Type: error
+#. Description
+#: ../mysql-server-5.0.templates:9001
+msgid "The two passwords you entered were not the same. Please try again."
+msgstr "Были введены не одинаковые пароли. Попробуйте ещё раз."
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:10001
+msgid "Support MySQL connections from hosts running Debian \"sarge\" or older?"
+msgstr ""
+"Нужна поддержка подключений к MySQL с машин, работающих под Debian \"sarge\" "
+"или старше?"
+
+#. Type: boolean
+#. Description
+#: ../mysql-server-5.0.templates:10001
+msgid ""
+"In old versions of MySQL clients on Debian, passwords were not stored "
+"securely. This has been improved since then, however clients (such as PHP) "
+"from hosts running Debian 3.1 Sarge will not be able to connect to recent "
+"accounts or accounts whose password have been changed."
+msgstr ""
+"В старых версиях клиентов MySQL в Debian метод хранения пароля был не очень "
+"безопасен. Это было исправлено, однако клиенты (например, PHP) с машин, "
+"работающих под Debian 3.1 Sarge не смогут подключиться новой учётной "
+"записью, или учётными записями, у которых был изменён пароль."
+
