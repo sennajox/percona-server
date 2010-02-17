@@ -56,19 +56,11 @@
 
 
 %if %{percona}
-%define comment MySQL Percona Edition, Revision %{revision}
+%define comment Percona SQL Server, Revision %{revision}
 %define commercial 0
 %define COMMUNITY_BUILD 1
 %define INNODB_BUILD 1
-%define server_suffix -percona
-%endif
-
-%if %{perconahighperf}
-%define comment MySQL Percona High Performance Edition, Revision %{revision}
-%define commercial 0
-%define COMMUNITY_BUILD 1
-%define INNODB_BUILD 1
-%define server_suffix -percona-highperf
+%define server_suffix -50
 %endif
 
 %if %{community}
@@ -145,18 +137,18 @@ Patch120: innodb_rw_lock.patch
 Patch21: mysql-test.patch
 
 
-Name:		MySQL%{server_suffix}
-Summary:	MySQL: a very fast and reliable SQL database server
+Name:		Percona-SQL%{server_suffix}
+Summary:	Percona-SQL: a very fast and reliable SQL database server
 Group:		Applications/Databases
 Version:	%{mysqlversion}
 Release:	%{release}
 Distribution:	Red Hat Enterprise Linux %{redhat_version}
 License:	GPL
 Source:		mysql-%{mysqlversion}.tar.gz
-URL:		http://www.mysql.com/
+URL:		http://www.percona.com/
 Packager:	Percona Build Team <info@percona.com>
 Vendor:		%{mysql_vendor}
-Provides:	msqlormysql MySQL-server mysql
+Provides:	msqlormysql MySQL-server mysql Percona-SQL
 BuildRequires:  gperf perl readline-devel gcc-c++ ncurses-devel zlib-devel libtool automake autoconf time ccache bison flex
 
 # Think about what you use here since the first step is to
@@ -165,105 +157,87 @@ BuildRoot:    %{_tmppath}/%{name}-%{version}-build
 
 # From the manual
 %description
-The MySQL(TM) software delivers a very fast, multi-threaded, multi-user,
-and robust SQL (Structured Query Language) database server. MySQL Server
+The Percona SQL software delivers a very fast, multi-threaded, multi-user,
+and robust SQL (Structured Query Language) database server. Percona SQL Server
 is intended for mission-critical, heavy-load production systems as well
-as for embedding into mass-deployed software. MySQL is a trademark of
-MySQL AB.
+as for embedding into mass-deployed software.
 
-The MySQL software has Dual Licensing, which means you can use the MySQL
-software free of charge under the GNU General Public License
-(http://www.gnu.org/licenses/). You can also purchase commercial MySQL
-licenses from MySQL AB if you do not wish to be bound by the terms of
-the GPL. See the chapter "Licensing and Support" in the manual for
-further info.
+Percona Inc. provides commercial support of Percona-XtraDB Server.
+For more information visist our web site http://www.percona.com/
 
-The MySQL web site (http://www.mysql.com/) provides the latest
-news and information about the MySQL software. Also please see the
-documentation and the manual for more information.
-
-%package -n MySQL-server%{server_suffix}
-Summary:	MySQL Community Server (GPL) with Percona patches for Red Hat Enterprise Linux %{redhat_version}
+%package -n Percona-SQL-server%{server_suffix}
+Summary:	Percona-SQL Community Server (GPL) for Red Hat Enterprise Linux %{redhat_version}
 Group:		Applications/Databases
 Requires: chkconfig coreutils shadow-utils grep procps
-Provides:	msqlormysql mysql-server mysql MySQL MySQL-server
-Obsoletes:	MySQL mysql mysql-server MySQL-server
+Provides:	msqlormysql mysql-server mysql MySQL MySQL-server Percona-SQL-server
+Obsoletes:	MySQL mysql mysql-server MySQL-server 
 
-%description -n MySQL-server%{server_suffix}
-The MySQL(TM) software delivers a very fast, multi-threaded, multi-user,
-and robust SQL (Structured Query Language) database server. MySQL Server
+%description -n Percona-SQL-server%{server_suffix}
+The Percona SQL software delivers a very fast, multi-threaded, multi-user,
+and robust SQL (Structured Query Language) database server. Percona SQL Server
 is intended for mission-critical, heavy-load production systems as well
-as for embedding into mass-deployed software. MySQL is a trademark of
-MySQL AB.
+as for embedding into mass-deployed software.
 
-The MySQL software has Dual Licensing, which means you can use the MySQL
-software free of charge under the GNU General Public License
-(http://www.gnu.org/licenses/). You can also purchase commercial MySQL
-licenses from MySQL AB if you do not wish to be bound by the terms of
-the GPL. See the chapter "Licensing and Support" in the manual for
-further info.
+Percona Inc. provides commercial support of Percona-XtraDB Server.
+For more information visist our web site http://www.percona.com/
 
-The MySQL web site (http://www.mysql.com/) provides the latest
-news and information about the MySQL software. Also please see the
-documentation and the manual for more information.
-
-This package includes the MySQL server binary 
+This package includes the Percona SQL server binary 
 %if %{INNODB_BUILD}
 (configured including InnoDB)
 %endif
-as well as related utilities to run and administer a MySQL server.
+as well as related utilities to run and administer a Percona SQL server.
 
 If you want to access and work with the database, you have to install
-package "MySQL-client%{server_suffix}" as well!
+package "Percona-SQL-client%{server_suffix}" as well!
 
-%package -n MySQL-client%{server_suffix}
-Summary: MySQL - Client
+%package -n Percona-SQL-client%{server_suffix}
+Summary: Percona SQL - Client
 Group: Applications/Databases
 Obsoletes: mysql-client MySQL-client
-Provides: mysql-client MySQL-client
+Provides: mysql-client MySQL-client Percona-SQL-client
 
-%description -n MySQL-client%{server_suffix}
-This package contains the standard MySQL clients and administration tools. 
+%description -n Percona-SQL-client%{server_suffix}
+This package contains the standard Percona-SQL clients and administration tools. 
 
 %{see_base}
 
-%package -n MySQL-test%{server_suffix}
+%package -n Percona-SQL-test%{server_suffix}
 Requires: mysql-client perl
-Summary: MySQL - Test suite
+Summary: Percona-SQL - Test suite
 Group: Applications/Databases
-Provides: mysql-test MySQL-test
+Provides: mysql-test MySQL-test Percona-SQL-test
 Obsoletes: mysql-test MySQL-test
 AutoReqProv: no
 
-%description -n MySQL-test%{server_suffix}
-This package contains the MySQL regression test suite.
+%description -n Percona-SQL-test%{server_suffix}
+This package contains the Percona-SQL regression test suite.
 
 %{see_base}
 
-%package -n MySQL-devel%{server_suffix}
-Summary: MySQL - Development header files and libraries
+%package -n Percona-SQL-devel%{server_suffix}
+Summary: Percona-SQL - Development header files and libraries
 Group: Applications/Databases
-Provides: mysql-devel MySQL-devel
+Provides: mysql-devel MySQL-devel Percona-SQL-devel
 Obsoletes: mysql-devel MySQL-devel
 
-%description -n MySQL-devel%{server_suffix}
+%description -n Percona-SQL-devel%{server_suffix}
 This package contains the development header files and libraries
-necessary to develop MySQL client applications.
+necessary to develop Percona-SSQL client applications.
 
 %{see_base}
 
-%package -n MySQL-shared%{server_suffix}
-Summary: MySQL - Shared libraries
+%package -n Percona-SQL-shared%{server_suffix}
+Summary: Percona-SQL - Shared libraries
 Group: Applications/Databases
-Provides: mysql-shared MySQL-shared
+Provides: mysql-shared MySQL-shared Percona-SQL-shared
 # Obsoletes below to correct old missing Provides:/Obsoletes
 Obsoletes: mysql-shared MySQL-shared-standard MySQL-shared-pro
 Obsoletes: MySQL-shared-pro-cert MySQL-shared-pro-gpl
 Obsoletes: MySQL-shared-pro-gpl-cert MySQL-shared
 
-%description -n MySQL-shared%{server_suffix}
+%description -n Percona-SQL-shared%{server_suffix}
 This package contains the shared libraries (*.so*) which certain
-languages and applications need to dynamically load and use MySQL.
+languages and applications need to dynamically load and use Percona-SQL.
 
 %prep
 %setup -n mysql-%{mysqlversion}
@@ -347,7 +321,7 @@ sh -c  "CFLAGS=\"${CFLAGS:-$RPM_OPT_FLAGS}\" \
 	    $OPT_DEBUG \
 	    --with-readline \
             --with-low-memory \
-	    ; make -j8"
+	    ; make -j1"
 }
 # end of function definition "BuildMySQL"
 
@@ -548,7 +522,7 @@ if [ $? -eq 0 -a -n "$installed" ]; then
   error_text=
   if [ "$vendor" != "$myvendor" ]; then
     error_text="$error_text
-The current MySQL server package is provided by a different
+The current Percona-SQL server package is provided by a different
 vendor ($vendor) than $myvendor.  Some files may be installed
 to different locations, including log files and the service
 startup script in %{_sysconfdir}/init.d/.
@@ -557,9 +531,9 @@ startup script in %{_sysconfdir}/init.d/.
 
   if [ "$old_family" != "$new_family" ]; then
     error_text="$error_text
-Upgrading directly from MySQL $old_family to MySQL $new_family may not
+Upgrading directly from Percona-SQL $old_family to Percona-SQL $new_family may not
 be safe in all cases.  A manual dump and restore using mysqldump is
-recommended.  It is important to review the MySQL manual's Upgrading
+recommended.  It is important to review the Percona-SQL manual's Upgrading
 section for version-specific incompatibilities.
 "
   fi
@@ -568,13 +542,13 @@ section for version-specific incompatibilities.
     cat <<HERE >&2
 
 ******************************************************************
-A MySQL server package ($installed) is installed.
+A Percona-SQL server package ($installed) is installed.
 $error_text
 A manual upgrade is required.
 
 - Ensure that you have a complete, working backup of your data and my.cnf
   files
-- Shut down the MySQL server cleanly
+- Shut down the Percona-SQL server cleanly
 - Remove the existing MySQL packages.  Usually this command will
   list the packages you should remove:
   rpm -qa | grep -i '^mysql-'
@@ -582,8 +556,8 @@ A manual upgrade is required.
   You may choose to use 'rpm --nodeps -ev <package-name>' to remove
   the package which contains the mysqlclient shared library.  The
   library will be reinstalled by the MySQL-shared-compat package.
-- Install the new MySQL packages supplied by $myvendor
-- Ensure that the MySQL server is started
+- Install the new Percona-SQL packages supplied by $myvendor
+- Ensure that the Percona-SQL server is started
 - Run the 'mysql_upgrade' program
 
 This is a brief description of the upgrade process.  Important details
@@ -601,7 +575,7 @@ if [ -x %{_sysconfdir}/init.d/mysql ] ; then
 	sleep 5
 fi
 
-%post -n MySQL-server%{server_suffix}
+%post -n Percona-SQL-server%{server_suffix}
 mysql_datadir=%{mysqldatadir}
 
 # Create data directory
@@ -617,7 +591,7 @@ fi
 # Create a MySQL user and group. Do not report any problems if it already
 # exists.
 groupadd -r %{mysqld_group} 2> /dev/null || true
-useradd -M -r -d $mysql_datadir -s /bin/bash -c "MySQL server" -g %{mysqld_group} %{mysqld_user} 2> /dev/null || true 
+useradd -M -r -d $mysql_datadir -s /bin/bash -c "Percona-SQL server" -g %{mysqld_group} %{mysqld_user} 2> /dev/null || true 
 # The user may already exist, make sure it has the proper group nevertheless (BUG#12823)
 usermod -g %{mysqld_group} %{mysqld_user} 2> /dev/null || true
 
@@ -682,7 +656,7 @@ fi
 sleep 2
 
 
-%preun -n MySQL-server%{server_suffix}
+%preun -n Percona-SQL-server%{server_suffix}
 if [ $1 = 0 ] ; then
 	# Stop MySQL before uninstalling it
 	if [ -x %{_sysconfdir}/init.d/mysql ] ; then
@@ -701,7 +675,7 @@ fi
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && [ -d $RPM_BUILD_ROOT ] && rm -rf $RPM_BUILD_ROOT;
 
-%files -n MySQL-server%{server_suffix}
+%files -n Percona-SQL-server%{server_suffix}
 %defattr(-,root,root,0755)
 
 %if %{commercial}
@@ -790,7 +764,7 @@ fi
 
 %attr(755, root, root) %{_datadir}/mysql/
 
-%files -n MySQL-client%{server_suffix}
+%files -n Percona-SQL-client%{server_suffix}
 %defattr(-, root, root, 0755)
 %attr(755, root, root) %{_bindir}/msql2mysql
 %attr(755, root, root) %{_bindir}/mysql
@@ -818,13 +792,13 @@ fi
 %doc %attr(644, root, man) %{_mandir}/man1/mysqlimport.1*
 %doc %attr(644, root, man) %{_mandir}/man1/mysqlshow.1*
 
-%post -n MySQL-shared%{server_suffix}
+%post -n Percona-SQL-shared%{server_suffix}
 /sbin/ldconfig
 
-%postun -n MySQL-shared%{server_suffix}
+%postun -n Percona-SQL-shared%{server_suffix}
 /sbin/ldconfig
 
-%files -n MySQL-devel%{server_suffix}
+%files -n Percona-SQL-devel%{server_suffix}
 %defattr(-, root, root, 0755)
 %if %{commercial}
 %else
@@ -843,13 +817,13 @@ fi
 %{_libdir}/mysql/libvio.a
 %{_libdir}/mysql/libz*
 
-%files -n MySQL-shared%{server_suffix}
+%files -n Percona-SQL-shared%{server_suffix}
 %defattr(-, root, root, 0755)
 # Shared libraries (omit for architectures that don't support them)
 %{_libdir}/*.so*
 
 
-%files -n MySQL-test%{server_suffix}
+%files -n Percona-SQL-test%{server_suffix}
 %defattr(-, root, root, 0755)
 %{_datadir}/mysql-test
 %attr(755, root, root) %{_bindir}/mysql_client_test
@@ -864,6 +838,10 @@ fi
 # itself - note that they must be ordered by date (important when
 # merging BK trees)
 %changelog
+* Wed Feb 12 2010 Aleksandr Kuzminsky <aleksandr.kuzminsky@percona.com>
+
+- Package name is changed to Percona-SQL
+
 * Mon Jul 07 2008 Jonathan Perkin <jperkin@sun.com>
 
 - Add 'classic' product.
