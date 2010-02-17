@@ -260,10 +260,8 @@ languages and applications need to dynamically load and use Percona-SQL.
 %patch17 -p1
 %patch18 -p1
 %patch19 -p1
-%if %{perconahighperf}
 %patch119 -p1
 %patch120 -p1
-%endif
 %patch21 -p1
 
 %build
@@ -501,7 +499,7 @@ install -m600 $MBD/support-files/RHEL4-SElinux/mysql.{fc,te} \
 	$RBR%{_datadir}/mysql/SELinux/RHEL4
 
 
-%pre -n MySQL-server%{server_suffix}
+%pre -n Percona-SQL-server%{server_suffix}
 # Check if we can safely upgrade.  An upgrade is only safe if it's from one
 # of our RPMs in the same version family.
 
