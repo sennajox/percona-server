@@ -11,7 +11,7 @@ Vcs-Browser: https://launchpad.net/percona-patches
 Package: libmysqlclient15off
 Section: libs
 Architecture: any
-Depends: mysql-common (>= ${source:Version}), ${shlibs:Depends}
+Depends: mysql-common, ${shlibs:Depends}
 Conflicts: libmysqlclient15
 Replaces: libmysqlclient15
 Description: MySQL database client library
