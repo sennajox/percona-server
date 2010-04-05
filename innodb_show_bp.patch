@@ -248,7 +248,7 @@ diff -r fe944d2c6e1f sql/ha_innodb.cc
 +	dict_index_t*	index;
 +	buf_block_t*    block;
 +
-+	char *p;
++	const char *p;
 +	char db_name_raw[NAME_LEN*5+1];
 +	char table_name_raw[NAME_LEN*5+1];
 +
@@ -322,7 +322,7 @@ diff -r fe944d2c6e1f sql/ha_innodb.cc
 +					p++;            
 +				} else {
 +					table->field[11]->store(NULL, 0, system_charset_info);
-+					p = (char *)index->table_name;
++					p = index->table_name;
 +				}
 +				strcpy(table_name_raw, p);
 +
