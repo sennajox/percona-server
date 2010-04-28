@@ -136,7 +136,6 @@ Patch119: innodb_split_buf_pool_mutex.patch
 Patch120: innodb_rw_lock.patch
 Patch21: mysql-test.patch
 
-
 Name:		Percona-SQL%{server_suffix}
 Summary:	Percona-SQL: a very fast and reliable SQL database server
 Group:		Applications/Databases
@@ -169,8 +168,7 @@ For more information visist our web site http://www.percona.com/
 Summary:	Percona-SQL Community Server (GPL) for Red Hat Enterprise Linux %{redhat_version}
 Group:		Applications/Databases
 Requires: chkconfig coreutils shadow-utils grep procps
-Provides:	msqlormysql mysql-server mysql MySQL MySQL-server Percona-SQL-server
-Obsoletes:	MySQL mysql mysql-server MySQL-server 
+Provides:	msqlormysql mysql-server MySQL-server Percona-SQL-server
 
 %description -n Percona-SQL-server%{server_suffix}
 The Percona SQL software delivers a very fast, multi-threaded, multi-user,
@@ -193,8 +191,7 @@ package "Percona-SQL-client%{server_suffix}" as well!
 %package -n Percona-SQL-client%{server_suffix}
 Summary: Percona SQL - Client
 Group: Applications/Databases
-Obsoletes: mysql-client MySQL-client
-Provides: mysql-client MySQL-client Percona-SQL-client
+Provides: mysql MySQL mysql-client MySQL-client Percona-SQL-client
 
 %description -n Percona-SQL-client%{server_suffix}
 This package contains the standard Percona-SQL clients and administration tools. 
@@ -206,7 +203,6 @@ Requires: mysql-client perl
 Summary: Percona-SQL - Test suite
 Group: Applications/Databases
 Provides: mysql-test MySQL-test Percona-SQL-test
-Obsoletes: mysql-test MySQL-test
 AutoReqProv: no
 
 %description -n Percona-SQL-test%{server_suffix}
@@ -218,7 +214,6 @@ This package contains the Percona-SQL regression test suite.
 Summary: Percona-SQL - Development header files and libraries
 Group: Applications/Databases
 Provides: mysql-devel MySQL-devel Percona-SQL-devel
-Obsoletes: mysql-devel MySQL-devel
 
 %description -n Percona-SQL-devel%{server_suffix}
 This package contains the development header files and libraries
@@ -230,10 +225,6 @@ necessary to develop Percona-SSQL client applications.
 Summary: Percona-SQL - Shared libraries
 Group: Applications/Databases
 Provides: mysql-shared MySQL-shared Percona-SQL-shared
-# Obsoletes below to correct old missing Provides:/Obsoletes
-Obsoletes: mysql-shared MySQL-shared-standard MySQL-shared-pro
-Obsoletes: MySQL-shared-pro-cert MySQL-shared-pro-gpl
-Obsoletes: MySQL-shared-pro-gpl-cert MySQL-shared
 
 %description -n Percona-SQL-shared%{server_suffix}
 This package contains the shared libraries (*.so*) which certain
