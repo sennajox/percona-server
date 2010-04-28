@@ -359,18 +359,18 @@ mkdir -p $RBR%{_libdir}/mysql $RBR%{_sbindir}
 if [ -z "$CXX" -a -z "$CC" ] ; then
 	export CC="ccache gcc" CXX="ccache gcc"
 fi
-export CFLAGS="-O2 -fno-omit-frame-pointer  -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic"
-export CXXFLAGS="-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic"
+export CFLAGS="-O2 -fno-omit-frame-pointer  -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic"
+export CXXFLAGS="-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic"
 
 
 if [ "%{redhat_version}" = "5" ] ; then
-export CFLAGS="-O2 -fno-omit-frame-pointer  -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic"
-export CXXFLAGS="-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic"
+export CFLAGS="-O2 -fno-omit-frame-pointer  -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic"
+export CXXFLAGS="-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic"
 fi
 
 if [ "%{redhat_version}" != "5" ] ; then
-export CFLAGS="-O2 -g -fno-omit-frame-pointer -pipe -m64"
-export CXXFLAGS="-O2 -g -fno-omit-frame-pointer -pipe -m64"
+export CFLAGS="-O2 -g -fno-omit-frame-pointer -pipe "
+export CXXFLAGS="-O2 -g -fno-omit-frame-pointer -pipe "
 fi
 
 
