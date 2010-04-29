@@ -16,19 +16,19 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 msgid "Really proceed with downgrade?"
 msgstr "¿Quere pasar a unha versión anterior?"
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 msgid "A file named /var/lib/mysql/debian-*.flag exists on this system."
 msgstr "Neste sistema hai un ficheiro chamado /var/lib/mysql/debian-*.flag."
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 msgid ""
 "Such file is an indication that a mysql-server package with a higher version "
 "has been installed earlier."
@@ -38,7 +38,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 msgid ""
 "There is no guarantee that the version you're currently installing will be "
 "able to use the current databases."
@@ -48,13 +48,13 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 msgid "Important note for NIS/YP users"
 msgstr "Nota importante para os usuarios de NIS/YP"
 
 #. Type: note
 #. Description
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 msgid ""
 "To use MySQL, the following entries for users and groups should be added to "
 "the system:"
@@ -64,7 +64,7 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 msgid ""
 "You should also check the permissions and the owner of the /var/lib/mysql "
 "directory:"
@@ -74,13 +74,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 msgid "Remove all MySQL databases?"
 msgstr "¿Eliminar tódalas bases de datos de MySQL?"
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 msgid ""
 "The /var/lib/mysql directory which contains the MySQL databases is about to "
 "be removed."
@@ -90,7 +90,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 msgid ""
 "If you're removing the MySQL package in order to later install a more recent "
 "version or if a different mysql-server package is already using it, the data "
@@ -102,13 +102,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:5001
+#: ../percona-sql-server-5.0.templates:5001
 msgid "Start the MySQL server on boot?"
 msgstr "¿Iniciar o servidor MySQL co ordenador?"
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:5001
+#: ../percona-sql-server-5.0.templates:5001
 msgid ""
 "The MySQL server can be launched automatically at boot time or manually with "
 "the '/etc/init.d/mysql start' command."
@@ -118,13 +118,13 @@ msgstr ""
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 msgid "New password for the MySQL \"root\" user:"
 msgstr "Novo contrasinal para o usuario \"root\" de MySQL:"
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 msgid ""
 "While not mandatory, it is highly recommended that you set a password for "
 "the MySQL administrative \"root\" user."
@@ -134,25 +134,25 @@ msgstr ""
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 msgid "If that field is left blank, the password will not be changed."
 msgstr "Se deixa o campo en branco, non se ha cambiar o contrasinal."
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:7001
+#: ../percona-sql-server-5.0.templates:7001
 msgid "Repeat password for the MySQL \"root\" user:"
 msgstr "Repita o contrasinal para o usuario \"root\" de MySQL:"
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 msgid "Unable to set password for the MySQL \"root\" user"
 msgstr "Non se puido establecer o contrasinal do usuario \"root\" de MySQL"
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 msgid ""
 "An error occurred while setting the password for the MySQL administrative "
 "user. This may have happened because the account already has a password, or "
@@ -164,7 +164,7 @@ msgstr ""
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 msgid "You should check the account's password after the package installation."
 msgstr "Debería comprobar o contrasinal da conta trala instalación do paquete."
 
@@ -172,7 +172,7 @@ msgstr "Debería comprobar o contrasinal da conta trala instalación do paquete.
 #. Description
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:8001 ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:8001 ../mysql-server-5.0.templates:10001
 msgid ""
 "Please read the /usr/share/doc/mysql-server-5.0/README.Debian file for more "
 "information."
@@ -182,19 +182,19 @@ msgstr ""
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:9001
+#: ../percona-sql-server-5.0.templates:9001
 msgid "Password input error"
 msgstr "Erro na introdución do contrasinal"
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:9001
+#: ../percona-sql-server-5.0.templates:9001
 msgid "The two passwords you entered were not the same. Please try again."
 msgstr "Os dous contrasinais que introduciu non son iguais. Volva tentalo."
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:10001
 msgid "Support MySQL connections from hosts running Debian \"sarge\" or older?"
 msgstr ""
 "¿Soportar as conexións a MySQL de máquinas que empreguen Debian \"sarge\" ou "
@@ -202,7 +202,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:10001
 msgid ""
 "In old versions of MySQL clients on Debian, passwords were not stored "
 "securely. This has been improved since then, however clients (such as PHP) "

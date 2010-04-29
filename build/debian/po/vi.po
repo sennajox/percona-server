@@ -16,19 +16,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: LocFactoryEditor 1.7b3\n"
 
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 #. Type: boolean
 #. Description
 msgid "Really proceed with downgrade?"
 msgstr "Thực sự tiếp tục hạ cấp không?"
 
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 #. Type: boolean
 #. Description
 msgid "A file named /var/lib/mysql/debian-*.flag exists on this system."
 msgstr "Một tập tin tên « /var/lib/mysql/debian-*.flag » đã có trên hệ thống này."
 
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 #. Type: boolean
 #. Description
 msgid ""
@@ -36,7 +36,7 @@ msgid ""
 "has been installed earlier."
 msgstr "Tập tin như vậy ngụ ý rằng một gói trình phục vụ MySQL (mysql-server) phiên bản mới hơn đã được cài đặt về trước."
 
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 #. Type: boolean
 #. Description
 msgid ""
@@ -44,13 +44,13 @@ msgid ""
 "able to use the current databases."
 msgstr "Không thể đảm bảo rằng phiên bản bạn đang cài đặt sẽ có khả năng sử dụng những cơ sở dữ liệu hiện thời."
 
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 #. Type: note
 #. Description
 msgid "Important note for NIS/YP users"
 msgstr "CHÚ Ý : người dùng NIS/YP"
 
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 #. Type: note
 #. Description
 msgid ""
@@ -58,7 +58,7 @@ msgid ""
 "the system:"
 msgstr "Để sử dụng phần mềm MySQL, những mục nhập theo đây về người dùng và nhóm đều nên được thêm vào hệ thống:"
 
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 #. Type: note
 #. Description
 msgid ""
@@ -66,13 +66,13 @@ msgid ""
 "directory:"
 msgstr "Bạn cũng nên kiểm tra quyền hạn và chủ có thư mục « /var/lib/mysql »."
 
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 #. Type: boolean
 #. Description
 msgid "Remove all MySQL databases?"
 msgstr "Gỡ bỏ mọi cơ sở dữ liệu MySQL không?"
 
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 #. Type: boolean
 #. Description
 msgid ""
@@ -80,7 +80,7 @@ msgid ""
 "be removed."
 msgstr "Thư mục « /var/lib/mysql » chứa các cơ sở dữ liệu MySQL sắp bị gỡ bỏ."
 
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 #. Type: boolean
 #. Description
 msgid ""
@@ -89,13 +89,13 @@ msgid ""
 "should be kept."
 msgstr "Nếu bạn muốn gỡ bỏ gói MySQL để cài đặt về sau một phiên bản mới hơn, hoặc nếu một gói trình phục vụ MySQL (mysql-server) khác đang sử dụng nó, dữ liệu này nên được giữ lại."
 
-#: ../mysql-server-5.0.templates:5001
+#: ../percona-sql-server-5.0.templates:5001
 #. Type: boolean
 #. Description
 msgid "Start the MySQL server on boot?"
 msgstr "Khởi chạy trình phục vụ MySQL khi khởi động máy không?"
 
-#: ../mysql-server-5.0.templates:5001
+#: ../percona-sql-server-5.0.templates:5001
 #. Type: boolean
 #. Description
 msgid ""
@@ -103,13 +103,13 @@ msgid ""
 "the '/etc/init.d/mysql start' command."
 msgstr "Trình phục vụ MySQL có thể được tự động khởi chạy vào lúc khởi động máy, hoặc khởi chạy thủ công dùng câu lệnh « /etc/init.d/mysql start »."
 
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 #. Type: password
 #. Description
 msgid "New password for the MySQL \"root\" user:"
 msgstr "Mật khẩu mới cho người dùng MySQL « root »:"
 
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 #. Type: password
 #. Description
 msgid ""
@@ -117,25 +117,25 @@ msgid ""
 "the MySQL administrative \"root\" user."
 msgstr "Dù không phải bắt buộc, rất khuyên bạn đặt một mật khẩu cho người dùng MySQL « root » quản trị."
 
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 #. Type: password
 #. Description
 msgid "If that field is left blank, the password will not be changed."
 msgstr "Bỏ trống trường này thì mật khẩu sẽ không thay đổi."
 
-#: ../mysql-server-5.0.templates:7001
+#: ../percona-sql-server-5.0.templates:7001
 #. Type: password
 #. Description
 msgid "Repeat password for the MySQL \"root\" user:"
 msgstr "Nhập lại mật khẩu cho người dùng MySQL « root »:"
 
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 #. Type: error
 #. Description
 msgid "Unable to set password for the MySQL \"root\" user"
 msgstr "Không thể đặt mật khẩu cho người dùng MySQL « root »"
 
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 #. Type: error
 #. Description
 msgid ""
@@ -144,14 +144,14 @@ msgid ""
 "because of a communication problem with the MySQL server."
 msgstr "Gặp lỗi trong khi đặt mật khẩu cho người dùng MySQL quản trị. Trường hợp này có thể xảy ra vì tài khoản đã có một mật khẩu, hoặc do một vấn đề liên lạc với trình phục vụ MySQL."
 
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 #. Type: error
 #. Description
 msgid "You should check the account's password after the package installation."
 msgstr "Sau khi cài đặt gói này thì bạn nên kiểm tra mật khẩu của tài khoản."
 
-#: ../mysql-server-5.0.templates:8001
-#: ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:10001
 #. Type: error
 #. Description
 #. Type: boolean
@@ -161,25 +161,25 @@ msgid ""
 "information."
 msgstr "Hãy đọc tài liệu Đọc Đi « /usr/share/doc/mysql-server-5.0/README.Debian » để tìm thêm thông tin."
 
-#: ../mysql-server-5.0.templates:9001
+#: ../percona-sql-server-5.0.templates:9001
 #. Type: error
 #. Description
 msgid "Password input error"
 msgstr "Lỗi nhập mật khẩu"
 
-#: ../mysql-server-5.0.templates:9001
+#: ../percona-sql-server-5.0.templates:9001
 #. Type: error
 #. Description
 msgid "The two passwords you entered were not the same. Please try again."
 msgstr "Bạn đã nhập hai mật khẩu không trùng. Hãy thử lại."
 
-#: ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:10001
 #. Type: boolean
 #. Description
 msgid "Support MySQL connections from hosts running Debian \"sarge\" or older?"
 msgstr "Hỗ trợ kết nối MySQL từ máy chạy Debian « sarge » hay cũ hơn không?"
 
-#: ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:10001
 #. Type: boolean
 #. Description
 msgid ""

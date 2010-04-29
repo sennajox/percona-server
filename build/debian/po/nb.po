@@ -18,7 +18,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 #, fuzzy
 #| msgid "Do you really want to downgrade?"
 msgid "Really proceed with downgrade?"
@@ -26,13 +26,13 @@ msgstr "Er du sikker på at du vil nedgradere?"
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 msgid "A file named /var/lib/mysql/debian-*.flag exists on this system."
 msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 #, fuzzy
 #| msgid ""
 #| "WARNING: The file /var/lib/mysql/debian-*.flag exists. This indicates "
@@ -48,7 +48,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 msgid ""
 "There is no guarantee that the version you're currently installing will be "
 "able to use the current databases."
@@ -56,7 +56,7 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 #, fuzzy
 #| msgid "Important note for NIS/YP users!"
 msgid "Important note for NIS/YP users"
@@ -64,7 +64,7 @@ msgstr "Viktig merknad for NIS/YP-brukere!"
 
 #. Type: note
 #. Description
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 msgid ""
 "To use MySQL, the following entries for users and groups should be added to "
 "the system:"
@@ -72,7 +72,7 @@ msgstr ""
 
 #. Type: note
 #. Description
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 msgid ""
 "You should also check the permissions and the owner of the /var/lib/mysql "
 "directory:"
@@ -80,13 +80,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 msgid "Remove all MySQL databases?"
 msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 msgid ""
 "The /var/lib/mysql directory which contains the MySQL databases is about to "
 "be removed."
@@ -94,7 +94,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 #, fuzzy
 #| msgid ""
 #| "The script is about to remove the data directory /var/lib/mysql. If it is "
@@ -111,7 +111,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:5001
+#: ../percona-sql-server-5.0.templates:5001
 #, fuzzy
 #| msgid "Should MySQL start on boot?"
 msgid "Start the MySQL server on boot?"
@@ -119,7 +119,7 @@ msgstr "Skal MySQL startes ved maskinoppstart?"
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:5001
+#: ../percona-sql-server-5.0.templates:5001
 #, fuzzy
 #| msgid ""
 #| "The MySQL can start automatically on boot time or only if you manually "
@@ -133,7 +133,7 @@ msgstr ""
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 #, fuzzy
 #| msgid "New password for MySQL \"root\" user:"
 msgid "New password for the MySQL \"root\" user:"
@@ -141,7 +141,7 @@ msgstr "Nytt passord for MySQLs «root»-bruker:"
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 #, fuzzy
 #| msgid ""
 #| "It is highly recommended that you set a password for the MySQL "
@@ -155,13 +155,13 @@ msgstr ""
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 msgid "If that field is left blank, the password will not be changed."
 msgstr ""
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:7001
+#: ../percona-sql-server-5.0.templates:7001
 #, fuzzy
 #| msgid "New password for MySQL \"root\" user:"
 msgid "Repeat password for the MySQL \"root\" user:"
@@ -169,7 +169,7 @@ msgstr "Nytt passord for MySQLs «root»-bruker:"
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 #, fuzzy
 #| msgid "Unable to set password for MySQL \"root\" user"
 msgid "Unable to set password for the MySQL \"root\" user"
@@ -177,7 +177,7 @@ msgstr "Klarer ikke angi passord for MySQLs «root»-bruker"
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 #, fuzzy
 #| msgid ""
 #| "It seems an error occurred while setting the password for the MySQL "
@@ -195,7 +195,7 @@ msgstr ""
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 msgid "You should check the account's password after the package installation."
 msgstr ""
 
@@ -203,7 +203,7 @@ msgstr ""
 #. Description
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:8001 ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:8001 ../mysql-server-5.0.templates:10001
 msgid ""
 "Please read the /usr/share/doc/mysql-server-5.0/README.Debian file for more "
 "information."
@@ -211,19 +211,19 @@ msgstr ""
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:9001
+#: ../percona-sql-server-5.0.templates:9001
 msgid "Password input error"
 msgstr ""
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:9001
+#: ../percona-sql-server-5.0.templates:9001
 msgid "The two passwords you entered were not the same. Please try again."
 msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:10001
 msgid "Support MySQL connections from hosts running Debian \"sarge\" or older?"
 msgstr ""
 "Skal MySQL-tilkoblinger støttes fra vertsmaskiner som kjører Debian «sarge» "
@@ -231,7 +231,7 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:10001
 #, fuzzy
 #| msgid ""
 #| "The way passwords were stored was not very secure. This has been improved "
