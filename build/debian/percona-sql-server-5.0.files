@@ -42,7 +42,7 @@ usr/sbin/mysqld
 usr/sbin/ndbd
 usr/sbin/ndb_mgmd
 usr/share/doc/mysql-server-5.0/
-usr/share/lintian/overrides/mysql-server-5.0
+usr/share/lintian/overrides/percona-sql-server-5.0
 usr/share/man/man1/comp_err.1
 usr/share/man/man1/msql2mysql.1
 usr/share/man/man1/myisamchk.1

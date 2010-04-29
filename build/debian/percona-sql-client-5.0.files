@@ -22,7 +22,7 @@ usr/bin/mysqltestmanagerc
 usr/bin/mysqltestmanager-pwgen
 usr/bin/mysql_waitpid
 usr/sbin/mysqlmanager
-usr/share/lintian/overrides/mysql-client-5.0
+usr/share/lintian/overrides/percona-sql-client-5.0
 usr/share/man/man8/mysqlmanager.8
 usr/share/man/man1/innotop.1
 usr/share/man/man1/myisam_ftdump.1
