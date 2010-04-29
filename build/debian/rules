@@ -251,15 +251,15 @@ install: build
 	mv $(TMP)/usr/sql-bench $(TMP)/usr/share/mysql/
 	# lintian overrides
 	mkdir -p $(TMP)/usr/share/lintian/overrides/
-	cp debian/mysql-server-5.0.lintian-overrides $(TMP)/usr/share/lintian/overrides/mysql-server-5.0
-	cp debian/mysql-client-5.0.lintian-overrides $(TMP)/usr/share/lintian/overrides/mysql-client-5.0
-	cp debian/libmysqlclient15-dev.lintian-overrides $(TMP)/usr/share/lintian/overrides/libmysqlclient15-dev
+	cp debian/percona-sql-server-5.0.lintian-overrides $(TMP)/usr/share/lintian/overrides/percona-sql-server-5.0
+	cp debian/percona-sql-client-5.0.lintian-overrides $(TMP)/usr/share/lintian/overrides/percona-sql-client-5.0
+	cp debian/libpercona-sql-client15-dev.lintian-overrides $(TMP)/usr/share/lintian/overrides/libpercona-sql-client15-dev
 
 	# For 4.1 -> 5.0 transition
 	d=$(TMP)/usr/share/mysql-common/internal-use-only/; \
 	mkdir -p $$d; \
-	cp debian/mysql-server-5.0.mysql.init $$d/_etc_init.d_mysql; \
-	cp debian/mysql-server-5.0.mysql-server.logrotate $$d/_etc_logrotate.d_mysql-server; \
+	cp debian/percona-sql-server-5.0.mysql.init $$d/_etc_init.d_mysql; \
+	cp debian/percona-sql-server-5.0.mysql-server.logrotate $$d/_etc_logrotate.d_mysql-server; \
 	cp debian/additions/debian-start $$d/_etc_mysql_debian-start
 
 	dh_movefiles
