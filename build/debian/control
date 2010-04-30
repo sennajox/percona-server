@@ -8,12 +8,11 @@ Standards-Version: 3.8.0
 Homepage: http://www.percona.com/percona-lab.html
 Vcs-Browser: https://launchpad.net/percona-patches
 
-Package: libpercona-sql-client15off
+Package: libmysqlclient15off
 Section: libs
 Architecture: any
 Depends: mysql-common, ${shlibs:Depends}
-Provides: libmysqlclient15off
-Conflicts: libmysqlclient15, libmysqlclient15off
+Conflicts: libmysqlclient15
 Description: MySQL database client library
  MySQL is a fast, stable and true multi-user, multi-threaded SQL database
  server. SQL (Structured Query Language) is the most popular database query
@@ -22,10 +21,10 @@ Description: MySQL database client library
  .
  This package includes the client library.
 
-Package: libpercona-sql-client15-dev
+Package: libmysqlclient15-dev
 Architecture: any
 Section: libdevel
-Depends: libpercona-sql-client15off, zlib1g-dev, ${shlibs:Depends}
+Depends: libmysqlclient15off, zlib1g-dev, ${shlibs:Depends}
 Conflicts: libmysqlclient14-dev, libmysqlclient12-dev, libmysqlclient10-dev, libmysqlclient15-dev
 Provides: libmysqlclient-dev
 Description: MySQL database development files
