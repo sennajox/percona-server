@@ -53,7 +53,7 @@ Description: MySQL database common files
 
 Package: percona-sql-client-5.0
 Architecture: any
-Depends: debianutils (>=1.6), libdbi-perl, libdbd-mysql-perl (>= 1.2202), percona-sql-common, libpercona-sql-client15off, ${perl:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: debianutils (>=1.6), percona-sql-common, libpercona-sql-client15off, ${perl:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Recommends: libterm-readkey-perl
 Provides: virtual-mysql-client, mysql-client, mysql-community-client-5.0
 Conflicts: mysql-client (<< ${source:Version}), mysql-enterprise-client-5.0
