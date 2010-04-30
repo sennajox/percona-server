@@ -18,115 +18,115 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 msgid "Really proceed with downgrade?"
 msgstr "Sürüm düşürme (downgrade) işlemine gerçekten devam edilsin mi?"
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 msgid "A file named /var/lib/mysql/debian-*.flag exists on this system."
 msgstr "Sisteminizde /var/lib/mysql/debian-*.flag adlı bir dosya mevcut."
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 msgid "Such file is an indication that a mysql-server package with a higher version has been installed earlier."
 msgstr "Bunun gibi dosyalar sisteminize bundan önce daha yüksek sürümlü bir mysql-server paketinin kurulduğunun belirtisidir."
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:2001
+#: ../percona-sql-server-5.0.templates:2001
 msgid "There is no guarantee that the version you're currently installing will be able to use the current databases."
 msgstr "Şu anda kurmakta olduğunuz sürümün hali hazırdaki veritabanlarını kullanabileceğinin garantisi yoktur."
 
 #. Type: note
 #. Description
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 msgid "Important note for NIS/YP users"
 msgstr "NIS/YP kullanıcıları için önemli not"
 
 #. Type: note
 #. Description
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 msgid "To use MySQL, the following entries for users and groups should be added to the system:"
 msgstr "MySQL'i kullanabilmek için, aşağıdaki kullanıcı ve grup girdileri sisteme eklenmelidir:"
 
 #. Type: note
 #. Description
-#: ../mysql-server-5.0.templates:3001
+#: ../percona-sql-server-5.0.templates:3001
 msgid "You should also check the permissions and the owner of the /var/lib/mysql directory:"
 msgstr "Ayrıca /var/lib/mysql dizininin sahibini ve izinlerini de kontrol etmelisiniz:"
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 msgid "Remove all MySQL databases?"
 msgstr "Tüm MySQL veritabanları silinsin mi?"
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 msgid "The /var/lib/mysql directory which contains the MySQL databases is about to be removed."
 msgstr "MySQL veritabanlarını barındıran /var/lib/mysql dizini silinmek üzere."
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:4001
+#: ../percona-sql-server-5.0.templates:4001
 msgid "If you're removing the MySQL package in order to later install a more recent version or if a different mysql-server package is already using it, the data should be kept."
 msgstr "Eğer MySQL paketini daha sonra daha yeni bir sürümünü kurmak için kaldırıyorsanız, ya da farklı bir mysql-server paketi bu verileri halen kullanıyorsa, bu veriler korunmalıdır."
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:5001
+#: ../percona-sql-server-5.0.templates:5001
 msgid "Start the MySQL server on boot?"
 msgstr "MySQL sunucusu açılış sırasında başlatılsın mı?"
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:5001
+#: ../percona-sql-server-5.0.templates:5001
 msgid "The MySQL server can be launched automatically at boot time or manually with the '/etc/init.d/mysql start' command."
 msgstr "MySQL sunucusu açılış sırasında otomatik olarak ya da '/etc/init.d/mysql start' komutunu vermeniz halinde elle başlatılabilir."
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 msgid "New password for the MySQL \"root\" user:"
 msgstr "MySQL \"root\" kullanıcısının yeni parolası:"
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 msgid "While not mandatory, it is highly recommended that you set a password for the MySQL administrative \"root\" user."
 msgstr "Zorunlu olmasa da, MySQL'in yönetimsel \"root\" kullanıcısı için parola ayarlamanız şiddetle tavsiye edilir."
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:6001
+#: ../percona-sql-server-5.0.templates:6001
 msgid "If that field is left blank, the password will not be changed."
 msgstr "Bu alan boş bırakılırsa parola değiştirilmeyecek."
 
 #. Type: password
 #. Description
-#: ../mysql-server-5.0.templates:7001
+#: ../percona-sql-server-5.0.templates:7001
 msgid "Repeat password for the MySQL \"root\" user:"
 msgstr "MySQL \"root\" kullanıcısının parolasını tekrarlayın:"
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 msgid "Unable to set password for the MySQL \"root\" user"
 msgstr "MySQL \"root\" kullanıcısının parolası ayarlanamadı"
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 msgid "An error occurred while setting the password for the MySQL administrative user. This may have happened because the account already has a password, or because of a communication problem with the MySQL server."
 msgstr "MySQL yönetimsel kullanıcısının parolası ayarlanırken bir hata oluştu. Bunun nedeni hesabın zaten bir parolaya sahip olması ya da MySQL sunucusuyla yaşanan bir bağlantı problemi olabilir."
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:8001
 msgid "You should check the account's password after the package installation."
 msgstr "Paket kurulumundan sonra hesabın parolasını kontrol etmelisiniz."
 
@@ -134,32 +134,32 @@ msgstr "Paket kurulumundan sonra hesabın parolasını kontrol etmelisiniz."
 #. Description
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:8001
-#: ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:8001
+#: ../percona-sql-server-5.0.templates:10001
 msgid "Please read the /usr/share/doc/mysql-server-5.0/README.Debian file for more information."
 msgstr "Daha fazla bilgi için lütfen /usr/share/doc/mysql-server-5.0/README.Debian dosyasını okuyun."
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:9001
+#: ../percona-sql-server-5.0.templates:9001
 msgid "Password input error"
 msgstr "Parola giriş hatası"
 
 #. Type: error
 #. Description
-#: ../mysql-server-5.0.templates:9001
+#: ../percona-sql-server-5.0.templates:9001
 msgid "The two passwords you entered were not the same. Please try again."
 msgstr "Girdiğiniz iki parola aynı değildi. Lütfen tekrar deneyin."
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:10001
 msgid "Support MySQL connections from hosts running Debian \"sarge\" or older?"
 msgstr "Debian \"sarge\" ya da daha eski makinelerden yapılan MySQL bağlantıları desteklensin mi?"
 
 #. Type: boolean
 #. Description
-#: ../mysql-server-5.0.templates:10001
+#: ../percona-sql-server-5.0.templates:10001
 msgid "In old versions of MySQL clients on Debian, passwords were not stored securely. This has been improved since then, however clients (such as PHP) from hosts running Debian 3.1 Sarge will not be able to connect to recent accounts or accounts whose password have been changed."
 msgstr "Debian'daki MySQL istemcilerinin eski sürümlerinde parolalar güvenli bir biçimde saklanmıyordu.  Bu durum artık düzeldi, bununla birlikte Debian 3.1 Sarge kullanan makinelerdeki istemciler (PHP gibi) artık yeni hesaplara ya da parolası değiştirilmiş olan hesaplara bağlanamayacak."
 
