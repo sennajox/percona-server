@@ -1,4 +1,4 @@
-percona-sql-dfsg-5.0 (5.0.90-percona-b21) unstable; urgency=low
+percona-sql-dfsg-5.0 (5.0.90-b21) unstable; urgency=low
 
   * Percona patches, Build 21
   * Fixed Bug #479106 
