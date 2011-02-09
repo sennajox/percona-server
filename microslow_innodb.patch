@@ -907,7 +907,7 @@ diff -ruN /dev/null b/patch_info/microslow_innodb.info
 diff -ruN a/scripts/mysqldumpslow.sh b/scripts/mysqldumpslow.sh
 --- a/scripts/mysqldumpslow.sh	Tue Jul 28 23:39:12 2009 -0700
 +++ b/scripts/mysqldumpslow.sh	Tue Jul 28 23:42:44 2009 -0700
-@@ -83,8 +83,8 @@
+@@ -101,8 +101,8 @@
      s/^#? Time: \d{6}\s+\d+:\d+:\d+.*\n//;
      my ($user,$host) = s/^#? User\@Host:\s+(\S+)\s+\@\s+(\S+).*\n// ? ($1,$2) : ('','');
  
@@ -1396,7 +1396,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
  static char *mysql_home_ptr, *pidfile_name_ptr;
  static char **defaults_argv;
  static char *opt_bin_logname;
-@@ -3700,6 +3703,8 @@
+@@ -3708,6 +3711,8 @@
        unireg_abort(1);
      }
    }
@@ -1405,7 +1405,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
  #endif /* __WIN__ */
  
    if (init_common_variables(MYSQL_CONFIG_NAME,
-@@ -4963,7 +4968,7 @@
+@@ -4971,7 +4976,7 @@
    OPT_INTERACTIVE_TIMEOUT, OPT_JOIN_BUFF_SIZE,
    OPT_KEY_BUFFER_SIZE, OPT_KEY_CACHE_BLOCK_SIZE,
    OPT_KEY_CACHE_DIVISION_LIMIT, OPT_KEY_CACHE_AGE_THRESHOLD,
@@ -1414,7 +1414,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    OPT_LOWER_CASE_TABLE_NAMES, OPT_MAX_ALLOWED_PACKET,
    OPT_MAX_BINLOG_CACHE_SIZE, OPT_MAX_BINLOG_SIZE,
    OPT_MAX_CONNECTIONS, OPT_MAX_CONNECT_ERRORS,
-@@ -5055,11 +5060,18 @@
+@@ -5063,11 +5068,18 @@
    OPT_TIMED_MUTEXES,
    OPT_OLD_STYLE_USER_LIMITS,
    OPT_LOG_SLOW_ADMIN_STATEMENTS,
@@ -1433,7 +1433,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    OPT_INNODB_ROLLBACK_ON_TIMEOUT,
    OPT_SECURE_FILE_PRIV,
    OPT_KEEP_FILES_ON_CREATE,
-@@ -5459,10 +5471,19 @@
+@@ -5467,10 +5479,19 @@
     (gptr*) &opt_log_slow_admin_statements,
     (gptr*) &opt_log_slow_admin_statements,
     0, GET_BOOL, NO_ARG, 0, 0, 0, 0, 0, 0},
@@ -1453,7 +1453,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    {"log-tc", OPT_LOG_TC,
     "Path to transaction coordinator log (used for transactions that affect "
     "more than one storage engine, when binary log is disabled)",
-@@ -5826,6 +5847,9 @@
+@@ -5834,6 +5855,9 @@
     "Tells the slave thread to continue replication when a query returns an error from the provided list.",
     0, 0, 0, GET_STR, REQUIRED_ARG, 0, 0, 0, 0, 0, 0},
  #endif
@@ -1463,7 +1463,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    {"socket", OPT_SOCKET, "Socket file to use for connection.",
     (gptr*) &mysqld_unix_port, (gptr*) &mysqld_unix_port, 0, GET_STR,
     REQUIRED_ARG, 0, 0, 0, 0, 0, 0},
-@@ -6128,11 +6152,31 @@
+@@ -6136,11 +6160,31 @@
     (gptr*) 0,
     0, (GET_ULONG | GET_ASK_ADDR) , REQUIRED_ARG, 100,
     1, 100, 0, 1, 0},
@@ -1500,7 +1500,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    {"lower_case_table_names", OPT_LOWER_CASE_TABLE_NAMES,
     "If set to 1 table names are stored in lowercase on disk and table names will be case-insensitive.  Should be set to 2 if you are using a case insensitive file system",
     (gptr*) &lower_case_table_names,
-@@ -6915,7 +6959,11 @@
+@@ -6923,7 +6967,11 @@
    global_system_variables.max_join_size= (ulonglong) HA_POS_ERROR;
    max_system_variables.max_join_size=   (ulonglong) HA_POS_ERROR;
    global_system_variables.old_passwords= 0;
@@ -1513,7 +1513,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    /*
      Default behavior for 4.1 and 5.0 is to treat NULL values as unequal
      when collecting index statistics for MyISAM tables.
-@@ -7386,6 +7434,35 @@
+@@ -7394,6 +7442,35 @@
    case OPT_BOOTSTRAP:
      opt_noacl=opt_bootstrap=1;
      break;
@@ -1549,7 +1549,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    case OPT_STORAGE_ENGINE:
    {
      if ((enum db_type)((global_system_variables.table_type=
-@@ -7718,10 +7795,14 @@
+@@ -7726,10 +7803,14 @@
    if (opt_bdb)
      sql_print_warning("this binary does not contain BDB storage engine");
  #endif
@@ -1719,7 +1719,7 @@ diff -ruN a/sql/set_var.cc b/sql/set_var.cc
    case SHOW_HA_ROWS:
    {
      ha_rows value;
-@@ -2772,6 +2830,30 @@
+@@ -2788,6 +2846,30 @@
  }
  
  
@@ -1750,7 +1750,7 @@ diff -ruN a/sql/set_var.cc b/sql/set_var.cc
  #ifdef HAVE_REPLICATION
  bool sys_var_slave_skip_counter::check(THD *thd, set_var *var)
  {
-@@ -3568,6 +3650,191 @@
+@@ -3584,6 +3666,191 @@
  #endif
  }
  
@@ -2078,7 +2078,7 @@ diff -ruN a/sql/set_var.h b/sql/set_var.h
  class sys_var_thd_storage_engine :public sys_var_thd
  {
  protected:
-@@ -1109,3 +1187,11 @@
+@@ -1110,3 +1188,11 @@
  bool process_key_caches(int (* func) (const char *name, KEY_CACHE *));
  void delete_elements(I_List<NAMED_LIST> *list,
  		     void (*free_element)(const char*, gptr));
@@ -2292,9 +2292,9 @@ diff -ruN a/sql/sql_class.h b/sql/sql_class.h
 +  inline void	end_time()    { end_timer(); safe_time(&start_time); }
 +  inline void	set_time(time_t t) { set_timer(); time_after_lock=start_time=user_time=t; }
 +  inline void	lock_time()   { lock_timer(); safe_time(&time_after_lock); }
-   inline void	insert_id(ulonglong id_arg)
-   {
-     last_insert_id= id_arg;
+   /*TODO: this will be obsolete when we have support for 64 bit my_time_t */
+   inline bool	is_valid_time() 
+   { 
 diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
 --- a/sql/sql_parse.cc	Tue Jul 28 23:39:12 2009 -0700
 +++ b/sql/sql_parse.cc	Tue Jul 28 23:42:44 2009 -0700
@@ -2306,7 +2306,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
  
  #ifdef HAVE_INNOBASE_DB
  #include "ha_innodb.h"
-@@ -1233,6 +1234,15 @@
+@@ -1235,6 +1236,15 @@
      my_net_set_read_timeout(net, thd->variables.net_read_timeout);
      my_net_set_write_timeout(net, thd->variables.net_write_timeout);
  
@@ -2322,7 +2322,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
      while (!net->error && net->vio != 0 &&
             !(thd->killed == THD::KILL_CONNECTION))
      {
-@@ -2394,28 +2404,57 @@
+@@ -2421,28 +2431,57 @@
      return;                                     // Don't set time for sub stmt
  
    start_of_query= thd->start_time;
@@ -2391,7 +2391,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
      }
    }
  }
-@@ -2710,6 +2749,8 @@
+@@ -2737,6 +2776,8 @@
      context.resolve_in_table_list_only((TABLE_LIST*)select_lex->
                                         table_list.first);
  
@@ -2400,7 +2400,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
    /*
      Reset warning count for each query that uses tables
      A better approach would be to reset this for any commands
-@@ -6233,6 +6274,15 @@
+@@ -6260,6 +6301,15 @@
      thd->total_warn_count=0;			// Warnings for this query
      thd->rand_used= 0;
      thd->sent_row_count= thd->examined_row_count= 0;
@@ -2419,7 +2419,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
 diff -ruN a/sql/sql_select.cc b/sql/sql_select.cc
 --- a/sql/sql_select.cc	Tue Jul 28 23:39:12 2009 -0700
 +++ b/sql/sql_select.cc	Tue Jul 28 23:42:44 2009 -0700
-@@ -6371,8 +6371,11 @@
+@@ -6379,8 +6379,11 @@
  	  {
  	    join->thd->server_status|=SERVER_QUERY_NO_INDEX_USED;
  	    if (statistics)
@@ -2431,7 +2431,7 @@ diff -ruN a/sql/sql_select.cc b/sql/sql_select.cc
  	  }
  	}
  	else
-@@ -6387,8 +6390,11 @@
+@@ -6395,8 +6398,11 @@
  	  {
  	    join->thd->server_status|=SERVER_QUERY_NO_INDEX_USED;
  	    if (statistics)
@@ -2443,7 +2443,7 @@ diff -ruN a/sql/sql_select.cc b/sql/sql_select.cc
  	  }
  	}
  	if (!table->no_keyread)
-@@ -9464,6 +9470,7 @@
+@@ -9507,6 +9513,7 @@
  		      (ulong) rows_limit,test(group)));
  
    statistic_increment(thd->status_var.created_tmp_tables, &LOCK_status);
@@ -2451,7 +2451,7 @@ diff -ruN a/sql/sql_select.cc b/sql/sql_select.cc
  
    if (use_temp_pool && !(test_flags & TEST_KEEP_TMP_TABLES))
      temp_pool_slot = bitmap_set_next(&temp_pool);
-@@ -10325,6 +10332,7 @@
+@@ -10368,6 +10375,7 @@
    }
    statistic_increment(table->in_use->status_var.created_tmp_disk_tables,
  		      &LOCK_status);

@@ -32,7 +32,7 @@ diff -ruN a/sql/Makefile.am b/sql/Makefile.am
 diff -ruN a/sql/Makefile.in b/sql/Makefile.in
 --- a/sql/Makefile.in	Mon Dec 22 00:20:06 2008 -0800
 +++ b/sql/Makefile.in	Mon Dec 22 00:25:06 2008 -0800
-@@ -566,7 +566,7 @@
+@@ -567,7 +567,7 @@
  gen_lex_hash_LDADD = $(LDADD) $(CXXLDFLAGS)
  mysql_tzinfo_to_sql_SOURCES = mysql_tzinfo_to_sql.cc
  mysql_tzinfo_to_sql_LDADD = @MYSQLD_EXTRA_LDFLAGS@ $(LDADD) $(CXXLDFLAGS)
@@ -41,7 +41,7 @@ diff -ruN a/sql/Makefile.in b/sql/Makefile.in
  EXTRA_DIST = $(BUILT_SOURCES) nt_servc.cc nt_servc.h \
  			message.mc message.h message.rc MSG00001.bin \
  			examples/CMakeLists.txt CMakeLists.txt \
-@@ -1227,6 +1227,9 @@
+@@ -1228,6 +1228,9 @@
  		./gen_lex_hash$(EXEEXT) > $@-t
  		$(MV) $@-t $@
  
@@ -167,7 +167,7 @@ diff -ruN a/sql/sql_lex.h b/sql/sql_lex.h
 diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
 --- a/sql/sql_parse.cc	Mon Dec 22 00:20:06 2008 -0800
 +++ b/sql/sql_parse.cc	Mon Dec 22 00:25:06 2008 -0800
-@@ -4081,6 +4081,9 @@
+@@ -4108,6 +4108,9 @@
    case SQLCOM_SHOW_STORAGE_ENGINES:
      res= mysqld_show_storage_engines(thd);
      break;
@@ -180,7 +180,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
 diff -ruN a/sql/sql_prepare.cc b/sql/sql_prepare.cc
 --- a/sql/sql_prepare.cc	Mon Dec 22 00:20:06 2008 -0800
 +++ b/sql/sql_prepare.cc	Mon Dec 22 00:25:06 2008 -0800
-@@ -1790,6 +1790,7 @@
+@@ -1818,6 +1818,7 @@
    case SQLCOM_SHOW_DATABASES:
    case SQLCOM_SHOW_PROCESSLIST:
    case SQLCOM_SHOW_STORAGE_ENGINES:
@@ -246,7 +246,7 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
 +
  
  /***************************************************************************
- ** List all table types supported 
+ ** List all table types supported
 diff -ruN a/sql/sql_yacc.yy b/sql/sql_yacc.yy
 --- a/sql/sql_yacc.yy	Mon Dec 22 00:20:06 2008 -0800
 +++ b/sql/sql_yacc.yy	Mon Dec 22 00:25:06 2008 -0800

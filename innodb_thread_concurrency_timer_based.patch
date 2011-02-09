@@ -356,7 +356,7 @@ diff -ruN a/sql/ha_innodb.h b/sql/ha_innodb.h
 diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
 --- a/sql/mysqld.cc	2009-05-06 15:38:01.000000000 +0900
 +++ b/sql/mysqld.cc	2009-05-06 16:22:06.000000000 +0900
-@@ -5118,6 +5118,7 @@
+@@ -5126,6 +5126,7 @@
    OPT_INNODB_ADAPTIVE_CHECKPOINT,
    OPT_INNODB_READ_IO_THREADS,
    OPT_INNODB_WRITE_IO_THREADS,
@@ -364,7 +364,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    OPT_INNODB_EXTRA_RSEGMENTS,
    OPT_INNODB_DICT_SIZE_LIMIT,
    OPT_INNODB_ADAPTIVE_HASH_INDEX,
-@@ -5484,6 +5485,11 @@
+@@ -5492,6 +5493,11 @@
     "Number of background write I/O threads in InnoDB.",
     (gptr*) &innobase_write_io_threads, (gptr*) &innobase_write_io_threads,
     0, GET_LONG, REQUIRED_ARG, 8, 1, 64, 0, 0, 0},

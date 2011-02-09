@@ -159,7 +159,7 @@ diff -ruN a/sql/ha_innodb.h b/sql/ha_innodb.h
 diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
 --- a/sql/mysqld.cc	Mon Jun 01 00:36:33 2009 -0700
 +++ b/sql/mysqld.cc	Mon Jun 01 00:36:41 2009 -0700
-@@ -5032,6 +5032,8 @@
+@@ -5040,6 +5040,8 @@
    OPT_INNODB_MAX_PURGE_LAG,
    OPT_INNODB_FILE_IO_THREADS,
    OPT_INNODB_LOCK_WAIT_TIMEOUT,
@@ -168,7 +168,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    OPT_INNODB_THREAD_CONCURRENCY,
    OPT_INNODB_COMMIT_CONCURRENCY,
    OPT_INNODB_FORCE_RECOVERY,
-@@ -5379,6 +5381,14 @@
+@@ -5387,6 +5389,14 @@
     (gptr*) &srv_flush_log_at_trx_commit,
     (gptr*) &srv_flush_log_at_trx_commit,
     0, GET_ULONG, OPT_ARG,  1, 0, 2, 0, 0, 0},

@@ -127,7 +127,7 @@ diff -ruN a/sql/ha_innodb.h b/sql/ha_innodb.h
 diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
 --- a/sql/mysqld.cc	Fri Jul 03 15:41:41 2009 -0700
 +++ b/sql/mysqld.cc	Fri Jul 03 15:41:47 2009 -0700
-@@ -5118,6 +5118,7 @@
+@@ -5126,6 +5126,7 @@
    OPT_INNODB_ADAPTIVE_CHECKPOINT,
    OPT_INNODB_READ_IO_THREADS,
    OPT_INNODB_WRITE_IO_THREADS,
@@ -135,7 +135,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    OPT_INNODB_DICT_SIZE_LIMIT,
    OPT_INNODB_ADAPTIVE_HASH_INDEX,
    OPT_FEDERATED,
-@@ -5483,6 +5484,10 @@
+@@ -5491,6 +5492,10 @@
     "Number of background write I/O threads in InnoDB.",
     (gptr*) &innobase_write_io_threads, (gptr*) &innobase_write_io_threads,
     0, GET_LONG, REQUIRED_ARG, 8, 1, 64, 0, 0, 0},
@@ -169,7 +169,7 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
  }
  /* We need to undef it in InnoDB */
  #undef byte
-@@ -4186,6 +4188,45 @@
+@@ -4212,6 +4214,45 @@
    DBUG_RETURN(returnable);
  }
  
@@ -215,7 +215,7 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
  /*
    Find schema_tables elment by name
  
-@@ -5004,6 +5045,16 @@
+@@ -5030,6 +5071,16 @@
    {"N_WRITE", 11, MYSQL_TYPE_LONG, 0, 0, "write ios"},
    {0, 0, MYSQL_TYPE_STRING, 0, 0, 0}
  };
@@ -232,7 +232,7 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
  #endif
  
  ST_FIELD_INFO variables_fields_info[]=
-@@ -5183,6 +5234,8 @@
+@@ -5209,6 +5260,8 @@
  #ifdef HAVE_INNOBASE_DB
    {"INNODB_IO_PATTERN", innodb_io_pattern_field_info, create_schema_table,
      innodb_io_pattern_fill_table, 0, 0, -1, -1, 0},

@@ -29,7 +29,7 @@ diff -ruN a/sql/log.cc b/sql/log.cc
 diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
 --- a/sql/mysqld.cc	Fri Jul 03 15:40:20 2009 -0700
 +++ b/sql/mysqld.cc	Fri Jul 03 15:40:29 2009 -0700
-@@ -5069,6 +5069,8 @@
+@@ -5077,6 +5077,8 @@
    OPT_PORT_OPEN_TIMEOUT,
    OPT_MERGE,
    OPT_PROFILING,
@@ -38,7 +38,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    OPT_SLOW_LOG,
    OPT_SLOW_QUERY_LOG_FILE,
    OPT_USE_GLOBAL_LONG_QUERY_TIME,
-@@ -5693,6 +5695,16 @@
+@@ -5701,6 +5703,16 @@
     (gptr*) &global_system_variables.profiling_history_size,
     (gptr*) &max_system_variables.profiling_history_size,
     0, GET_ULONG, REQUIRED_ARG, 15, 0, 100, 0, 0, 0},

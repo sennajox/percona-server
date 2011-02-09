@@ -89,7 +89,7 @@ diff -ruN a/cmd-line-utils/readline/Makefile.in b/cmd-line-utils/readline/Makefi
 diff -ruN a/configure b/configure
 --- a/configure	Wed Jul 29 13:33:34 2009 -0700
 +++ b/configure	Wed Jul 29 13:34:11 2009 -0700
-@@ -35357,7 +35357,91 @@
+@@ -35358,7 +35358,91 @@
  	# We also disable for SCO for the time being, the headers for the
  	# thread library we use conflicts with other headers.
      ;;
@@ -182,7 +182,7 @@ diff -ruN a/configure b/configure
  for ac_func in clock_gettime
  do
  as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
-@@ -38801,7 +38885,7 @@
+@@ -38808,7 +38892,7 @@
  
  fi
  
@@ -248,7 +248,7 @@ diff -ruN a/extra/Makefile.in b/extra/Makefile.in
 diff -ruN a/extra/yassl/Makefile.in b/extra/yassl/Makefile.in
 --- a/extra/yassl/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
 +++ b/extra/yassl/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -142,6 +142,7 @@
+@@ -157,6 +157,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
  LIBOBJS = @LIBOBJS@
@@ -259,7 +259,7 @@ diff -ruN a/extra/yassl/Makefile.in b/extra/yassl/Makefile.in
 diff -ruN a/extra/yassl/src/Makefile.in b/extra/yassl/src/Makefile.in
 --- a/extra/yassl/src/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
 +++ b/extra/yassl/src/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -151,6 +151,7 @@
+@@ -166,6 +166,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
  LIBOBJS = @LIBOBJS@
@@ -270,7 +270,7 @@ diff -ruN a/extra/yassl/src/Makefile.in b/extra/yassl/src/Makefile.in
 diff -ruN a/extra/yassl/taocrypt/Makefile.in b/extra/yassl/taocrypt/Makefile.in
 --- a/extra/yassl/taocrypt/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
 +++ b/extra/yassl/taocrypt/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -142,6 +142,7 @@
+@@ -157,6 +157,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
  LIBOBJS = @LIBOBJS@
@@ -281,7 +281,7 @@ diff -ruN a/extra/yassl/taocrypt/Makefile.in b/extra/yassl/taocrypt/Makefile.in
 diff -ruN a/extra/yassl/taocrypt/benchmark/Makefile.in b/extra/yassl/taocrypt/benchmark/Makefile.in
 --- a/extra/yassl/taocrypt/benchmark/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
 +++ b/extra/yassl/taocrypt/benchmark/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -153,6 +153,7 @@
+@@ -168,6 +168,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
  LIBOBJS = @LIBOBJS@
@@ -292,7 +292,7 @@ diff -ruN a/extra/yassl/taocrypt/benchmark/Makefile.in b/extra/yassl/taocrypt/be
 diff -ruN a/extra/yassl/taocrypt/src/Makefile.in b/extra/yassl/taocrypt/src/Makefile.in
 --- a/extra/yassl/taocrypt/src/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
 +++ b/extra/yassl/taocrypt/src/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -164,6 +164,7 @@
+@@ -179,6 +179,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
  LIBOBJS = @LIBOBJS@
@@ -303,7 +303,7 @@ diff -ruN a/extra/yassl/taocrypt/src/Makefile.in b/extra/yassl/taocrypt/src/Make
 diff -ruN a/extra/yassl/taocrypt/test/Makefile.in b/extra/yassl/taocrypt/test/Makefile.in
 --- a/extra/yassl/taocrypt/test/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
 +++ b/extra/yassl/taocrypt/test/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -153,6 +153,7 @@
+@@ -168,6 +168,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
  LIBOBJS = @LIBOBJS@
@@ -314,7 +314,7 @@ diff -ruN a/extra/yassl/taocrypt/test/Makefile.in b/extra/yassl/taocrypt/test/Ma
 diff -ruN a/extra/yassl/testsuite/Makefile.in b/extra/yassl/testsuite/Makefile.in
 --- a/extra/yassl/testsuite/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
 +++ b/extra/yassl/testsuite/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -156,6 +156,7 @@
+@@ -171,6 +171,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
  LIBOBJS = @LIBOBJS@
@@ -379,7 +379,7 @@ diff -ruN a/include/mysql_com.h b/include/mysql_com.h
 diff -ruN a/libmysql/Makefile.in b/libmysql/Makefile.in
 --- a/libmysql/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
 +++ b/libmysql/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -224,6 +224,7 @@
+@@ -222,6 +222,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
  LIBOBJS = @LIBOBJS@
@@ -390,7 +390,7 @@ diff -ruN a/libmysql/Makefile.in b/libmysql/Makefile.in
 diff -ruN a/libmysql_r/Makefile.in b/libmysql_r/Makefile.in
 --- a/libmysql_r/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
 +++ b/libmysql_r/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -221,6 +221,7 @@
+@@ -219,6 +219,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
  LIBOBJS = @LIBOBJS@
@@ -467,7 +467,7 @@ diff -ruN a/mysql-test/Makefile.in b/mysql-test/Makefile.in
 diff -ruN a/mysql-test/ndb/Makefile.in b/mysql-test/ndb/Makefile.in
 --- a/mysql-test/ndb/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
 +++ b/mysql-test/ndb/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -147,6 +147,7 @@
+@@ -162,6 +162,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
  LIBOBJS = @LIBOBJS@
@@ -588,7 +588,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  mysql	17
  create table t1 (i int, j int);
  create trigger trg1 before insert on t1 for each row
-@@ -1187,10 +1199,12 @@
+@@ -1189,10 +1201,12 @@
          );
  table_name	column_name
  CHARACTER_SETS	CHARACTER_SET_NAME
@@ -601,7 +601,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  KEY_COLUMN_USAGE	CONSTRAINT_SCHEMA
  PROFILING	QUERY_ID
  ROUTINES	ROUTINE_SCHEMA
-@@ -1200,8 +1214,10 @@
+@@ -1202,8 +1216,10 @@
  TABLES	TABLE_SCHEMA
  TABLE_CONSTRAINTS	CONSTRAINT_SCHEMA
  TABLE_PRIVILEGES	TABLE_SCHEMA
@@ -612,7 +612,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  VIEWS	TABLE_SCHEMA
  SELECT t.table_name, c1.column_name
  FROM information_schema.tables t
-@@ -1219,10 +1235,12 @@
+@@ -1221,10 +1237,12 @@
          );
  table_name	column_name
  CHARACTER_SETS	CHARACTER_SET_NAME
@@ -625,7 +625,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  KEY_COLUMN_USAGE	CONSTRAINT_SCHEMA
  PROFILING	QUERY_ID
  ROUTINES	ROUTINE_SCHEMA
-@@ -1232,8 +1250,10 @@
+@@ -1234,8 +1252,10 @@
  TABLES	TABLE_SCHEMA
  TABLE_CONSTRAINTS	CONSTRAINT_SCHEMA
  TABLE_PRIVILEGES	TABLE_SCHEMA
@@ -636,7 +636,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  VIEWS	TABLE_SCHEMA
  SELECT MAX(table_name) FROM information_schema.tables;
  MAX(table_name)
-@@ -1302,10 +1322,12 @@
+@@ -1304,10 +1324,12 @@
  group by t.table_name order by num1, t.table_name;
  table_name	group_concat(t.table_schema, '.', t.table_name)	num1
  CHARACTER_SETS	information_schema.CHARACTER_SETS	1
@@ -649,7 +649,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  KEY_COLUMN_USAGE	information_schema.KEY_COLUMN_USAGE	1
  PROFILING	information_schema.PROFILING	1
  ROUTINES	information_schema.ROUTINES	1
-@@ -1315,8 +1337,10 @@
+@@ -1317,8 +1339,10 @@
  TABLES	information_schema.TABLES	1
  TABLE_CONSTRAINTS	information_schema.TABLE_CONSTRAINTS	1
  TABLE_PRIVILEGES	information_schema.TABLE_PRIVILEGES	1
@@ -1244,39 +1244,6 @@ diff -ruN a/netware/Makefile.in b/netware/Makefile.in
 --- a/netware/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
 +++ b/netware/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
 @@ -199,6 +199,7 @@
- LIBDL = @LIBDL@
- LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
- LIBOBJS = @LIBOBJS@
-+LIBRT = @LIBRT@
- LIBS = @LIBS@
- LIBTOOL = @LIBTOOL@
- LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -ruN a/os2/Makefile.in b/os2/Makefile.in
---- a/os2/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
-+++ b/os2/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -156,6 +156,7 @@
- LIBDL = @LIBDL@
- LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
- LIBOBJS = @LIBOBJS@
-+LIBRT = @LIBRT@
- LIBS = @LIBS@
- LIBTOOL = @LIBTOOL@
- LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -ruN a/os2/include/Makefile.in b/os2/include/Makefile.in
---- a/os2/include/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
-+++ b/os2/include/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -156,6 +156,7 @@
- LIBDL = @LIBDL@
- LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
- LIBOBJS = @LIBOBJS@
-+LIBRT = @LIBRT@
- LIBS = @LIBS@
- LIBTOOL = @LIBTOOL@
- LIB_EXTRA_CCFLAGS = @LIB_EXTRA_CCFLAGS@
-diff -ruN a/os2/include/sys/Makefile.in b/os2/include/sys/Makefile.in
---- a/os2/include/sys/Makefile.in	Wed Jul 29 13:33:34 2009 -0700
-+++ b/os2/include/sys/Makefile.in	Wed Jul 29 13:34:11 2009 -0700
-@@ -144,6 +144,7 @@
  LIBDL = @LIBDL@
  LIBEDIT_LOBJECTS = @LIBEDIT_LOBJECTS@
  LIBOBJS = @LIBOBJS@
@@ -2015,7 +1982,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
  }
  
  #endif /*EMBEDDED_LIBRARY*/
-@@ -3157,6 +3171,10 @@
+@@ -3165,6 +3179,10 @@
    (void) pthread_mutex_init(&LOCK_rpl_status, MY_MUTEX_INIT_FAST);
    (void) pthread_cond_init(&COND_rpl_status, NULL);
  #endif
@@ -2026,7 +1993,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    sp_cache_init();
    /* Parameter for threads created for connections */
    (void) pthread_attr_init(&connection_attrib);
-@@ -3431,6 +3449,10 @@
+@@ -3439,6 +3457,10 @@
      sql_print_error("Out of memory");
      unireg_abort(1);
    }
@@ -2037,7 +2004,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    if (ha_init())
    {
      sql_print_error("Can't init databases");
-@@ -3513,6 +3535,8 @@
+@@ -3521,6 +3543,8 @@
  
    init_max_user_conn();
    init_update_queries();
@@ -2046,7 +2013,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    DBUG_RETURN(0);
  }
  
-@@ -4252,6 +4276,7 @@
+@@ -4260,6 +4284,7 @@
    {
      DBUG_PRINT("error",("Too many connections"));
      close_connection(thd, ER_CON_COUNT_ERROR, 1);
@@ -2054,7 +2021,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
      delete thd;
      DBUG_VOID_RETURN;
    }
-@@ -5073,6 +5098,7 @@
+@@ -5081,6 +5106,7 @@
    OPT_PROFILING_USE_GETRUSAGE,
    OPT_SLOW_LOG,
    OPT_SLOW_QUERY_LOG_FILE,
@@ -2062,7 +2029,7 @@ diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
    OPT_USE_GLOBAL_LONG_QUERY_TIME,
    OPT_INNODB_ROLLBACK_ON_TIMEOUT,
    OPT_SECURE_FILE_PRIV,
-@@ -6545,6 +6571,10 @@
+@@ -6553,6 +6579,10 @@
     (gptr*) &max_system_variables.net_wait_timeout, 0, GET_ULONG,
     REQUIRED_ARG, NET_WAIT_TIMEOUT, 1, IF_WIN(INT_MAX32/1000, LONG_TIMEOUT),
     0, 1, 0},
@@ -2392,7 +2359,7 @@ diff -ruN a/sql/sql_class.h b/sql/sql_class.h
    void change_user(void);
    void cleanup(void);
    void cleanup_after_query();
-@@ -1901,8 +1953,14 @@
+@@ -1906,8 +1958,14 @@
      if (p_db_length)
        *p_db_length= db_length;
      return FALSE;
@@ -2407,7 +2374,7 @@ diff -ruN a/sql/sql_class.h b/sql/sql_class.h
  public:
    /**
      Add an internal error handler to the thread execution context.
-@@ -1953,6 +2011,10 @@
+@@ -1958,6 +2016,10 @@
    MEM_ROOT main_mem_root;
  };
  
@@ -2503,7 +2470,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
  #ifdef __WIN__
  extern void win_install_sigabrt_handler(void);
  #endif
-@@ -511,6 +528,7 @@
+@@ -513,6 +530,7 @@
      mysql_log.write(thd,COM_CONNECT,"%s",ER(ER_NOT_SUPPORTED_AUTH_MODE));
      DBUG_RETURN(-1);
    }
@@ -2511,7 +2478,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
    net_printf_error(thd, ER_ACCESS_DENIED_ERROR,
                     thd->main_security_ctx.user,
                     thd->main_security_ctx.host_or_ip,
-@@ -543,13 +561,191 @@
+@@ -545,13 +563,191 @@
  void init_max_user_conn(void)
  {
  #ifndef NO_EMBEDDED_ACCESS_CHECKS
@@ -2707,7 +2674,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
  
  /*
    check if user has already too many connections
-@@ -606,7 +802,10 @@
+@@ -608,7 +804,10 @@
  
    end:
    if (error)
@@ -2718,7 +2685,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
    (void) pthread_mutex_unlock(&LOCK_user_conn);
    DBUG_RETURN(error);
  }
-@@ -653,6 +852,25 @@
+@@ -655,6 +854,25 @@
  #endif /* NO_EMBEDDED_ACCESS_CHECKS */
  }
  
@@ -2744,7 +2711,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
  
  
  /*
-@@ -705,6 +923,214 @@
+@@ -707,6 +925,214 @@
    return uc_update_queries[command] != 0;
  }
  
@@ -2959,7 +2926,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
  /*
    Reset per-hour user resource limits when it has been more than
    an hour since they were last checked
-@@ -1190,6 +1616,8 @@
+@@ -1192,6 +1618,8 @@
      my_net_set_read_timeout(net, connect_timeout);
      my_net_set_write_timeout(net, connect_timeout);
  
@@ -2968,7 +2935,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
      if ((error=check_connection(thd)))
      {						// Wrong permissions
        if (error > 0)
-@@ -1199,8 +1627,22 @@
+@@ -1201,8 +1629,22 @@
  	my_sleep(1000);				/* must wait after eof() */
  #endif
        statistic_increment(aborted_connects,&LOCK_status);
@@ -2991,7 +2958,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
  #ifdef __NETWARE__
      netware_reg_user(sctx->ip, sctx->user, "MySQL");
  #endif
-@@ -1257,6 +1699,7 @@
+@@ -1259,6 +1701,7 @@
          (net->vio && net->error && net->report_error))
      {
        statistic_increment(aborted_threads, &LOCK_status);
@@ -2999,7 +2966,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
      }
  
      if (net->error && net->vio != 0 && net->report_error)
-@@ -1276,6 +1719,8 @@
+@@ -1278,6 +1721,8 @@
  
  end_thread:
      close_connection(thd, 0, 1);
@@ -3008,7 +2975,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
      end_thread(thd,1);
      /*
        If end_thread returns, we are either running with --one-thread
-@@ -1606,6 +2051,13 @@
+@@ -1616,6 +2061,13 @@
  
    thd->clear_error();				// Clear error message
  
@@ -3022,7 +2989,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
    net_new_transaction(net);
  
    packet_length= my_net_read(net);
-@@ -1764,6 +2216,9 @@
+@@ -1774,6 +2226,9 @@
    }
  
    thd->command=command;
@@ -3032,7 +2999,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
    /*
      Commands which always take a long time are logged into
      the slow log only if opt_log_slow_admin_statements is set.
-@@ -4569,6 +5024,15 @@
+@@ -4596,6 +5051,15 @@
      if (check_global_access(thd,RELOAD_ACL))
        goto error;
  
@@ -3048,7 +3015,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
      /*
        reload_acl_and_cache() will tell us if we are allowed to write to the
        binlog or not.
-@@ -4877,6 +5341,7 @@
+@@ -4904,6 +5368,7 @@
      {
        if (check_global_access(thd, SUPER_ACL))
        {
@@ -3056,7 +3023,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
          my_error(ER_SPECIFIC_ACCESS_DENIED_ERROR, MYF(0), "SUPER");
          goto create_sp_error;
        }
-@@ -5721,6 +6186,7 @@
+@@ -5748,6 +6213,7 @@
        if (!no_errors)
        {
          const char *db_name= db ? db : thd->db;
@@ -3064,7 +3031,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
          my_error(ER_DBACCESS_DENIED_ERROR, MYF(0),
                   sctx->priv_user, sctx->priv_host, db_name);
        }
-@@ -5756,6 +6222,7 @@
+@@ -5783,6 +6249,7 @@
    {						// We can never grant this
      DBUG_PRINT("error",("No possible access"));
      if (!no_errors)
@@ -3072,7 +3039,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
        my_error(ER_ACCESS_DENIED_ERROR, MYF(0),
                 sctx->priv_user,
                 sctx->priv_host,
-@@ -5788,11 +6255,15 @@
+@@ -5815,11 +6282,15 @@
  
    DBUG_PRINT("error",("Access denied"));
    if (!no_errors)
@@ -3088,7 +3055,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
    DBUG_RETURN(TRUE);				/* purecov: tested */
  #endif /* NO_EMBEDDED_ACCESS_CHECKS */
  }
-@@ -5826,6 +6297,7 @@
+@@ -5853,6 +6324,7 @@
    if ((thd->security_ctx->master_access & want_access))
      return 0;
    get_privilege_desc(command, sizeof(command), want_access);
@@ -3096,7 +3063,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
    my_error(ER_SPECIFIC_ACCESS_DENIED_ERROR, MYF(0), command);
    return 1;
  #endif /* NO_EMBEDDED_ACCESS_CHECKS */
-@@ -5858,6 +6330,7 @@
+@@ -5885,6 +6357,7 @@
  
        if (!thd->col_access && check_grant_db(thd, dst_db_name))
        {
@@ -3104,7 +3071,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
          my_error(ER_DBACCESS_DENIED_ERROR, MYF(0),
                   thd->security_ctx->priv_user,
                   thd->security_ctx->priv_host,
-@@ -5889,6 +6362,12 @@
+@@ -5916,6 +6389,12 @@
               check_grant(thd, SELECT_ACL, dst_table, 2, UINT_MAX, FALSE);
      }
  
@@ -3117,7 +3084,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
    case SCH_OPEN_TABLES:
    case SCH_VARIABLES:
    case SCH_STATUS:
-@@ -5942,8 +6421,8 @@
+@@ -5969,8 +6448,8 @@
  #ifndef NO_EMBEDDED_ACCESS_CHECKS
    TABLE_LIST *org_tables= tables;
  #endif
@@ -3127,7 +3094,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
    /*
      The check that first_not_own_table is not reached is for the case when
      the given table list refers to the list for prelocking (contains tables
-@@ -5960,9 +6439,12 @@
+@@ -5987,9 +6466,12 @@
          (want_access & ~(SELECT_ACL | EXTRA_ACL | FILE_ACL)))
      {
        if (!no_errors)
@@ -3140,7 +3107,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
        return TRUE;
      }
      /*
-@@ -6472,6 +6954,30 @@
+@@ -6499,6 +6981,30 @@
    lex_start(thd);
    mysql_reset_thd_for_next_command(thd);
  
@@ -3171,7 +3138,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
    if (query_cache_send_result_to_client(thd, (char*) inBuf, length) <= 0)
    {
      LEX *lex= thd->lex;
-@@ -6550,6 +7056,43 @@
+@@ -6577,6 +7083,43 @@
      *found_semicolon= NULL;
    }
  
@@ -3215,7 +3182,7 @@ diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
    DBUG_VOID_RETURN;
  }
  
-@@ -7561,8 +8104,35 @@
+@@ -7588,8 +8131,35 @@
     pthread_mutex_unlock(&LOCK_active_mi);
   }
  #endif
@@ -3266,7 +3233,7 @@ diff -ruN a/sql/sql_prepare.cc b/sql/sql_prepare.cc
  /* A result class used to send cursor rows using the binary protocol. */
  
  class Select_fetch_protocol_prep: public select_send
-@@ -1910,8 +1913,32 @@
+@@ -1938,8 +1941,32 @@
    /* First of all clear possible warnings from the previous command */
    mysql_reset_thd_for_next_command(thd);
  
@@ -3300,7 +3267,7 @@ diff -ruN a/sql/sql_prepare.cc b/sql/sql_prepare.cc
  
    if (thd->stmt_map.insert(thd, stmt))
    {
-@@ -1919,7 +1946,7 @@
+@@ -1947,7 +1974,7 @@
        The error is set in the insert. The statement itself
        will be also deleted there (this is how the hash works).
      */
@@ -3309,7 +3276,7 @@ diff -ruN a/sql/sql_prepare.cc b/sql/sql_prepare.cc
    }
  
    /* Reset warnings from previous command */
-@@ -1941,6 +1968,44 @@
+@@ -1969,6 +1996,44 @@
      thd->stmt_map.erase(stmt);
    }
    /* check_prepared_statemnt sends the metadata packet in case of success */
@@ -3354,7 +3321,7 @@ diff -ruN a/sql/sql_prepare.cc b/sql/sql_prepare.cc
    DBUG_VOID_RETURN;
  }
  
-@@ -2280,8 +2345,32 @@
+@@ -2308,8 +2373,32 @@
    /* First of all clear possible warnings from the previous command */
    mysql_reset_thd_for_next_command(thd);
  
@@ -3388,7 +3355,7 @@ diff -ruN a/sql/sql_prepare.cc b/sql/sql_prepare.cc
  
  #if defined(ENABLED_PROFILING) && defined(COMMUNITY_SERVER)
    thd->profiling.set_query_source(stmt->query, stmt->query_length);
-@@ -2324,11 +2413,50 @@
+@@ -2352,11 +2441,50 @@
                         test(flags & (ulong) CURSOR_TYPE_READ_ONLY));
    if (!(specialflag & SPECIAL_NO_PRIOR))
      my_pthread_setprio(pthread_self(), WAIT_PRIOR);
@@ -3440,7 +3407,7 @@ diff -ruN a/sql/sql_prepare.cc b/sql/sql_prepare.cc
    DBUG_VOID_RETURN;
  }
  
-@@ -2422,6 +2550,31 @@
+@@ -2450,6 +2578,31 @@
  
    /* First of all clear possible warnings from the previous command */
    mysql_reset_thd_for_next_command(thd);
@@ -3472,7 +3439,7 @@ diff -ruN a/sql/sql_prepare.cc b/sql/sql_prepare.cc
    statistic_increment(thd->status_var.com_stmt_fetch, &LOCK_status);
    if (!(stmt= find_prepared_statement(thd, stmt_id, "mysql_stmt_fetch")))
      DBUG_VOID_RETURN;
-@@ -2454,6 +2607,43 @@
+@@ -2482,6 +2635,43 @@
    thd->restore_backup_statement(stmt, &stmt_backup);
    thd->stmt_arena= thd;
  
@@ -3516,7 +3483,7 @@ diff -ruN a/sql/sql_prepare.cc b/sql/sql_prepare.cc
    DBUG_VOID_RETURN;
  }
  
-@@ -2486,6 +2676,30 @@
+@@ -2514,6 +2704,30 @@
    /* First of all clear possible warnings from the previous command */
    mysql_reset_thd_for_next_command(thd);
  
@@ -3547,7 +3514,7 @@ diff -ruN a/sql/sql_prepare.cc b/sql/sql_prepare.cc
    statistic_increment(thd->status_var.com_stmt_reset, &LOCK_status);
    if (!(stmt= find_prepared_statement(thd, stmt_id, "mysql_stmt_reset")))
      DBUG_VOID_RETURN;
-@@ -2502,6 +2716,43 @@
+@@ -2530,6 +2744,43 @@
  
    send_ok(thd);
  
@@ -3903,7 +3870,7 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
  
  /* collect status for all running threads */
  
-@@ -4495,6 +4790,77 @@
+@@ -4521,6 +4816,77 @@
    {0, 0, MYSQL_TYPE_STRING, 0, 0, 0}
  };
  
@@ -3981,16 +3948,16 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
  
  /*
    Description of ST_FIELD_INFO in table.h
-@@ -4504,6 +4870,8 @@
+@@ -4530,6 +4896,8 @@
  {
-   {"CHARACTER_SETS", charsets_fields_info, create_schema_table, 
+   {"CHARACTER_SETS", charsets_fields_info, create_schema_table,
     fill_schema_charsets, make_character_sets_old_format, 0, -1, -1, 0},
 +  {"CLIENT_STATISTICS", client_stats_fields_info, create_schema_table, 
 +    fill_schema_client_stats, make_old_format, 0, -1, -1, 0},
-   {"COLLATIONS", collation_fields_info, create_schema_table, 
+   {"COLLATIONS", collation_fields_info, create_schema_table,
     fill_schema_collation, make_old_format, 0, -1, -1, 0},
    {"COLLATION_CHARACTER_SET_APPLICABILITY", coll_charset_app_fields_info,
-@@ -4512,6 +4880,8 @@
+@@ -4538,6 +4906,8 @@
     get_all_tables, make_columns_old_format, get_schema_column_record, 1, 2, 0},
    {"COLUMN_PRIVILEGES", column_privileges_fields_info, create_schema_table,
      fill_schema_column_privileges, 0, 0, -1, -1, 0},
@@ -3999,7 +3966,7 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
    {"KEY_COLUMN_USAGE", key_column_usage_fields_info, create_schema_table,
      get_all_tables, 0, get_schema_key_column_usage_record, 4, 5, 0},
    {"OPEN_TABLES", open_tables_fields_info, create_schema_table,
-@@ -4537,10 +4907,14 @@
+@@ -4563,10 +4933,14 @@
     get_all_tables, make_table_names_old_format, 0, 1, 2, 1},
    {"TABLE_PRIVILEGES", table_privileges_fields_info, create_schema_table,
      fill_schema_table_privileges, 0, 0, -1, -1, 0},
@@ -4007,13 +3974,13 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
 +    fill_schema_table_stats, make_old_format, 0, -1, -1, 0},
    {"TRIGGERS", triggers_fields_info, create_schema_table,
     get_all_tables, make_old_format, get_schema_triggers_record, 5, 6, 0},
-   {"USER_PRIVILEGES", user_privileges_fields_info, create_schema_table, 
+   {"USER_PRIVILEGES", user_privileges_fields_info, create_schema_table,
      fill_schema_user_privileges, 0, 0, -1, -1, 0},
 +  {"USER_STATISTICS", user_stats_fields_info, create_schema_table, 
 +    fill_schema_user_stats, make_old_format, 0, -1, -1, 0},
    {"VARIABLES", variables_fields_info, create_schema_table, fill_variables,
     make_old_format, 0, -1, -1, 1},
-   {"VIEWS", view_fields_info, create_schema_table, 
+   {"VIEWS", view_fields_info, create_schema_table,
 diff -ruN a/sql/sql_update.cc b/sql/sql_update.cc
 --- a/sql/sql_update.cc	Wed Jul 29 13:33:34 2009 -0700
 +++ b/sql/sql_update.cc	Wed Jul 29 13:34:11 2009 -0700
@@ -4027,7 +3994,7 @@ diff -ruN a/sql/sql_update.cc b/sql/sql_update.cc
    }
    thd->count_cuted_fields= CHECK_FIELD_IGNORE;		/* calc cuted fields */
    thd->abort_on_warning= 0;
-@@ -1838,5 +1839,6 @@
+@@ -1839,5 +1840,6 @@
      (thd->client_capabilities & CLIENT_FOUND_ROWS) ? found : updated;
    ::send_ok(thd, (ulong) thd->row_count_func,
  	    thd->insert_id_used ? thd->last_insert_id : 0L,buff);
@@ -4277,7 +4244,7 @@ diff -ruN a/sql/structs.h b/sql/structs.h
 diff -ruN a/sql/table.h b/sql/table.h
 --- a/sql/table.h	Wed Jul 29 13:33:34 2009 -0700
 +++ b/sql/table.h	Wed Jul 29 13:34:11 2009 -0700
-@@ -371,10 +371,12 @@
+@@ -370,10 +370,12 @@
  enum enum_schema_tables
  {
    SCH_CHARSETS= 0,
@@ -4290,7 +4257,7 @@ diff -ruN a/sql/table.h b/sql/table.h
    SCH_KEY_COLUMN_USAGE,
    SCH_OPEN_TABLES,
    SCH_PROFILES,
-@@ -387,8 +389,10 @@
+@@ -386,8 +388,10 @@
    SCH_TABLE_CONSTRAINTS,
    SCH_TABLE_NAMES,
    SCH_TABLE_PRIVILEGES,

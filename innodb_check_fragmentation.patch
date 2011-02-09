@@ -250,7 +250,7 @@ diff -ruN a/sql/ha_innodb.cc b/sql/ha_innodb.cc
 diff -ruN a/sql/mysqld.cc b/sql/mysqld.cc
 --- a/sql/mysqld.cc	Mon Dec 22 00:33:03 2008 -0800
 +++ b/sql/mysqld.cc	Mon Dec 22 00:33:11 2008 -0800
-@@ -6777,6 +6777,10 @@
+@@ -6785,6 +6785,10 @@
    {"Handler_write",            (char*) offsetof(STATUS_VAR, ha_write_count), SHOW_LONG_STATUS},
  #ifdef HAVE_INNOBASE_DB
    {"Innodb_",                  (char*) &innodb_status_variables, SHOW_VARS},

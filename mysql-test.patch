@@ -1,3 +1,4 @@
+diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_schema.result
 --- a/mysql-test/r/information_schema.result	2009-05-07 19:31:26.000000000 +0000
 +++ b/mysql-test/r/information_schema.result	2009-05-07 19:32:59.000000000 +0000
 @@ -60,6 +60,7 @@
@@ -26,7 +27,7 @@
  mysql	17
  create table t1 (i int, j int);
  create trigger trg1 before insert on t1 for each row
-@@ -1228,6 +1229,7 @@
+@@ -1230,6 +1231,7 @@
  USER_STATISTICS	USER
  VIEWS	TABLE_SCHEMA
  INNODB_IO_PATTERN	SPACE
@@ -34,7 +35,7 @@
  SELECT t.table_name, c1.column_name
  FROM information_schema.tables t
  INNER JOIN
-@@ -1267,6 +1269,7 @@
+@@ -1269,6 +1271,7 @@
  USER_STATISTICS	USER
  VIEWS	TABLE_SCHEMA
  INNODB_IO_PATTERN	SPACE
@@ -42,7 +43,7 @@
  SELECT MAX(table_name) FROM information_schema.tables;
  MAX(table_name)
  VIEWS
-@@ -1342,6 +1345,7 @@
+@@ -1344,6 +1347,7 @@
  INDEX_STATISTICS	information_schema.INDEX_STATISTICS	1
  INNODB_BUFFER_POOL_CONTENT	information_schema.INNODB_BUFFER_POOL_CONTENT	1
  INNODB_IO_PATTERN	information_schema.INNODB_IO_PATTERN	1
@@ -50,6 +51,7 @@
  KEY_COLUMN_USAGE	information_schema.KEY_COLUMN_USAGE	1
  PROCESSLIST	information_schema.PROCESSLIST	1
  PROFILING	information_schema.PROFILING	1
+diff -ruN a/mysql-test/r/information_schema_db.result b/mysql-test/r/information_schema_db.result
 --- a/mysql-test/r/information_schema_db.result	2009-05-07 19:31:27.000000000 +0000
 +++ b/mysql-test/r/information_schema_db.result	2009-05-07 19:35:01.000000000 +0000
 @@ -29,6 +29,7 @@
@@ -60,6 +62,7 @@
  show tables from INFORMATION_SCHEMA like 'T%';
  Tables_in_information_schema (T%)
  TABLES
+diff -ruN a/mysql-test/r/mysqlshow.result b/mysql-test/r/mysqlshow.result
 --- a/mysql-test/r/mysqlshow.result	2009-05-07 19:31:26.000000000 +0000
 +++ b/mysql-test/r/mysqlshow.result	2009-05-07 19:36:32.000000000 +0000
 @@ -103,6 +103,7 @@
@@ -78,6 +81,7 @@
  +---------------------------------------+
  Wildcard: inf_rmation_schema
  +--------------------+
+diff -ruN a/mysql-test/r/profiling.result b/mysql-test/r/profiling.result
 --- a/mysql-test/r/profiling.result	2009-05-28 19:39:42.000000000 +0000
 +++ b/mysql-test/r/profiling.result	2009-05-28 19:40:14.000000000 +0000
 @@ -6,6 +6,8 @@
@@ -106,6 +110,7 @@
  select @@profiling;
  @@profiling
  1
+diff -ruN a/mysql-test/r/mysql.result b/mysql-test/r/mysql.result
 --- a/mysql-test/r/mysql.result 2010-02-19 23:59:36.000000000 -0500
 +++ b/mysql-test/r/mysql.result 2010-02-19 23:58:50.000000000 -0500
 @@ -162,8 +162,8 @@
@@ -127,6 +132,7 @@
 +ERROR 2003 (HY000) at line 1: Can't connect to MySQL server on 'invalid_hostname' (errno)
  <TABLE BORDER=1><TR><TH>&lt;</TH></TR><TR><TD>&lt; &amp; &gt;</TD></TR></TABLE>
  End of 5.0 tests
+diff -ruN a/mysql-test/r/mysql_upgrade.result b/mysql-test/r/mysql_upgrade.result
 --- a/mysql-test/r/mysql_upgrade.result 2010-02-19 23:58:16.000000000 -0500
 +++ b/mysql-test/r/mysql_upgrade.result 2010-02-20 00:01:34.000000000 -0500
 @@ -58,7 +58,7 @@

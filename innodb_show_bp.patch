@@ -153,7 +153,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  mysql	17
  create table t1 (i int, j int);
  create trigger trg1 before insert on t1 for each row
-@@ -1206,6 +1208,7 @@
+@@ -1208,6 +1210,7 @@
  COLLATION_CHARACTER_SET_APPLICABILITY	COLLATION_NAME
  COLUMNS	TABLE_SCHEMA
  COLUMN_PRIVILEGES	TABLE_SCHEMA
@@ -161,7 +161,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  INDEX_STATISTICS	TABLE_SCHEMA
  KEY_COLUMN_USAGE	CONSTRAINT_SCHEMA
  PROCESSLIST	ID
-@@ -1243,6 +1246,7 @@
+@@ -1245,6 +1248,7 @@
  COLLATION_CHARACTER_SET_APPLICABILITY	COLLATION_NAME
  COLUMNS	TABLE_SCHEMA
  COLUMN_PRIVILEGES	TABLE_SCHEMA
@@ -169,7 +169,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  INDEX_STATISTICS	TABLE_SCHEMA
  KEY_COLUMN_USAGE	CONSTRAINT_SCHEMA
  PROCESSLIST	ID
-@@ -1332,6 +1336,7 @@
+@@ -1334,6 +1338,7 @@
  COLUMNS	information_schema.COLUMNS	1
  COLUMN_PRIVILEGES	information_schema.COLUMN_PRIVILEGES	1
  INDEX_STATISTICS	information_schema.INDEX_STATISTICS	1
@@ -364,7 +364,7 @@ diff -ruN a/sql/ha_innodb.h b/sql/ha_innodb.h
 diff -ruN a/sql/sql_parse.cc b/sql/sql_parse.cc
 --- a/sql/sql_parse.cc	Mon Nov 10 19:47:27 2008 -0800
 +++ b/sql/sql_parse.cc	Mon Nov 10 19:48:25 2008 -0800
-@@ -3037,6 +3037,7 @@
+@@ -3064,6 +3064,7 @@
    case SCH_COLUMN_PRIVILEGES:
    case SCH_TABLE_CONSTRAINTS:
    case SCH_KEY_COLUMN_USAGE:
@@ -386,7 +386,7 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
  #ifndef NO_EMBEDDED_ACCESS_CHECKS
  static const char *grant_names[]={
    "select","insert","update","delete","create","drop","reload","shutdown",
-@@ -4091,6 +4095,19 @@
+@@ -4117,6 +4121,19 @@
    DBUG_RETURN(res);
  }
  
@@ -406,7 +406,7 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
  
  /*
    Find schema_tables elment by name
-@@ -4994,6 +5011,24 @@
+@@ -5020,6 +5037,24 @@
  };
  
  
@@ -431,7 +431,7 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
  /*
    Description of ST_FIELD_INFO in table.h
  */
-@@ -5012,6 +5047,8 @@
+@@ -5038,6 +5073,8 @@
     get_all_tables, make_columns_old_format, get_schema_column_record, 1, 2, 0},
    {"COLUMN_PRIVILEGES", column_privileges_fields_info, create_schema_table,
      fill_schema_column_privileges, 0, 0, -1, -1, 0},
@@ -443,7 +443,7 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
 diff -ruN a/sql/table.h b/sql/table.h
 --- a/sql/table.h	Mon Nov 10 19:47:27 2008 -0800
 +++ b/sql/table.h	Mon Nov 10 19:48:25 2008 -0800
-@@ -376,6 +376,7 @@
+@@ -375,6 +375,7 @@
    SCH_COLLATION_CHARACTER_SET_APPLICABILITY,
    SCH_COLUMNS,
    SCH_COLUMN_PRIVILEGES,

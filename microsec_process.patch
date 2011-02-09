@@ -35,7 +35,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  mysql	17
  create table t1 (i int, j int);
  create trigger trg1 before insert on t1 for each row
-@@ -1206,6 +1208,7 @@
+@@ -1208,6 +1210,7 @@
  COLUMN_PRIVILEGES	TABLE_SCHEMA
  INDEX_STATISTICS	TABLE_SCHEMA
  KEY_COLUMN_USAGE	CONSTRAINT_SCHEMA
@@ -43,7 +43,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  PROFILING	QUERY_ID
  ROUTINES	ROUTINE_SCHEMA
  SCHEMATA	SCHEMA_NAME
-@@ -1242,6 +1245,7 @@
+@@ -1244,6 +1247,7 @@
  COLUMN_PRIVILEGES	TABLE_SCHEMA
  INDEX_STATISTICS	TABLE_SCHEMA
  KEY_COLUMN_USAGE	CONSTRAINT_SCHEMA
@@ -51,7 +51,7 @@ diff -ruN a/mysql-test/r/information_schema.result b/mysql-test/r/information_sc
  PROFILING	QUERY_ID
  ROUTINES	ROUTINE_SCHEMA
  SCHEMATA	SCHEMA_NAME
-@@ -1329,6 +1333,7 @@
+@@ -1331,6 +1335,7 @@
  COLUMN_PRIVILEGES	information_schema.COLUMN_PRIVILEGES	1
  INDEX_STATISTICS	information_schema.INDEX_STATISTICS	1
  KEY_COLUMN_USAGE	information_schema.KEY_COLUMN_USAGE	1
@@ -237,7 +237,7 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
  /*****************************************************************************
    Status functions
  *****************************************************************************/
-@@ -4862,6 +4978,22 @@
+@@ -4888,6 +5004,22 @@
    {0, 0, MYSQL_TYPE_STRING, 0, 0, 0}
  };
  
@@ -260,19 +260,19 @@ diff -ruN a/sql/sql_show.cc b/sql/sql_show.cc
  /*
    Description of ST_FIELD_INFO in table.h
  */
-@@ -4886,6 +5018,8 @@
+@@ -4912,6 +5044,8 @@
      get_all_tables, 0, get_schema_key_column_usage_record, 4, 5, 0},
    {"OPEN_TABLES", open_tables_fields_info, create_schema_table,
     fill_open_tables, make_old_format, 0, -1, -1, 1},
 +  {"PROCESSLIST", processlist_fields_info, create_schema_table,
 +   fill_schema_processlist, make_old_format, 0, -1, -1, 0},
    {"PROFILING", query_profile_statistics_info, create_schema_table,
-    fill_query_profile_statistics_info, make_profile_table_for_show, 
+    fill_query_profile_statistics_info, make_profile_table_for_show,
     NULL, -1, -1, false},
 diff -ruN a/sql/table.h b/sql/table.h
 --- a/sql/table.h	Mon May 18 18:44:04 2009 -0700
 +++ b/sql/table.h	Mon May 18 18:48:11 2009 -0700
-@@ -379,6 +379,7 @@
+@@ -378,6 +378,7 @@
    SCH_INDEX_STATS,
    SCH_KEY_COLUMN_USAGE,
    SCH_OPEN_TABLES,
