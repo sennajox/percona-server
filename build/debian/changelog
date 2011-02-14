@@ -1,3 +1,9 @@
+percona-sql-dfsg-5.0 (5.0.92) unstable; urgency=low
+
+  * Update to MySQL version 5.0.92
+
+ -- Ignacio Nin <ignacio.nin@percona.com>  Mon, 14 Feb 2010 10:53:09 -0200
+
 percona-sql-dfsg-5.0 (5.0.90-b21) unstable; urgency=low
 
   * Percona patches, Build 21

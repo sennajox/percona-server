@@ -69,8 +69,8 @@ Package: percona-sql-server-5.0
 Architecture: any                                                               
 Suggests: tinyca
 Recommends: mailx, libhtml-template-perl
-Pre-Depends: percona-sql-common, adduser (>= 3.40), debconf
-Depends: percona-sql-client-5.0, libdbi-perl, perl (>= 5.6), ${shlibs:Depends}, ${misc:Depends}, psmisc, passwd, lsb-base (>= 3.0-10)
+Pre-Depends: adduser (>= 3.40), debconf
+Depends: percona-sql-client-5.0, libdbi-perl, perl (>= 5.6), ${shlibs:Depends}, ${misc:Depends}, psmisc, passwd, lsb-base (>= 3.0-10), percona-sql-common
 Conflicts: mysql-server (<< ${source:Version})
 Provides: mysql-server, virtual-mysql-server, mysql-community-server-5.0
 Description: MySQL database server binaries

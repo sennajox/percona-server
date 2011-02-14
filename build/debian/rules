@@ -21,6 +21,7 @@ DEB_UPSTREAM_VERSION ?= $(shell echo $(DEB_NOEPOCH_VERSION) | sed 's/-[^-]*$$//'
 DEB_UPSTREAM_VERSION_MAJOR_MINOR := $(shell echo $(DEB_UPSTREAM_VERSION) | sed -r -n 's/^([0-9]+\.[0-9]+).*/\1/p')
 
 DISTRIBUTION = $(shell lsb_release -i -s)
+COMMENT = Percona SQL Server, Revision $(REVISION)
 
 MAKE_J = -j$(shell if [ -f /proc/cpuinfo ] ; then grep -c processor.* /proc/cpuinfo ; else echo 1 ; fi)
 ifeq (${MAKE_J}, -j0)
@@ -28,7 +29,7 @@ ifeq (${MAKE_J}, -j0)
 endif
 
 MAKE_TEST_TARGET=test-force
-ifneq ($(findstring $(DEB_BUILD_OPTIONS),fulltest),)
+ifneq ($(findstring fulltest,$(DEB_BUILD_OPTIONS)),)
 # make test-bt is the testsuite run by the MySQL build team 
 # before a release, but it is long
     MAKE_TEST_TARGET=test-bt
@@ -59,12 +60,11 @@ configure-stamp:
 ifneq ($(ARCH_OS),hurd)
 	if [ ! -d /proc/self ]; then echo "/proc IS NEEDED" 1>&2; exit 1; fi 
 endif
-
 	sh -c  'PATH=$${MYSQL_BUILD_PATH:-"/bin:/usr/bin"} \
 		CC=$${MYSQL_BUILD_CC:-gcc} \
-	    	CFLAGS=$${MYSQL_BUILD_CFLAGS:-"-DBIG_JOINS=1 -O2 -fPIC"} \
+	    	CFLAGS=$${MYSQL_BUILD_CFLAGS:-"-DBIG_JOINS=1 -O2 -fPIC -g"} \
 		CXX=$${MYSQL_BUILD_CXX:-g++} \
-	    	CXXFLAGS=$${MYSQL_BUILD_CXXFLAGS:-"-DBIG_JOINS=1 -felide-constructors -fno-rtti -O2"} \
+	    	CXXFLAGS=$${MYSQL_BUILD_CXXFLAGS:-"-DBIG_JOINS=1 -felide-constructors -fno-rtti -O2 -g"} \
 	    ./configure \
 		--build=${DEB_BUILD_GNU_TYPE} \
 		--host=${DEB_HOST_GNU_TYPE} \
@@ -78,8 +78,8 @@ endif
 	        --infodir=/usr/share/info \
 	        --mandir=/usr/share/man \
 		\
-		--with-server-suffix="-$(DEBVERSION)" \
-		--with-comment="($(DISTRIBUTION))" \
+		--with-server-suffix="-$(REVISION)" \
+		--with-comment="($(COMMENT))" \
                 --with-system-type="debian-linux-gnu" \
 		\
 		--enable-shared \
@@ -131,7 +131,7 @@ build-stamp: configure
 
 	$(MAKE) $(MAKE_J)
 
-ifeq ($(findstring $(DEB_BUILD_OPTIONS),nocheck),)
+ifeq ($(findstring nocheck,$(DEB_BUILD_OPTIONS)),)
 	if [ ! -f testsuite-stamp ] ; then \
 		$(MAKE) $(MAKE_TEST_TARGET) || $(TESTSUITE_FAIL_CMD) ; \
 	fi
