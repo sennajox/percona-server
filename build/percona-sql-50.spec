@@ -96,11 +96,11 @@
 %endif
 
 
-%if %{COMMUNITY_BUILD}
-%define cluster_package_prefix -cluster
-%else
-%define cluster_package_prefix -
-%endif
+#%if %{COMMUNITY_BUILD} == 1
+#%define cluster_package_prefix -cluster
+#%else
+#%define cluster_package_prefix -
+#%endif
 
 %define mysqld_user	mysql
 %define mysqld_group	mysql
@@ -111,7 +111,7 @@
 %define _unpackaged_files_terminate_build 0
 
 %define see_base For a description of MySQL see the base MySQL RPM or http://www.mysql.com
-Source0: http://dev.mysql.com/get/Downloads/MySQL-5.0/mysql-%{version}.tar.gz
+#Source0: http://dev.mysql.com/get/Downloads/MySQL-5.0/mysql-%{version}.tar.gz
 
 Patch1: show_patches.patch
 Patch2: microslow_innodb.patch
@@ -316,7 +316,8 @@ sh -c  "CFLAGS=\"${CFLAGS:-$RPM_OPT_FLAGS}\" \
 
 
 BuildServer() {
-BuildMySQL "--disable-shared \
+#BuildMySQL "--disable-shared \
+BuildMySQL "\
 %if %{?server_suffix:1}0
 		--with-server-suffix='%{server_suffix}' \
 %endif
@@ -489,6 +490,7 @@ touch $RBR%{_sysconfdir}/mysqlmanager.passwd
 install -m600 $MBD/support-files/RHEL4-SElinux/mysql.{fc,te} \
 	$RBR%{_datadir}/mysql/SELinux/RHEL4
 
+mv $RBR%{_libdir}/mysql/*.so* $RBR%{_libdir}/
 
 %pre -n Percona-SQL-server%{server_suffix}
 # Check if we can safely upgrade.  An upgrade is only safe if it's from one
@@ -742,11 +744,11 @@ fi
 %attr(755, root, root) %{_bindir}/safe_mysqld
 
 %attr(755, root, root) %{_sbindir}/mysqld
-%attr(755, root, root) %{_sbindir}/mysqld-debug
+#%attr(755, root, root) %{_sbindir}/mysqld-debug
 %attr(755, root, root) %{_sbindir}/mysqlmanager
 %attr(755, root, root) %{_sbindir}/rcmysql
 %attr(644, root, root) %{_libdir}/mysql/mysqld.sym
-%attr(644, root, root) %{_libdir}/mysql/mysqld-debug.sym
+#%attr(644, root, root) %{_libdir}/mysql/mysqld-debug.sym
 
 %attr(644, root, root) %config(noreplace,missingok) %{_sysconfdir}/logrotate.d/mysql
 %attr(755, root, root) %{_sysconfdir}/init.d/mysql
@@ -789,10 +791,6 @@ fi
 
 %files -n Percona-SQL-devel%{server_suffix}
 %defattr(-, root, root, 0755)
-%if %{commercial}
-%else
-%doc EXCEPTIONS-CLIENT
-%endif
 %doc %attr(644, root, man) %{_mandir}/man1/comp_err.1*
 %doc %attr(644, root, man) %{_mandir}/man1/mysql_config.1*
 %attr(755, root, root) %{_bindir}/comp_err
