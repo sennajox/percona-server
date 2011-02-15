@@ -12,6 +12,33 @@
 # Bail out on errors, be strict
 set -ue
 
+AUTOGEN=no
+
+# Check if we have a functional getopt(1)
+if getopt --test
+then
+    # Just take parameters at first
+    if test "$#" -gt 0 && test "$1" = "-a"
+    then
+        shift
+        AUTOGEN=yes
+    fi
+else
+    # Examine parameters
+    go_out="$(getopt --options="a" --longoptions=autogen \
+        --name="$(basename "$0")" -- "$@")"
+    test $? -eq 0 || exit 1
+    eval set -- $go_out
+fi
+
+for arg
+do
+    case "$arg" in
+    -- ) shift; break;;
+    -a | --autogen ) shift; AUTOGEN=yes;;
+    esac
+done
+
 # Working directory
 if test "$#" -eq 0
 then
@@ -69,7 +96,8 @@ export CXXFLAGS='-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURC
 export MAKE_JFLAG=-j4
 
 # Create a temporary working directory
-INSTALLDIR="$(TMPDIR="$WORKDIR_ABS" mktemp -d)"
+INSTALLDIR="$(cd "$WORKDIR" && TMPDIR="$WORKDIR_ABS" mktemp -d percona-build.XXXXXX)"
+INSTALLDIR="$WORKDIR_ABS/$INSTALLDIR"   # Make it absolute
 
 # Prepare sources
 (
@@ -86,6 +114,12 @@ INSTALLDIR="$(TMPDIR="$WORKDIR_ABS" mktemp -d)"
     do
         patch -p1 < "$SOURCEDIR/$p"
     done
+
+    # Run autogen if needed
+    if test "x$AUTOGEN" = "xyes"
+    then
+        sh BUILD/autorun.sh
+    fi
 
     # Configure
     ./configure --prefix="/usr/local/$PRODUCT_FULL" \
