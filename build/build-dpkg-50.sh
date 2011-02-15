@@ -23,7 +23,7 @@ for arg
 do
     case "$arg" in
     -- ) shift; break;;
-    -k | --key ) shift; BUILDPKG_KEY="-k$1"; shift;;
+    -k | --key ) shift; BUILDPKG_KEY="-pgpg -k$1"; shift;;
     esac
 done
 
