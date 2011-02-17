@@ -14,18 +14,14 @@ set -ue
 
 AUTOGEN=no
 
+# Examine parameters
+TARGET="$(uname -m)"
+TARGET_CFLAGS=''
+
 # Check if we have a functional getopt(1)
-if getopt --test
+if ! getopt --test
 then
-    # Just take parameters at first
-    if test "$#" -gt 0 && test "$1" = "-a"
-    then
-        shift
-        AUTOGEN=yes
-    fi
-else
-    # Examine parameters
-    go_out="$(getopt --options="a" --longoptions=autogen \
+    go_out="$(getopt --options="ai" --longoptions=autogen,i686 \
         --name="$(basename "$0")" -- "$@")"
     test $? -eq 0 || exit 1
     eval set -- $go_out
@@ -36,6 +32,11 @@ do
     case "$arg" in
     -- ) shift; break;;
     -a | --autogen ) shift; AUTOGEN=yes;;
+    -i | --i686 )
+        shift
+        TARGET="i686"
+        TARGET_CFLAGS="-m32 -march=i686"
+        ;;
     esac
 done
 
@@ -77,22 +78,20 @@ test -e "$SOURCEDIR/Makefile" || exit 2
 # Extract version from the Makefile
 MYSQL_VERSION="$(grep ^MYSQL_VERSION= "$SOURCEDIR/Makefile" \
     | cut -d = -f 2)"
-PERCONA_SERVER_VERSION="$(grep ^PERCONA_SERVER_VERSION= \
-    "$SOURCEDIR/Makefile" | cut -d = -f 2)"
-PRODUCT="Percona-Server-$MYSQL_VERSION-$PERCONA_SERVER_VERSION"
+PATCHSET="$(grep ^PATCHSET= "$SOURCEDIR/Makefile" | cut -d = -f 2)"
+PRODUCT="Percona-Server-$MYSQL_VERSION-$PATCHSET"
 
 # Build information
 REVISION="$(cd "$SOURCEDIR"; bzr log -r-1 | grep ^revno: | cut -d ' ' -f 2)"
-PRODUCT_FULL="Percona-Server-$MYSQL_VERSION-rel$PERCONA_SERVER_VERSION"
-PRODUCT_FULL="$PRODUCT_FULL-$REVISION.$(uname -s).$(uname -m)"
-COMMENT="Percona Server with XtraDB (GPL), Release $PERCONA_SERVER_VERSION"
+PRODUCT_FULL="$PRODUCT.$REVISION.$(uname -s).$TARGET"
+COMMENT="Percona Server with XtraDB (GPL), Release $PRODUCT"
 COMMENT="$COMMENT, Revision $REVISION"
 
 # Compilation flags
 export CC=gcc
 export CXX=gcc
-export CFLAGS='-fPIC -Wall -O3 -g -static-libgcc -fno-omit-frame-pointer'
-export CXXFLAGS='-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fno-exceptions'
+export CFLAGS="-fPIC -Wall -O3 -g -static-libgcc -fno-omit-frame-pointer $TARGET_CFLAGS"
+export CXXFLAGS="-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fno-exceptions $TARGET_CFLAGS"
 export MAKE_JFLAG=-j4
 
 # Create a temporary working directory

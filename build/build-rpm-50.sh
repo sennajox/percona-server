@@ -15,6 +15,31 @@
 # Bail out on errors, be strict
 set -ue
 
+# Examine parameters
+TARGET=''
+TARGET_CFLAGS=''
+
+# Check if we have a functional getopt(1)
+if ! getopt --test
+then
+    go_out="$(getopt --options="i" --longoptions=i686 \
+        --name="$(basename "$0")" -- "$@")"
+    test $? -eq 0 || exit 1
+    eval set -- $go_out
+fi
+
+for arg
+do
+    case "$arg" in
+    -- ) shift; break;;
+    -i | --i686 )
+        shift
+        TARGET="--target i686"
+        TARGET_CFLAGS="-m32 -march=i686"
+        ;;
+    esac
+done
+
 # Working directory
 if test "$#" -eq 0
 then
@@ -58,7 +83,15 @@ PRODUCT="Percona-Server-$MYSQL_VERSION"
 # Build information
 REDHAT_RELEASE="$(grep -o 'release [0-9][0-9]*' /etc/redhat-release | \
     cut -d ' ' -f 2)"
+PATCHSET="$(grep ^PATCHSET= "$SOURCEDIR/Makefile" | cut -d = -f 2)"
 REVISION="$(cd "$SOURCEDIR"; bzr log -r-1 | grep ^revno: | cut -d ' ' -f 2)"
+
+# Compilation flags
+export CC=gcc
+export CXX=gcc
+export CFLAGS="-fPIC -Wall -O3 -g -static-libgcc -fno-omit-frame-pointer $TARGET_CFLAGS"
+export CXXFLAGS="-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fno-exceptions $TARGET_CFLAGS"
+export MAKE_JFLAG=-j4
 
 # Create directories for rpmbuild if these don't exist
 (cd "$WORKDIR" && mkdir -p BUILD RPMS SOURCES SPECS SRPMS)
@@ -80,13 +113,14 @@ REVISION="$(cd "$SOURCEDIR"; bzr log -r-1 | grep ^revno: | cut -d ' ' -f 2)"
     )
 
     # Issue RPM command
-    rpmbuild --sign -ba --clean "$SOURCEDIR/build/percona-sql-50.spec" \
+    rpmbuild --sign -ba --clean --with yassl $TARGET \
+        "$SOURCEDIR/build/percona-sql-50.spec" \
         --define "_topdir $WORKDIR_ABS" --define "percona 1" \
         --define "mysqlversion $MYSQL_VERSION" \
         --define "redhat_version $REDHAT_RELEASE" \
         --define "revision $REVISION" \
-        --define "patchset $REVISION" \
-        --define "buildnumber 1"
+        --define "patchset $PATCHSET" \
+        --define "buildnumber $REVISION"
 
 )
 
