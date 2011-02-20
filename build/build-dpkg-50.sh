@@ -63,7 +63,9 @@ test -e "$SOURCEDIR/Makefile" || exit 2
 # Extract version from the Makefile
 MYSQL_VERSION="$(grep ^MYSQL_VERSION= "$SOURCEDIR/Makefile" \
     | cut -d = -f 2)"
-PRODUCT="Percona-Server-$MYSQL_VERSION"
+PATCHSET="$(grep ^PATCHSET= "$SOURCEDIR/Makefile" | cut -d = -f 2)"
+PRODUCT="Percona-Server-$MYSQL_VERSION-$PATCHSET"
+DEBIAN_VERSION="$(lsb_release -sc)"
 
 # Build information
 export REVISION="$(cd "$SOURCEDIR"; bzr log -r-1 | grep ^revno: | cut -d ' ' -f 2)"
@@ -87,6 +89,9 @@ export DEB_BUILD_OPTIONS='nostrip debug nocheck'
         # Copy debian files from source
         cp -R "$SOURCEDIR/build/debian" .
         chmod +x debian/rules
+
+        # Update distribution name
+        dch -m -v "$MYSQL_VERSION-$PATCHSET.$REVISION.$DEBIAN_VERSION" 'Update distribution'
     
         # Apply patches
         for p in $(cat "$SOURCEDIR/series")
