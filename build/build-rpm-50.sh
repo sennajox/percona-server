@@ -87,10 +87,10 @@ PATCHSET="$(grep ^PATCHSET= "$SOURCEDIR/Makefile" | cut -d = -f 2)"
 REVISION="$(cd "$SOURCEDIR"; bzr log -r-1 | grep ^revno: | cut -d ' ' -f 2)"
 
 # Compilation flags
-export CC=gcc
-export CXX=gcc
-export CFLAGS="-fPIC -Wall -O3 -g -static-libgcc -fno-omit-frame-pointer $TARGET_CFLAGS"
-export CXXFLAGS="-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fno-exceptions $TARGET_CFLAGS"
+export CC=${CC:-gcc}
+export CXX=${CXX:-gcc}
+export CFLAGS="-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fstack-protector $TARGET_CFLAGS"
+export CXXFLAGS="-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fstack-protector -fno-exceptions $TARGET_CFLAGS"
 export MAKE_JFLAG=-j4
 
 # Create directories for rpmbuild if these don't exist
@@ -113,7 +113,7 @@ export MAKE_JFLAG=-j4
     )
 
     # Issue RPM command
-    rpmbuild --sign -ba --clean --with yassl $TARGET \
+    rpmbuild -ba --clean --with yassl $TARGET \
         "$SOURCEDIR/build/percona-sql-50.spec" \
         --define "_topdir $WORKDIR_ABS" --define "percona 1" \
         --define "mysqlversion $MYSQL_VERSION" \

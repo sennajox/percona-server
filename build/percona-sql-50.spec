@@ -310,7 +310,7 @@ sh -c  "CFLAGS=\"${CFLAGS:-$RPM_OPT_FLAGS}\" \
 	    $OPT_DEBUG \
 	    --with-readline \
             --with-low-memory \
-	    ; make -j1"
+	    ; make $MAKE_JFLAG"
 }
 # end of function definition "BuildMySQL"
 
@@ -360,6 +360,8 @@ mkdir -p $RBR%{_libdir}/mysql $RBR%{_sbindir}
 if [ -z "$CXX" -a -z "$CC" ] ; then
 	export CC="ccache gcc" CXX="ccache gcc"
 fi
+
+if [ -z "$CFLAGS" -a -z "$CXXFLAGS" ] ; then
 export CFLAGS="-O2 -fno-omit-frame-pointer  -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic"
 export CXXFLAGS="-O2 -fno-omit-frame-pointer -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -mtune=generic"
 
@@ -373,7 +375,7 @@ if [ "%{redhat_version}" != "5" ] ; then
 export CFLAGS="-O2 -g -fno-omit-frame-pointer -pipe "
 export CXXFLAGS="-O2 -g -fno-omit-frame-pointer -pipe "
 fi
-
+fi
 
 # Create the shared libs seperately to avoid a dependency for the client utilities
 DEBUG=0
