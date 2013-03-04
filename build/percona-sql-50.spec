@@ -148,6 +148,9 @@ URL:		http://www.percona.com/
 Packager:	Percona Build Team <info@percona.com>
 Vendor:		%{mysql_vendor}
 Provides:	msqlormysql MySQL-server mysql Percona-SQL
+%if "%{redhat_version}" == "5"
+Obsoletes:	mysql
+%endif
 BuildRequires:  gperf perl readline-devel gcc-c++ ncurses-devel zlib-devel libtool automake autoconf time ccache bison flex
 
 # Think about what you use here since the first step is to
@@ -805,11 +808,12 @@ fi
 %{_libdir}/mysql/libmy*.la
 %{_libdir}/mysql/libvio.a
 %{_libdir}/mysql/libz*
+%{_libdir}/*.so
 
 %files -n Percona-SQL-shared%{server_suffix}
 %defattr(-, root, root, 0755)
 # Shared libraries (omit for architectures that don't support them)
-%{_libdir}/*.so*
+%{_libdir}/*.so.*
 
 
 %files -n Percona-SQL-test%{server_suffix}
