@@ -1476,6 +1476,8 @@ static inline double rint(double x)
 }
 #endif /* HAVE_RINT */
 
+extern struct sockaddr *source_addr;
+
 /* 
   MYSQL_PLUGIN_IMPORT macro is used to export mysqld data
   (i.e variables) for usage in storage engine loadable plugins.

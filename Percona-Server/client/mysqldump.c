@@ -36,9 +36,15 @@
 ** and adapted to mysqldump 05/11/01 by Jani Tolonen
 ** Added --single-transaction option 06/06/2002 by Peter Zaitsev
 ** 10 Jun 2003: SET NAMES and --no-set-names by Alexander Barkov
+** 29 Sep 2013: Support specify source ip by Sennajox <sennajox at gmail dot com>
 */
 
 #define DUMP_VERSION "10.13"
+
+#include <netdb.h>        // getservbyname, servent
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 #include <my_global.h>
 #include <my_sys.h>
@@ -128,6 +134,7 @@ static char  *opt_password=0,*current_user=0,
              *opt_compatible_mode_str= 0,
              *err_ptr= 0,
              *log_error_file= NULL;
+static char *source_addr_str = NULL;
 static char **defaults_argv= 0;
 static char compatible_mode_normal_str[255];
 /* Server supports character_set_results session variable? */
@@ -535,6 +542,9 @@ static struct my_option my_long_options[] =
    "Default authentication client-side plugin to use.",
    &opt_default_auth, &opt_default_auth, 0,
    GET_STR, REQUIRED_ARG, 0, 0, 0, 0, 0, 0},
+  // Source address for connecting 
+  {"bind-address", 'b', "Bind the source address", &source_addr_str,
+       &source_addr_str, 0, GET_STR_ALLOC, REQUIRED_ARG, 0, 0, 0, 0, 0, 0},
   {0, 0, 0, 0, 0, 0, GET_NO_ARG, NO_ARG, 0, 0, 0, 0, 0, 0}
 };
 

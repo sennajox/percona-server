@@ -1917,6 +1917,13 @@ static my_socket activate_tcp_port(uint port)
     Retry at second: 1, 3, 7, 13, 22, 35, 52, 74, ...
     Limit the sequence by mysqld_port_timeout (set --port-open-timeout=#).
   */
+  // Keep the bind address for connecting
+  static struct sockaddr_in srcaddr;
+  bzero(&(srcaddr), sizeof(srcaddr));
+  srcaddr.sin_family = AF_INET;
+  srcaddr.sin_addr.s_addr = inet_addr(my_bind_addr_str);
+  source_addr = (struct sockaddr*)&srcaddr;
+
   int ret;
   uint waited, retry, this_wait;
   for (waited= 0, retry= 1; ; retry++, waited+= this_wait)

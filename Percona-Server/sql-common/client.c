@@ -148,6 +148,9 @@ char mysql_server_last_error[MYSQL_ERRMSG_SIZE];
   Base version coded by Steve Bernacki, Jr. <steve@navinet.net>
 *****************************************************************************/
 
+// A pointer refers to source address
+struct sockaddr *source_addr = NULL;
+
 int my_connect(my_socket fd, const struct sockaddr *name, uint namelen,
 	       uint timeout)
 {
@@ -158,6 +161,19 @@ int my_connect(my_socket fd, const struct sockaddr *name, uint namelen,
   int flags, res, s_err;
   DBUG_ENTER("my_connect");
   DBUG_PRINT("enter", ("fd: %d  timeout: %u", fd, timeout));
+
+    // set the source address
+  if (NULL != source_addr) 
+  {
+      res = bind(fd, source_addr, sizeof(struct sockaddr));
+      DBUG_PRINT("info", ("connect result: %d  errno: %d", res, errno));
+      s_err= errno;         /* Save the error... */
+      if (0 != res)
+      {
+          errno= s_err;           /* Restore it */
+          DBUG_RETURN(-1);
+      }
+  }
 
   /*
     If they passed us a timeout of zero, we should behave
